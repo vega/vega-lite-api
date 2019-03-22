@@ -124,8 +124,7 @@ const spec = {
   ]
 }
 
-tape('Parallel coorindates code matches spec', function(t) {
-  // console.log(JSON.stringify(api(), 0, 2));
+tape('Parallel coordinates code matches spec', function(t) {
   t.equal(
     JSON.stringify(api()),
     JSON.stringify(spec)
