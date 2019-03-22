@@ -1,0 +1,35 @@
+{
+  "name": "vega-lite-api",
+  "version": "0.0.1",
+  "description": "A JavaScript API for Vega-Lite.",
+  "keywords": [
+    "vega",
+    "vega-lite",
+    "visualization",
+    "data",
+    "api"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "Jeffrey Heer (http://idl.cs.washington.edu)",
+  "main": "build/vega-lite-api.js",
+  "module": "src/index",
+  "repository": "vega/vega-lite-api",
+  "scripts": {
+    "prebuild": "rimraf build && mkdir build && rimraf src && mkdir src && cp static/* src",
+    "build-src": "yarn rollup-generate && node -e \"require('./build/generate-api.js').build()\"",
+    "build": "yarn build-src && yarn rollup-src",
+    "postbuild": "terser build/vega-lite-api.js -c -m -o build/vega-lite-api.min.js",
+    "rollup-generate": "rollup -g fs:fs -f cjs -o build/generate-api.js -- api/index.js",
+    "rollup-src": "rollup -f umd -n vl -o build/vega-lite-api.js -- src/index.js",
+    "pretest": "yarn build",
+    "test": "tape 'test/**/*-test.js' && eslint api test static",
+    "prepublishOnly": "yarn test"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.7.0",
+    "tape": "^4.10.1",
+    "terser": "^3.17.0"
+  }
+}
