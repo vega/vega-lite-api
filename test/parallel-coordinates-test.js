@@ -17,10 +17,10 @@ function api() {
     strokeWidth: 1.5,
     opacity: 0.5
   }).encode(
-    vl.color().field('species').type('nominal'),
-    vl.detail().field('index').type('nominal'),
-    vl.x().field('key').type('ordinal').scale({type: 'point', padding: 0}).axis(axis),
-    vl.y().field('fraction').type('quantitative').axis(null)
+    vl.color().fieldN('species'),
+    vl.detail().fieldN('index'),
+    vl.x().fieldO('key').scale({type: 'point', padding: 0}).axis(axis),
+    vl.y().fieldQ('fraction').axis(null)
   );
 
   const labels = vl.markText({
@@ -32,8 +32,8 @@ function api() {
       vl.fold('min', 'max').as('op', 'value'),
       vl.groupby('key').window(vl.percent_rank('value').as('fraction'))
     ).encode(
-      vl.x().field('key').type('nominal'),
-      vl.y().field('fraction').type('quantitative').axis(null),
+      vl.x().fieldN('key'),
+      vl.y().fieldQ('fraction').axis(null),
       vl.text().field('value')
     );
 

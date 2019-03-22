@@ -33,10 +33,16 @@ export function generateMethod(schema, methodName, spec) {
   // -- extensions --
   for (let prop in ext) {
     if (ext[prop] == null) continue; // skip if null
-    const arg = ext[prop][0];
-    arg.startsWith('+++') ? generateMergedProperty(emit, prop, arg.slice(3))
-      : arg.startsWith('...') ? generateProperty(emit, prop, arg.slice(3), '...')
-      : generateProperty(emit, prop, arg);
+    const arg = ext[prop][0],
+          set = generateMutations('obj', ext[prop][1]);
+
+    if (arg.startsWith('+++')) { // merge object arguments
+      generateMergedProperty(emit, prop, arg.slice(3), set);
+    } else if (arg.startsWith('...')) { // array value from arguments
+      generateProperty(emit, prop, arg.slice(3), '...', set);
+    } else { // standard value argument
+      generateProperty(emit, prop, arg, '', set);
+    }
   }
 
   // -- switch --
@@ -96,20 +102,36 @@ function generateConstructor(emit, className, set, arg) {
   emit();
 }
 
-function generateProperty(emit, method, prop, mod) {
+function generateMutations(obj, values) {
+  let code = [];
+  for (let prop in values) {
+    code.push(`mutate(${obj}, ${$(prop)}, ${$(values[prop])});`);
+  }
+  return code;
+}
+
+function generateProperty(emit, method, prop, mod, set) {
   emit(`prototype.${method} = function(${mod || ''}value) {`);
-  emit(`  return arguments.length`);
-  emit(`    ? set(this, ${$(prop)}, flat(value))`);
-  emit(`    : get(this, ${$(prop)});`);
+  emit(`  if (arguments.length) {`);
+  emit(`    const obj = set(this, ${$(prop)}, flat(value));`);
+  if (set) set.forEach(v => emit('    ' + v));
+  emit(`    return obj;`);
+  emit(`  } else {`);
+  emit(`    return get(this, ${$(prop)});`);
+  emit(`  }`);
   emit(`};`);
   emit();
 }
 
-function generateMergedProperty(emit, method, prop) {
+function generateMergedProperty(emit, method, prop, set) {
   emit(`prototype.${method} = function(...values) {`);
-  emit(`  return arguments.length`);
-  emit(`    ? set(this, ${$(prop)}, merge(values))`);
-  emit(`    : get(this, ${$(prop)});`);
+  emit(`  if (arguments.length) {`);
+  emit(`    const obj = set(this, ${$(prop)}, merge(values));`);
+  if (set) set.forEach(v => emit('    ' + v));
+  emit(`    return obj;`);
+  emit(`  } else {`);
+  emit(`    return get(this, ${$(prop)});`);
+  emit(`  }`);
   emit(`};`);
   emit();
 }

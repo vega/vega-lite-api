@@ -45,7 +45,15 @@ export function groupby() {
 export function channel(type) {
   return {
     def: `FacetedEncoding/properties/${type}`,
-    key: type
+    key: type,
+    ext: {
+      fieldN:   ['field', {type: 'nominal'}],
+      fieldO:   ['field', {type: 'ordinal'}],
+      fieldQ:   ['field', {type: 'quantitative'}],
+      fieldT:   ['field', {type: 'temporal'}],
+      encoding: null,
+      ...specExt
+    }
   };
 }
 
