@@ -73,17 +73,17 @@ function generateConstructor(emit, className, set, arg) {
     // use provided argument definitions
     for (let i=0, n=arg.length; i<n; ++i) {
       const _ = arg[i];
-      if (Array.isArray(_)) {
+      if (Array.isArray(_)) { // include a default value
         emit(`  mutate(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
-      } else if (_.startsWith('+++')) {
+      } else if (_.startsWith('+++')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
         emit(`  mutate(this, ${$(_.slice(3))}, merge(get(this, ${$(_.slice(3))}), args));`);
         break;
-      } else if (_.startsWith('...')) {
+      } else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
         emit(`  mutate(this, ${$(_.slice(3))}, args);`);
         break;
-      } else {
+      } else { // set value if not undefined
         emit(`  if (args[${i}] !== undefined) mutate(this, ${$(_)}, args[${i}]);`);
       }
     }
