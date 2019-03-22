@@ -30,7 +30,7 @@ function api() {
     }).transform(
       vl.groupby('key').aggregate(vl.min('value').as('min'), vl.max('value').as('max')),
       vl.fold('min', 'max').as('op', 'value'),
-      vl.groupby('key').window(vl.percent_rank('value').as('fraction'))
+      vl.groupby('key').window(vl.percent_rank().as('fraction'))
     ).encode(
       vl.x().fieldN('key'),
       vl.y().fieldQ('fraction').axis(null),
