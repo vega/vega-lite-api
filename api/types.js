@@ -1,7 +1,3 @@
-// const schema = {
-//   $schema: 'https://vega.github.io/schema/vega-lite/v3.json'
-// };
-
 export function transform(def, ...args) {
   return {
     def: def,
