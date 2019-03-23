@@ -1,7 +1,7 @@
 var tape = require('tape'),
     vl = require('../');
 
-tape('Weather API output matches spec', function(t) {
+tape('API output matches spec: weather-timeunit', function(t) {
   t.equal(JSON.stringify(api()), JSON.stringify(spec));
   t.end();
 });

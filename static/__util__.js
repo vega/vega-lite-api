@@ -35,6 +35,7 @@ export function set(obj, name, value) {
 
 export function copy(obj) {
   const mod = Object.create(Object.getPrototypeOf(obj));
+  Object.assign(mod, obj);
   mod[Data] = Object.assign({}, obj[Data]);
   return mod;
 }
@@ -47,21 +48,21 @@ function isDataObject(value) {
   return value === Object(value) && !Array.isArray(value) && value[Data];
 }
 
-function recurse(d) {
-  return d && d.toJSON ? d.toJSON() : toJSON(d);
+function recurse(d, flag) {
+  return d && d.toJSON ? d.toJSON(flag) : toJSON(d, flag);
 }
 
-function toJSON(value) {
+function toJSON(value, flag) {
   if (isDataObject(value)) {
     const data = value[Data],
           out = {};
     for (let k in data) {
       const d = data[k];
-      out[k] = recurse(d);
+      out[k] = recurse(d, flag);
     }
     return out;
   } else if (Array.isArray(value)) {
-    return value.map(recurse);
+    return value.map(d => recurse(d, flag));
   } else {
     return value;
   }
@@ -73,7 +74,7 @@ function object(value) {
     : value;
 }
 
-export function merge(...values) {
-  const objects = toJSON([].concat(...values));
+export function merge(flag, ...values) {
+  const objects = toJSON([].concat(...values), flag);
   return object(Object.assign({}, ...objects));
 }

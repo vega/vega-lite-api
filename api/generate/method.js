@@ -1,4 +1,4 @@
-import {capitalize, error, stringValue as $, unique} from './util';
+import {capitalize, error, stringValue as $, unique, isString, isObject} from './util';
 
 // TODO validation
 
@@ -33,8 +33,9 @@ export function generateMethod(schema, methodName, spec) {
   // -- extensions --
   for (let prop in ext) {
     if (ext[prop] == null) continue; // skip if null
-    const arg = ext[prop][0],
-          set = generateMutations('obj', ext[prop][1]);
+    const val = ext[prop],
+          arg = val.arg[0],
+          set = generateMutations('obj', val.set);
 
     if (!arg) {
       // zero-argument generator
@@ -42,7 +43,7 @@ export function generateMethod(schema, methodName, spec) {
     }
     else if (arg.startsWith('+++')) {
       // merge object arguments
-      generateMergedProperty(emit, prop, arg.slice(3), set);
+      generateMergedProperty(emit, prop, arg.slice(3), val.flag, set);
     }
     else if (arg.startsWith('...')) {
       // array value from arguments
@@ -92,12 +93,14 @@ function generateConstructor(emit, className, set, arg) {
         emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
       } else if (_.startsWith('+++')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
-        emit(`  set(this, ${$(_.slice(3))}, merge(get(this, ${$(_.slice(3))}), args));`);
+        emit(`  set(this, ${$(_.slice(3))}, merge(0, get(this, ${$(_.slice(3))}), args));`);
         break;
       } else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
         emit(`  set(this, ${$(_.slice(3))}, args);`);
         break;
+      } else if (_.startsWith('_')) { // internal state
+        emit(`  if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
       } else { // set value if not undefined
         emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, args[${i}]);`);
       }
@@ -142,11 +145,11 @@ function generateProperty(emit, method, prop, mod, set) {
   emit();
 }
 
-function generateMergedProperty(emit, method, prop, set) {
+function generateMergedProperty(emit, method, prop, flag, set) {
   emit(`prototype.${method} = function(...values) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
-  emit(`    set(obj, ${$(prop)}, merge(values));`);
+  emit(`    set(obj, ${$(prop)}, merge(${flag}, values));`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
@@ -166,8 +169,32 @@ function generateSwitch(emit, method, prop) {
 }
 
 function generateToJSON(emit, key) {
-  emit(`prototype.toJSON = function() {`);
-  emit(`  return {${key}: proto().toJSON.call(this)};`);
+  if (Array.isArray(key)) {
+    emit(`prototype.toJSON = function(flag) {`);
+    emit(`  return flag`);
+    emit(`    ? ${generateJSON(key[1])}`);
+    emit(`    : ${generateJSON(key[0])};`);
+  } else {
+    emit(`prototype.toJSON = function() {`);
+    emit(`  return ${generateJSON(key)};`);
+  }
   emit(`};`);
   emit();
+}
+
+function generateJSON(key) {
+  if (isObject(key)) {
+    let c = [];
+    for (let k in key) {
+      let v = key[k];
+      v = v.startsWith('_') ? `this[${$(v)}]` : v;
+      c.push(`${k}: ${v}`);
+    }
+    return `{${c.join(', ')}}`;
+  } else if (isString(key)) {
+    const k = key.startsWith('_') ? `[this[${$(key)}]]` : key;
+    return `{${k}: proto().toJSON.call(this)}`;
+  } else {
+    return `proto().toJSON.call(this)`;
+  }
 }

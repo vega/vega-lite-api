@@ -3,8 +3,8 @@ import {capitalize} from './generate/util';
 import {schema} from './vega-lite-schema';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
-  transform, aggregateOp, timeUnitOp, windowOp,
-  groupby, channel, mark, data, spec
+  transform, groupby, aggregateOp, timeUnitOp, windowOp,
+  selection, sort, encoding, channel, mark, data, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -38,6 +38,13 @@ export const api = {
 
   // encoding channels
   ...channels(),
+  sort:     sort(),
+  encoding: encoding(),
+
+  // selections
+  single:    selection('single'),
+  multi:     selection('multi'),
+  interval:  selection('interval'),
 
   // tranforms
   aggregate:     transform('AggregateTransform', '...aggregate'),
