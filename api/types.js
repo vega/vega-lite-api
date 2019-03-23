@@ -1,3 +1,5 @@
+import {aggregateOps, timeUnitOps} from './ops';
+
 const N = 'nominal';
 const O = 'ordinal';
 const Q = 'quantitative';
@@ -46,8 +48,6 @@ export function groupby() {
     }
   };
 }
-
-import {aggregateOps, timeUnitOps} from './ops';
 
 const channelAggregate = {};
 for (let key in aggregateOps) {

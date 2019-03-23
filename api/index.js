@@ -1,6 +1,6 @@
-import {generateAPI} from './generateAPI';
-import {schema} from './schema';
-import {api} from './API';
+import {generateAPI} from './generate/api';
+import {schema} from './vega-lite-schema';
+import {api} from './api';
 
 export function build() {
   generateAPI(schema, api);
