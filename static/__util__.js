@@ -1,7 +1,7 @@
 const Data = Symbol('data');
 
 const prototype = {
-  toJSON: function() { return serialize(this); }
+  toJSON: function() { return toJSON(this); }
 };
 
 export function proto(ctr) {
@@ -47,17 +47,21 @@ function isDataObject(value) {
   return value === Object(value) && !Array.isArray(value) && value[Data];
 }
 
-function serialize(value) {
+function recurse(d) {
+  return d && d.toJSON ? d.toJSON() : toJSON(d);
+}
+
+function toJSON(value) {
   if (isDataObject(value)) {
     const data = value[Data],
           out = {};
     for (let k in data) {
       const d = data[k];
-      out[k] = d && d.toJSON ? d.toJSON() : serialize(d);
+      out[k] = recurse(d);
     }
     return out;
   } else if (Array.isArray(value)) {
-    return value.map(d => d && d.toJSON ? d.toJSON() : serialize(d));
+    return value.map(recurse);
   } else {
     return value;
   }
@@ -70,6 +74,6 @@ function object(value) {
 }
 
 export function merge(...values) {
-  const objects = serialize([].concat(...values));
+  const objects = toJSON([].concat(...values));
   return object(Object.assign({}, ...objects));
 }

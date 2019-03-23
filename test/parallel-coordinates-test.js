@@ -1,6 +1,11 @@
 var tape = require('tape'),
     vl = require('../');
 
+tape('Parallel coordinates API output matches spec', function(t) {
+  t.equal(JSON.stringify(api()), JSON.stringify(spec));
+  t.end();
+});
+
 function api() {
   const axis = {
     domain: false,
@@ -14,43 +19,43 @@ function api() {
   };
 
   const lines = vl.markLine({
-    strokeWidth: 1.5,
-    opacity: 0.5
-  }).encode(
-    vl.color().fieldN('species'),
-    vl.detail().fieldN('index'),
-    vl.x().fieldO('key').scale({type: 'point', padding: 0}).axis(axis),
-    vl.y().fieldQ('fraction').axis(null)
-  );
+      strokeWidth: 1.5,
+      opacity: 0.5 })
+    .encode(
+      vl.color().fieldN('species'),
+      vl.detail().fieldN('index'),
+      vl.x().fieldO('key').scale({type: 'point', padding: 0}).axis(axis),
+      vl.y().fieldQ('fraction').axis(null));
 
   const labels = vl.markText({
       dx: -2,
       align: 'right',
-      baseline: 'middle'
-    }).transform(
+      baseline: 'middle' })
+    .transform(
       vl.groupby('key').aggregate(vl.min('value').as('min'), vl.max('value').as('max')),
       vl.fold('min', 'max').as('op', 'value'),
-      vl.groupby('key').window(vl.percent_rank().as('fraction'))
-    ).encode(
+      vl.groupby('key').window(vl.percent_rank().as('fraction')))
+    .encode(
       vl.x().fieldN('key'),
       vl.y().fieldQ('fraction').axis(null),
-      vl.text().field('value')
-    );
+      vl.text().field('value'));
 
-  const plot = vl.data({url: 'data/iris.json'}).width(500).height(300).transform(
-    vl.window(vl.row_number().as('index')),
-    vl.fold('petalLength', 'petalWidth', 'sepalLength', 'sepalWidth'),
-    vl.groupby('key').join(vl.min('value').as('min'), vl.max('value').as('max')),
-    vl.calculate('(datum.value - datum.min) / (datum.max - datum.min)').as('fraction')
-  ).layer(
-    lines,
-    labels
-  );
+  const plot = vl.data({url: 'data/iris.json'})
+    .width(500)
+    .height(300)
+    .transform(
+      vl.window(vl.row_number().as('index')),
+      vl.fold('petalLength', 'petalWidth', 'sepalLength', 'sepalWidth'),
+      vl.groupby('key').join(vl.min('value').as('min'), vl.max('value').as('max')),
+      vl.calculate('(datum.value - datum.min) / (datum.max - datum.min)').as('fraction'))
+    .layer(
+      lines,
+      labels);
 
   return plot.toJSON();
 }
 
-const spec = {
+var spec = {
   "data": {"url": "data/iris.json"},
   "width": 500,
   "height": 300,
@@ -122,12 +127,4 @@ const spec = {
       }
     }
   ]
-}
-
-tape('Parallel coordinates code matches spec', function(t) {
-  t.equal(
-    JSON.stringify(api()),
-    JSON.stringify(spec)
-  );
-  t.end();
-});
+};
