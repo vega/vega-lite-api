@@ -1,7 +1,17 @@
+import {aggregateOps, timeUnitOps, windowOps} from './ops';
+
 import {
   transform, aggregateOp, timeUnitOp, windowOp,
   groupby, channel, mark, data, spec
 } from './types';
+
+function apiOps(ops, method, ...params) {
+  const api = {};
+  for (let key in ops) {
+    api[key] = method(...ops[key], ...params);
+  }
+  return api;
+}
 
 export const api = {
   // tranforms
@@ -20,91 +30,10 @@ export const api = {
   window:          transform('WindowTransform', '...window'),
   groupby:         groupby(),
 
-  // aggregate operations
-  count:           aggregateOp('count', 'as'),
-  valid:           aggregateOp('valid', 'field', 'as'),
-  missing:         aggregateOp('missing', 'field', 'as'),
-  distinct:        aggregateOp('distinct', 'field', 'as'),
-  sum:             aggregateOp('sum', 'field', 'as'),
-  mean:            aggregateOp('mean', 'field', 'as'),
-  average:         aggregateOp('average', 'field', 'as'),
-  variance:        aggregateOp('variance', 'field', 'as'),
-  variancep:       aggregateOp('variancep', 'field', 'as'),
-  stdev:           aggregateOp('stdev', 'field', 'as'),
-  stdevp:          aggregateOp('stdevp', 'field', 'as'),
-  stderr:          aggregateOp('stderr', 'field', 'as'),
-  median:          aggregateOp('median', 'field', 'as'),
-  q1:              aggregateOp('q1', 'field', 'as'),
-  q3:              aggregateOp('q3', 'field', 'as'),
-  ci0:             aggregateOp('ci0', 'field', 'as'),
-  ci1:             aggregateOp('ci1', 'field', 'as'),
-  min:             aggregateOp('min', 'field', 'as'),
-  max:             aggregateOp('max', 'field', 'as'),
-  argmin:          aggregateOp('argmin', 'field', 'as'),
-  argmax:          aggregateOp('argmax', 'field', 'as'),
-
-  // window operations
-  row_number:      windowOp('row_number', 'as'),
-  rank:            windowOp('rank', 'as'),
-  dense_rank:      windowOp('dense_rank', 'as'),
-  percent_rank:    windowOp('percent_rank', 'as'),
-  cume_dist:       windowOp('cume_dist', 'as'),
-  ntile:           windowOp('ntile', 'param', 'as'),
-  lag:             windowOp('lag', 'field', 'param', 'as'),
-  lead:            windowOp('lead', 'field', 'param', 'as'),
-  first_value:     windowOp('first_value', 'field', 'as'),
-  last_value:      windowOp('last_Value', 'field', 'as'),
-  nth_value:       windowOp('nth_value', 'field', 'param', 'as'),
-
-  // local timeunit operations
-  year:            timeUnitOp('year'),
-  quarter:         timeUnitOp('quarter'),
-  month:           timeUnitOp('month'),
-  day:             timeUnitOp('day'),
-  date:            timeUnitOp('date'),
-  hours:           timeUnitOp('hours'),
-  minutes:         timeUnitOp('minutes'),
-  seconds:         timeUnitOp('seconds'),
-  milliseconds:    timeUnitOp('milliseconds'),
-  timeYQ:          timeUnitOp('yearquarter'),
-  timeYQM:         timeUnitOp('yearquartermonth'),
-  timeYM:          timeUnitOp('yearmonth'),
-  timeYMD:         timeUnitOp('yearmonthdate'),
-  timeYMDH:        timeUnitOp('yearmonthdatehours'),
-  timeYMDHM:       timeUnitOp('yearmonthdatehoursminutes'),
-  timeYMDHMS:      timeUnitOp('yearmonthdatehoursminutesseconds'),
-  timeQM:          timeUnitOp('quartermonth'),
-  timeMD:          timeUnitOp('monthdate'),
-  timeMDH:         timeUnitOp('monthdatehours'),
-  timeHM:          timeUnitOp('hoursminutes'),
-  timeHMS:         timeUnitOp('hoursminutesseconds'),
-  timeMS:          timeUnitOp('minutesseconds'),
-  timeSMS:         timeUnitOp('secondsmilliseconds'),
-
-  // utc timeunit operations
-  utcyear:         timeUnitOp('utcyear'),
-  utcquarter:      timeUnitOp('utcquarter'),
-  utcmonth:        timeUnitOp('utcmonth'),
-  utcday:          timeUnitOp('utcday'),
-  utcdate:         timeUnitOp('utcdate'),
-  utchours:        timeUnitOp('utchours'),
-  utcminutes:      timeUnitOp('utcminutes'),
-  utcseconds:      timeUnitOp('utcseconds'),
-  utcmilliseconds: timeUnitOp('utcmilliseconds'),
-  utcYQ:           timeUnitOp('utcyearquarter'),
-  utcYQM:          timeUnitOp('utcyearquartermonth'),
-  utcYM:           timeUnitOp('utcyearmonth'),
-  utcYMD:          timeUnitOp('utcyearmonthdate'),
-  utcYMDH:         timeUnitOp('utcyearmonthdatehours'),
-  utcYMDHM:        timeUnitOp('utcyearmonthdatehoursminutes'),
-  utcYMDHMS:       timeUnitOp('utcyearmonthdatehoursminutesseconds'),
-  utcQM:           timeUnitOp('utcquartermonth'),
-  utcMD:           timeUnitOp('utcmonthdate'),
-  utcMDH:          timeUnitOp('utcmonthdatehours'),
-  utcHM:           timeUnitOp('utchoursminutes'),
-  utcHMS:          timeUnitOp('utchoursminutesseconds'),
-  utcMS:           timeUnitOp('utcminutesseconds'),
-  utcSMS:          timeUnitOp('utcsecondsmillisecond'),
+  // operations
+  ...apiOps(aggregateOps, aggregateOp, 'as'),
+  ...apiOps(windowOps, windowOp, 'as'),
+  ...apiOps(timeUnitOps, timeUnitOp, 'field', 'as'),
 
   // mark types
   mark:            mark(),

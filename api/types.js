@@ -1,3 +1,8 @@
+const N = 'nominal';
+const O = 'ordinal';
+const Q = 'quantitative';
+const T = 'temporal';
+
 export function transform(def, ...args) {
   return {
     def: def,
@@ -21,11 +26,11 @@ export function windowOp(op, ...args) {
   };
 }
 
-export function timeUnitOp(op) {
+export function timeUnitOp(op, ...args) {
   return {
     def: 'TimeUnitTransform',
     set: {timeUnit: op},
-    arg: ['field']
+    arg: args
   };
 }
 
@@ -42,17 +47,31 @@ export function groupby() {
   };
 }
 
+import {aggregateOps, timeUnitOps} from './ops';
+
+const channelAggregate = {};
+for (let key in aggregateOps) {
+  const _ = aggregateOps[key];
+  channelAggregate[key] = [_[1], {type: Q, aggregate: _[0]}];
+}
+
+const channelTimeUnit = {};
+for (let key in timeUnitOps) {
+  const _ = timeUnitOps[key];
+  channelTimeUnit[key] = ['field', {type: T, timeUnit: _[0]}];
+}
+
 export function channel(type) {
   return {
     def: `FacetedEncoding/properties/${type}`,
     key: type,
     ext: {
-      fieldN:   ['field', {type: 'nominal'}],
-      fieldO:   ['field', {type: 'ordinal'}],
-      fieldQ:   ['field', {type: 'quantitative'}],
-      fieldT:   ['field', {type: 'temporal'}],
-      encoding: null,
-      ...specExt
+      fieldN: ['field', {type: N}],
+      fieldO: ['field', {type: O}],
+      fieldQ: ['field', {type: Q}],
+      fieldT: ['field', {type: T}],
+      ...channelAggregate,
+      ...channelTimeUnit
     }
   };
 }

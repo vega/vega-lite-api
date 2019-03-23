@@ -10,7 +10,7 @@ export function generateMethod(schema, methodName, spec) {
   const emit = s => code += (s || '') + '\n';
 
   // -- imports --
-  emit(`import {assign, init, flat, get, merge, mutate, proto, set} from "./__util__";`);
+  emit(`import {assign, copy, init, flat, get, merge, proto, set} from "./__util__";`);
   if (spec.switch) unique(spec.switch).forEach(method => {
     emit(`import {${method}} from "./${method}";`);
   });
@@ -36,11 +36,20 @@ export function generateMethod(schema, methodName, spec) {
     const arg = ext[prop][0],
           set = generateMutations('obj', ext[prop][1]);
 
-    if (arg.startsWith('+++')) { // merge object arguments
+    if (!arg) {
+      // zero-argument generator
+      generateCopy(emit, prop, set);
+    }
+    else if (arg.startsWith('+++')) {
+      // merge object arguments
       generateMergedProperty(emit, prop, arg.slice(3), set);
-    } else if (arg.startsWith('...')) { // array value from arguments
+    }
+    else if (arg.startsWith('...')) {
+      // array value from arguments
       generateProperty(emit, prop, arg.slice(3), '...', set);
-    } else { // standard value argument
+    }
+    else {
+      // standard value argument
       generateProperty(emit, prop, arg, '', set);
     }
   }
@@ -71,7 +80,7 @@ function generateConstructor(emit, className, set, arg) {
 
   // handle set values
   for (let prop in set) {
-    emit(`  mutate(this, ${$(prop)}, ${$(set[prop])});`);
+    emit(`  set(this, ${$(prop)}, ${$(set[prop])});`);
   }
 
   // handle argument values
@@ -80,17 +89,17 @@ function generateConstructor(emit, className, set, arg) {
     for (let i=0, n=arg.length; i<n; ++i) {
       const _ = arg[i];
       if (Array.isArray(_)) { // include a default value
-        emit(`  mutate(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
+        emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
       } else if (_.startsWith('+++')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
-        emit(`  mutate(this, ${$(_.slice(3))}, merge(get(this, ${$(_.slice(3))}), args));`);
+        emit(`  set(this, ${$(_.slice(3))}, merge(get(this, ${$(_.slice(3))}), args));`);
         break;
       } else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
-        emit(`  mutate(this, ${$(_.slice(3))}, args);`);
+        emit(`  set(this, ${$(_.slice(3))}, args);`);
         break;
       } else { // set value if not undefined
-        emit(`  if (args[${i}] !== undefined) mutate(this, ${$(_)}, args[${i}]);`);
+        emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, args[${i}]);`);
       }
     }
   } else {
@@ -105,15 +114,25 @@ function generateConstructor(emit, className, set, arg) {
 function generateMutations(obj, values) {
   let code = [];
   for (let prop in values) {
-    code.push(`mutate(${obj}, ${$(prop)}, ${$(values[prop])});`);
+    code.push(`set(${obj}, ${$(prop)}, ${$(values[prop])});`);
   }
   return code;
+}
+
+function generateCopy(emit, method, set) {
+  emit(`prototype.${method} = function() {`);
+  emit(`  const obj = copy(this);`);
+  if (set) set.forEach(v => emit('  ' + v));
+  emit(`  return obj;`);
+  emit(`};`);
+  emit();
 }
 
 function generateProperty(emit, method, prop, mod, set) {
   emit(`prototype.${method} = function(${mod || ''}value) {`);
   emit(`  if (arguments.length) {`);
-  emit(`    const obj = set(this, ${$(prop)}, flat(value));`);
+  emit(`    const obj = copy(this);`);
+  emit(`    set(obj, ${$(prop)}, ${mod ? 'flat(value)' : 'value'});`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
@@ -126,7 +145,8 @@ function generateProperty(emit, method, prop, mod, set) {
 function generateMergedProperty(emit, method, prop, set) {
   emit(`prototype.${method} = function(...values) {`);
   emit(`  if (arguments.length) {`);
-  emit(`    const obj = set(this, ${$(prop)}, merge(values));`);
+  emit(`    const obj = copy(this);`);
+  emit(`    set(obj, ${$(prop)}, merge(values));`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);

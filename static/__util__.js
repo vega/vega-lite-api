@@ -30,14 +30,13 @@ export function get(obj, name) {
 }
 
 export function set(obj, name, value) {
-  const mod = Object.create(Object.getPrototypeOf(obj));
-  mod[Data] = Object.assign({}, obj[Data]);
-  mutate(mod, name, value);
-  return mod;
+  obj[Data][name] = object(value);
 }
 
-export function mutate(obj, name, value) {
-  obj[Data][name] = object(value);
+export function copy(obj) {
+  const mod = Object.create(Object.getPrototypeOf(obj));
+  mod[Data] = Object.assign({}, obj[Data]);
+  return mod;
 }
 
 export function init(obj, value) {
