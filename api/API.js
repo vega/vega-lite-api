@@ -1,15 +1,11 @@
 import {enums, resolve} from './generate/schema';
+import {capitalize} from './generate/util';
 import {schema} from './vega-lite-schema';
-
-import {
-  aggregateOps, timeUnitOps, windowOps
-} from './ops';
-
+import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, aggregateOp, timeUnitOp, windowOp,
   groupby, channel, mark, data, spec
 } from './types';
-import { capitalize } from './generate/util';
 
 function apiOps(ops, method, ...params) {
   return Object.keys(ops)
@@ -28,12 +24,12 @@ function marks() {
 
 export const api = {
   // top-level specifications
-  chart:           spec('TopLevelUnitSpec', 'data'),
-  layer:           spec('TopLevelLayerSpec', '...layer'),
-  hconcat:         spec('TopLevelHConcatSpec', '...hconcat'),
-  vconcat:         spec('TopLevelVConcatSpec', '...vconcat'),
-  repeat:          spec('TopLevelRepeatSpec', 'repeat', 'spec'),
-  facet:           spec('TopLevelFacetSpec', 'facet', 'spec'),
+  chart:   spec('TopLevelUnitSpec', 'data'),
+  layer:   spec('TopLevelLayerSpec', '...layer'),
+  hconcat: spec('TopLevelHConcatSpec', '...hconcat'),
+  vconcat: spec('TopLevelVConcatSpec', '...vconcat'),
+  repeat:  spec('TopLevelRepeatSpec', 'repeat', 'spec'),
+  facet:   spec('TopLevelFacetSpec', 'facet', 'spec'),
 
   // top-level entry points
   data: data(),
@@ -44,20 +40,20 @@ export const api = {
   ...channels(),
 
   // tranforms
-  aggregate:       transform('AggregateTransform', '...aggregate'),
-  bin:             transform('BinTransform', 'field', ['bin', true]),
-  calculate:       transform('CalculateTransform', 'calculate'),
-  filter:          transform('FilterTransform', 'filter'),
-  flatten:         transform('FlattenTransform', '...flatten'),
-  fold:            transform('FoldTransform', '...fold'),
-  impute:          transform('ImputeTransform', 'impute', 'key'),
-  join:            transform('JoinAggregateTransform', '...joinaggregate'),
-  joinaggregate:   transform('JoinAggregateTransform', '...joinaggregate'),
-  sample:          transform('SampleTransform', 'sample'),
-  stack:           transform('StackTransform', 'stack'),
-  timeUnit:        transform('TimeUnitTransform', 'timeUnit', 'field'),
-  window:          transform('WindowTransform', '...window'),
-  groupby:         groupby(),
+  aggregate:     transform('AggregateTransform', '...aggregate'),
+  bin:           transform('BinTransform', 'field', ['bin', true]),
+  calculate:     transform('CalculateTransform', 'calculate'),
+  filter:        transform('FilterTransform', 'filter'),
+  flatten:       transform('FlattenTransform', '...flatten'),
+  fold:          transform('FoldTransform', '...fold'),
+  impute:        transform('ImputeTransform', 'impute', 'key'),
+  join:          transform('JoinAggregateTransform', '...joinaggregate'),
+  joinaggregate: transform('JoinAggregateTransform', '...joinaggregate'),
+  sample:        transform('SampleTransform', 'sample'),
+  stack:         transform('StackTransform', 'stack'),
+  timeUnit:      transform('TimeUnitTransform', 'timeUnit', 'field'),
+  window:        transform('WindowTransform', '...window'),
+  groupby:       groupby(),
 
   // operations
   ...apiOps(aggregateOps, aggregateOp, 'as'),
