@@ -7,8 +7,8 @@ tape('API output matches spec: weather-selection', function(t) {
 });
 
 function api() {
-  const brush = vl.interval('brush').encodings('x');
-  const click = vl.multi('click').encodings('color');
+  const brush = vl.selectInterval().encodings('x');
+  const click = vl.selectMulti().encodings('color');
 
   const scale = {
     domain: ['sun', 'fog', 'drizzle', 'rain', 'snow'],
@@ -54,7 +54,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "selection": "brush",
+            "selection": "sel1",
             "field": "weather",
             "type": "nominal",
             "scale": {
@@ -85,8 +85,8 @@ var spec = {
       },
       "width": 600,
       "height": 300,
-      "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
-      "transform": [{"filter": {"selection": "click"}}]
+      "selection": {"sel1": {"type": "interval", "encodings": ["x"]}},
+      "transform": [{"filter": {"selection": "sel2"}}]
     },
     {
       "mark": {"type": "bar"},
@@ -94,7 +94,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "selection": "click",
+            "selection": "sel2",
             "field": "weather",
             "type": "nominal",
             "scale": {
@@ -108,8 +108,8 @@ var spec = {
         "y": {"field": "weather", "type": "nominal", "title": "Weather"}
       },
       "width": 600,
-      "selection": {"click": {"type": "multi", "encodings": ["color"]}},
-      "transform": [{"filter": {"selection": "brush"}}]
+      "selection": {"sel2": {"type": "multi", "encodings": ["color"]}},
+      "transform": [{"filter": {"selection": "sel1"}}]
     }
   ]
 };

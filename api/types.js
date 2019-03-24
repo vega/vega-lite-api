@@ -65,15 +65,14 @@ export function groupby() {
 //   };
 // }
 
-// TODO id auto-generation
 export function selection(type) {
   return {
     def: `${capitalize(type)}Selection`,
     set: {type: type},
-    arg: ['_id'],
+    arg: ['^_sel'],
     key: [
-      {selection: '_id'},
-      '_id'
+      {selection: '_sel'},
+      '_sel'
     ]
   };
 }
@@ -123,8 +122,6 @@ export function sort() {
     def: 'Sort'
   };
 }
-
-// condition
 
 const specExt = {
   transform: {arg: ['...transform']},

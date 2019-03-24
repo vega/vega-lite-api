@@ -1,4 +1,4 @@
-import {enums, resolve} from './generate/schema';
+import {enums, props, types} from './generate/schema';
 import {capitalize} from './generate/util';
 import {schema} from './vega-lite-schema';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
@@ -12,14 +12,19 @@ function apiOps(ops, method, ...params) {
     .reduce((api, o) => (api[o] = method(...ops[o], ...params), api), {});
 }
 
-function channels() {
-  return Object.keys(resolve(schema, {$ref: '#/definitions/FacetedEncoding'}))
-    .reduce((api, c) => (api[c] = channel(c), api), {});
-}
-
 function marks() {
   return enums(schema, {$ref: '#/definitions/AnyMark'})
     .reduce((api, m) => (api[`mark${capitalize(m)}`] = mark(m), api), {});
+}
+
+function channels() {
+  return Object.keys(props(schema, {$ref: '#/definitions/FacetedEncoding'}))
+    .reduce((api, c) => (api[c] = channel(c), api), {});
+}
+
+function selections() {
+  return types(schema, {$ref: '#/definitions/SelectionDef'})
+    .reduce((api, t) => (api[`select${capitalize(t)}`] = selection(t), api), {});
 }
 
 export const api = {
@@ -42,9 +47,7 @@ export const api = {
   encoding: encoding(),
 
   // selections
-  single:    selection('single'),
-  multi:     selection('multi'),
-  interval:  selection('interval'),
+  ...selections(),
 
   // tranforms
   aggregate:     transform('AggregateTransform', '...aggregate'),

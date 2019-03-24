@@ -1,6 +1,6 @@
 import {writeFile} from 'fs';
 import {generateMethod} from './method';
-import {resolve} from './schema';
+import {props} from './schema';
 
 // eslint-disable-next-line no-console
 const onError = err => err && console.error(err);
@@ -8,7 +8,7 @@ const onError = err => err && console.error(err);
 export function generateAPI(schema, api) {
   // generate api method definitions
   for (let name in api) {
-    const def = resolve(schema, {$ref: '#/definitions/' + api[name].def});
+    const def = props(schema, {$ref: '#/definitions/' + api[name].def});
     writeFile(`src/${name}.js`, generateMethod(def, name, api[name]), onError);
   }
 

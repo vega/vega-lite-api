@@ -6,11 +6,11 @@ export function generateMethod(schema, methodName, spec) {
   const className = capitalize(methodName),
         ext = spec.ext || {};
 
-  let code = '';
-  const emit = s => code += (s || '') + '\n';
+  let code = [];
+  const emit = s => code.push(s || '');
 
   // -- imports --
-  emit(`import {assign, copy, init, flat, get, merge, proto, set} from "./__util__";`);
+  emit(`import {assign, copy, id, init, flat, get, merge, proto, set} from "./__util__";`);
   if (spec.switch) unique(spec.switch).forEach(method => {
     emit(`import {${method}} from "./${method}";`);
   });
@@ -70,7 +70,7 @@ export function generateMethod(schema, methodName, spec) {
   emit(`  return new ${className}(...args);`);
   emit(`}`);
 
-  return code;
+  return code.join('\n');
 }
 
 function generateConstructor(emit, className, set, arg) {
@@ -99,6 +99,8 @@ function generateConstructor(emit, className, set, arg) {
         if (i !== 0) error('Illegal argument definition.');
         emit(`  set(this, ${$(_.slice(3))}, args);`);
         break;
+      } else if (_.startsWith('^_')) { // internal state, autogenerate id
+        emit(`  this[${$(_.slice(1))}] = args[${i}] !== undefined ? args[${i}] : id(${$(_.slice(2))});`);
       } else if (_.startsWith('_')) { // internal state
         emit(`  if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
       } else { // set value if not undefined

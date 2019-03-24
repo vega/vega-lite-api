@@ -1,4 +1,9 @@
 const Data = Symbol('data');
+let id_counter = 0;
+
+export function id(prefix) {
+  return (prefix || '') + (++id_counter);
+}
 
 const prototype = {
   toJSON: function() { return toJSON(this); }
