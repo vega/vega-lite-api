@@ -3,7 +3,7 @@ import {capitalize} from './generate/util';
 import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
-  transform, groupby, aggregateOp, timeUnitOp, windowOp,
+  transform, groupby, aggregateOp, timeUnitOp, windowOp, field, not, logical,
   selection, sort, encoding, channel, mark, data, unit, spec
 } from './types';
 
@@ -64,9 +64,15 @@ export const api = {
   timeUnit:      transform('TimeUnitTransform', 'timeUnit', 'field'),
   window:        transform('WindowTransform', '...window'),
   groupby:       groupby(),
+  field:         field(),
 
   // operations
   ...apiOps(aggregateOps, aggregateOp, 'as'),
   ...apiOps(windowOps, windowOp, 'as'),
-  ...apiOps(timeUnitOps, timeUnitOp, 'field', 'as')
+  ...apiOps(timeUnitOps, timeUnitOp, 'field', 'as'),
+
+  // logical operations
+  not: not(),
+  and: logical('and'),
+  or:  logical('or')
 };

@@ -6,6 +6,17 @@ const O = 'ordinal';
 const Q = 'quantitative';
 const T = 'temporal';
 
+const extLogic = {
+  equals:  {arg: ['equal']},
+  gte:     {arg: ['gte']},
+  gt:      {arg: ['gt']},
+  lte:     {arg: ['lte']},
+  lt:      {arg: ['lt']},
+  oneOf:   {arg: ['...oneOf']},
+  inRange: {arg: ['...range']},
+  valid:   {arg: ['valid']}
+};
+
 export function transform(def, ...args) {
   return {
     def: def,
@@ -34,7 +45,8 @@ export function timeUnitOp(op, ...args) {
   return {
     def: 'TimeUnitTransform',
     set: {timeUnit: op},
-    arg: args
+    arg: args,
+    ext: extLogic
   };
 }
 
@@ -50,20 +62,24 @@ export function groupby() {
   };
 }
 
-// TODO Field.*Predicate values via switch
-// field / timeUnit -> equal, gte, gt, lte, lt, oneOf, range, valid
+export function field() {
+  return {
+    arg: ['field'],
+    ext: extLogic
+  }
+}
 
-// export function not() {
-//   return {
-//     arg: ['not']
-//   };
-// }
+export function not() {
+  return {
+    arg: ['not']
+  };
+}
 
-// export function logical(op) {
-//   return {
-//     arg: [`...${op}`]
-//   };
-// }
+export function logical(op) {
+  return {
+    arg: [`...${op}`]
+  };
+}
 
 export function selection(type) {
   return {
@@ -123,16 +139,16 @@ export function sort() {
   };
 }
 
-const specExt = {
+const extSpec = {
   transform: {arg: ['...transform']},
   selection: null,
   select:    {arg: [':::selection'], flag: 1}
 };
 
-const unitExt = {
+const extUnit = {
   encode:   {arg: [':::encoding'], flag: 1},
   encoding: null,
-  ...specExt
+  ...extSpec
 };
 
 export function mark(type) {
@@ -142,7 +158,7 @@ export function mark(type) {
     def: 'TopLevelUnitSpec',
     set: set,
     arg: [':::mark'],
-    ext: unitExt
+    ext: extUnit
   };
 }
 
@@ -150,7 +166,7 @@ export function data() {
   return {
     def: 'TopLevelUnitSpec',
     arg: ['data'],
-    ext: unitExt,
+    ext: extUnit,
     switch: {
       mark:    'mark',
       layer:   'layer',
@@ -166,7 +182,7 @@ export function unit(def, ...args) {
   return {
     def: def,
     arg: args,
-    ext: unitExt
+    ext: extUnit
   };
 }
 
@@ -174,6 +190,6 @@ export function spec(def, ...args) {
   return {
     def: def,
     arg: args,
-    ext: specExt
+    ext: extSpec
   };
 }

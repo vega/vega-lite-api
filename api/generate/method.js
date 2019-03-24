@@ -134,10 +134,12 @@ function generateCopy(emit, method, set) {
 }
 
 function generateProperty(emit, method, prop, mod, set) {
+  let val = mod ? 'flat(value)' : 'value';
+
   emit(`prototype.${method} = function(${mod || ''}value) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
-  emit(`    set(obj, ${$(prop)}, ${mod ? 'flat(value)' : 'value'});`);
+  emit(`    set(obj, ${$(prop)}, ${val});`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
