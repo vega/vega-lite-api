@@ -78,7 +78,7 @@ function generateConstructor(emit, className, set, arg) {
         break;
       } else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
-        emit(`  set(this, ${$(_.slice(3))}, args);`);
+        emit(`  set(this, ${$(_.slice(3))}, flat(args));`);
         break;
       } else if (_.startsWith('^_')) { // internal state, autogenerate id
         emit(`  this[${$(_.slice(1))}] = args[${i}] !== undefined ? args[${i}] : id(${$(_.slice(2))});`);
