@@ -4,7 +4,7 @@ import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp, field, not, logical,
-  selection, sort, encoding, channel, mark, data, unit, spec
+  selection, binding, sort, encoding, channel, mark, data, unit, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -29,12 +29,12 @@ function selections() {
 
 export const api = {
   // top-level specifications
-  chart:   unit('TopLevelUnitSpec', 'data'),
-  layer:   spec('TopLevelLayerSpec', '...layer'),
-  hconcat: spec('TopLevelHConcatSpec', '...hconcat'),
-  vconcat: spec('TopLevelVConcatSpec', '...vconcat'),
-  repeat:  spec('TopLevelRepeatSpec', 'repeat', 'spec'),
-  facet:   spec('TopLevelFacetSpec', 'facet', 'spec'),
+  chart:    unit('TopLevelUnitSpec', 'data'),
+  layer:    spec('TopLevelLayerSpec', '...layer'),
+  hconcat:  spec('TopLevelHConcatSpec', '...hconcat'),
+  vconcat:  spec('TopLevelVConcatSpec', '...vconcat'),
+  repeat:   spec('TopLevelRepeatSpec', 'repeat', 'spec'),
+  facet:    spec('TopLevelFacetSpec', 'facet', 'spec'),
 
   // top-level entry points
   data: data(),
@@ -43,11 +43,17 @@ export const api = {
 
   // encoding channels
   ...channels(),
-  sort:     sort(),
-  encoding: encoding(),
+  sort:      sort(),
+  encoding:  encoding(),
 
   // selections
   ...selections(),
+
+  // bindings
+  checkbox:  binding('BindCheckbox', 'checkbox'),
+  radio:     binding('BindRadioSelect', 'radio', ['...options']),
+  range:     binding('BindRange', 'range', ['min', 'max', 'step']),
+  select:    binding('BindRadioSelect', 'select', ['...options']),
 
   // tranforms
   aggregate:     transform('AggregateTransform', '...aggregate'),

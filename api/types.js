@@ -93,6 +93,16 @@ export function selection(type) {
   };
 }
 
+export function binding(def, input, args) {
+  const set = input ? {input: input} : null;
+
+  return {
+    def: def,
+    set: set,
+    arg: args
+  };
+}
+
 const channelAggregate = {};
 for (let key in aggregateOps) {
   const _ = aggregateOps[key];
@@ -152,7 +162,7 @@ const extUnit = {
 };
 
 export function mark(type) {
-  let set = type ? {mark: {type: type}} : null;
+  const set = type ? {mark: {type: type}} : null;
 
   return {
     def: 'TopLevelUnitSpec',
