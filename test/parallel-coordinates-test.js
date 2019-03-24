@@ -56,24 +56,6 @@ function api() {
 }
 
 var spec = {
-  "data": {"url": "data/iris.json"},
-  "width": 500,
-  "height": 300,
-  "transform": [
-    { "window": [{"op": "row_number", "as": "index"}] },
-    { "fold": ["petalLength", "petalWidth", "sepalLength", "sepalWidth"] },
-    {
-      "joinaggregate": [
-        {"op": "min", "field": "value", "as": "min"},
-        {"op": "max", "field": "value", "as": "max"}
-      ],
-      "groupby": ["key"]
-    },
-    {
-      "calculate": "(datum.value - datum.min) / (datum.max - datum.min)",
-      "as": "fraction"
-    }
-  ],
   "layer": [
     {
       "mark": {"type": "line", "strokeWidth": 1.5, "opacity": 0.5},
@@ -125,6 +107,24 @@ var spec = {
         "y": {"field": "fraction", "type": "quantitative", "axis": null},
         "text": {"field": "value"}
       }
+    }
+  ],
+  "data": {"url": "data/iris.json"},
+  "width": 500,
+  "height": 300,
+  "transform": [
+    { "window": [{"op": "row_number", "as": "index"}] },
+    { "fold": ["petalLength", "petalWidth", "sepalLength", "sepalWidth"] },
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "value", "as": "min"},
+        {"op": "max", "field": "value", "as": "max"}
+      ],
+      "groupby": ["key"]
+    },
+    {
+      "calculate": "(datum.value - datum.min) / (datum.max - datum.min)",
+      "as": "fraction"
     }
   ]
 };

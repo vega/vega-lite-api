@@ -4,7 +4,7 @@ import {schema} from './vega-lite-schema';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
-  selection, sort, encoding, channel, mark, data, spec
+  selection, sort, encoding, channel, mark, data, unit, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -29,7 +29,7 @@ function selections() {
 
 export const api = {
   // top-level specifications
-  chart:   spec('TopLevelUnitSpec', 'data'),
+  chart:   unit('TopLevelUnitSpec', 'data'),
   layer:   spec('TopLevelLayerSpec', '...layer'),
   hconcat: spec('TopLevelHConcatSpec', '...hconcat'),
   vconcat: spec('TopLevelVConcatSpec', '...vconcat'),

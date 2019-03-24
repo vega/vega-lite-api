@@ -129,6 +129,12 @@ const specExt = {
   select:    {arg: ['+++selection'], flag: 1}
 };
 
+const unitExt = {
+  encode:   {arg: ['+++encoding'], flag: 1},
+  encoding: null,
+  ...specExt
+};
+
 export function mark(type) {
   let set = type ? {mark: {type: type}} : null;
 
@@ -136,26 +142,31 @@ export function mark(type) {
     def: 'TopLevelUnitSpec',
     set: set,
     arg: ['+++mark'],
-    ext: {
-      encode:   {arg: ['+++encoding'], flag: 1},
-      encoding: null,
-      ...specExt
-    }
+    ext: unitExt
   };
 }
 
 export function data() {
   return {
-    def: 'TopLevelSpec',
+    def: 'TopLevelUnitSpec',
     arg: ['data'],
-    ext: {
-      layer:   {arg: ['...layer']},
-      hconcat: {arg: ['...hconcat']},
-      vconcat: {arg: ['...vconcat']},
-      facet:   {arg: ['facet', 'spec']},  // TODO multi-arg extensions
-      repeat:  {arg: ['repeat', 'spec']},
-      ...specExt
+    ext: unitExt,
+    switch: {
+      mark:    'mark',
+      layer:   'layer',
+      hconcat: 'hconcat',
+      vconcat: 'vconcat',
+      facet:   'facet',
+      repeat:  'repeat'
     }
+  };
+}
+
+export function unit(def, ...args) {
+  return {
+    def: def,
+    arg: args,
+    ext: unitExt
   };
 }
 

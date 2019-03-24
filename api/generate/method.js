@@ -33,26 +33,7 @@ export function generateMethod(schema, methodName, spec) {
   // -- extensions --
   for (let prop in ext) {
     if (ext[prop] == null) continue; // skip if null
-    const val = ext[prop],
-          arg = val.arg[0],
-          set = generateMutations('obj', val.set);
-
-    if (!arg) {
-      // zero-argument generator
-      generateCopy(emit, prop, set);
-    }
-    else if (arg.startsWith('+++')) {
-      // merge object arguments
-      generateMergedProperty(emit, prop, arg.slice(3), val.flag, set);
-    }
-    else if (arg.startsWith('...')) {
-      // array value from arguments
-      generateProperty(emit, prop, arg.slice(3), '...', set);
-    }
-    else {
-      // standard value argument
-      generateProperty(emit, prop, arg, '', set);
-    }
+    generateExtension(emit, prop, ext[prop]);
   }
 
   // -- switch --
@@ -114,6 +95,23 @@ function generateConstructor(emit, className, set, arg) {
 
   emit(`}`);
   emit();
+}
+
+function generateExtension(emit, prop, val) {
+  if (val.arg && val.arg.length > 1) {
+    error('Extension method must take 0-1 named arguments');
+  }
+
+  const arg = val.arg && val.arg[0],
+        set = generateMutations('obj', val.set);
+
+  !arg // zero-argument generator
+      ? generateCopy(emit, prop, set)
+    : arg.startsWith('+++') // merge object arguments
+      ? generateMergedProperty(emit, prop, arg.slice(3), val.flag, set)
+    : arg.startsWith('...') // array value from arguments
+      ? generateProperty(emit, prop, arg.slice(3), '...', set)
+    : generateProperty(emit, prop, arg, '', set); // standard value argument
 }
 
 function generateMutations(obj, values) {

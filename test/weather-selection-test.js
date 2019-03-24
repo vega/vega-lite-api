@@ -44,9 +44,6 @@ function api() {
 }
 
 var spec = {
-  "data": {
-    "url": "data/seattle-weather.csv"
-  },
   "vconcat": [
     {
       "mark": {"type": "point"},
@@ -111,5 +108,8 @@ var spec = {
       "selection": {"sel2": {"type": "multi", "encodings": ["color"]}},
       "transform": [{"filter": {"selection": "sel1"}}]
     }
-  ]
+  ],
+  "data": {
+    "url": "data/seattle-weather.csv"
+  }
 };
