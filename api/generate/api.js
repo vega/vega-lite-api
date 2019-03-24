@@ -2,18 +2,19 @@ import {writeFile} from 'fs';
 import {generateMethod} from './method';
 import {props} from './schema';
 
-// eslint-disable-next-line no-console
-const onError = err => err && console.error(err);
+export function generateAPI(schema, api, path) {
+  const q = [];
 
-export function generateAPI(schema, api) {
   // generate api method definitions
   for (let name in api) {
     const def = props(schema, {$ref: '#/definitions/' + api[name].def});
-    writeFile(`src/${name}.js`, generateMethod(def, name, api[name]), onError);
+    q.push(write(`${path}/${name}.js`, generateMethod(def, name, api[name])));
   }
 
   // generate api index
-  writeFile(`src/index.js`, generateIndex(api), onError);
+  q.push(write(`${path}/index.js`, generateIndex(api)));
+
+  return Promise.all(q);
 }
 
 function generateIndex(api) {
@@ -22,4 +23,10 @@ function generateIndex(api) {
     code += `export {${name}} from "./${name}";\n`;
   }
   return code + '\n';
+}
+
+function write(name, data) {
+  return new Promise(function(resolve, reject) {
+    writeFile(name, data, 'utf8', err => err ? reject(err) : resolve(data));
+  });
 }

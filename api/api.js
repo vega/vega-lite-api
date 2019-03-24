@@ -1,6 +1,6 @@
 import {enums, props, types} from './generate/schema';
 import {capitalize} from './generate/util';
-import {schema} from './vega-lite-schema';
+import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
