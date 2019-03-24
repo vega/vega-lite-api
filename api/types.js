@@ -104,7 +104,7 @@ export function channel(type) {
       fieldO: {arg: ['field'], set: {type: O}},
       fieldQ: {arg: ['field'], set: {type: Q}},
       fieldT: {arg: ['field'], set: {type: T}},
-      if: {arg: ['+++condition'], flag: 0}, // TODO clause accretion?
+      if: {arg: [':::condition'], flag: 0},
       ...channelAggregate,
       ...channelTimeUnit
     }
@@ -126,11 +126,11 @@ export function sort() {
 const specExt = {
   transform: {arg: ['...transform']},
   selection: null,
-  select:    {arg: ['+++selection'], flag: 1}
+  select:    {arg: [':::selection'], flag: 1}
 };
 
 const unitExt = {
-  encode:   {arg: ['+++encoding'], flag: 1},
+  encode:   {arg: [':::encoding'], flag: 1},
   encoding: null,
   ...specExt
 };
@@ -141,7 +141,7 @@ export function mark(type) {
   return {
     def: 'TopLevelUnitSpec',
     set: set,
-    arg: ['+++mark'],
+    arg: [':::mark'],
     ext: unitExt
   };
 }

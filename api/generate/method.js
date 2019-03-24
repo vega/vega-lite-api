@@ -72,7 +72,7 @@ function generateConstructor(emit, className, set, arg) {
       const _ = arg[i];
       if (Array.isArray(_)) { // include a default value
         emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
-      } else if (_.startsWith('+++')) { // merge object arguments
+      } else if (_.startsWith(':::')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
         emit(`  set(this, ${$(_.slice(3))}, merge(0, get(this, ${$(_.slice(3))}), args));`);
         break;
@@ -107,8 +107,10 @@ function generateExtension(emit, prop, val) {
 
   !arg // zero-argument generator
       ? generateCopy(emit, prop, set)
-    : arg.startsWith('+++') // merge object arguments
+    : arg.startsWith(':::') // merge object arguments
       ? generateMergedProperty(emit, prop, arg.slice(3), val.flag, set)
+    : arg.startsWith('+++') // merge object arguments and accrete
+      ? generateAccretiveProperty(emit, prop, arg.slice(3), val.flag, set)
     : arg.startsWith('...') // array value from arguments
       ? generateProperty(emit, prop, arg.slice(3), '...', set)
     : generateProperty(emit, prop, arg, '', set); // standard value argument
@@ -150,6 +152,21 @@ function generateMergedProperty(emit, method, prop, flag, set) {
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
   emit(`    set(obj, ${$(prop)}, merge(${flag}, values));`);
+  if (set) set.forEach(v => emit('    ' + v));
+  emit(`    return obj;`);
+  emit(`  } else {`);
+  emit(`    return get(this, ${$(prop)});`);
+  emit(`  }`);
+  emit(`};`);
+  emit();
+}
+
+function generateAccretiveProperty(emit, method, prop, flag, set) {
+  emit(`prototype.${method} = function(...values) {`);
+  emit(`  if (arguments.length) {`);
+  emit(`    const val = get(this, ${$(prop)}) || [];`);
+  emit(`    const obj = copy(this);`);
+  emit(`    set(obj, ${$(prop)}, [].concat(val, merge(${flag}, values)));`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
