@@ -1,30 +1,17 @@
-import {error, stringValue as $, unique, isString, isObject} from './util';
-
-// TODO validation
+import {emitter, error, stringValue as $, isString, isObject} from './util';
 
 export function generateMethod(schema, methodName, spec) {
-  const className = '_' + methodName,
+  const emit = emitter('__util__'),
+        className = '_' + methodName,
         ext = spec.ext || {};
-
-  let code = [];
-  const emit = s => code.push(s || '');
-
-  // -- imports --
-  emit(`import {assign, copy, id, init, flat, get, merge, proto, set} from "./__util__";`);
-  if (spec.switch) {
-    const methods = Object.keys(spec.switch)
-      .map(_ => spec.switch[_] && spec.switch[_].to);
-    unique(methods)
-      .forEach(_ => emit(`import {${_}} from "./${_}";`));
-  }
-  emit();
 
   // -- constructor --
   generateConstructor(emit, className, spec.set, spec.arg);
 
   // -- prototype --
-  emit(`const prototype = proto(${className});`);
-  emit();
+  emit.import('proto');
+  emit('// eslint-disable-next-line no-unused-vars');
+  emit(`const prototype = proto(${className});\n`);
 
   // -- properties --
   for (let prop in schema) {
@@ -39,10 +26,16 @@ export function generateMethod(schema, methodName, spec) {
     generateExtension(emit, prop, ext[prop]);
   }
 
-  // -- switch --
-  for (let prop in spec.switch) {
-    if (spec.switch[prop] == null) continue; // skip if null
-    generateSwitch(emit, prop, spec.switch[prop]);
+  // -- pass --
+  for (let prop in spec.pass) {
+    if (spec.pass[prop] == null) continue; // skip if null
+    generatePass(emit, prop, spec.pass[prop]);
+  }
+
+  // -- call --
+  for (let prop in spec.call) {
+    if (spec.call[prop] == null) continue; // skip if null
+    generateCall(emit, prop, spec.call[prop]);
   }
 
   // -- key --
@@ -50,22 +43,27 @@ export function generateMethod(schema, methodName, spec) {
     generateToJSON(emit, spec.key);
   }
 
-  // export method
+  // -- exports --
   emit(`export function ${methodName}(...args) {`);
   emit(`  return new ${className}(...args);`);
   emit(`}`);
 
-  return code.join('\n');
+  // emit(`import {assign, copy, id, init, flat, get, merge, proto, set} from "./__util__";`);
+  // collectImports(emit, spec.pass);
+  // collectImports(emit, spec.call);
+  return emit.code();
 }
 
 function generateConstructor(emit, className, set, arg) {
   emit(`function ${className}(...args) {`);
 
   // init data object
+  emit.import('init');
   emit(`  init(this);`);
 
   // handle set values
   for (let prop in set) {
+    emit.import('set');
     emit(`  set(this, ${$(prop)}, ${$(set[prop])});`);
   }
 
@@ -75,25 +73,31 @@ function generateConstructor(emit, className, set, arg) {
     for (let i=0, n=arg.length; i<n; ++i) {
       const _ = arg[i];
       if (Array.isArray(_)) { // include a default value
+        emit.import('set');
         emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
       } else if (_.startsWith(':::')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
+        emit.import(['get', 'set', 'merge']);
         emit(`  set(this, ${$(_.slice(3))}, merge(0, get(this, ${$(_.slice(3))}), args));`);
         break;
       } else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
+        emit.import(['set', 'flat']);
         emit(`  set(this, ${$(_.slice(3))}, flat(args));`);
         break;
       } else if (_.startsWith('^_')) { // internal state, autogenerate id
+        emit.import('id');
         emit(`  this[${$(_.slice(1))}] = args[${i}] !== undefined ? args[${i}] : id(${$(_.slice(2))});`);
       } else if (_.startsWith('_')) { // internal state
         emit(`  if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
       } else { // set value if not undefined
+        emit.import('set');
         emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, args[${i}]);`);
       }
     }
   } else {
     // otherwise, accept property value objects
+    emit.import('assign');
     emit(`  assign(this, ...args);`);
   }
 
@@ -129,6 +133,9 @@ function generateMutations(obj, values) {
 }
 
 function generateCopy(emit, method, set) {
+  emit.import('copy');
+  if (set) emit.import('set');
+
   emit(`prototype.${method} = function() {`);
   emit(`  const obj = copy(this);`);
   if (set) set.forEach(v => emit('  ' + v));
@@ -138,6 +145,9 @@ function generateCopy(emit, method, set) {
 }
 
 function generateProperty(emit, method, prop, mod, set) {
+  emit.import(['copy', 'get', 'set']);
+  if (mod) emit.import('flat');
+
   let val = mod ? 'flat(value)' : 'value';
 
   emit(`prototype.${method} = function(${mod || ''}value) {`);
@@ -154,6 +164,8 @@ function generateProperty(emit, method, prop, mod, set) {
 }
 
 function generateMergedProperty(emit, method, prop, flag, set) {
+  emit.import(['copy', 'get', 'merge', 'set']);
+
   emit(`prototype.${method} = function(...values) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
@@ -168,6 +180,8 @@ function generateMergedProperty(emit, method, prop, flag, set) {
 }
 
 function generateAccretiveProperty(emit, method, prop, flag, set) {
+  emit.import(['copy', 'get', 'merge', 'set']);
+
   emit(`prototype.${method} = function(...values) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const val = get(this, ${$(prop)}) || [];`);
@@ -182,10 +196,13 @@ function generateAccretiveProperty(emit, method, prop, flag, set) {
   emit();
 }
 
-function generateSwitch(emit, method, opt) {
+function generatePass(emit, method, opt) {
+  emit.import(opt.call, opt.from || opt.call);
+  if (!opt.self) emit.import(['assign']);
+
   emit(`prototype.${method} = function(...values) {`);
   if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
-  emit(`  const obj = ${opt.to}(...values);`);
+  emit(`  const obj = ${opt.call}(...values);`);
   opt.self
     ? emit(`  return obj.${opt.self}(this);`)
     : emit(`  return assign(obj, this);`);
@@ -193,7 +210,19 @@ function generateSwitch(emit, method, opt) {
   emit();
 }
 
+function generateCall(emit, method, opt) {
+  emit.import(opt.call, opt.from || opt.call);
+
+  emit(`prototype.${method} = function(...values) {`);
+  if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
+  emit(`  return ${opt.call}.apply(this, values);`);
+  emit(`};`);
+  emit();
+}
+
 function generateToJSON(emit, key) {
+  emit.import('proto');
+
   if (Array.isArray(key)) {
     emit(`prototype.toJSON = function(flag) {`);
     emit(`  return flag`);

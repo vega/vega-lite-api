@@ -17,6 +17,8 @@ const extLogic = {
   valid:   {arg: ['valid']}
 };
 
+// -- Transforms --
+
 export function transform(def, ...args) {
   return {
     def: def,
@@ -24,12 +26,14 @@ export function transform(def, ...args) {
   };
 }
 
+// -- Transform Operators --
+
 export function aggregateOp(op, ...args) {
   return {
     def: 'AggregatedFieldDef',
     set: {op: op},
     arg: args,
-    ext: {order: {arg: ['order']}} // to aid sorting
+    ext: {order: {arg: ['order']}} // call aid sorting
   };
 }
 
@@ -53,14 +57,16 @@ export function timeUnitOp(op, ...args) {
 export function groupby() {
   return {
     arg: ['...groupby'],
-    switch: {
-      aggregate:     {to: 'aggregate'},
-      join:          {to: 'joinaggregate'},
-      joinaggregate: {to: 'joinaggregate'},
-      window:        {to: 'window'}
+    pass: {
+      aggregate:     {call: 'aggregate'},
+      join:          {call: 'joinaggregate'},
+      joinaggregate: {call: 'joinaggregate'},
+      window:        {call: 'window'}
     }
   };
 }
+
+// -- Logical Operators --
 
 export function field() {
   return {
@@ -80,6 +86,8 @@ export function logical(op) {
     arg: [`...${op}`]
   };
 }
+
+// -- Selections --
 
 export function selection(type) {
   return {
@@ -102,6 +110,8 @@ export function binding(def, input, args) {
     arg: args
   };
 }
+
+// -- Encodings --
 
 const channelAggregate = {};
 for (let key in aggregateOps) {
@@ -163,6 +173,8 @@ export function projection() {
   }
 }
 
+// -- Top-Level Specifications --
+
 const extSpec = {
   transform:   {arg: ['...transform']},
   selection:   null,
@@ -175,55 +187,64 @@ const extUnit = {
   ...extSpec
 };
 
-const switchMulti = {
-  facet:   {to: '_facet',  args: 1, self: 'spec'},
-  repeat:  {to: '_repeat', args: 1, self: 'spec'}
-}
+const passMulti = {
+  facet:   {call: '_facet',  args: 1, self: 'spec'},
+  repeat:  {call: '_repeat', args: 1, self: 'spec'}
+};
+
+const callSpec = {
+  'render': {call: 'render', from: '__view__'},
+  'toView': {call: 'toView', from: '__view__'}
+};
 
 export function mark(type) {
   const set = type ? {mark: {type: type}} : null;
 
   return {
-    def: 'TopLevelUnitSpec',
-    set: set,
-    arg: [':::mark'],
-    ext: extUnit,
-    switch: switchMulti
+    def:  'TopLevelUnitSpec',
+    set:  set,
+    arg:  [':::mark'],
+    ext:  extUnit,
+    call: callSpec,
+    pass: passMulti
   };
 }
 
 export function data() {
   return {
-    def: 'TopLevelUnitSpec',
-    arg: ['data'],
-    ext: extUnit,
-    switch: {
-      mark:    {to: 'mark'},
-      layer:   {to: 'layer'},
-      hconcat: {to: 'hconcat'},
-      vconcat: {to: 'vconcat'},
-      ...switchMulti
+    def:  'TopLevelUnitSpec',
+    arg:  ['data'],
+    ext:  extUnit,
+    call: callSpec,
+    pass: {
+      mark:    {call: 'mark'},
+      layer:   {call: 'layer'},
+      hconcat: {call: 'hconcat'},
+      vconcat: {call: 'vconcat'},
+      ...passMulti,
     }
   };
 }
 
-export function unit(def, ...args) {
+export function unit(...args) {
   return {
-    def: 'TopLevelUnitSpec',
-    arg: args,
-    ext: extUnit,
-    switch: switchMulti
+    def:  'TopLevelUnitSpec',
+    arg:  args,
+    ext:  extUnit,
+    call: callSpec,
+    pass: passMulti
   };
 }
 
 export function spec(def, ...args) {
   return {
-    def: def,
-    arg: args,
-    ext: extSpec,
-    switch: {
-      facet:  def !== 'TopLevelLayerSpec'  ? undefined : switchMulti.facet,
-      repeat: def === 'TopLevelRepeatSpec' ? undefined : switchMulti.repeat
+    def:  def,
+    arg:  args,
+    ext:  extSpec,
+    call: callSpec,
+    pass: {
+      facet:  def !== 'TopLevelLayerSpec'  ? undefined : passMulti.facet,
+      repeat: def === 'TopLevelRepeatSpec' ? undefined : passMulti.repeat
     }
   };
 }

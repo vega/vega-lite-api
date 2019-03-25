@@ -7,6 +7,7 @@ export function generateAPI(schema, api, path) {
 
   // generate api method definitions
   for (let name in api) {
+    if (name.startsWith('$')) continue; // skip external methods
     const def = props(schema, {$ref: '#/definitions/' + api[name].def});
     q.push(write(`${path}/${name}.js`, generateMethod(def, name, api[name])));
   }
@@ -20,7 +21,13 @@ export function generateAPI(schema, api, path) {
 function generateIndex(api) {
   let code = '';
   for (let name in api) {
-    code += `export {${name}} from "./${name}";\n`;
+    if (name.startsWith('_')) {
+      continue; // skip private methods
+    } else if (name.startsWith('$')) {
+      code += `export {${name.slice(1)}} from "./${api[name]}";\n`;
+    } else {
+      code += `export {${name}} from "./${name}";\n`;
+    }
   }
   return code + '\n';
 }

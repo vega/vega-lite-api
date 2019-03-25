@@ -23,27 +23,33 @@ export function stringValue(_) {
     : _;
 }
 
-export function unique(obj) {
-  const list = [],
-        map = {};
+export function emitter(defaultFile) {
+  const imports = {[defaultFile]: {}},
+        lines = [];
 
-  if (Array.isArray(obj)) {
-    for (let v of obj) {
-      if (v !== undefined && !map.hasOwnProperty(v)) {
-        list.push(v);
-        map[v] = 1;
-      }
-    }
-  } else {
-    let v;
-    for (let k in obj) {
-      v = obj[k];
-      if (v !== undefined && !map.hasOwnProperty(v)) {
-        list.push(v);
-        map[v] = 1;
-      }
-    }
+  const emit = (s) => {
+    lines.push(s || '');
+    return emit;
+  };
+
+  emit.import = (methods, file) => {
+    file = file || defaultFile;
+    (Array.isArray(methods) ? methods : [methods])
+      .forEach(m => (imports[file] || (imports[file] = {}))[m] = 1);
+    return emit;
+  };
+
+  emit.code = () => {
+    const files = Object.keys(imports);
+
+    const code = files.reduce((list, file) => {
+      const methods = Object.keys(imports[file]).sort().join(', ');
+      list.push(`import {${methods}} from './${file}';`);
+      return list;
+    }, []);
+
+    return code.concat('', lines).join('\n');
   }
 
-  return list;
+  return emit;
 }

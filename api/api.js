@@ -83,5 +83,8 @@ export const api = {
   // logical operations
   not: not(),
   and: logical('and'),
-  or:  logical('or')
+  or:  logical('or'),
+
+  // externally defined exports
+  $register: '__view__'
 };
