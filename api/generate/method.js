@@ -1,9 +1,9 @@
-import {capitalize, error, stringValue as $, unique, isString, isObject} from './util';
+import {error, stringValue as $, unique, isString, isObject} from './util';
 
 // TODO validation
 
 export function generateMethod(schema, methodName, spec) {
-  const className = capitalize(methodName),
+  const className = '_' + methodName,
         ext = spec.ext || {};
 
   let code = [];
@@ -38,6 +38,7 @@ export function generateMethod(schema, methodName, spec) {
 
   // -- switch --
   for (let prop in spec.switch) {
+    if (spec.switch[prop] == null) continue; // skip if null
     generateSwitch(emit, prop, spec.switch[prop]);
   }
 

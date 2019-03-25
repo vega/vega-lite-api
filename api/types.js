@@ -149,10 +149,24 @@ export function sort() {
   };
 }
 
+export function repeat() {
+  return {
+    def: 'RepeatRef',
+    arg: ['repeat']
+  }
+}
+
+export function projection() {
+  return {
+    def: 'Projection',
+    arg: ['type']
+  }
+}
+
 const extSpec = {
-  transform: {arg: ['...transform']},
-  selection: null,
-  select:    {arg: [':::selection'], flag: 1}
+  transform:   {arg: ['...transform']},
+  selection:   null,
+  select:      {arg: [':::selection'], flag: 1}
 };
 
 const extUnit = {
@@ -168,7 +182,11 @@ export function mark(type) {
     def: 'TopLevelUnitSpec',
     set: set,
     arg: [':::mark'],
-    ext: extUnit
+    ext: extUnit,
+    switch: {
+      facet:   '_facet',
+      repeat:  '_repeat'
+    }
   };
 }
 
@@ -182,17 +200,21 @@ export function data() {
       layer:   'layer',
       hconcat: 'hconcat',
       vconcat: 'vconcat',
-      facet:   'facet',
-      repeat:  'repeat'
+      facet:   '_facet',
+      repeat:  '_repeat'
     }
   };
 }
 
 export function unit(def, ...args) {
   return {
-    def: def,
+    def: 'TopLevelUnitSpec',
     arg: args,
-    ext: extUnit
+    ext: extUnit,
+    switch: {
+      facet:   '_facet',
+      repeat:  '_repeat'
+    }
   };
 }
 
@@ -200,6 +222,10 @@ export function spec(def, ...args) {
   return {
     def: def,
     arg: args,
-    ext: extSpec
+    ext: extSpec,
+    switch: {
+      facet:   def !== 'TopLevelLayerSpec' ? undefined : '_facet',
+      repeat:  def === 'TopLevelRepeatSpec' ? undefined : '_repeat'
+    }
   };
 }

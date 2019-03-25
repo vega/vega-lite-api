@@ -29,7 +29,7 @@ export function unique(obj) {
 
   if (Array.isArray(obj)) {
     for (let v of obj) {
-      if (!map.hasOwnProperty(v)) {
+      if (v !== undefined && !map.hasOwnProperty(v)) {
         list.push(v);
         map[v] = 1;
       }
@@ -38,7 +38,7 @@ export function unique(obj) {
     let v;
     for (let k in obj) {
       v = obj[k];
-      if (!map.hasOwnProperty(v)) {
+      if (v !== undefined && !map.hasOwnProperty(v)) {
         list.push(v);
         map[v] = 1;
       }

@@ -3,8 +3,9 @@ import {capitalize} from './generate/util';
 import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
-  transform, groupby, aggregateOp, timeUnitOp, windowOp, field, not, logical,
-  selection, binding, sort, encoding, channel, mark, data, unit, spec
+  transform, groupby, aggregateOp, timeUnitOp, windowOp, field,
+  not, logical, repeat, selection, binding, projection, sort,
+  encoding, channel, mark, data, unit, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -29,12 +30,12 @@ function selections() {
 
 export const api = {
   // top-level specifications
-  chart:    unit('TopLevelUnitSpec', 'data'),
+  chart:    unit('data'),
   layer:    spec('TopLevelLayerSpec', '...layer'),
   hconcat:  spec('TopLevelHConcatSpec', '...hconcat'),
   vconcat:  spec('TopLevelVConcatSpec', '...vconcat'),
-  repeat:   spec('TopLevelRepeatSpec', 'repeat', 'spec'),
-  facet:    spec('TopLevelFacetSpec', 'facet', 'spec'),
+  _repeat:  spec('TopLevelRepeatSpec', 'repeat', 'spec'),
+  _facet:   spec('TopLevelFacetSpec', 'facet', 'spec'),
 
   // top-level entry points
   data: data(),
@@ -43,8 +44,10 @@ export const api = {
 
   // encoding channels
   ...channels(),
-  sort:      sort(),
-  encoding:  encoding(),
+  sort:       sort(),
+  repeat:     repeat(),
+  encoding:   encoding(),
+  projection: projection(),
 
   // selections
   ...selections(),
