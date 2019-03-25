@@ -11,9 +11,12 @@ export function generateMethod(schema, methodName, spec) {
 
   // -- imports --
   emit(`import {assign, copy, id, init, flat, get, merge, proto, set} from "./__util__";`);
-  if (spec.switch) unique(spec.switch).forEach(method => {
-    emit(`import {${method}} from "./${method}";`);
-  });
+  if (spec.switch) {
+    const methods = Object.keys(spec.switch)
+      .map(_ => spec.switch[_] && spec.switch[_].to);
+    unique(methods)
+      .forEach(_ => emit(`import {${_}} from "./${_}";`));
+  }
   emit();
 
   // -- constructor --
@@ -179,11 +182,13 @@ function generateAccretiveProperty(emit, method, prop, flag, set) {
   emit();
 }
 
-function generateSwitch(emit, method, prop) {
+function generateSwitch(emit, method, opt) {
   emit(`prototype.${method} = function(...values) {`);
-  emit(`  return arguments.length`);
-  emit(`    ? assign(${prop}(...values), this)`);
-  emit(`    : null;`);
+  if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
+  emit(`  const obj = ${opt.to}(...values);`);
+  opt.self
+    ? emit(`  return obj.${opt.self}(this);`)
+    : emit(`  return assign(obj, this);`);
   emit(`};`);
   emit();
 }

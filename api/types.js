@@ -54,10 +54,10 @@ export function groupby() {
   return {
     arg: ['...groupby'],
     switch: {
-      aggregate:     'aggregate',
-      join:          'joinaggregate',
-      joinaggregate: 'joinaggregate',
-      window:        'window'
+      aggregate:     {to: 'aggregate'},
+      join:          {to: 'joinaggregate'},
+      joinaggregate: {to: 'joinaggregate'},
+      window:        {to: 'window'}
     }
   };
 }
@@ -175,6 +175,11 @@ const extUnit = {
   ...extSpec
 };
 
+const switchMulti = {
+  facet:   {to: '_facet',  args: 1, self: 'spec'},
+  repeat:  {to: '_repeat', args: 1, self: 'spec'}
+}
+
 export function mark(type) {
   const set = type ? {mark: {type: type}} : null;
 
@@ -183,10 +188,7 @@ export function mark(type) {
     set: set,
     arg: [':::mark'],
     ext: extUnit,
-    switch: {
-      facet:   '_facet',
-      repeat:  '_repeat'
-    }
+    switch: switchMulti
   };
 }
 
@@ -196,12 +198,11 @@ export function data() {
     arg: ['data'],
     ext: extUnit,
     switch: {
-      mark:    'mark',
-      layer:   'layer',
-      hconcat: 'hconcat',
-      vconcat: 'vconcat',
-      facet:   '_facet',
-      repeat:  '_repeat'
+      mark:    {to: 'mark'},
+      layer:   {to: 'layer'},
+      hconcat: {to: 'hconcat'},
+      vconcat: {to: 'vconcat'},
+      ...switchMulti
     }
   };
 }
@@ -211,10 +212,7 @@ export function unit(def, ...args) {
     def: 'TopLevelUnitSpec',
     arg: args,
     ext: extUnit,
-    switch: {
-      facet:   '_facet',
-      repeat:  '_repeat'
-    }
+    switch: switchMulti
   };
 }
 
@@ -224,8 +222,8 @@ export function spec(def, ...args) {
     arg: args,
     ext: extSpec,
     switch: {
-      facet:   def !== 'TopLevelLayerSpec' ? undefined : '_facet',
-      repeat:  def === 'TopLevelRepeatSpec' ? undefined : '_repeat'
+      facet:  def !== 'TopLevelLayerSpec'  ? undefined : switchMulti.facet,
+      repeat: def === 'TopLevelRepeatSpec' ? undefined : switchMulti.repeat
     }
   };
 }
