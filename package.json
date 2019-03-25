@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
@@ -13,6 +13,8 @@
   "author": "Jeffrey Heer (http://idl.cs.washington.edu)",
   "main": "build/vega-lite-api.js",
   "module": "src/index",
+  "unpkg": "build/vega-lite-api.min.js",
+  "jsdelivr": "build/vega-lite-api.min.js",
   "repository": "vega/vega-lite-api",
   "scripts": {
     "prebuild": "rimraf build && mkdir build && rimraf src && mkdir src && cp static/* src",
