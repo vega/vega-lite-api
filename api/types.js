@@ -140,7 +140,7 @@ export function channel(type) {
       fieldO: {arg: ['field'], set: {type: O}},
       fieldQ: {arg: ['field'], set: {type: Q}},
       fieldT: {arg: ['field'], set: {type: T}},
-      if: {arg: [':::condition'], flag: 0},
+      if: {arg: ['+++condition'], flag: 0},
       ...channelAggregate,
       ...channelTimeUnit
     }
@@ -176,15 +176,21 @@ export function projection() {
 // -- Top-Level Specifications --
 
 const extSpec = {
-  transform:   {arg: ['...transform']},
-  selection:   null,
-  select:      {arg: [':::selection'], flag: 1}
+  transform:   {arg: ['...transform']}
+};
+
+const extLayer = {
+  projection:  null,
+  project:     {arg: ['projection']},
+  ...extSpec
 };
 
 const extUnit = {
-  encode:   {arg: [':::encoding'], flag: 1},
-  encoding: null,
-  ...extSpec
+  encoding:    null,
+  encode:      {arg: ['+::encoding'], flag: 1},
+  selection:   null,
+  select:      {arg: ['+::selection'], flag: 1},
+  ...extLayer
 };
 
 const passMulti = {
@@ -236,6 +242,16 @@ export function unit(...args) {
   };
 }
 
+export function layer(...args) {
+  return {
+    def:  'TopLevelLayerSpec',
+    arg:  args,
+    ext:  extLayer,
+    call: callSpec,
+    pass: passMulti
+  };
+}
+
 export function spec(def, ...args) {
   return {
     def:  def,
@@ -243,7 +259,6 @@ export function spec(def, ...args) {
     ext:  extSpec,
     call: callSpec,
     pass: {
-      facet:  def !== 'TopLevelLayerSpec'  ? undefined : passMulti.facet,
       repeat: def === 'TopLevelRepeatSpec' ? undefined : passMulti.repeat
     }
   };

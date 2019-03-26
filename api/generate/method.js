@@ -117,8 +117,10 @@ function generateExtension(emit, prop, val) {
       ? generateCopy(emit, prop, set)
     : arg.startsWith(':::') // merge object arguments
       ? generateMergedProperty(emit, prop, arg.slice(3), val.flag, set)
-    : arg.startsWith('+++') // merge object arguments and accrete
-      ? generateAccretiveProperty(emit, prop, arg.slice(3), val.flag, set)
+    : arg.startsWith('+::') // merge object arguments and accrete object
+      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), val.flag, set)
+    : arg.startsWith('+++') // merge object arguments and accrete array
+      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), val.flag, set)
     : arg.startsWith('...') // array value from arguments
       ? generateProperty(emit, prop, arg.slice(3), '...', set)
     : generateProperty(emit, prop, arg, '', set); // standard value argument
@@ -179,14 +181,33 @@ function generateMergedProperty(emit, method, prop, flag, set) {
   emit();
 }
 
-function generateAccretiveProperty(emit, method, prop, flag, set) {
+function generateAccretiveObjectProperty(emit, method, prop, flag, set) {
+  emit.import(['copy', 'get', 'merge', 'set']);
+
+  emit(`prototype.${method} = function(...values) {`);
+  emit(`  if (arguments.length) {`);
+  emit(`    const val = get(this, ${$(prop)});`);
+  emit(`    const obj = copy(this);`);
+  emit(`    if (val) values = [val].concat(values);`);
+  emit(`    set(obj, ${$(prop)}, merge(${flag}, values));`);
+  if (set) set.forEach(v => emit('    ' + v));
+  emit(`    return obj;`);
+  emit(`  } else {`);
+  emit(`    return get(this, ${$(prop)});`);
+  emit(`  }`);
+  emit(`};`);
+  emit();
+}
+
+function generateAccretiveArrayProperty(emit, method, prop, flag, set) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`prototype.${method} = function(...values) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const val = get(this, ${$(prop)}) || [];`);
   emit(`    const obj = copy(this);`);
-  emit(`    set(obj, ${$(prop)}, [].concat(val, merge(${flag}, values)));`);
+  emit(`    values = [].concat(val, merge(${flag}, values));`);
+  emit(`    set(obj, ${$(prop)}, values.length > 1 ? values : values[0]);`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);

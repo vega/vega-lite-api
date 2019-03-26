@@ -20,9 +20,13 @@ export function proto(ctr) {
 }
 
 export function assign(target, ...sources) {
-  sources.forEach(s => {
-    Object.assign(target[Data], isDataObject(s) ? s[Data] : s)
-  });
+  if (sources.length === 1 && Array.isArray(sources[0])) {
+    target[Data] = sources[0];
+  } else {
+    sources.forEach(s => {
+      Object.assign(target[Data], isDataObject(s) ? s[Data] : s)
+    });
+  }
   return target;
 }
 
@@ -59,13 +63,13 @@ function recurse(d, flag) {
 
 function toJSON(value, flag) {
   if (isDataObject(value)) {
-    const data = value[Data],
-          out = {};
-    for (let k in data) {
-      const d = data[k];
-      out[k] = recurse(d, flag);
-    }
-    return out;
+    const data = value[Data];
+    return Array.isArray(data)
+      ? recurse(data, flag)
+      : Object.keys(data).reduce((_, k) => {
+          _[k] = recurse(data[k], flag);
+          return _;
+        }, {});
   } else if (Array.isArray(value)) {
     return value.map(d => recurse(d, flag));
   } else {

@@ -5,7 +5,7 @@ import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp, field,
   not, logical, repeat, selection, binding, projection, sort,
-  encoding, channel, mark, data, unit, spec
+  encoding, channel, mark, data, unit, layer, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -31,7 +31,7 @@ function selections() {
 export const api = {
   // top-level specifications
   chart:    unit('data'),
-  layer:    spec('TopLevelLayerSpec', '...layer'),
+  layer:    layer('...layer'),
   hconcat:  spec('TopLevelHConcatSpec', '...hconcat'),
   vconcat:  spec('TopLevelVConcatSpec', '...vconcat'),
   _repeat:  spec('TopLevelRepeatSpec', 'repeat', 'spec'),
