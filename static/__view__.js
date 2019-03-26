@@ -1,7 +1,7 @@
 var _vegalite,
     _vega,
-    _opt,
-    _config;
+    _conf,
+    _opt;
 
 // TODO: validation
 
@@ -27,16 +27,15 @@ export function toView(options, config) {
   if (!_vegalite || !_vega) {
     throw Error('Vega / Vega-Lite not registered. Use the "register" method.');
   }
-  const spec = _vegalite.compile(this.toJSON()),
-        runtime = _vega.parse(spec.spec, config || _config);
 
-  return new _vega.View(runtime, params(options));
+  const spec = _vegalite.compile(this.toJSON(), {config: config || _conf});
+  return new _vega.View(_vega.parse(spec.spec), params(options));
 }
 
 export function register(vega, vegalite, options, config) {
-  _vega = vega;
   _vegalite = vegalite;
+  _vega = vega;
+  _conf = config;
   _opt = options;
-  _config = config;
   return this;
 }
