@@ -26,7 +26,7 @@ const document = {
 };
 
 tape('API can render Vega views', async function(t) {
-  vl.register(vega, vegalite, {vega: {renderer: 'none'}});
+  vl.register(vega, vegalite, {view: {renderer: 'none'}});
 
   global.document = document;
 
