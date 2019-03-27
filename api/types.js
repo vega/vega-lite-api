@@ -132,7 +132,7 @@ for (let key in timeUnitOps) {
 }
 
 export function channel(type) {
-  return {
+  const spec = {
     def: `FacetedEncoding/properties/${type}`,
     key: [null, type],
     ext: {
@@ -145,6 +145,16 @@ export function channel(type) {
       ...channelTimeUnit
     }
   };
+
+  if (type === 'tooltip' || type === 'detail') {
+    const fieldN = {key: 'field', set: {type: 'nominal'}};
+    spec.type = {
+      array:  Object.assign({map: true}, fieldN),
+      string: fieldN
+    };
+  }
+
+  return spec;
 }
 
 export function encoding() {
@@ -175,7 +185,15 @@ export function projection() {
 
 // -- Top-Level Specifications --
 
+const typeData = [
+  {
+    array:  {key: 'values'},
+    string: {key: 'url'}
+  }
+];
+
 const extSpec = {
+  data:        {arg: ['data'], type: typeData},
   transform:   {arg: ['...transform']}
 };
 
@@ -220,6 +238,7 @@ export function data() {
   return {
     def:  'TopLevelUnitSpec',
     arg:  ['data'],
+    type: typeData,
     ext:  extUnit,
     call: callSpec,
     pass: {
@@ -232,10 +251,11 @@ export function data() {
   };
 }
 
-export function unit(...args) {
+export function unit() {
   return {
     def:  'TopLevelUnitSpec',
-    arg:  args,
+    arg:  ['data'],
+    type: typeData,
     ext:  extUnit,
     call: callSpec,
     pass: passMulti

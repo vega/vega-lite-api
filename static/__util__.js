@@ -87,3 +87,23 @@ export function merge(flag, ...values) {
   const objects = toJSON([].concat(...values), flag);
   return object(Object.assign({}, ...objects));
 }
+
+// -- type checkers --
+
+export const isArray = Array.isArray;
+
+export function isBoolean(_) {
+  return typeof _ === 'boolean';
+}
+
+export function isNumber(_) {
+  return typeof _ === 'number';
+}
+
+export function isObject(_) {
+  return _ === Object(_) && !isArray(_);
+}
+
+export function isString(_) {
+  return typeof _ === 'string';
+}

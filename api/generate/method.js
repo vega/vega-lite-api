@@ -6,7 +6,7 @@ export function generateMethod(schema, methodName, spec) {
         ext = spec.ext || {};
 
   // -- constructor --
-  generateConstructor(emit, className, spec.set, spec.arg);
+  generateConstructor(emit, className, spec);
 
   // -- prototype --
   emit.import('proto');
@@ -48,13 +48,14 @@ export function generateMethod(schema, methodName, spec) {
   emit(`  return new ${className}(...args);`);
   emit(`}`);
 
-  // emit(`import {assign, copy, id, init, flat, get, merge, proto, set} from "./__util__";`);
-  // collectImports(emit, spec.pass);
-  // collectImports(emit, spec.call);
   return emit.code();
 }
 
-function generateConstructor(emit, className, set, arg) {
+function generateConstructor(emit, className, spec) {
+  const arg  = spec.arg,
+        set  = spec.set,
+        type = spec.type;
+
   emit(`function ${className}(...args) {`);
 
   // init data object
@@ -71,7 +72,9 @@ function generateConstructor(emit, className, set, arg) {
   if (Array.isArray(arg)) {
     // use provided argument definitions
     for (let i=0, n=arg.length; i<n; ++i) {
-      const _ = arg[i];
+      const _ = arg[i],
+            t = type && type[i];
+
       if (Array.isArray(_)) { // include a default value
         emit.import('set');
         emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
@@ -92,12 +95,16 @@ function generateConstructor(emit, className, set, arg) {
         emit(`  if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
       } else { // set value if not undefined
         emit.import('set');
-        emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, args[${i}]);`);
+        const v = t ? typeSwitch(emit, t, `args[${i}]`) : `args[${i}]`;
+        emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, ${v});`);
       }
     }
   } else {
     // otherwise, accept property value objects
     emit.import('assign');
+    if (type) {
+      emit(`  args = args.map(_ => ${typeSwitch(emit, type, `_`)});`);
+    }
     emit(`  assign(this, ...args);`);
   }
 
@@ -110,20 +117,22 @@ function generateExtension(emit, prop, val) {
     error('Extension method must take 0-1 named arguments');
   }
 
-  const arg = val.arg && val.arg[0],
-        set = generateMutations('obj', val.set);
+  const arg  = val.arg && val.arg[0],
+        type = val.type && val.type[0],
+        flag = val.flag,
+        set  = generateMutations('obj', val.set);
 
   !arg // zero-argument generator
       ? generateCopy(emit, prop, set)
     : arg.startsWith(':::') // merge object arguments
-      ? generateMergedProperty(emit, prop, arg.slice(3), val.flag, set)
+      ? generateMergedProperty(emit, prop, arg.slice(3), flag, set)
     : arg.startsWith('+::') // merge object arguments and accrete object
-      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), val.flag, set)
+      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), flag, set)
     : arg.startsWith('+++') // merge object arguments and accrete array
-      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), val.flag, set)
+      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), flag, set)
     : arg.startsWith('...') // array value from arguments
       ? generateProperty(emit, prop, arg.slice(3), '...', set)
-    : generateProperty(emit, prop, arg, '', set); // standard value argument
+    : generateProperty(emit, prop, arg, '', set, type); // standard value argument
 }
 
 function generateMutations(obj, values) {
@@ -146,16 +155,48 @@ function generateCopy(emit, method, set) {
   emit();
 }
 
-function generateProperty(emit, method, prop, mod, set) {
+function typeSwitch(emit, types, value) {
+  let code = '';
+
+  for (let key in types) {
+    let _ = types[key],
+        set, val, check;
+
+    switch (key) {
+      case 'array':   check = 'isArray';   break;
+      case 'string':  check = 'isString';  break;
+      case 'number':  check = 'isNumber';  break;
+      case 'boolean': check = 'isBoolean'; break;
+      case 'object':  check = 'isObject';  break;
+    }
+    emit.import(check);
+
+    key = _.key
+    set = _.set;
+
+    val = [`${key}: ${_.map ? '_' : value}`];
+    for (let k in set) val.push(`${k}: ${$(set[k])}`);
+    val = `{${val.join(', ')}}`;
+    if (_.map) val = `${value}.map(_ => { return ${val}; })`;
+
+    code += `${check}(${value}) ? ${val} : `;
+  }
+
+  return code + value;
+}
+
+function generateProperty(emit, method, prop, mod, set, type) {
   emit.import(['copy', 'get', 'set']);
   if (mod) emit.import('flat');
 
-  let val = mod ? 'flat(value)' : 'value';
+  const value = mod ? 'flat(value)' : 'value',
+        final = type ? typeSwitch(emit, type, 'val') : 'val';
 
   emit(`prototype.${method} = function(${mod || ''}value) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
-  emit(`    set(obj, ${$(prop)}, ${val});`);
+  emit(`    const val = ${value};`);
+  emit(`    set(obj, ${$(prop)}, ${final});`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
