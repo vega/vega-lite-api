@@ -149,7 +149,7 @@ export function channel(type) {
   if (type === 'tooltip' || type === 'detail') {
     const fieldN = {key: 'field', set: {type: 'nominal'}};
     spec.type = {
-      array:  Object.assign({map: true}, fieldN),
+      array:  {map: {string: fieldN}},
       string: fieldN
     };
   }

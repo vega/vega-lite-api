@@ -171,13 +171,16 @@ function typeSwitch(emit, types, value) {
     }
     emit.import(check);
 
-    key = _.key
-    set = _.set;
-
-    val = [`${key}: ${_.map ? '_' : value}`];
-    for (let k in set) val.push(`${k}: ${$(set[k])}`);
-    val = `{${val.join(', ')}}`;
-    if (_.map) val = `${value}.map(_ => { return ${val}; })`;
+    if (_.map) {
+      val = typeSwitch(emit, _.map, '_');
+      val = `${value}.map(_ => { return ${val}; })`;
+    } else {
+      key = _.key
+      set = _.set;
+      val = [`${key}: ${_.map ? '_' : value}`];
+      for (let k in set) val.push(`${k}: ${$(set[k])}`);
+      val = `{${val.join(', ')}}`;
+    }
 
     code += `${check}(${value}) ? ${val} : `;
   }

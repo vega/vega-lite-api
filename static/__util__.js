@@ -24,7 +24,7 @@ export function assign(target, ...sources) {
     target[Data] = sources[0];
   } else {
     sources.forEach(s => {
-      Object.assign(target[Data], isDataObject(s) ? s[Data] : s)
+      Object.assign(target[Data], isObject(s) && s[Data] || s)
     });
   }
   return target;
@@ -53,34 +53,28 @@ export function init(obj, value) {
   obj[Data] = value || {};
 }
 
-function isDataObject(value) {
-  return value === Object(value) && !Array.isArray(value) && value[Data];
-}
-
 function recurse(d, flag) {
   return d && d.toJSON ? d.toJSON(flag) : toJSON(d, flag);
 }
 
 function toJSON(value, flag) {
-  if (isDataObject(value)) {
-    const data = value[Data];
-    return Array.isArray(data)
+  if (isArray(value)) {
+    return value.map(d => recurse(d, flag));
+  } else if (isObject(value)) {
+    const data = value[Data] || value;
+    return isArray(data)
       ? recurse(data, flag)
       : Object.keys(data).reduce((_, k) => {
           _[k] = recurse(data[k], flag);
           return _;
         }, {});
-  } else if (Array.isArray(value)) {
-    return value.map(d => recurse(d, flag));
   } else {
     return value;
   }
 }
 
 function object(value) {
-  return (value === Object(value) && !Array.isArray(value) && !value[Data])
-    ? {[Data]: value || {}}
-    : value;
+  return (isObject(value) && !value[Data]) ? {[Data]: value || {}} : value;
 }
 
 export function merge(flag, ...values) {
