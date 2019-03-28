@@ -1584,10 +1584,10 @@ rollup-pluginutils@^2.5.0:
     estree-walker "^0.6.0"
     micromatch "^3.1.10"
 
-rollup@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.7.3.tgz#cade518b92e23efa72026e264e29d9a56cbf8eb9"
-  integrity sha512-U3/HaZujvGofNZQldfIknKoaNFNRS+j8/uCS/jSy3FrxF9t0FBsgZW4+VXLHG7l1daTgE6+jEy0Dv7cVCB2NPg==
+rollup@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.7.4.tgz#dd9d1d4935d3db38f16e1caaef635d8d1b0831c4"
+  integrity sha512-nc86fETLHdozhRWlW/uNVIQ7ODuA1vU2/L8znAxP9TNMx1NA6GTth3llqoxxCle2kkyui+OfGzbKaQxD60NJjA==
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "^11.11.6"
@@ -2066,10 +2066,10 @@ vega-hierarchy@^4.0.1:
     vega-dataflow "^5.1.0"
     vega-util "^1.8.0"
 
-vega-lite@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/vega-lite/-/vega-lite-3.0.2.tgz#2e1c47d7663b56174f6b5adf6d575c9c6516a275"
-  integrity sha512-u0EWmsNpca1BIQeLsfGgfq4o6QwJQm9u+CpAkzLm6RWkLYfzDumC8jkdf6gZqLFwf1nXpw7tc3jL6o8PCXdjkA==
+vega-lite@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/vega-lite/-/vega-lite-3.0.3.tgz#1c585e825014e169dd3cd6f35368a281fc31f973"
+  integrity sha512-83qElIEtxYoqsYH2BriyWXVMUMOzgXkvdYXh7SoH+vqGcTTBE0XY4+jkuiMcvMq3RBFoeCKYbXyHylj54Puq8A==
   dependencies:
     "@types/clone" "~0.1.30"
     "@types/fast-json-stable-stringify" "^2.0.0"
