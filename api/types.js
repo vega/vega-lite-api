@@ -71,7 +71,10 @@ export function groupby() {
 export function field() {
   return {
     arg: ['field'],
-    ext: extLogic
+    ext: {
+      order: {arg: ['order']},
+      ...extLogic
+    }
   }
 }
 
