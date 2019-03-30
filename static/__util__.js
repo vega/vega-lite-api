@@ -54,18 +54,18 @@ export function init(obj, value) {
 }
 
 function recurse(d, flag) {
-  return d && d.toJSON ? d.toJSON(flag) : toJSON(d, flag);
+  return d && d.toJSON ? d.toJSON(flag) : toJSON(d);
 }
 
-function toJSON(value, flag) {
+function toJSON(value) {
   if (isArray(value)) {
-    return value.map(d => recurse(d, flag));
+    return value.map(d => recurse(d));
   } else if (isObject(value)) {
     const data = value[Data] || value;
     return isArray(data)
-      ? recurse(data, flag)
+      ? recurse(data)
       : Object.keys(data).reduce((_, k) => {
-          _[k] = recurse(data[k], flag);
+          _[k] = recurse(data[k]);
           return _;
         }, {});
   } else {
@@ -78,7 +78,7 @@ function object(value) {
 }
 
 export function merge(flag, ...values) {
-  const objects = toJSON([].concat(...values), flag);
+  const objects = [].concat(...values).map(_ => recurse(_, flag));
   return object(Object.assign({}, ...objects));
 }
 
