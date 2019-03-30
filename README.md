@@ -4,6 +4,35 @@
 
 A JavaScript API for creating Vega-Lite JSON specifications. [Vega-Lite](https://vega.github.io/vega-lite/) is a high-level grammar for visual analysis that generates complete [Vega](https://vega.github.io/) specifications.
 
+With the Vega-Lite API, you can write JavaScript code like this:
+
+```js
+vl.markBar().data('data/movies.json').encode(
+  vl.x().bin('IMDB_Rating'),
+  vl.y().count()
+)
+```
+
+To produce Vega-Lite JSON like this:
+
+```json
+{
+  "mark": "bar",
+  "data": {"url": "data/movies.json"},
+  "encoding": {
+    "x": {
+      "bin": true,
+      "field": "IMDB_Rating",
+      "type": "quantitative"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative"
+    }
+  }
+}
+```
+
 To get started with the Vega-Lite API, see these Observable notebooks:
 
 - [Introduction to Vega-Lite](https://observablehq.com/@uwdata/introduction-to-vega-lite)
