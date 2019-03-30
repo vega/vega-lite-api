@@ -3,9 +3,10 @@ import {capitalize} from './generate/util';
 import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
-  transform, groupby, aggregateOp, timeUnitOp, windowOp, field,
-  not, logical, repeat, selection, binding, projection,
-  encoding, channel, mark, data, layer, spec
+  transform, groupby, aggregateOp, timeUnitOp, windowOp,
+  field, fieldType, not, logical, repeat,
+  selection, binding, projection, encoding, channel,
+  unit, mark, data, layer, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -36,7 +37,7 @@ export const api = {
   vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
   _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
   _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
-  mark:     mark(),
+  mark:     unit(),
   ...marks(),
 
   // externally defined exports
@@ -50,6 +51,10 @@ export const api = {
   // encoding channels
   ...channels(),
   field:    field(),
+  fieldN:   fieldType('nominal'),
+  fieldO:   fieldType('ordinal'),
+  fieldQ:   fieldType('quantitative'),
+  fieldT:   fieldType('temporal'),
   repeat:   repeat(),
   encoding: encoding(),
 

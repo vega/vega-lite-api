@@ -68,7 +68,9 @@ export function aggregateOp(op, ...args) {
     def:  'AggregatedFieldDef',
     set:  {op: op},
     arg:  args,
-    ext:  {order: {arg: ['order']}} // for sorting
+    ext:  {
+      order: {arg: ['order']}  // for sorting
+    }
   };
 }
 
@@ -102,8 +104,18 @@ export function field() {
     arg:  ['field'],
     ext:  {
       order: {arg: ['order']},
+      type:  {arg: ['type']},
       ...extLogic
     }
+  }
+}
+
+export function fieldType(type) {
+  return {
+    desc: 'A reference to a ${type} data field.',
+    doc:  'References',
+    ctr:  {call: 'field'},
+    set:  {type: type}
   }
 }
 
@@ -188,12 +200,36 @@ export function channel(type) {
     }
   };
 
-  if (type === 'tooltip' || type === 'detail') {
-    const fieldN = {key: 'field', set: {type: 'nominal'}};
-    spec.type = {
-      array:  {map: {string: fieldN}},
-      string: fieldN
-    };
+  const fieldN = {key: 'field', set: {type: N}},
+        fieldO = {key: 'field', set: {type: O}},
+        fieldQ = {key: 'field', set: {type: Q}};
+
+  switch (type) {
+    case 'detail':
+    case 'tooltip':
+      spec.type = {
+        array:  {map: {string: fieldN}},
+        string: fieldN
+      };
+      break;
+    case 'href':
+    case 'key':
+    case 'shape':
+    case 'text':
+      spec.type = {string: fieldN};
+      break;
+    case 'column':
+    case 'facet':
+    case 'order':
+    case 'row':
+      spec.type = {string: fieldO};
+      break;
+    case 'latitude':
+    case 'longitude':
+    case 'latitude2':
+    case 'longitude2':
+      spec.type = {string: fieldQ};
+      break;
   }
 
   return spec;
@@ -270,22 +306,27 @@ const passMulti = {
 };
 
 const callSpec = {
-  'render': {call: 'render', from: '__view__'},
-  'toView': {call: 'toView', from: '__view__'}
+  render: {call: 'render', from: '__view__'},
+  toView: {call: 'toView', from: '__view__'}
 };
 
-export function mark(type) {
-  const set = type ? {mark: {type: type}} : null;
-
+export function unit() {
   return {
-    desc: `Create a new ${type ? `<code>${type}</code> ` : ''}mark.`,
+    desc: `Create a new mark.`,
     doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
-    set:  set,
     arg:  [':::mark'],
     ext:  extUnit,
     call: callSpec,
     pass: passMulti
+  };
+}
+
+export function mark(type) {
+  return {
+    desc: `Create a new <code>${type}</code> mark.`,
+    doc:  'Chart Constructors',
+    ctr:  {call: 'mark', arg: {type: type}}
   };
 }
 

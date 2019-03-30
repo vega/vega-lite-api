@@ -5,6 +5,12 @@ export function generateMethod(schema, methodName, spec) {
         className = '_' + methodName,
         ext = spec.ext || {};
 
+  if (spec.ctr) {
+    // method is a proxied invocation of another method
+    generateProxy(emit, methodName, spec, spec.ctr);
+    return emit.code();
+  }
+
   // -- constructor --
   generateConstructor(emit, className, spec);
 
@@ -49,6 +55,24 @@ export function generateMethod(schema, methodName, spec) {
   emit(`}`);
 
   return emit.code();
+}
+
+function generateProxy(emit, methodName, spec, opt) {
+  const m = opt.call,
+        a = opt.arg ? $(opt.arg) + ', ' : '';
+
+  emit.import(m, opt.from || m);
+  emit(`export function ${methodName}(...args) {`);
+  if (spec.set) {
+    emit.import('set');
+    const set = generateMutations('obj', spec.set);
+    emit(`  const obj = ${m}(...args);`);
+    set.forEach(v => emit('  ' + v));
+    emit(`  return obj;`);
+  } else {
+    emit(`  return ${m}(${a}...args);`);
+  }
+  emit(`}`);
 }
 
 function generateConstructor(emit, className, spec) {
@@ -263,7 +287,7 @@ function generateAccretiveArrayProperty(emit, method, prop, flag, set) {
 
 function generatePass(emit, method, opt) {
   emit.import(opt.call, opt.from || opt.call);
-  if (!opt.self) emit.import(['assign']);
+  if (!opt.self) emit.import('assign');
 
   emit(`prototype.${method} = function(...values) {`);
   if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
