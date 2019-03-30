@@ -1,4 +1,4 @@
-# Vega-Lite API
+# Vega-Lite API <a href="https://vega.github.io/vega-lite/"><img align="right" src="https://github.com/vega/logos/blob/master/assets/VL_Color@512.png?raw=true" height="38"></img></a>
 
 ![Gallery Image](https://vega.github.io/vega-lite/site/static/teaser.png)
 
