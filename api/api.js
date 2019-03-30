@@ -4,8 +4,8 @@ import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp, field,
-  not, logical, repeat, selection, binding, projection, sort,
-  encoding, channel, mark, data, unit, layer, spec
+  not, logical, repeat, selection, binding, projection,
+  encoding, channel, mark, data, layer, spec
 } from './types';
 
 function apiOps(ops, method, ...params) {
@@ -30,23 +30,30 @@ function selections() {
 
 export const api = {
   // top-level specifications
-  chart:    unit('data'),
+  data:     data(),
   layer:    layer('...layer'),
-  hconcat:  spec('TopLevelHConcatSpec', '...hconcat'),
-  vconcat:  spec('TopLevelVConcatSpec', '...vconcat'),
-  _repeat:  spec('TopLevelRepeatSpec', 'repeat', 'spec'),
-  _facet:   spec('TopLevelFacetSpec', 'facet', 'spec'),
-
-  // top-level entry points
-  data: data(),
-  mark: mark(),
+  hconcat:  spec('Horizontally concatenate', 'TopLevelHConcatSpec', '...hconcat'),
+  vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
+  _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
+  _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
+  mark:     mark(),
   ...marks(),
+
+  // externally defined exports
+  $register: {
+    desc: 'Register Vega and Vega-Lite with the API.',
+    doc:  'Utilities',
+    arg:  ['vega', 'vegalite', 'options'],
+    src:  '__view__'
+  },
 
   // encoding channels
   ...channels(),
-  sort:       sort(),
-  repeat:     repeat(),
-  encoding:   encoding(),
+  field:    field(),
+  repeat:   repeat(),
+  encoding: encoding(),
+
+  // cartographic projection
   projection: projection(),
 
   // selections
@@ -58,33 +65,29 @@ export const api = {
   range:     binding('BindRange', 'range', ['min', 'max', 'step']),
   select:    binding('BindRadioSelect', 'select', ['...options']),
 
-  // tranforms
-  aggregate:     transform('AggregateTransform', '...aggregate'),
-  bin:           transform('BinTransform', 'field', ['bin', true]),
-  calculate:     transform('CalculateTransform', 'calculate'),
-  filter:        transform('FilterTransform', 'filter'),
-  flatten:       transform('FlattenTransform', '...flatten'),
-  fold:          transform('FoldTransform', '...fold'),
-  impute:        transform('ImputeTransform', 'impute', 'key'),
-  join:          transform('JoinAggregateTransform', '...joinaggregate'),
-  joinaggregate: transform('JoinAggregateTransform', '...joinaggregate'),
-  sample:        transform('SampleTransform', 'sample'),
-  stack:         transform('StackTransform', 'stack'),
-  timeUnit:      transform('TimeUnitTransform', 'timeUnit', 'field'),
-  window:        transform('WindowTransform', '...window'),
-  groupby:       groupby(),
-  field:         field(),
-
-  // operations
-  ...apiOps(aggregateOps, aggregateOp, 'as'),
-  ...apiOps(windowOps, windowOp, 'as'),
-  ...apiOps(timeUnitOps, timeUnitOp, 'field', 'as'),
-
   // logical operations
   not: not(),
   and: logical('and'),
   or:  logical('or'),
 
-  // externally defined exports
-  $register: '__view__'
+  // tranforms
+  aggregate:     transform('aggregate', 'AggregateTransform', '...aggregate'),
+  bin:           transform('bin', 'BinTransform', 'field', ['bin', true]),
+  calculate:     transform('calculate', 'CalculateTransform', 'calculate'),
+  filter:        transform('filter', 'FilterTransform', 'filter'),
+  flatten:       transform('flatten', 'FlattenTransform', '...flatten'),
+  fold:          transform('fold', 'FoldTransform', '...fold'),
+  impute:        transform('impute', 'ImputeTransform', 'impute', 'key'),
+  joinaggregate: transform('joinaggregate', 'JoinAggregateTransform', '...joinaggregate'),
+  join:          transform('join', 'JoinAggregateTransform', '...joinaggregate'),
+  sample:        transform('sample', 'SampleTransform', 'sample'),
+  stack:         transform('stack', 'StackTransform', 'stack'),
+  timeUnit:      transform('timeUnit', 'TimeUnitTransform', 'timeUnit', 'field'),
+  window:        transform('window', 'WindowTransform', '...window'),
+  groupby:       groupby(),
+
+  // operations
+  ...apiOps(aggregateOps, aggregateOp, 'as'),
+  ...apiOps(windowOps, windowOp, 'as'),
+  ...apiOps(timeUnitOps, timeUnitOp, 'field', 'as')
 };

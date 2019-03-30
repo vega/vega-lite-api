@@ -17,7 +17,7 @@
   "jsdelivr": "build/vega-lite-api.min.js",
   "repository": "vega/vega-lite-api",
   "scripts": {
-    "prebuild": "rimraf build && mkdir build && rimraf src && mkdir src && cp static/* src",
+    "prebuild": "rimraf build src docs && mkdir build src docs && cp static/* src",
     "build": "node rollup",
     "pretest": "yarn build",
     "test": "tape 'test/**/*-test.js' && eslint api static src test",

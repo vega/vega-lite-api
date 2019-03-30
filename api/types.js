@@ -19,44 +19,37 @@ const extLogic = {
 
 // -- Transforms --
 
-export function transform(def, ...args) {
-  return {
-    def: def,
-    arg: args
-  };
-}
+const desc = {
+  aggregate: 'Group and summarize data as counts, sums, averages, etc.',
+  bin: 'Discretize numeric values into uniform bins.',
+  calculate: 'Calculate a new data field value.',
+  filter: 'Remove data that does not match provided conditions.',
+  flatten: 'Map array fields to new records, one per array entry.',
+  fold: 'Collapses one or more data fields into two key, value fields.',
+  impute: 'Replace missing values with imputed values.',
+  joinaggregate: 'Extend input data with aggregate values as new fields.',
+  join: 'A convenient shorthand for joinaggregate.',
+  sample: 'Filters random records from the data limit its size.',
+  stack: 'Computes running sums to stack groups of values.',
+  timeUnit: 'Discretize date/time values into meaningful intervals.',
+  window: 'Perform running calculations over sorted groups.',
+  groupby: 'Group by fields for aggregate or window transforms.'
+};
 
-// -- Transform Operators --
-
-export function aggregateOp(op, ...args) {
+export function transform(name, def, ...args) {
   return {
-    def: 'AggregatedFieldDef',
-    set: {op: op},
-    arg: args,
-    ext: {order: {arg: ['order']}} // call aid sorting
-  };
-}
-
-export function windowOp(op, ...args) {
-  return {
-    def: 'WindowFieldDef',
-    set: {op: op},
-    arg: args
-  };
-}
-
-export function timeUnitOp(op, ...args) {
-  return {
-    def: 'TimeUnitTransform',
-    set: {timeUnit: op},
-    arg: args,
-    ext: extLogic
+    desc: desc[name],
+    doc:  'Data Transformations',
+    def:  def,
+    arg:  args
   };
 }
 
 export function groupby() {
   return {
-    arg: ['...groupby'],
+    desc: 'Group by fields for aggregate or window transforms.',
+    doc:  'Data Transformations',
+    arg:  ['...groupby'],
     pass: {
       aggregate:     {call: 'aggregate'},
       join:          {call: 'joinaggregate'},
@@ -66,12 +59,48 @@ export function groupby() {
   };
 }
 
-// -- Logical Operators --
+// -- Transform Operators --
+
+export function aggregateOp(op, ...args) {
+  return {
+    desc: `A <code>${op}</code> aggregate operation.`,
+    doc:  'Aggregate Operations',
+    def:  'AggregatedFieldDef',
+    set:  {op: op},
+    arg:  args,
+    ext:  {order: {arg: ['order']}} // for sorting
+  };
+}
+
+export function windowOp(op, ...args) {
+  return {
+    desc: `A <code>${op}</code> window operation.`,
+    doc:  'Window Operations',
+    def:  'WindowFieldDef',
+    set:  {op: op},
+    arg:  args
+  };
+}
+
+export function timeUnitOp(op, ...args) {
+  return {
+    desc: `A time unit operation for <code>${op}</code>.`,
+    doc:  'TimeUnit Operations',
+    def:  'TimeUnitTransform',
+    set:  {timeUnit: op},
+    arg:  args,
+    ext:  extLogic
+  };
+}
+
+// -- Logical Operations --
 
 export function field() {
   return {
-    arg: ['field'],
-    ext: {
+    desc: 'A reference to a data field.',
+    doc:  'References',
+    arg:  ['field'],
+    ext:  {
       order: {arg: ['order']},
       ...extLogic
     }
@@ -80,13 +109,17 @@ export function field() {
 
 export function not() {
   return {
-    arg: ['not']
+    desc: 'Logical NOT operation.',
+    doc:  'Logical Operations',
+    arg:  ['not']
   };
 }
 
 export function logical(op) {
   return {
-    arg: [`...${op}`]
+    desc: `Logical ${op.toUpperCase()} operation.`,
+    doc:  'Logical Operations',
+    arg:  [`...${op}`]
   };
 }
 
@@ -94,9 +127,11 @@ export function logical(op) {
 
 export function selection(type) {
   return {
-    def: `${capitalize(type)}Selection`,
-    set: {type: type},
-    arg: ['^_sel'],
+    desc: `Define a new <code>${type}</code> selection.`,
+    doc:  'Selections',
+    def:  `${capitalize(type)}Selection`,
+    set:  {type: type},
+    arg:  ['^_sel'],
     key: [
       {selection: '_sel'},
       '_sel'
@@ -108,9 +143,11 @@ export function binding(def, input, args) {
   const set = input ? {input: input} : null;
 
   return {
-    def: def,
-    set: set,
-    arg: args
+    desc: `Define a new ${input} input element binding.`,
+    doc:  'Selection Bindings',
+    def:  def,
+    set:  set,
+    arg:  args
   };
 }
 
@@ -136,9 +173,11 @@ for (let key in timeUnitOps) {
 
 export function channel(type) {
   const spec = {
-    def: `FacetedEncoding/properties/${type}`,
-    key: [null, type],
-    ext: {
+    desc: `Specify the <code>${type}</code> encoding channel.`,
+    doc:  'Encodings',
+    def:  `FacetedEncoding/properties/${type}`,
+    key:  [null, type],
+    ext:  {
       fieldN: {arg: ['field'], set: {type: N}},
       fieldO: {arg: ['field'], set: {type: O}},
       fieldQ: {arg: ['field'], set: {type: Q}},
@@ -162,27 +201,38 @@ export function channel(type) {
 
 export function encoding() {
   return {
-    arg: ['encoding']
+    desc: 'A reference to an encoding channel.',
+    doc:  'References',
+    arg:  ['encoding'],
+    ext: {
+      order: {arg: ['encoding']}
+    }
   };
 }
 
-export function sort() {
+export function value() {
   return {
-    def: 'Sort'
+    desc: 'A constant encoding value.',
+    doc:  'References',
+    arg:  ['value']
   };
 }
 
 export function repeat() {
   return {
-    def: 'RepeatRef',
-    arg: ['repeat']
+    desc: 'A field variable reference for a repeated chart.',
+    doc:  'References',
+    def:  'RepeatRef',
+    arg:  ['repeat']
   }
 }
 
 export function projection() {
   return {
-    def: 'Projection',
-    arg: ['type']
+    desc: 'Define a projection to map longitude, latitude coordinates.',
+    doc:  'Projections',
+    def:  'Projection',
+    arg:  ['type']
   }
 }
 
@@ -228,6 +278,8 @@ export function mark(type) {
   const set = type ? {mark: {type: type}} : null;
 
   return {
+    desc: `Create a new ${type ? `<code>${type}</code> ` : ''}mark.`,
+    doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
     set:  set,
     arg:  [':::mark'],
@@ -239,6 +291,8 @@ export function mark(type) {
 
 export function data() {
   return {
+    desc: 'Create a new chart for the given data.',
+    doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
     arg:  ['data'],
     type: typeData,
@@ -254,19 +308,10 @@ export function data() {
   };
 }
 
-export function unit() {
-  return {
-    def:  'TopLevelUnitSpec',
-    arg:  ['data'],
-    type: typeData,
-    ext:  extUnit,
-    call: callSpec,
-    pass: passMulti
-  };
-}
-
 export function layer(...args) {
   return {
+    desc: 'Create a new layered chart.',
+    doc:  'Chart Constructors',
     def:  'TopLevelLayerSpec',
     arg:  args,
     ext:  extLayer,
@@ -275,8 +320,10 @@ export function layer(...args) {
   };
 }
 
-export function spec(def, ...args) {
+export function spec(verb, def, ...args) {
   return {
+    desc: `${verb} charts.`,
+    doc:  'Chart Constructors',
     def:  def,
     arg:  args,
     ext:  extSpec,

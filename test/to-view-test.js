@@ -5,12 +5,11 @@ var tape = require('tape'),
 
 tape('Top-level specification types have a toView method', function(t) {
   t.ok(vl.mark().toView);
-  t.ok(vl.chart().toView);
   t.ok(vl.layer().toView);
   t.ok(vl.hconcat().toView);
   t.ok(vl.vconcat().toView);
-  t.ok(vl.chart().facet().toView);
-  t.ok(vl.chart().repeat().toView);
+  t.ok(vl.mark().facet().toView);
+  t.ok(vl.mark().repeat().toView);
   t.end();
 });
 

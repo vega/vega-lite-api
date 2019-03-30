@@ -1,6 +1,6 @@
-import {writeFile} from 'fs';
 import {generateMethod} from './method';
 import {props} from './schema';
+import {write} from './write';
 
 export function generateAPI(schema, api, path) {
   const q = [];
@@ -24,16 +24,10 @@ function generateIndex(api) {
     if (name.startsWith('_')) {
       continue; // skip private methods
     } else if (name.startsWith('$')) {
-      code += `export {${name.slice(1)}} from "./${api[name]}";\n`;
+      code += `export {${name.slice(1)}} from "./${api[name].src}";\n`;
     } else {
       code += `export {${name}} from "./${name}";\n`;
     }
   }
   return code + '\n';
-}
-
-function write(name, data) {
-  return new Promise(function(resolve, reject) {
-    writeFile(name, data, 'utf8', err => err ? reject(err) : resolve(data));
-  });
 }

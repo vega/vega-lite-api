@@ -5,12 +5,11 @@ var tape = require('tape'),
 
 tape('Top-level specification types have a render method', function(t) {
   t.ok(vl.mark().render);
-  t.ok(vl.chart().render);
   t.ok(vl.layer().render);
   t.ok(vl.hconcat().render);
   t.ok(vl.vconcat().render);
-  t.ok(vl.chart().facet().render);
-  t.ok(vl.chart().repeat().render);
+  t.ok(vl.mark().facet().render);
+  t.ok(vl.mark().repeat().render);
   t.end();
 });
 
