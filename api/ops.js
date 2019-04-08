@@ -85,5 +85,5 @@ export const timeUnitOps = {
   utcHM: ['utchoursminutes'],
   utcHMS: ['utchoursminutesseconds'],
   utcMS: ['utcminutesseconds'],
-  utcSMS: ['utcsecondsmillisecond']
+  utcSMS: ['utcsecondsmilliseconds']
 };
