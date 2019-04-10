@@ -239,4 +239,4 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>utcHM</b> - A time unit operation for <code>utchoursminutes</code>.
 - vl.<b>utcHMS</b> - A time unit operation for <code>utchoursminutesseconds</code>.
 - vl.<b>utcMS</b> - A time unit operation for <code>utcminutesseconds</code>.
-- vl.<b>utcSMS</b> - A time unit operation for <code>utcsecondsmillisecond</code>.
+- vl.<b>utcSMS</b> - A time unit operation for <code>utcsecondsmilliseconds</code>.
