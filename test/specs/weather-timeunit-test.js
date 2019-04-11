@@ -10,7 +10,7 @@ function api() {
   return vl.markLine()
     .data({url: "data/seattle-weather.csv"})
     .transform(
-      vl.month('date', 'month'))
+      vl.month('date').as('month'))
     .encode(
       vl.x().fieldT('month').axis({format: '%b'}),
       vl.y().max('temp_max'))
