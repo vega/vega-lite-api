@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
@@ -26,13 +26,13 @@
     "schema": "curl -s https://vega.github.io/schema/vega-lite/v3.json > api/schema.json"
   },
   "devDependencies": {
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.7.4",
+    "rollup": "^1.10.0",
     "rollup-plugin-json": "^4.0.0",
     "tape": "^4.10.1",
     "terser": "^3.17.0",
-    "vega": "^5.3.2",
-    "vega-lite": "^3.0.3"
+    "vega": "^5.3.5",
+    "vega-lite": "^3.1.0"
   }
 }
