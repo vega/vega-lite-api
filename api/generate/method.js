@@ -102,22 +102,33 @@ function generateConstructor(emit, className, spec) {
       if (Array.isArray(_)) { // include a default value
         emit.import('set');
         emit(`  set(this, ${$(_[0])}, args[${i}] !== undefined ? args[${i}] : ${_[1]});`);
-      } else if (_.startsWith(':::')) { // merge object arguments
+      }
+      else if (_.startsWith(':::')) { // merge object arguments
         if (i !== 0) error('Illegal argument definition.');
         emit.import(['get', 'set', 'merge']);
+        if (t) emit(`  args = args.map(_ => ${typeSwitch(emit, t, '_')});`);
         emit(`  set(this, ${$(_.slice(3))}, merge(0, get(this, ${$(_.slice(3))}), args));`);
         break;
-      } else if (_.startsWith('...')) { // array value from arguments
+      }
+      else if (_.startsWith('...')) { // array value from arguments
         if (i !== 0) error('Illegal argument definition.');
         emit.import(['set', 'flat']);
-        emit(`  set(this, ${$(_.slice(3))}, flat(args));`);
+        if (t) {
+          emit(`  args = flat(args).map(_ => ${typeSwitch(emit, t, '_')});`);
+        } else {
+          emit('  args = flat(args);');
+        }
+        emit(`  set(this, ${$(_.slice(3))}, args);`);
         break;
-      } else if (_.startsWith('^_')) { // internal state, autogenerate id
+      }
+      else if (_.startsWith('^_')) { // internal state, autogenerate id
         emit.import('id');
         emit(`  this[${$(_.slice(1))}] = args[${i}] !== undefined ? args[${i}] : id(${$(_.slice(2))});`);
-      } else if (_.startsWith('_')) { // internal state
+      }
+      else if (_.startsWith('_')) { // internal state
         emit(`  if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
-      } else { // set value if not undefined
+      }
+      else { // set value if not undefined
         emit.import('set');
         const v = t ? typeSwitch(emit, t, `args[${i}]`) : `args[${i}]`;
         emit(`  if (args[${i}] !== undefined) set(this, ${$(_)}, ${v});`);
@@ -127,7 +138,7 @@ function generateConstructor(emit, className, spec) {
     // otherwise, accept property value objects
     emit.import('assign');
     if (type) {
-      emit(`  args = args.map(_ => ${typeSwitch(emit, type, `_`)});`);
+      emit(`  args = args.map(_ => ${typeSwitch(emit, type, '_')});`);
     }
     emit(`  assign(this, ...args);`);
   }
@@ -142,21 +153,22 @@ function generateExtension(emit, prop, val) {
   }
 
   const arg  = val.arg && val.arg[0],
+        pre  = val.pre && val.pre[0],
         type = val.type && val.type[0],
-        flag = val.flag,
+        flag = val.flag || 0,
         set  = generateMutations('obj', val.set);
 
   !arg // zero-argument generator
       ? generateCopy(emit, prop, set)
     : arg.startsWith(':::') // merge object arguments
-      ? generateMergedProperty(emit, prop, arg.slice(3), flag, set)
+      ? generateMergedProperty(emit, prop, arg.slice(3), pre, type, flag, set)
     : arg.startsWith('+::') // merge object arguments and accrete object
-      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), flag, set)
+      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), pre, type, flag, set)
     : arg.startsWith('+++') // merge object arguments and accrete array
-      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), flag, set)
+      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), pre, type, flag, set)
     : arg.startsWith('...') // array value from arguments
-      ? generateProperty(emit, prop, arg.slice(3), '...', set)
-    : generateProperty(emit, prop, arg, '', set, type); // standard value argument
+      ? generateProperty(emit, prop, arg.slice(3), '...', type, set)
+    : generateProperty(emit, prop, arg, '', type, set); // standard value argument
 }
 
 function generateMutations(obj, values) {
@@ -212,18 +224,20 @@ function typeSwitch(emit, types, value) {
   return code + value;
 }
 
-function generateProperty(emit, method, prop, mod, set, type) {
+function generateProperty(emit, method, prop, mod, type, set) {
   emit.import(['copy', 'get', 'set']);
   if (mod) emit.import('flat');
-
-  const value = mod ? 'flat(value)' : 'value',
-        final = type ? typeSwitch(emit, type, 'val') : 'val';
 
   emit(`prototype.${method} = function(${mod || ''}value) {`);
   emit(`  if (arguments.length) {`);
   emit(`    const obj = copy(this);`);
-  emit(`    const val = ${value};`);
-  emit(`    set(obj, ${$(prop)}, ${final});`);
+  if (mod) {
+    emit('    value = flat(value)'
+      + (type ? `.map(v => ${typeSwitch(emit, type, 'v')});` : ';'));
+  } else if (type) {
+    emit(`    value = ${typeSwitch(emit, type, 'value')}`);
+  }
+  emit(`    set(obj, ${$(prop)}, value);`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(`    return obj;`);
   emit(`  } else {`);
@@ -233,54 +247,90 @@ function generateProperty(emit, method, prop, mod, set, type) {
   emit();
 }
 
-function generateMergedProperty(emit, method, prop, flag, set) {
+function generateMergedProperty(emit, method, prop, pre, type, flag, set) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
-  emit(`prototype.${method} = function(...values) {`);
-  emit(`  if (arguments.length) {`);
-  emit(`    const obj = copy(this);`);
-  emit(`    set(obj, ${$(prop)}, merge(${flag}, values));`);
-  if (set) set.forEach(v => emit('    ' + v));
-  emit(`    return obj;`);
-  emit(`  } else {`);
-  emit(`    return get(this, ${$(prop)});`);
-  emit(`  }`);
+  emit(`prototype.${method} = function(...values) {`).indent();
+
+  if (!pre)
+  emit(`if (arguments.length) {`).indent();
+  else
+  emit(  `values = [${$(pre)}].concat(values)`);
+
+  if (type)
+  emit(  `values = values.map(v => ${typeSwitch(emit, type, 'v')});`);
+  emit(  `const obj = copy(this);`);
+  emit(  `set(obj, ${$(prop)}, merge(${flag}, values));`);
+  if (set) set.forEach(v => emit(v));
+  emit(  `return obj;`);
+
+  if (!pre) {
+  emit.outdent();
+  emit(`} else {`).indent();
+  emit(  `return get(this, ${$(prop)});`).outdent();
+  emit(`}`); }
+
+  emit.outdent();
   emit(`};`);
   emit();
 }
 
-function generateAccretiveObjectProperty(emit, method, prop, flag, set) {
+function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, set) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
-  emit(`prototype.${method} = function(...values) {`);
-  emit(`  if (arguments.length) {`);
-  emit(`    const val = get(this, ${$(prop)});`);
-  emit(`    const obj = copy(this);`);
-  emit(`    if (val) values = [val].concat(values);`);
-  emit(`    set(obj, ${$(prop)}, merge(${flag}, values));`);
-  if (set) set.forEach(v => emit('    ' + v));
-  emit(`    return obj;`);
-  emit(`  } else {`);
-  emit(`    return get(this, ${$(prop)});`);
-  emit(`  }`);
+  emit(`prototype.${method} = function(...values) {`).indent();
+
+  if (!pre)
+  emit(`if (arguments.length) {`).indent();
+  else
+  emit(  `values = [${$(pre)}].concat(values)`);
+
+  if (type)
+  emit(  `values = values.map(v => ${typeSwitch(emit, type, 'v')});`);
+  emit(  `const val = get(this, ${$(prop)});`);
+  emit(  `const obj = copy(this);`);
+  emit(  `if (val) values = [val].concat(values);`);
+  emit(  `set(obj, ${$(prop)}, merge(${flag}, values));`);
+  if (set) set.forEach(v => emit(v));
+  emit(  `return obj;`);
+
+  if (!pre) {
+  emit.outdent();
+  emit(`} else {`).indent();
+  emit(  `return get(this, ${$(prop)});`).outdent();
+  emit(`}`); }
+
+  emit.outdent();
   emit(`};`);
   emit();
 }
 
-function generateAccretiveArrayProperty(emit, method, prop, flag, set) {
+function generateAccretiveArrayProperty(emit, method, prop, pre, type, flag, set) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
-  emit(`prototype.${method} = function(...values) {`);
-  emit(`  if (arguments.length) {`);
-  emit(`    const val = get(this, ${$(prop)}) || [];`);
-  emit(`    const obj = copy(this);`);
-  emit(`    values = [].concat(val, merge(${flag}, values));`);
-  emit(`    set(obj, ${$(prop)}, values.length > 1 ? values : values[0]);`);
-  if (set) set.forEach(v => emit('    ' + v));
-  emit(`    return obj;`);
-  emit(`  } else {`);
-  emit(`    return get(this, ${$(prop)});`);
-  emit(`  }`);
+  emit(`prototype.${method} = function(...values) {`).indent();
+
+  if (!pre)
+  emit(`if (arguments.length) {`).indent();
+  else
+  emit(  `values = [${$(pre)}].concat(values)`);
+
+  if (type)
+  emit(  `values = values.map(v => ${typeSwitch(emit, type, 'v')});`);
+  emit(  `const val = get(this, ${$(prop)}) || [];`);
+  emit(  `const obj = copy(this);`);
+  emit(  `values = [].concat(val, merge(${flag}, values));`);
+  emit(  `set(obj, ${$(prop)}, values.length > 1 ? values : values[0]);`);
+  if (set) set.forEach(v => emit(v));
+  emit(  `return obj;`);
+
+  if (!pre) {
+  emit.outdent();
+  emit(`} else {`).indent();
+  emit(  `return get(this, ${$(prop)});`).outdent();
+  emit(`}`); }
+
+  emit.outdent();
   emit(`};`);
   emit();
 }

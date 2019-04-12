@@ -27,8 +27,20 @@ export function emitter(defaultFile) {
   const imports = {[defaultFile]: {}},
         lines = [];
 
+  let prefix = '';
+
   const emit = (s) => {
-    lines.push(s || '');
+    lines.push(s ? (prefix + s) : '');
+    return emit;
+  };
+
+  emit.indent = () => {
+    prefix = prefix + '  ';
+    return emit;
+  };
+
+  emit.outdent = () => {
+    prefix = prefix.slice(-2);
     return emit;
   };
 

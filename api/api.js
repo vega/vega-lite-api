@@ -4,10 +4,12 @@ import schema from './schema.json';
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
-  field, fieldType, not, logical, repeat,
+  field, fieldType, not, logical, repeat, value,
   selection, binding, projection, encoding, channel,
   unit, mark, data, layer, spec
 } from './types';
+
+const markTypes = enums(schema, {$ref: '#/definitions/AnyMark'});
 
 function apiOps(ops, method, ...params) {
   return Object.keys(ops)
@@ -15,7 +17,7 @@ function apiOps(ops, method, ...params) {
 }
 
 function marks() {
-  return enums(schema, {$ref: '#/definitions/AnyMark'})
+  return markTypes
     .reduce((api, m) => (api[`mark${capitalize(m)}`] = mark(m), api), {});
 }
 
@@ -37,7 +39,7 @@ export const api = {
   vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
   _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
   _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
-  mark:     unit(),
+  mark:     unit(markTypes),
   ...marks(),
 
   // externally defined exports
@@ -55,8 +57,9 @@ export const api = {
   fieldO:   fieldType('ordinal'),
   fieldQ:   fieldType('quantitative'),
   fieldT:   fieldType('temporal'),
-  repeat:   repeat(),
   encoding: encoding(),
+  repeat:   repeat(),
+  value:    value(),
 
   // cartographic projection
   projection: projection(),

@@ -293,6 +293,7 @@ const extLayer = {
 };
 
 const extUnit = {
+  mark:        {arg: [':::mark'], type: [{string: {key: 'type'}}]},
   encoding:    null,
   encode:      {arg: ['+::encoding'], flag: 1},
   selection:   null,
@@ -310,13 +311,20 @@ const callSpec = {
   toView: {call: 'toView', from: '__view__'}
 };
 
-export function unit() {
+export function unit(types) {
+
+  const extMark = types.reduce((o, m) => {
+    o[`mark${capitalize(m)}`] = {arg: [':::mark'], pre: [{type: m}]};
+    return o;
+  }, {});
+
   return {
     desc: `Create a new mark.`,
     doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
     arg:  [':::mark'],
-    ext:  extUnit,
+    type: [{string: {key: 'type'}}],
+    ext:  {...extUnit, ...extMark},
     call: callSpec,
     pass: passMulti
   };
