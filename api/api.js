@@ -69,9 +69,9 @@ export const api = {
 
   // bindings
   checkbox:  binding('BindCheckbox', 'checkbox'),
+  menu:      binding('BindRadioSelect', 'select', ['...options']),
   radio:     binding('BindRadioSelect', 'radio', ['...options']),
-  range:     binding('BindRange', 'range', ['min', 'max', 'step']),
-  select:    binding('BindRadioSelect', 'select', ['...options']),
+  slider:    binding('BindRange', 'range', ['min', 'max', 'step']),
 
   // logical operations
   not: not(),

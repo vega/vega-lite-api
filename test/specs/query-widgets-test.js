@@ -11,8 +11,8 @@ function api() {
     .fields('Cylinders', 'Year')
     .init({Cylinders: 4, Year: 1977})
     .bind({
-      Cylinders: vl.range().min(3).max(8).step(1),
-      Year: vl.range().min(1969).max(1981).step(1)
+      Cylinders: vl.slider().min(3).max(8).step(1),
+      Year: vl.slider().min(1969).max(1981).step(1)
     });
 
   return vl.data({url: 'data/cars.json'})
