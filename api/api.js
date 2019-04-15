@@ -18,7 +18,7 @@ function apiOps(ops, method, ...params) {
 
 function formats() {
   return types(schema, {$ref: '#/definitions/DataFormat'})
-    .reduce((api, f) => (api[f] = format(f), api), {});
+    .reduce((api, f) => (api[`${f}Format`] = format(f), api), {});
 }
 
 function generators() {

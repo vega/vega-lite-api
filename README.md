@@ -82,11 +82,11 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>sequence</b> - Define a <code>sequence</code> data generator.
 - vl.<b>sphere</b> - Define a <code>sphere</code> data generator.
 - vl.<b>graticule</b> - Define a <code>graticule</code> data generator.
-- vl.<b>csv</b> - Specify parsing of <code>csv</code> format data.
-- vl.<b>dsv</b> - Specify parsing of <code>dsv</code> format data.
-- vl.<b>json</b> - Specify parsing of <code>json</code> format data.
-- vl.<b>topojson</b> - Specify parsing of <code>topojson</code> format data.
-- vl.<b>tsv</b> - Specify parsing of <code>tsv</code> format data.
+- vl.<b>csvFormat</b> - Specify parsing of <code>csv</code> format data.
+- vl.<b>dsvFormat</b> - Specify parsing of <code>dsv</code> format data.
+- vl.<b>jsonFormat</b> - Specify parsing of <code>json</code> format data.
+- vl.<b>topojsonFormat</b> - Specify parsing of <code>topojson</code> format data.
+- vl.<b>tsvFormat</b> - Specify parsing of <code>tsv</code> format data.
 
 ### Encodings
 
