@@ -46,15 +46,11 @@ For a basic setup allowing you to build the API and run tests:
 - Run `yarn` to install dependencies for all packages. If you don't have yarn installed, see https://yarnpkg.com/en/docs/install.
 - Once installation is complete, run `yarn build` to build the API generator and generate API source code in the `src` directory. Run `yarn test` to additionally run the test suite.
 
-## API Overview
+## API Reference
 
 ### Chart Constructors
 
-- vl.<b>data</b> - Create a new chart for the given data.
-- vl.<b>layer</b> - Create a new layered chart.
-- vl.<b>hconcat</b> - Horizontally concatenate charts.
-- vl.<b>vconcat</b> - Vertically concatenate charts.
-- vl.<b>mark</b> - Create a new mark.
+- vl.<b>mark</b> - Create a new mark of unspecified type.
 - vl.<b>markArea</b> - Create a new <code>area</code> mark.
 - vl.<b>markBar</b> - Create a new <code>bar</code> mark.
 - vl.<b>markBoxplot</b> - Create a new <code>boxplot</code> mark.
@@ -70,10 +66,27 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>markText</b> - Create a new <code>text</code> mark.
 - vl.<b>markTick</b> - Create a new <code>tick</code> mark.
 - vl.<b>markTrail</b> - Create a new <code>trail</code> mark.
+- vl.<b>data</b> - Create a new chart for the given data.
+- vl.<b>layer</b> - Create a new layered chart.
+- vl.<b>hconcat</b> - Horizontally concatenate charts.
+- vl.<b>vconcat</b> - Vertically concatenate charts.
 
 ### Utilities
 
 - vl.<b>register</b> - Register Vega and Vega-Lite with the API.
+
+### Data
+
+- vl.<b>url</b> - Define a url data source.
+- vl.<b>values</b> - Define a inline data source.
+- vl.<b>sequence</b> - Define a <code>sequence</code> data generator.
+- vl.<b>sphere</b> - Define a <code>sphere</code> data generator.
+- vl.<b>graticule</b> - Define a <code>graticule</code> data generator.
+- vl.<b>csv</b> - Specify parsing of <code>csv</code> format data.
+- vl.<b>dsv</b> - Specify parsing of <code>dsv</code> format data.
+- vl.<b>json</b> - Specify parsing of <code>json</code> format data.
+- vl.<b>topojson</b> - Specify parsing of <code>topojson</code> format data.
+- vl.<b>tsv</b> - Specify parsing of <code>tsv</code> format data.
 
 ### Encodings
 
@@ -111,12 +124,17 @@ For a basic setup allowing you to build the API and run tests:
 ### References
 
 - vl.<b>field</b> - A reference to a data field.
-- vl.<b>repeat</b> - A field variable reference for a repeated chart.
+- vl.<b>fieldN</b> - A reference to a nominal data field.
+- vl.<b>fieldO</b> - A reference to a ordinal data field.
+- vl.<b>fieldQ</b> - A reference to a quantitative data field.
+- vl.<b>fieldT</b> - A reference to a temporal data field.
 - vl.<b>encoding</b> - A reference to an encoding channel.
+- vl.<b>repeat</b> - A field variable reference for a repeated chart.
+- vl.<b>value</b> - A constant encoding value.
 
 ### Projections
 
-- vl.<b>projection</b> - Define a projection to map longitude, latitude coordinates.
+- vl.<b>projection</b> - Define a cartographic projection for longitude, latitude coordinates.
 
 ### Selections
 
@@ -126,10 +144,10 @@ For a basic setup allowing you to build the API and run tests:
 
 ### Selection Bindings
 
-- vl.<b>checkbox</b> - Define a new checkbox input element binding.
-- vl.<b>radio</b> - Define a new radio input element binding.
-- vl.<b>range</b> - Define a new range input element binding.
-- vl.<b>select</b> - Define a new select input element binding.
+- vl.<b>checkbox</b> - Define a new HTML <code>checkbox</code> input element binding.
+- vl.<b>menu</b> - Define a new HTML <code>select</code> input element binding.
+- vl.<b>radio</b> - Define a new HTML <code>radio</code> input element binding.
+- vl.<b>slider</b> - Define a new HTML <code>range</code> input element binding.
 
 ### Logical Operations
 
@@ -203,6 +221,7 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>minutes</b> - A time unit operation for <code>minutes</code>.
 - vl.<b>seconds</b> - A time unit operation for <code>seconds</code>.
 - vl.<b>milliseconds</b> - A time unit operation for <code>milliseconds</code>.
+- vl.<b>yearmonth</b> - A time unit operation for <code>yearmonth</code>.
 - vl.<b>timeYQ</b> - A time unit operation for <code>yearquarter</code>.
 - vl.<b>timeYQM</b> - A time unit operation for <code>yearquartermonth</code>.
 - vl.<b>timeYM</b> - A time unit operation for <code>yearmonth</code>.
@@ -226,6 +245,7 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>utcminutes</b> - A time unit operation for <code>utcminutes</code>.
 - vl.<b>utcseconds</b> - A time unit operation for <code>utcseconds</code>.
 - vl.<b>utcmilliseconds</b> - A time unit operation for <code>utcmilliseconds</code>.
+- vl.<b>utcyearmonth</b> - A time unit operation for <code>utcyearmonth</code>.
 - vl.<b>utcYQ</b> - A time unit operation for <code>utcyearquarter</code>.
 - vl.<b>utcYQM</b> - A time unit operation for <code>utcyearquartermonth</code>.
 - vl.<b>utcYM</b> - A time unit operation for <code>utcyearmonth</code>.

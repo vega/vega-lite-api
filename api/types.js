@@ -112,7 +112,7 @@ export function field() {
 
 export function fieldType(type) {
   return {
-    desc: 'A reference to a ${type} data field.',
+    desc: `A reference to a ${type} data field.`,
     doc:  'References',
     ctr:  {call: 'field'},
     set:  {type: type}
@@ -155,7 +155,7 @@ export function binding(def, input, args) {
   const set = input ? {input: input} : null;
 
   return {
-    desc: `Define a new ${input} input element binding.`,
+    desc: `Define a new HTML <code>${input}</code> input element binding.`,
     doc:  'Selection Bindings',
     def:  def,
     set:  set,
@@ -265,11 +265,50 @@ export function repeat() {
 
 export function projection() {
   return {
-    desc: 'Define a projection to map longitude, latitude coordinates.',
+    desc: 'Define a cartographic projection for longitude, latitude coordinates.',
     doc:  'Projections',
     def:  'Projection',
     arg:  ['type']
   }
+}
+
+// -- Data Specification --
+
+export function source(type, args) {
+  return {
+    desc: `Define a ${type} data source.`,
+    doc:  'Data',
+    def:  `${capitalize(type)}Data`,
+    arg:  args
+  };
+}
+
+const formatDefs = {
+  tsv: 'csv',
+  topojson: 'topo'
+};
+
+export function format(type) {
+  return {
+    desc: `Specify parsing of <code>${type}</code> format data.`,
+    doc:  'Data',
+    def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
+    set:  {type: type}
+  };
+}
+
+const generatorArgs = {
+  sequence: ['start', 'stop', 'step']
+};
+
+export function generator(type) {
+  return {
+    desc: `Define a <code>${type}</code> data generator.`,
+    doc:  'Data',
+    def:  `${capitalize(type)}Params`,
+    key:  [type],
+    arg:  generatorArgs[type]
+  };
 }
 
 // -- Top-Level Specifications --
@@ -319,7 +358,7 @@ export function unit(types) {
   }, {});
 
   return {
-    desc: `Create a new mark.`,
+    desc: `Create a new mark of unspecified type.`,
     doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
     arg:  [':::mark'],

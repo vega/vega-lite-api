@@ -6,7 +6,7 @@ import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
   field, fieldType, not, logical, repeat, value,
   selection, binding, projection, encoding, channel,
-  unit, mark, data, layer, spec
+  source, generator, format, data, unit, mark, layer, spec
 } from './types';
 
 const markTypes = enums(schema, {$ref: '#/definitions/AnyMark'});
@@ -14,6 +14,17 @@ const markTypes = enums(schema, {$ref: '#/definitions/AnyMark'});
 function apiOps(ops, method, ...params) {
   return Object.keys(ops)
     .reduce((api, o) => (api[o] = method(...ops[o], ...params), api), {});
+}
+
+function formats() {
+  return types(schema, {$ref: '#/definitions/DataFormat'})
+    .reduce((api, f) => (api[f] = format(f), api), {});
+}
+
+function generators() {
+  const types = props(schema, {$ref: '#/definitions/Generator'});
+  return Object.keys(types).filter(t => t !== 'name')
+    .reduce((api, g) => (api[g] = generator(g), api), {});
 }
 
 function marks() {
@@ -33,14 +44,14 @@ function selections() {
 
 export const api = {
   // top-level specifications
+  mark:     unit(markTypes),
+  ...marks(),
   data:     data(),
   layer:    layer('...layer'),
   hconcat:  spec('Horizontally concatenate', 'TopLevelHConcatSpec', '...hconcat'),
   vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
   _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
   _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
-  mark:     unit(markTypes),
-  ...marks(),
 
   // externally defined exports
   $register: {
@@ -49,6 +60,12 @@ export const api = {
     arg:  ['vega', 'vegalite', 'options'],
     src:  '__view__'
   },
+
+  // data specification
+  url: source('url', ['url']),
+  values: source('inline', ['values']),
+  ...generators(),
+  ...formats(),
 
   // encoding channels
   ...channels(),
