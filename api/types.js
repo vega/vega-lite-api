@@ -315,7 +315,7 @@ export function sourceFormat(type) {
     desc: `Define a data source for <code>${type}</code> format data.`,
     doc:  'Data',
     def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
-    type: typeData[0],
+    type: {object: {key: 'values'}, ...typeData[0]},
     set:  {type: type},
     nest: {keys: ['url', 'values', 'name'], rest: 'format'},
     ext:  {
