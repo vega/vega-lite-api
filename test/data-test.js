@@ -52,3 +52,45 @@ tape('Inline data sources are supported', function(t) {
 
   t.end();
 });
+
+tape('Format data sources are supported', function(t) {
+  const types = ['json', 'csv', 'dsv', 'topojson', 'tsv'];
+
+  types.forEach(f => {
+    equalSpec(t, vl[f]('foo'), {url: 'foo', format: {type: f}});
+    equalSpec(t, vl[f]([]), {values: [], format: {type: f}});
+  });
+
+  t.end();
+});
+
+tape('Lookup data sources are supported', function(t) {
+  const data1 = vl.data('foo.csv').key('key');
+  const spec1 = {
+    data: {url: 'foo.csv'},
+    key: 'key'
+  };
+  equalSpec(t, data1, spec1);
+
+  const data2 = vl.data('foo.csv').fields('a', 'b');
+  const spec2 = {
+    data: {url: 'foo.csv'},
+    fields: ['a', 'b']
+  };
+  equalSpec(t, data2, spec2);
+
+  const data3a = vl.lookupData()
+    .data({url: 'foo.csv'})
+    .key('key')
+    .fields('a', 'b');
+  const data3b = vl.lookupData('foo.csv').key('key').fields('a', 'b');
+  const spec3 = {
+    data: {url: 'foo.csv'},
+    key: 'key',
+    fields: ['a', 'b']
+  };
+  equalSpec(t, data3a, spec3);
+  equalSpec(t, data3b, spec3);
+
+  t.end();
+});

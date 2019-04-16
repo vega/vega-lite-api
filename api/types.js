@@ -25,12 +25,13 @@ const desc = {
   calculate: 'Calculate a new data field value.',
   filter: 'Remove data that does not match provided conditions.',
   flatten: 'Map array fields to new records, one per array entry.',
-  fold: 'Collapses one or more data fields into two key, value fields.',
-  impute: 'Replace missing values with imputed values.',
+  fold: 'Collapse one or more data fields into two key, value fields.',
+  impute: 'Fill in missing values with imputed values.',
   joinaggregate: 'Extend input data with aggregate values as new fields.',
   join: 'A convenient shorthand for joinaggregate.',
-  sample: 'Filters random records from the data limit its size.',
-  stack: 'Computes running sums to stack groups of values.',
+  lookup: 'Extend input data with values from another data source.',
+  sample: 'Filter random records from the data limit its size.',
+  stack: 'Compute running sums to stack groups of values.',
   timeUnit: 'Discretize date/time values into meaningful intervals.',
   window: 'Perform running calculations over sorted groups.',
   groupby: 'Group by fields for aggregate or window transforms.'
@@ -274,6 +275,27 @@ export function projection() {
 
 // -- Data Specification --
 
+export function data() {
+  return {
+    desc: 'Create a new data reference for a chart or lookup.',
+    doc:  'Data',
+    def:  'TopLevelUnitSpec',
+    arg:  ['data'],
+    type: typeData,
+    ext:  extUnit,
+    call: callSpec,
+    pass: {
+      fields:  {call: 'lookupData', prop: 'fields',},
+      key:     {call: 'lookupData', prop: 'key'},
+      mark:    {call: 'mark'},
+      layer:   {call: 'layer'},
+      hconcat: {call: 'hconcat'},
+      vconcat: {call: 'vconcat'},
+      ...passMulti
+    }
+  };
+}
+
 export function source(type, args) {
   return {
     desc: `Define a ${type} data source.`,
@@ -287,6 +309,32 @@ const formatDefs = {
   tsv: 'csv',
   topojson: 'topo'
 };
+
+export function sourceFormat(type) {
+  return {
+    desc: `Define a data source for <code>${type}</code> format data.`,
+    doc:  'Data',
+    def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
+    type: typeData[0],
+    set:  {type: type},
+    nest: {keys: ['url', 'values', 'name'], rest: 'format'},
+    ext:  {
+      url:    {arg: ['url']},
+      values: {arg: ['values']},
+      name:   {arg: ['name']}
+    }
+  };
+}
+
+export function lookupData() {
+  return {
+    desc: `Specify a lookup on a secondary data source.`,
+    doc:  'Data',
+    def:  `LookupData`,
+    arg:  ['data'],
+    type: typeData,
+  };
+}
 
 export function format(type) {
   return {
@@ -306,7 +354,7 @@ export function generator(type) {
     desc: `Define a <code>${type}</code> data generator.`,
     doc:  'Data',
     def:  `${capitalize(type)}Params`,
-    key:  [type],
+    key:  type,
     arg:  generatorArgs[type]
   };
 }
@@ -351,7 +399,6 @@ const callSpec = {
 };
 
 export function unit(types) {
-
   const extMark = types.reduce((o, m) => {
     o[`mark${capitalize(m)}`] = {arg: [':::mark'], pre: [{type: m}]};
     return o;
@@ -374,25 +421,6 @@ export function mark(type) {
     desc: `Create a new <code>${type}</code> mark.`,
     doc:  'Chart Constructors',
     ctr:  {call: 'mark', arg: {type: type}}
-  };
-}
-
-export function data() {
-  return {
-    desc: 'Create a new chart for the given data.',
-    doc:  'Chart Constructors',
-    def:  'TopLevelUnitSpec',
-    arg:  ['data'],
-    type: typeData,
-    ext:  extUnit,
-    call: callSpec,
-    pass: {
-      mark:    {call: 'mark'},
-      layer:   {call: 'layer'},
-      hconcat: {call: 'hconcat'},
-      vconcat: {call: 'vconcat'},
-      ...passMulti,
-    }
   };
 }
 

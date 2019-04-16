@@ -82,6 +82,15 @@ export function merge(flag, ...values) {
   return object(Object.assign({}, ...objects));
 }
 
+export function nest(obj, keys, rest) {
+  const m = keys.reduce((m, k) => (m[k] = 1, m), {}),
+        u = {}, v = {};
+
+  for (let k in obj) (m[k] ? u : v)[k] = obj[k];
+  u[rest] = v;
+  return u;
+}
+
 // -- type checkers --
 
 export const isArray = Array.isArray;

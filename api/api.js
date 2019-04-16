@@ -6,10 +6,12 @@ import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
   field, fieldType, not, logical, repeat, value,
   selection, binding, projection, encoding, channel,
-  source, generator, format, data, unit, mark, layer, spec
+  source, sourceFormat, generator, format, lookupData, data,
+  unit, mark, layer, spec
 } from './types';
 
 const markTypes = enums(schema, {$ref: '#/definitions/AnyMark'});
+const dataFormats = types(schema, {$ref: '#/definitions/DataFormat'});
 
 function apiOps(ops, method, ...params) {
   return Object.keys(ops)
@@ -17,8 +19,13 @@ function apiOps(ops, method, ...params) {
 }
 
 function formats() {
-  return types(schema, {$ref: '#/definitions/DataFormat'})
+  return dataFormats
     .reduce((api, f) => (api[`${f}Format`] = format(f), api), {});
+}
+
+function sources() {
+  return dataFormats
+    .reduce((api, f) => (api[`${f}`] = sourceFormat(f), api), {});
 }
 
 function generators() {
@@ -46,7 +53,6 @@ export const api = {
   // top-level specifications
   mark:     unit(markTypes),
   ...marks(),
-  data:     data(),
   layer:    layer('...layer'),
   hconcat:  spec('Horizontally concatenate', 'TopLevelHConcatSpec', '...hconcat'),
   vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
@@ -62,10 +68,13 @@ export const api = {
   },
 
   // data specification
+  data: data(),
   url: source('url', ['url']),
   values: source('inline', ['values']),
   ...generators(),
+  ...sources(),
   ...formats(),
+  lookupData: lookupData(),
 
   // encoding channels
   ...channels(),
@@ -105,6 +114,7 @@ export const api = {
   impute:        transform('impute', 'ImputeTransform', 'impute', 'key'),
   joinaggregate: transform('joinaggregate', 'JoinAggregateTransform', '...joinaggregate'),
   join:          transform('join', 'JoinAggregateTransform', '...joinaggregate'),
+  lookup:        transform('lookup', 'LookupTransform', 'lookup'),
   sample:        transform('sample', 'SampleTransform', 'sample'),
   stack:         transform('stack', 'StackTransform', 'stack'),
   timeUnit:      transform('timeUnit', 'TimeUnitTransform', 'timeUnit', 'field'),

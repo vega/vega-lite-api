@@ -45,8 +45,8 @@ export function generateMethod(schema, methodName, spec) {
   }
 
   // -- key --
-  if (spec.key) {
-    generateToJSON(emit, spec.key);
+  if (spec.key || spec.nest) {
+    generateToJSON(emit, spec);
   }
 
   // -- exports --
@@ -341,10 +341,18 @@ function generatePass(emit, method, opt) {
 
   emit(`prototype.${method} = function(...values) {`);
   if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
-  emit(`  const obj = ${opt.call}(...values);`);
-  opt.self
-    ? emit(`  return obj.${opt.self}(this);`)
-    : emit(`  return assign(obj, this);`);
+  if (opt.prop) {
+    emit(`  let obj = ${opt.call}();`);
+    opt.self
+      ? emit(`  obj = obj.${opt.self}(this);`)
+      : emit(`  obj = assign(obj, this);`);
+    emit(`  return obj.${opt.prop}(...values);`);
+  } else {
+    emit(`  const obj = ${opt.call}(...values);`);
+    opt.self
+      ? emit(`  return obj.${opt.self}(this);`)
+      : emit(`  return assign(obj, this);`);
+  }
   emit(`};`);
   emit();
 }
@@ -359,18 +367,23 @@ function generateCall(emit, method, opt) {
   emit();
 }
 
-function generateToJSON(emit, key) {
+function generateToJSON(emit, spec) {
   emit.import('proto');
 
-  if (Array.isArray(key)) {
-    emit(`prototype.toJSON = function(flag) {`);
-    emit(`  return flag`);
-    emit(`    ? ${generateJSON(key[1])}`);
-    emit(`    : ${generateJSON(key[0])};`);
-  } else {
-    emit(`prototype.toJSON = function() {`);
-    emit(`  return ${generateJSON(key)};`);
+  const {key, nest} = spec,
+        flag = Array.isArray(key);
+
+  let obj = flag
+    ? `flag ? ${generateJSON(key[1])} : ${generateJSON(key[0])}`
+    : generateJSON(key);
+
+  if (nest) {
+    emit.import('nest');
+    obj = `nest(${obj}, ${$(nest.keys)}, ${$(nest.rest)})`;
   }
+
+  emit(`prototype.toJSON = function(${flag ? 'flag' : ''}) {`);
+  emit(`  return ${obj};`);
   emit(`};`);
   emit();
 }
