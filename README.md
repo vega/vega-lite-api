@@ -66,7 +66,6 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>markText</b> - Create a new <code>text</code> mark.
 - vl.<b>markTick</b> - Create a new <code>tick</code> mark.
 - vl.<b>markTrail</b> - Create a new <code>trail</code> mark.
-- vl.<b>data</b> - Create a new chart for the given data.
 - vl.<b>layer</b> - Create a new layered chart.
 - vl.<b>hconcat</b> - Horizontally concatenate charts.
 - vl.<b>vconcat</b> - Vertically concatenate charts.
@@ -77,16 +76,23 @@ For a basic setup allowing you to build the API and run tests:
 
 ### Data
 
+- vl.<b>data</b> - Create a new data reference for a chart or lookup.
 - vl.<b>url</b> - Define a url data source.
 - vl.<b>values</b> - Define a inline data source.
 - vl.<b>sequence</b> - Define a <code>sequence</code> data generator.
 - vl.<b>sphere</b> - Define a <code>sphere</code> data generator.
 - vl.<b>graticule</b> - Define a <code>graticule</code> data generator.
+- vl.<b>csv</b> - Define a data source for <code>csv</code> format data.
+- vl.<b>dsv</b> - Define a data source for <code>dsv</code> format data.
+- vl.<b>json</b> - Define a data source for <code>json</code> format data.
+- vl.<b>topojson</b> - Define a data source for <code>topojson</code> format data.
+- vl.<b>tsv</b> - Define a data source for <code>tsv</code> format data.
 - vl.<b>csvFormat</b> - Specify parsing of <code>csv</code> format data.
 - vl.<b>dsvFormat</b> - Specify parsing of <code>dsv</code> format data.
 - vl.<b>jsonFormat</b> - Specify parsing of <code>json</code> format data.
 - vl.<b>topojsonFormat</b> - Specify parsing of <code>topojson</code> format data.
 - vl.<b>tsvFormat</b> - Specify parsing of <code>tsv</code> format data.
+- vl.<b>lookupData</b> - Specify a lookup on a secondary data source.
 
 ### Encodings
 
@@ -162,12 +168,13 @@ For a basic setup allowing you to build the API and run tests:
 - vl.<b>calculate</b> - Calculate a new data field value.
 - vl.<b>filter</b> - Remove data that does not match provided conditions.
 - vl.<b>flatten</b> - Map array fields to new records, one per array entry.
-- vl.<b>fold</b> - Collapses one or more data fields into two key, value fields.
-- vl.<b>impute</b> - Replace missing values with imputed values.
+- vl.<b>fold</b> - Collapse one or more data fields into two key, value fields.
+- vl.<b>impute</b> - Fill in missing values with imputed values.
 - vl.<b>joinaggregate</b> - Extend input data with aggregate values as new fields.
 - vl.<b>join</b> - A convenient shorthand for joinaggregate.
-- vl.<b>sample</b> - Filters random records from the data limit its size.
-- vl.<b>stack</b> - Computes running sums to stack groups of values.
+- vl.<b>lookup</b> - Extend input data with values from another data source.
+- vl.<b>sample</b> - Filter random records from the data limit its size.
+- vl.<b>stack</b> - Compute running sums to stack groups of values.
 - vl.<b>timeUnit</b> - Discretize date/time values into meaningful intervals.
 - vl.<b>window</b> - Perform running calculations over sorted groups.
 - vl.<b>groupby</b> - Group by fields for aggregate or window transforms.
