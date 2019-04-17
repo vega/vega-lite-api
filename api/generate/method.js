@@ -1,4 +1,5 @@
 import {emitter, error, stringValue as $, isString, isObject} from './util';
+import {isArrayType} from './schema';
 
 export function generateMethod(schema, methodName, spec) {
   const emit = emitter('__util__'),
@@ -22,7 +23,7 @@ export function generateMethod(schema, methodName, spec) {
   // -- properties --
   for (let prop in schema) {
     if (ext.hasOwnProperty(prop)) continue; // skip if extension defined
-    const mod = schema[prop].type === 'array' ? '...' : '';
+    const mod = isArrayType(schema[prop]) ? '...' : '';
     generateProperty(emit, prop, prop, mod);
   }
 
