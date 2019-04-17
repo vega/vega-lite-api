@@ -13,12 +13,20 @@ function element() {
     : document.createElement('div');
 }
 
+function createSpec(self) {
+  const major = _vegalite ? _vegalite.version.split('.')[0] : '3';
+  return Object.assign(
+    {$schema: `https://vega.github.io/schema/vega-lite/v${major}.json`},
+    self.toJSON()
+  );
+}
+
 function createView(self, opt) {
   if (!_vegalite || !_vega) {
     throw Error('Vega / Vega-Lite not registered. Use the "register" method.');
   }
 
-  const spec = _vegalite.compile(self.toJSON(), opt.config),
+  const spec = _vegalite.compile(createSpec(self), opt.config),
         view = new _vega.View(_vega.parse(spec.spec), opt.view);
 
   if (opt.init) opt.init(view);
@@ -38,6 +46,14 @@ export async function render(opt) {
 
 export function toView(opt) {
   return createView(this, options(opt));
+}
+
+export function toSpec() {
+  return createSpec(this);
+}
+
+export function toString(space) {
+  return JSON.stringify(createSpec(this), null, space);
 }
 
 export function register(vega, vegalite, options) {

@@ -394,8 +394,10 @@ const passMulti = {
 };
 
 const callSpec = {
-  render: {call: 'render', from: '__view__'},
-  toView: {call: 'toView', from: '__view__'}
+  render:   {call: 'render', from: '__view__'},
+  toView:   {call: 'toView', from: '__view__'},
+  toSpec:   {call: 'toSpec', from: '__view__'},
+  toString: {call: 'toString', from: '__view__'}
 };
 
 export function unit(types) {
