@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
@@ -33,6 +33,6 @@
     "tape": "^4.10.1",
     "terser": "^3.17.0",
     "vega": "^5.3.5",
-    "vega-lite": "^3.2.0"
+    "vega-lite": "^3.2.1"
   }
 }
