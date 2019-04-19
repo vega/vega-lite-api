@@ -24,10 +24,11 @@ function generateIndex(api) {
     if (name.startsWith('_')) {
       continue; // skip private methods
     } else if (name.startsWith('$')) {
-      code += `export {${name.slice(1)}} from "./${api[name].src}";\n`;
+      const base = api[name].name;
+      code += `export {${base ? `${base} as ` : ''}${name.slice(1)}} from "./${api[name].src}";\n`;
     } else {
       code += `export {${name}} from "./${name}";\n`;
     }
   }
-  return code + '\n';
+  return code;
 }

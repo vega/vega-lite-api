@@ -66,6 +66,18 @@ export const api = {
     arg:  ['vega', 'vegalite', 'options'],
     src:  '__view__'
   },
+  $vega: {
+    desc: 'Access the registered Vega instance.',
+    doc:  'Utilities',
+    src:  '__view__',
+    name: '_vega'
+  },
+  $vegalite: {
+    desc: 'Access the registered Vega-Lite instance.',
+    doc:  'Utilities',
+    src:  '__view__',
+    name: '_vegalite'
+  },
 
   // data specification
   data: data(),

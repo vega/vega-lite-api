@@ -1,4 +1,6 @@
-var _vegalite, _vega, _opt;
+export var _vegalite;
+export var _vega;
+var _opt;
 
 // TODO: validation
 

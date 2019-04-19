@@ -15,6 +15,8 @@ tape('Top-level specification types have a toView method', function(t) {
 
 tape('API can register and generate Vega views', async function(t) {
   vl.register(vega, vegalite);
+  t.equal(vl.vega, vega);
+  t.equal(vl.vegalite, vegalite);
 
   const view = vl.markCircle().toView();
   t.ok(await view.runAsync());
