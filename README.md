@@ -8,7 +8,7 @@ With the Vega-Lite API, you can write JavaScript code like this:
 
 ```js
 vl.markBar().data('data/movies.json').encode(
-  vl.x().bin('IMDB_Rating'),
+  vl.x().fieldQ('IMDB_Rating').bin(true),
   vl.y().count()
 )
 ```
