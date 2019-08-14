@@ -16,7 +16,7 @@ const rollup = require('rollup'),
 function api(output) {
   return rollup.rollup({
     input: 'api/index.js',
-    external: ['fs'],
+    external: ['fs', 'vega-lite/build/vega-lite-schema'],
     plugins: [json()]
   }).then(function(bundle) {
     return bundle.write({
