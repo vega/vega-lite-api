@@ -22,6 +22,7 @@ export function generateMethod(schema, methodName, spec) {
 
   // -- properties --
   for (let prop in schema) {
+    // eslint-disable-next-line no-prototype-builtins
     if (ext.hasOwnProperty(prop)) continue; // skip if extension defined
     const mod = isArrayType(schema[prop]) ? '...' : '';
     generateProperty(emit, prop, prop, mod);
