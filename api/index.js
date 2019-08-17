@@ -6,6 +6,6 @@ import {api} from './api';
 export function build() {
   return Promise.all([
     generateAPI(schema, api, 'src'),
-    generateDoc(schema, api, 'docs', 'vl.')
+    generateDoc(schema, api, 'docs/api', 'vl.')
   ]);
 }
