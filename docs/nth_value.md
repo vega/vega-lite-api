@@ -1,5 +1,3 @@
-# nth_value
-
 vl.<b>nth_value</b>(<em>field, param, as</em>)
 
 A <code>nth_value</code> window operation.

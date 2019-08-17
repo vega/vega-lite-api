@@ -1,5 +1,3 @@
-# url
-
 vl.<b>url</b>(<em>url</em>)
 
 Define a url data source.

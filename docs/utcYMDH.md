@@ -1,5 +1,3 @@
-# utcYMDH
-
 vl.<b>utcYMDH</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcyearmonthdatehours</code>.

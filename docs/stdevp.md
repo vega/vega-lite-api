@@ -1,5 +1,3 @@
-# stdevp
-
 vl.<b>stdevp</b>(<em>field, as</em>)
 
 A <code>stdevp</code> aggregate operation.

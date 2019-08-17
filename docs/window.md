@@ -1,5 +1,3 @@
-# window
-
 vl.<b>window</b>(<em>...window</em>)
 
 Perform running calculations over sorted groups.

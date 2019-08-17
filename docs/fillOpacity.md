@@ -1,5 +1,3 @@
-# fillOpacity
-
 vl.<b>fillOpacity</b>(<em>...values</em>)
 
 Specify the <code>fillOpacity</code> encoding channel.

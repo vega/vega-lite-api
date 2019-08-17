@@ -1,5 +1,3 @@
-# selectSingle
-
 vl.<b>selectSingle</b>(<em>sel</em>)
 
 Define a new <code>single</code> selection.

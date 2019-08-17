@@ -1,5 +1,3 @@
-# tooltip
-
 vl.<b>tooltip</b>(<em>...values</em>)
 
 Specify the <code>tooltip</code> encoding channel.

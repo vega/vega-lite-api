@@ -54,8 +54,7 @@ function docIndexEntry(name, spec, prefix) {
 }
 
 function docMethod(name, spec, schema, prefix) {
-  let code = `# ${name}\n\n`;
-  code += docMethodEntry(name, spec, prefix);
+  let code = docMethodEntry(name, spec, prefix);
 
   if (spec.ctr) {
     const call = spec.ctr.call;

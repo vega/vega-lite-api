@@ -1,5 +1,3 @@
-# row
-
 vl.<b>row</b>(<em>...values</em>)
 
 Specify the <code>row</code> encoding channel.

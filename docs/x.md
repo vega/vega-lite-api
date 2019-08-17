@@ -1,5 +1,3 @@
-# x
-
 vl.<b>x</b>(<em>...values</em>)
 
 Specify the <code>x</code> encoding channel.

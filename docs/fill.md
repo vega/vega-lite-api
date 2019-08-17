@@ -1,5 +1,3 @@
-# fill
-
 vl.<b>fill</b>(<em>...values</em>)
 
 Specify the <code>fill</code> encoding channel.

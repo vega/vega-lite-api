@@ -1,5 +1,3 @@
-# latitude
-
 vl.<b>latitude</b>(<em>...values</em>)
 
 Specify the <code>latitude</code> encoding channel.

@@ -1,5 +1,3 @@
-# lag
-
 vl.<b>lag</b>(<em>field, param, as</em>)
 
 A <code>lag</code> window operation.

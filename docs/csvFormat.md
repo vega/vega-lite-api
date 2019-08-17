@@ -1,5 +1,3 @@
-# csvFormat
-
 vl.<b>csvFormat</b>(<em>...values</em>)
 
 Specify parsing of <code>csv</code> format data.

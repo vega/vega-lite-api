@@ -1,5 +1,3 @@
-# percent_rank
-
 vl.<b>percent_rank</b>(<em>as</em>)
 
 A <code>percent_rank</code> window operation.

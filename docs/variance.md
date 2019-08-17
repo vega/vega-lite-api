@@ -1,5 +1,3 @@
-# variance
-
 vl.<b>variance</b>(<em>field, as</em>)
 
 A <code>variance</code> aggregate operation.

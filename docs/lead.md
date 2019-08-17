@@ -1,5 +1,3 @@
-# lead
-
 vl.<b>lead</b>(<em>field, param, as</em>)
 
 A <code>lead</code> window operation.

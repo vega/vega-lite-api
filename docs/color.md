@@ -1,5 +1,3 @@
-# color
-
 vl.<b>color</b>(<em>...values</em>)
 
 Specify the <code>color</code> encoding channel.

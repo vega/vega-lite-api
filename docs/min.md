@@ -1,5 +1,3 @@
-# min
-
 vl.<b>min</b>(<em>field, as</em>)
 
 A <code>min</code> aggregate operation.

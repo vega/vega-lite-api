@@ -1,5 +1,3 @@
-# radio
-
 vl.<b>radio</b>(<em>...options</em>)
 
 Define a new HTML <code>radio</code> input element binding.

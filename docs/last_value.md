@@ -1,5 +1,3 @@
-# last_value
-
 vl.<b>last_value</b>(<em>field, as</em>)
 
 A <code>last_Value</code> window operation.

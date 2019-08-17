@@ -1,5 +1,3 @@
-# quarter
-
 vl.<b>quarter</b>(<em>field, as</em>)
 
 A time unit operation for <code>quarter</code>.

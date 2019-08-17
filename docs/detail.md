@@ -1,5 +1,3 @@
-# detail
-
 vl.<b>detail</b>(<em>...values</em>)
 
 Specify the <code>detail</code> encoding channel.

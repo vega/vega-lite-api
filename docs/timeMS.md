@@ -1,5 +1,3 @@
-# timeMS
-
 vl.<b>timeMS</b>(<em>field, as</em>)
 
 A time unit operation for <code>minutesseconds</code>.

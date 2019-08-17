@@ -1,5 +1,3 @@
-# sum
-
 vl.<b>sum</b>(<em>field, as</em>)
 
 A <code>sum</code> aggregate operation.

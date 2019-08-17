@@ -1,5 +1,3 @@
-# timeUnit
-
 vl.<b>timeUnit</b>(<em>timeUnit, field</em>)
 
 Discretize date/time values into meaningful intervals.

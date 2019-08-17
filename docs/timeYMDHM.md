@@ -1,5 +1,3 @@
-# timeYMDHM
-
 vl.<b>timeYMDHM</b>(<em>field, as</em>)
 
 A time unit operation for <code>yearmonthdatehoursminutes</code>.

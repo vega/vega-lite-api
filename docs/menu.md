@@ -1,5 +1,3 @@
-# menu
-
 vl.<b>menu</b>(<em>...options</em>)
 
 Define a new HTML <code>select</code> input element binding.

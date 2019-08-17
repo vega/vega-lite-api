@@ -1,5 +1,3 @@
-# timeYMD
-
 vl.<b>timeYMD</b>(<em>field, as</em>)
 
 A time unit operation for <code>yearmonthdate</code>.

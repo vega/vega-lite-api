@@ -1,5 +1,3 @@
-# mark
-
 vl.<b>mark</b>(<em>...mark</em>)
 
 Create a new mark of unspecified type.

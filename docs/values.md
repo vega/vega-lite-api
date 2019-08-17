@@ -1,5 +1,3 @@
-# values
-
 vl.<b>values</b>(<em>values</em>)
 
 Define a inline data source.

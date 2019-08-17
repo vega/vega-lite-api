@@ -1,5 +1,3 @@
-# timeMD
-
 vl.<b>timeMD</b>(<em>field, as</em>)
 
 A time unit operation for <code>monthdate</code>.

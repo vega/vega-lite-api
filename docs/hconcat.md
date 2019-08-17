@@ -1,5 +1,3 @@
-# hconcat
-
 vl.<b>hconcat</b>(<em>...hconcat</em>)
 
 Horizontally concatenate charts.

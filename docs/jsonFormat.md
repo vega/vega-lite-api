@@ -1,5 +1,3 @@
-# jsonFormat
-
 vl.<b>jsonFormat</b>(<em>...values</em>)
 
 Specify parsing of <code>json</code> format data.

@@ -1,5 +1,3 @@
-# valid
-
 vl.<b>valid</b>(<em>field, as</em>)
 
 A <code>valid</code> aggregate operation.

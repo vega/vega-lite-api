@@ -1,5 +1,3 @@
-# utcyear
-
 vl.<b>utcyear</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcyear</code>.

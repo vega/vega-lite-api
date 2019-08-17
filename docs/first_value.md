@@ -1,5 +1,3 @@
-# first_value
-
 vl.<b>first_value</b>(<em>field, as</em>)
 
 A <code>first_value</code> window operation.

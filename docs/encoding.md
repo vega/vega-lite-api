@@ -1,5 +1,3 @@
-# encoding
-
 vl.<b>encoding</b>(<em>encoding</em>)
 
 A reference to an encoding channel.

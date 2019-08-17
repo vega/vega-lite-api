@@ -1,5 +1,3 @@
-# aggregate
-
 vl.<b>aggregate</b>(<em>...aggregate</em>)
 
 Group and summarize data as counts, sums, averages, etc.

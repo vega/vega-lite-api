@@ -1,5 +1,3 @@
-# utcmilliseconds
-
 vl.<b>utcmilliseconds</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcmilliseconds</code>.

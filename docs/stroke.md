@@ -1,5 +1,3 @@
-# stroke
-
 vl.<b>stroke</b>(<em>...values</em>)
 
 Specify the <code>stroke</code> encoding channel.

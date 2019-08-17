@@ -1,5 +1,3 @@
-# count
-
 vl.<b>count</b>(<em>as</em>)
 
 A <code>count</code> aggregate operation.

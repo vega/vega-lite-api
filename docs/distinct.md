@@ -1,5 +1,3 @@
-# distinct
-
 vl.<b>distinct</b>(<em>field, as</em>)
 
 A <code>distinct</code> aggregate operation.

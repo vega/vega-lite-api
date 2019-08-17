@@ -1,5 +1,3 @@
-# impute
-
 vl.<b>impute</b>(<em>impute, key</em>)
 
 Fill in missing values with imputed values.

@@ -1,5 +1,3 @@
-# facet
-
 vl.<b>facet</b>(<em>...values</em>)
 
 Specify the <code>facet</code> encoding channel.

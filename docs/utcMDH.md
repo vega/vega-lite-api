@@ -1,5 +1,3 @@
-# utcMDH
-
 vl.<b>utcMDH</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcmonthdatehours</code>.

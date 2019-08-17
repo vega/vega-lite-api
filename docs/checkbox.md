@@ -1,5 +1,3 @@
-# checkbox
-
 vl.<b>checkbox</b>(<em>...values</em>)
 
 Define a new HTML <code>checkbox</code> input element binding.

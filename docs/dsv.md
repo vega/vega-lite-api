@@ -1,5 +1,3 @@
-# dsv
-
 vl.<b>dsv</b>(<em>...values</em>)
 
 Define a data source for <code>dsv</code> format data.

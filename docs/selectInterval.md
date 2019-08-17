@@ -1,5 +1,3 @@
-# selectInterval
-
 vl.<b>selectInterval</b>(<em>sel</em>)
 
 Define a new <code>interval</code> selection.

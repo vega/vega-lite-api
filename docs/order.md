@@ -1,5 +1,3 @@
-# order
-
 vl.<b>order</b>(<em>...values</em>)
 
 Specify the <code>order</code> encoding channel.

@@ -1,5 +1,3 @@
-# topojson
-
 vl.<b>topojson</b>(<em>...values</em>)
 
 Define a data source for <code>topojson</code> format data.

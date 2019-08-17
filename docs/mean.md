@@ -1,5 +1,3 @@
-# mean
-
 vl.<b>mean</b>(<em>field, as</em>)
 
 A <code>mean</code> aggregate operation.

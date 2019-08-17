@@ -1,5 +1,3 @@
-# xError
-
 vl.<b>xError</b>(<em>...values</em>)
 
 Specify the <code>xError</code> encoding channel.

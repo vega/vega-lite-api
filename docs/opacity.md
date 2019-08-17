@@ -1,5 +1,3 @@
-# opacity
-
 vl.<b>opacity</b>(<em>...values</em>)
 
 Specify the <code>opacity</code> encoding channel.

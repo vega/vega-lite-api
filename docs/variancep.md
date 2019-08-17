@@ -1,5 +1,3 @@
-# variancep
-
 vl.<b>variancep</b>(<em>field, as</em>)
 
 A <code>variancep</code> aggregate operation.

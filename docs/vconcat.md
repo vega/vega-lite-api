@@ -1,5 +1,3 @@
-# vconcat
-
 vl.<b>vconcat</b>(<em>...vconcat</em>)
 
 Vertically concatenate charts.

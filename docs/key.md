@@ -1,5 +1,3 @@
-# key
-
 vl.<b>key</b>(<em>...values</em>)
 
 Specify the <code>key</code> encoding channel.

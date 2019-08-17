@@ -1,5 +1,3 @@
-# ci1
-
 vl.<b>ci1</b>(<em>field, as</em>)
 
 A <code>ci1</code> aggregate operation.

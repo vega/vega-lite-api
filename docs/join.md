@@ -1,5 +1,3 @@
-# join
-
 vl.<b>join</b>(<em>...joinaggregate</em>)
 
 A convenient shorthand for joinaggregate.

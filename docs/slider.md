@@ -1,5 +1,3 @@
-# slider
-
 vl.<b>slider</b>(<em>min, max, step</em>)
 
 Define a new HTML <code>range</code> input element binding.

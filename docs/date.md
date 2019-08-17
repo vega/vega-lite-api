@@ -1,5 +1,3 @@
-# date
-
 vl.<b>date</b>(<em>field, as</em>)
 
 A time unit operation for <code>date</code>.

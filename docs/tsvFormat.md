@@ -1,5 +1,3 @@
-# tsvFormat
-
 vl.<b>tsvFormat</b>(<em>...values</em>)
 
 Specify parsing of <code>tsv</code> format data.

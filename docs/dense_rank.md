@@ -1,5 +1,3 @@
-# dense_rank
-
 vl.<b>dense_rank</b>(<em>as</em>)
 
 A <code>dense_rank</code> window operation.

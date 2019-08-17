@@ -1,5 +1,3 @@
-# href
-
 vl.<b>href</b>(<em>...values</em>)
 
 Specify the <code>href</code> encoding channel.

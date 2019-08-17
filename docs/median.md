@@ -1,5 +1,3 @@
-# median
-
 vl.<b>median</b>(<em>field, as</em>)
 
 A <code>median</code> aggregate operation.

@@ -1,5 +1,3 @@
-# strokeOpacity
-
 vl.<b>strokeOpacity</b>(<em>...values</em>)
 
 Specify the <code>strokeOpacity</code> encoding channel.

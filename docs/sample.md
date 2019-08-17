@@ -1,5 +1,3 @@
-# sample
-
 vl.<b>sample</b>(<em>sample</em>)
 
 Filter random records from the data limit its size.

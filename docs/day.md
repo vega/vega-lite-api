@@ -1,5 +1,3 @@
-# day
-
 vl.<b>day</b>(<em>field, as</em>)
 
 A time unit operation for <code>day</code>.

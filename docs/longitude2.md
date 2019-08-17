@@ -1,5 +1,3 @@
-# longitude2
-
 vl.<b>longitude2</b>(<em>...values</em>)
 
 Specify the <code>longitude2</code> encoding channel.

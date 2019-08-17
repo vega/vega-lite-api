@@ -1,5 +1,3 @@
-# json
-
 vl.<b>json</b>(<em>...values</em>)
 
 Define a data source for <code>json</code> format data.

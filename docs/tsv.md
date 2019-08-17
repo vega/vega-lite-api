@@ -1,5 +1,3 @@
-# tsv
-
 vl.<b>tsv</b>(<em>...values</em>)
 
 Define a data source for <code>tsv</code> format data.

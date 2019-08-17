@@ -1,5 +1,3 @@
-# cume_dist
-
 vl.<b>cume_dist</b>(<em>as</em>)
 
 A <code>cume_dist</code> window operation.

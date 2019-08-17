@@ -1,5 +1,3 @@
-# calculate
-
 vl.<b>calculate</b>(<em>calculate</em>)
 
 Calculate a new data field value.

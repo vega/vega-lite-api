@@ -1,5 +1,3 @@
-# sequence
-
 vl.<b>sequence</b>(<em>start, stop, step</em>)
 
 Define a <code>sequence</code> data generator.

@@ -1,5 +1,3 @@
-# groupby
-
 vl.<b>groupby</b>(<em>...groupby</em>)
 
 Group by fields for aggregate or window transforms.

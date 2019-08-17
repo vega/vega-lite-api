@@ -1,5 +1,3 @@
-# utcMD
-
 vl.<b>utcMD</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcmonthdate</code>.

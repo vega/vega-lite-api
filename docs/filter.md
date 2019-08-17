@@ -1,5 +1,3 @@
-# filter
-
 vl.<b>filter</b>(<em>filter</em>)
 
 Remove data that does not match provided conditions.

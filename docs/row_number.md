@@ -1,5 +1,3 @@
-# row_number
-
 vl.<b>row_number</b>(<em>as</em>)
 
 A <code>row_number</code> window operation.

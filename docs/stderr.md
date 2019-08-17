@@ -1,5 +1,3 @@
-# stderr
-
 vl.<b>stderr</b>(<em>field, as</em>)
 
 A <code>stderr</code> aggregate operation.

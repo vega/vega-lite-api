@@ -1,5 +1,3 @@
-# timeYQM
-
 vl.<b>timeYQM</b>(<em>field, as</em>)
 
 A time unit operation for <code>yearquartermonth</code>.

@@ -1,5 +1,3 @@
-# dsvFormat
-
 vl.<b>dsvFormat</b>(<em>...values</em>)
 
 Specify parsing of <code>dsv</code> format data.

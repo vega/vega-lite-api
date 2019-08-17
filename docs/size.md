@@ -1,5 +1,3 @@
-# size
-
 vl.<b>size</b>(<em>...values</em>)
 
 Specify the <code>size</code> encoding channel.

@@ -1,5 +1,3 @@
-# graticule
-
 vl.<b>graticule</b>(<em>...values</em>)
 
 Define a <code>graticule</code> data generator.

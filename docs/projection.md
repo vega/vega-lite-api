@@ -1,5 +1,3 @@
-# projection
-
 vl.<b>projection</b>(<em>type</em>)
 
 Define a cartographic projection for longitude, latitude coordinates.

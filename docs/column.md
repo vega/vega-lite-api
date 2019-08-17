@@ -1,5 +1,3 @@
-# column
-
 vl.<b>column</b>(<em>...values</em>)
 
 Specify the <code>column</code> encoding channel.

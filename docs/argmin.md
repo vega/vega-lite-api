@@ -1,5 +1,3 @@
-# argmin
-
 vl.<b>argmin</b>(<em>field, as</em>)
 
 A <code>argmin</code> aggregate operation.

@@ -1,5 +1,3 @@
-# bin
-
 vl.<b>bin</b>(<em>field, bin</em>)
 
 Discretize numeric values into uniform bins.

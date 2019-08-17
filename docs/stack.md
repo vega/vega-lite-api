@@ -1,5 +1,3 @@
-# stack
-
 vl.<b>stack</b>(<em>stack</em>)
 
 Compute running sums to stack groups of values.

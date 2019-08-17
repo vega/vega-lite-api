@@ -1,5 +1,3 @@
-# hours
-
 vl.<b>hours</b>(<em>field, as</em>)
 
 A time unit operation for <code>hours</code>.

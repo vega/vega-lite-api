@@ -1,5 +1,3 @@
-# selectMulti
-
 vl.<b>selectMulti</b>(<em>sel</em>)
 
 Define a new <code>multi</code> selection.

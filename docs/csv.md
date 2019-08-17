@@ -1,5 +1,3 @@
-# csv
-
 vl.<b>csv</b>(<em>...values</em>)
 
 Define a data source for <code>csv</code> format data.

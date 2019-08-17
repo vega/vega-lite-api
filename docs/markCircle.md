@@ -1,5 +1,3 @@
-# markCircle
-
 vl.<b>markCircle</b>(<em>...values</em>)
 
 Create a new <code>circle</code> mark.

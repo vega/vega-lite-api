@@ -1,5 +1,3 @@
-# layer
-
 vl.<b>layer</b>(<em>...layer</em>)
 
 Create a new layered chart.

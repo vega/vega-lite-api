@@ -1,5 +1,3 @@
-# fold
-
 vl.<b>fold</b>(<em>...fold</em>)
 
 Collapse one or more data fields into two key, value fields.

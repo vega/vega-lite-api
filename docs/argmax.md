@@ -1,5 +1,3 @@
-# argmax
-
 vl.<b>argmax</b>(<em>field, as</em>)
 
 A <code>argmax</code> aggregate operation.

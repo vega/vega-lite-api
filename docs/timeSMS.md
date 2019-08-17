@@ -1,5 +1,3 @@
-# timeSMS
-
 vl.<b>timeSMS</b>(<em>field, as</em>)
 
 A time unit operation for <code>secondsmilliseconds</code>.

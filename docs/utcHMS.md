@@ -1,5 +1,3 @@
-# utcHMS
-
 vl.<b>utcHMS</b>(<em>field, as</em>)
 
 A time unit operation for <code>utchoursminutesseconds</code>.

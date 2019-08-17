@@ -1,5 +1,3 @@
-# data
-
 vl.<b>data</b>(<em>data</em>)
 
 Create a new data reference for a chart or lookup.

@@ -1,5 +1,3 @@
-# lookup
-
 vl.<b>lookup</b>(<em>lookup</em>)
 
 Extend input data with values from another data source.

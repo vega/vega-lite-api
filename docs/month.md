@@ -1,5 +1,3 @@
-# month
-
 vl.<b>month</b>(<em>field, as</em>)
 
 A time unit operation for <code>month</code>.

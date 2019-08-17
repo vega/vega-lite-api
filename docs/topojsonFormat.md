@@ -1,5 +1,3 @@
-# topojsonFormat
-
 vl.<b>topojsonFormat</b>(<em>...values</em>)
 
 Specify parsing of <code>topojson</code> format data.

@@ -1,5 +1,3 @@
-# repeat
-
 vl.<b>repeat</b>(<em>repeat</em>)
 
 A field variable reference for a repeated chart.

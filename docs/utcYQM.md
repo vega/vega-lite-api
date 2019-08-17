@@ -1,5 +1,3 @@
-# utcYQM
-
 vl.<b>utcYQM</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcyearquartermonth</code>.

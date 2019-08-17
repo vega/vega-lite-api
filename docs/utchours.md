@@ -1,5 +1,3 @@
-# utchours
-
 vl.<b>utchours</b>(<em>field, as</em>)
 
 A time unit operation for <code>utchours</code>.

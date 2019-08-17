@@ -1,5 +1,3 @@
-# seconds
-
 vl.<b>seconds</b>(<em>field, as</em>)
 
 A time unit operation for <code>seconds</code>.

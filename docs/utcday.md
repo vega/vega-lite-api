@@ -1,5 +1,3 @@
-# utcday
-
 vl.<b>utcday</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcday</code>.

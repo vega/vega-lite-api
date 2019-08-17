@@ -1,5 +1,3 @@
-# timeHM
-
 vl.<b>timeHM</b>(<em>field, as</em>)
 
 A time unit operation for <code>hoursminutes</code>.

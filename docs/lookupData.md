@@ -1,5 +1,3 @@
-# lookupData
-
 vl.<b>lookupData</b>(<em>data</em>)
 
 Specify a lookup on a secondary data source.

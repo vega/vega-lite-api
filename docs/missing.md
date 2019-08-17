@@ -1,5 +1,3 @@
-# missing
-
 vl.<b>missing</b>(<em>field, as</em>)
 
 A <code>missing</code> aggregate operation.

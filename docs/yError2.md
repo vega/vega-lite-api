@@ -1,5 +1,3 @@
-# yError2
-
 vl.<b>yError2</b>(<em>...values</em>)
 
 Specify the <code>yError2</code> encoding channel.

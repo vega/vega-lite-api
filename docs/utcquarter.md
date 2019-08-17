@@ -1,5 +1,3 @@
-# utcquarter
-
 vl.<b>utcquarter</b>(<em>field, as</em>)
 
 A time unit operation for <code>utcquarter</code>.

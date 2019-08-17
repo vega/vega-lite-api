@@ -1,5 +1,3 @@
-# max
-
 vl.<b>max</b>(<em>field, as</em>)
 
 A <code>max</code> aggregate operation.

@@ -1,5 +1,3 @@
-# strokeWidth
-
 vl.<b>strokeWidth</b>(<em>...values</em>)
 
 Specify the <code>strokeWidth</code> encoding channel.

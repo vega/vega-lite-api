@@ -1,5 +1,3 @@
-# joinaggregate
-
 vl.<b>joinaggregate</b>(<em>...joinaggregate</em>)
 
 Extend input data with aggregate values as new fields.

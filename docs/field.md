@@ -1,5 +1,3 @@
-# field
-
 vl.<b>field</b>(<em>field</em>)
 
 A reference to a data field.

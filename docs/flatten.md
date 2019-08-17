@@ -1,5 +1,3 @@
-# flatten
-
 vl.<b>flatten</b>(<em>...flatten</em>)
 
 Map array fields to new records, one per array entry.

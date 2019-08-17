@@ -1,5 +1,3 @@
-# timeYMDHMS
-
 vl.<b>timeYMDHMS</b>(<em>field, as</em>)
 
 A time unit operation for <code>yearmonthdatehoursminutesseconds</code>.

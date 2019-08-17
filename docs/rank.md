@@ -1,5 +1,3 @@
-# rank
-
 vl.<b>rank</b>(<em>as</em>)
 
 A <code>rank</code> window operation.

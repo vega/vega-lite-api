@@ -1,5 +1,3 @@
-# ntile
-
 vl.<b>ntile</b>(<em>param, as</em>)
 
 A <code>ntile</code> window operation.

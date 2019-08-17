@@ -1,5 +1,3 @@
-# milliseconds
-
 vl.<b>milliseconds</b>(<em>field, as</em>)
 
 A time unit operation for <code>milliseconds</code>.

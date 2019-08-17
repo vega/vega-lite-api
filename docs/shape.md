@@ -1,5 +1,3 @@
-# shape
-
 vl.<b>shape</b>(<em>...values</em>)
 
 Specify the <code>shape</code> encoding channel.
