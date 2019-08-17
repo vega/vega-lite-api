@@ -6,18 +6,18 @@ Specify parsing of <code>dsv</code> format data.
 
 ## <code>dsvFormat</code> Method Overview
 
-* <em>dsvFormat</em>.<a href="#delimiter">delimiter</a>
-* <em>dsvFormat</em>.<a href="#parse">parse</a>
-* <em>dsvFormat</em>.<a href="#type">type</a>
+* <a href="#delimiter">delimiter</a>
+* <a href="#parse">parse</a>
+* <a href="#type">type</a>
 
 ## <code>dsvFormat</code> API Reference
 
-<a name="delimiter">#</a>
+<a id="delimiter" href="#delimiter">#</a>
 <em>dsvFormat</em>.<b>delimiter</b>(<em>value</em>)
 
 The delimiter between records. The delimiter must be a single character (i.e., a single 16-bit code unit); so, ASCII delimiters are fine, but emoji delimiters are not.
 
-<a name="parse">#</a>
+<a id="parse" href="#parse">#</a>
 <em>dsvFormat</em>.<b>parse</b>(<em>value</em>)
 
 If set to `null`, disable type inference based on the spec and only use type inference based on the data.
@@ -27,7 +27,7 @@ For example, `"parse": {"modified_on": "date"}` parses the `modified_on` field i
 For `"date"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse).
 For Specific date formats can be provided (e.g., `{foo: "date:'%m%d%Y'"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: "utc:'%m%d%Y'"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)
 
-<a name="type">#</a>
+<a id="type" href="#type">#</a>
 <em>dsvFormat</em>.<b>type</b>(<em>value</em>)
 
 Type of input data: `"json"`, `"csv"`, `"tsv"`, `"dsv"`.

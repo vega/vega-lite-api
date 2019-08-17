@@ -52,10 +52,10 @@ export function groupby() {
     doc:  'Data Transformations',
     arg:  ['...groupby'],
     pass: {
-      aggregate:     {call: 'aggregate', desc: 'Specify an [[aggregate]] transform.'},
-      join:          {call: 'joinaggregate', desc: 'Specify a [[joinaggregate]] transform.'},
-      joinaggregate: {call: 'joinaggregate', desc: 'Specify a [[joinaggregate]] transform.'},
-      window:        {call: 'window', desc: 'Specify a [[window]] transform.'}
+      aggregate:     {call: 'aggregate', desc: 'Specify and return an [[aggregate]] transform.'},
+      join:          {call: 'joinaggregate', desc: 'Specify and return a [[joinaggregate]] transform.'},
+      joinaggregate: {call: 'joinaggregate', desc: 'Specify and return a [[joinaggregate]] transform.'},
+      window:        {call: 'window', desc: 'Specify and return a [[window]] transform.'}
     }
   };
 }

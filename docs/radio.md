@@ -6,30 +6,30 @@ Define a new HTML <code>radio</code> input element binding.
 
 ## <code>radio</code> Method Overview
 
-* <em>radio</em>.<a href="#debounce">debounce</a>
-* <em>radio</em>.<a href="#element">element</a>
-* <em>radio</em>.<a href="#input">input</a>
-* <em>radio</em>.<a href="#name">name</a>
-* <em>radio</em>.<a href="#options">options</a>
-* <em>radio</em>.<a href="#type">type</a>
+* <a href="#debounce">debounce</a>
+* <a href="#element">element</a>
+* <a href="#input">input</a>
+* <a href="#name">name</a>
+* <a href="#options">options</a>
+* <a href="#type">type</a>
 
 ## <code>radio</code> API Reference
 
-<a name="debounce">#</a>
+<a id="debounce" href="#debounce">#</a>
 <em>radio</em>.<b>debounce</b>(<em>value</em>)
 
-<a name="element">#</a>
+<a id="element" href="#element">#</a>
 <em>radio</em>.<b>element</b>(<em>value</em>)
 
-<a name="input">#</a>
+<a id="input" href="#input">#</a>
 <em>radio</em>.<b>input</b>(<em>value</em>)
 
-<a name="name">#</a>
+<a id="name" href="#name">#</a>
 <em>radio</em>.<b>name</b>(<em>value</em>)
 
-<a name="options">#</a>
+<a id="options" href="#options">#</a>
 <em>radio</em>.<b>options</b>(<em>...value</em>)
 
-<a name="type">#</a>
+<a id="type" href="#type">#</a>
 <em>radio</em>.<b>type</b>(<em>value</em>)
 

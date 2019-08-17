@@ -6,19 +6,19 @@ Map array fields to new records, one per array entry.
 
 ## <code>flatten</code> Method Overview
 
-* <em>flatten</em>.<a href="#as">as</a>
-* <em>flatten</em>.<a href="#flatten">flatten</a>
+* <a href="#as">as</a>
+* <a href="#flatten">flatten</a>
 
 ## <code>flatten</code> API Reference
 
-<a name="as">#</a>
+<a id="as" href="#as">#</a>
 <em>flatten</em>.<b>as</b>(<em>...value</em>)
 
 The output field names for extracted array values.
 
 __Default value:__ The field name of the corresponding array field
 
-<a name="flatten">#</a>
+<a id="flatten" href="#flatten">#</a>
 <em>flatten</em>.<b>flatten</b>(<em>...value</em>)
 
 An array of one or more data fields containing arrays to flatten.

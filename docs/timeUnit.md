@@ -6,23 +6,23 @@ Discretize date/time values into meaningful intervals.
 
 ## <code>timeUnit</code> Method Overview
 
-* <em>timeUnit</em>.<a href="#as">as</a>
-* <em>timeUnit</em>.<a href="#field">field</a>
-* <em>timeUnit</em>.<a href="#timeUnit">timeUnit</a>
+* <a href="#as">as</a>
+* <a href="#field">field</a>
+* <a href="#timeUnit">timeUnit</a>
 
 ## <code>timeUnit</code> API Reference
 
-<a name="as">#</a>
+<a id="as" href="#as">#</a>
 <em>timeUnit</em>.<b>as</b>(<em>value</em>)
 
 The output field to write the timeUnit value.
 
-<a name="field">#</a>
+<a id="field" href="#field">#</a>
 <em>timeUnit</em>.<b>field</b>(<em>value</em>)
 
 The data field to apply time unit.
 
-<a name="timeUnit">#</a>
+<a id="timeUnit" href="#timeUnit">#</a>
 <em>timeUnit</em>.<b>timeUnit</b>(<em>value</em>)
 
 The timeUnit.

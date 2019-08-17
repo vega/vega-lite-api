@@ -6,11 +6,11 @@ Remove data that does not match provided conditions.
 
 ## <code>filter</code> Method Overview
 
-* <em>filter</em>.<a href="#filter">filter</a>
+* <a href="#filter">filter</a>
 
 ## <code>filter</code> API Reference
 
-<a name="filter">#</a>
+<a id="filter" href="#filter">#</a>
 <em>filter</em>.<b>filter</b>(<em>value</em>)
 
 The `filter` property must be one of the predicate definitions:

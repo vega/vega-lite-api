@@ -6,71 +6,71 @@ A time unit operation for <code>yearmonthdatehours</code>.
 
 ## <code>timeYMDH</code> Method Overview
 
-* <em>timeYMDH</em>.<a href="#as">as</a>
-* <em>timeYMDH</em>.<a href="#equals">equals</a>
-* <em>timeYMDH</em>.<a href="#field">field</a>
-* <em>timeYMDH</em>.<a href="#gt">gt</a>
-* <em>timeYMDH</em>.<a href="#gte">gte</a>
-* <em>timeYMDH</em>.<a href="#inRange">inRange</a>
-* <em>timeYMDH</em>.<a href="#lt">lt</a>
-* <em>timeYMDH</em>.<a href="#lte">lte</a>
-* <em>timeYMDH</em>.<a href="#oneOf">oneOf</a>
-* <em>timeYMDH</em>.<a href="#timeUnit">timeUnit</a>
-* <em>timeYMDH</em>.<a href="#valid">valid</a>
+* <a href="#as">as</a>
+* <a href="#equals">equals</a>
+* <a href="#field">field</a>
+* <a href="#gt">gt</a>
+* <a href="#gte">gte</a>
+* <a href="#inRange">inRange</a>
+* <a href="#lt">lt</a>
+* <a href="#lte">lte</a>
+* <a href="#oneOf">oneOf</a>
+* <a href="#timeUnit">timeUnit</a>
+* <a href="#valid">valid</a>
 
 ## <code>timeYMDH</code> API Reference
 
-<a name="as">#</a>
+<a id="as" href="#as">#</a>
 <em>timeYMDH</em>.<b>as</b>(<em>value</em>)
 
 The output field to write the timeUnit value.
 
-<a name="equals">#</a>
+<a id="equals" href="#equals">#</a>
 <em>timeYMDH</em>.<b>equals</b>(<em>equal</em>)
 
 Logical equals (==) comparison.
 
-<a name="field">#</a>
+<a id="field" href="#field">#</a>
 <em>timeYMDH</em>.<b>field</b>(<em>value</em>)
 
 The data field to apply time unit.
 
-<a name="gt">#</a>
+<a id="gt" href="#gt">#</a>
 <em>timeYMDH</em>.<b>gt</b>(<em>gt</em>)
 
 Logical greater than (>) comparison.
 
-<a name="gte">#</a>
+<a id="gte" href="#gte">#</a>
 <em>timeYMDH</em>.<b>gte</b>(<em>gte</em>)
 
 Logical greater than or equal to (>=) comparison.
 
-<a name="inRange">#</a>
+<a id="inRange" href="#inRange">#</a>
 <em>timeYMDH</em>.<b>inRange</b>(<em>...range</em>)
 
 Logical value in range test.
 
-<a name="lt">#</a>
+<a id="lt" href="#lt">#</a>
 <em>timeYMDH</em>.<b>lt</b>(<em>lt</em>)
 
 Logical less than (<) comparison.
 
-<a name="lte">#</a>
+<a id="lte" href="#lte">#</a>
 <em>timeYMDH</em>.<b>lte</b>(<em>lte</em>)
 
 Logical less than or equal to (<=) comparison.
 
-<a name="oneOf">#</a>
+<a id="oneOf" href="#oneOf">#</a>
 <em>timeYMDH</em>.<b>oneOf</b>(<em>...oneOf</em>)
 
 Logical set membership test.
 
-<a name="timeUnit">#</a>
+<a id="timeUnit" href="#timeUnit">#</a>
 <em>timeYMDH</em>.<b>timeUnit</b>(<em>value</em>)
 
 The timeUnit.
 
-<a name="valid">#</a>
+<a id="valid" href="#valid">#</a>
 <em>timeYMDH</em>.<b>valid</b>(<em>valid</em>)
 
 Logical valid value test.

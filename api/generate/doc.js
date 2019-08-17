@@ -77,7 +77,7 @@ function docMethod(name, spec, schema, prefix) {
 
   props.forEach(p => {
     let [prop] = p;
-    code += `* <em>${name}</em>.<a href="#${prop}">${prop}</a>\n`;
+    code += `* <a href="#${prop}">${prop}</a>\n`;
   });
 
   code += '\n';
@@ -91,7 +91,7 @@ function docMethod(name, spec, schema, prefix) {
     let args = def ? docArguments(def.arg)
       : (isArrayType(schema[prop]) ? '...' : '') + 'value';
 
-    code += `<a name="${prop}">#</a>
+    code += `<a id="${prop}" href="#${prop}">#</a>
 <em>${name}</em>.<b>${prop}</b>(<em>${args}</em>)\n`;
 
     const desc = docDescription(prop, schema, def);
@@ -152,5 +152,10 @@ function docArgPrefix(arg) {
 }
 
 function docDescription(prop, schema, spec) {
-  return (spec && spec.desc) || (schema && schema[prop] && schema[prop].description);
+  const desc = (spec && spec.desc)
+    || (schema && schema[prop] && schema[prop].description);
+  return desc && desc.replace(
+    /\[\[(.*)\]\]/g,
+    (match, prop) => `[${prop}](${prop})`
+  );
 }

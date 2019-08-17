@@ -6,30 +6,30 @@ Group by fields for aggregate or window transforms.
 
 ## <code>groupby</code> Method Overview
 
-* <em>groupby</em>.<a href="#aggregate">aggregate</a>
-* <em>groupby</em>.<a href="#join">join</a>
-* <em>groupby</em>.<a href="#joinaggregate">joinaggregate</a>
-* <em>groupby</em>.<a href="#window">window</a>
+* <a href="#aggregate">aggregate</a>
+* <a href="#join">join</a>
+* <a href="#joinaggregate">joinaggregate</a>
+* <a href="#window">window</a>
 
 ## <code>groupby</code> API Reference
 
-<a name="aggregate">#</a>
+<a id="aggregate" href="#aggregate">#</a>
 <em>groupby</em>.<b>aggregate</b>(<em>...values</em>)
 
-Specify an [[aggregate]] transform.
+Specify and return an [aggregate](aggregate) transform.
 
-<a name="join">#</a>
+<a id="join" href="#join">#</a>
 <em>groupby</em>.<b>join</b>(<em>...values</em>)
 
-Specify a [[joinaggregate]] transform.
+Specify and return a [joinaggregate](joinaggregate) transform.
 
-<a name="joinaggregate">#</a>
+<a id="joinaggregate" href="#joinaggregate">#</a>
 <em>groupby</em>.<b>joinaggregate</b>(<em>...values</em>)
 
-Specify a [[joinaggregate]] transform.
+Specify and return a [joinaggregate](joinaggregate) transform.
 
-<a name="window">#</a>
+<a id="window" href="#window">#</a>
 <em>groupby</em>.<b>window</b>(<em>...values</em>)
 
-Specify a [[window]] transform.
+Specify and return a [window](window) transform.
 
