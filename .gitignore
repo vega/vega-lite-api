@@ -1,6 +1,5 @@
 .DS_Store
 /build
-/docs
 /node_modules
 /src
 package-lock.json

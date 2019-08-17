@@ -14,6 +14,10 @@ export function isString(_) {
   return typeof _ === 'string';
 }
 
+export function hasOwnProperty(obj, property) {
+  return Object.prototype.hasOwnProperty.call(obj, property);
+}
+
 export function stringValue(_) {
   return Array.isArray(_) ? '[' + _.map(stringValue) + ']'
     : isObject(_) || isString(_) ?

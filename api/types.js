@@ -7,14 +7,14 @@ const Q = 'quantitative';
 const T = 'temporal';
 
 const extLogic = {
-  equals:  {arg: ['equal']},
-  gte:     {arg: ['gte']},
-  gt:      {arg: ['gt']},
-  lte:     {arg: ['lte']},
-  lt:      {arg: ['lt']},
-  oneOf:   {arg: ['...oneOf']},
-  inRange: {arg: ['...range']},
-  valid:   {arg: ['valid']}
+  equals:  {arg: ['equal'], desc: 'Logical equals (==) comparison.'},
+  gte:     {arg: ['gte'], desc: 'Logical greater than or equal to (>=) comparison.'},
+  gt:      {arg: ['gt'], desc: 'Logical greater than (>) comparison.'},
+  lte:     {arg: ['lte'], desc: 'Logical less than or equal to (<=) comparison.'},
+  lt:      {arg: ['lt'], desc: 'Logical less than (<) comparison.'},
+  oneOf:   {arg: ['...oneOf'], desc: 'Logical set membership test.'},
+  inRange: {arg: ['...range'], desc: 'Logical value in range test.'},
+  valid:   {arg: ['valid'], desc: 'Logical valid value test.'}
 };
 
 // -- Transforms --
@@ -48,14 +48,14 @@ export function transform(name, def, ...args) {
 
 export function groupby() {
   return {
-    desc: 'Group by fields for aggregate or window transforms.',
+    desc: desc.groupby,
     doc:  'Data Transformations',
     arg:  ['...groupby'],
     pass: {
-      aggregate:     {call: 'aggregate'},
-      join:          {call: 'joinaggregate'},
-      joinaggregate: {call: 'joinaggregate'},
-      window:        {call: 'window'}
+      aggregate:     {call: 'aggregate', desc: 'Specify an [[aggregate]] transform.'},
+      join:          {call: 'joinaggregate', desc: 'Specify a [[joinaggregate]] transform.'},
+      joinaggregate: {call: 'joinaggregate', desc: 'Specify a [[joinaggregate]] transform.'},
+      window:        {call: 'window', desc: 'Specify a [[window]] transform.'}
     }
   };
 }
@@ -70,7 +70,10 @@ export function aggregateOp(op, ...args) {
     set:  {op: op},
     arg:  args,
     ext:  {
-      order: {arg: ['order']}  // for sorting
+      order: { // for sorting
+        arg: ['order'],
+        desc: 'Indicates the sort order. One of `"ascending"` or `"descending"`. Only applicable if the operation is being used as a sort parameter.'
+      }
     }
   };
 }
@@ -104,8 +107,14 @@ export function field() {
     doc:  'References',
     arg:  ['field'],
     ext:  {
-      order: {arg: ['order']},
-      type:  {arg: ['type']},
+      order: {
+        arg: ['order'],
+        desc: 'Indicates the sort order. One of `"ascending"` or `"descending"`. Only applicable if the field is being used as a sort parameter.'
+      },
+      type:  {
+        arg: ['type'],
+        desc: 'The data type of the field. One of `"nominal"`, `"ordinal"`, `"quantitative"`, or `"temporal"`.'
+      },
       ...extLogic
     }
   }
@@ -171,7 +180,8 @@ for (let key in aggregateOps) {
   const _ = aggregateOps[key];
   channelAggregate[key] = {
     arg: [_[1]],
-    set: {type: Q, aggregate: _[0]}
+    set: {type: Q, aggregate: _[0]},
+    desc: `Apply the <code>${_[0]}</code> aggregate operation prior to encoding.`
   };
 }
 
@@ -180,7 +190,8 @@ for (let key in timeUnitOps) {
   const _ = timeUnitOps[key];
   channelTimeUnit[key] = {
     arg: ['field'],
-    set: {type: T, timeUnit: _[0]}
+    set: {type: T, timeUnit: _[0]},
+    desc: `Apply the <code>${_[0]}</code> timeUnit operation prior to encoding.`
   };
 }
 
@@ -191,11 +202,11 @@ export function channel(type) {
     def:  `FacetedEncoding/properties/${type}`,
     key:  [null, type],
     ext:  {
-      fieldN: {arg: ['field'], set: {type: N}},
-      fieldO: {arg: ['field'], set: {type: O}},
-      fieldQ: {arg: ['field'], set: {type: Q}},
-      fieldT: {arg: ['field'], set: {type: T}},
-      if: {arg: ['+++condition'], flag: 0},
+      fieldN: {arg: ['field'], set: {type: N}, desc: 'Encode the field as a nominal data type.'},
+      fieldO: {arg: ['field'], set: {type: O}, desc: 'Encode the field as an ordinal data type.'},
+      fieldQ: {arg: ['field'], set: {type: Q}, desc: 'Encode the field as a quantitative data type.'},
+      fieldT: {arg: ['field'], set: {type: T}, desc: 'Encode the field as a temporal data type.'},
+      if: {arg: ['+++condition'], flag: 0, desc: 'Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).'},
       ...channelAggregate,
       ...channelTimeUnit
     }
@@ -242,7 +253,10 @@ export function encoding() {
     doc:  'References',
     arg:  ['encoding'],
     ext: {
-      order: {arg: ['encoding']}
+      order: {
+        arg: ['encoding'],
+        desc: 'Indicates a sort order for encoded values. One of `"ascending"` or `"descending"`.'
+      }
     }
   };
 }
@@ -285,12 +299,12 @@ export function data() {
     ext:  extUnit,
     call: callSpec,
     pass: {
-      fields:  {call: 'lookupData', prop: 'fields',},
-      key:     {call: 'lookupData', prop: 'key'},
-      mark:    {call: 'mark'},
-      layer:   {call: 'layer'},
-      hconcat: {call: 'hconcat'},
-      vconcat: {call: 'vconcat'},
+      fields:  {call: 'lookupData', prop: 'fields', desc: 'Fields to retrieve in a [[lookupData]] reference.'},
+      key:     {call: 'lookupData', prop: 'key', desc: 'Key field to lookup in a [[lookupData]] reference.'},
+      mark:    {call: 'mark', desc: 'Create a new [[mark]] that visualizes this data reference.'},
+      layer:   {call: 'layer', desc: 'Create a [[layer]] chart that visualizes this data reference.'},
+      hconcat: {call: 'hconcat', desc: 'Create a [[hconcat]] chart that visualizes this data reference.'},
+      vconcat: {call: 'vconcat', desc: 'Create a [[vconcat]] chart that visualizes this data reference.'},
       ...passMulti
     }
   };
@@ -319,9 +333,9 @@ export function sourceFormat(type) {
     set:  {type: type},
     nest: {keys: ['url', 'values', 'name'], rest: 'format'},
     ext:  {
-      url:    {arg: ['url']},
-      values: {arg: ['values']},
-      name:   {arg: ['name']}
+      url:    {arg: ['url'], desc: 'A URL from which to load the data.'},
+      values: {arg: ['values'], desc: 'Provide loaded data values directly.'},
+      name:   {arg: ['name'], desc: 'A name for this data source. Use this name to update the data via the runtime API.'}
     }
   };
 }
@@ -369,35 +383,36 @@ const typeData = [
 ];
 
 const extSpec = {
-  data:        {arg: ['data'], type: typeData},
-  transform:   {arg: ['...transform']}
+  data:        {arg: ['data'], type: typeData, desc: 'The input [[data]] specification.'},
+  transform:   {arg: ['...transform'], desc: 'The data transformations to apply.'},
+  $schema:     null // suppress!
 };
 
 const extLayer = {
   projection:  null,
-  project:     {arg: ['projection']},
+  project:     {arg: ['projection'], desc: 'The cartographic [[projection]] to apply to geographical data.'},
   ...extSpec
 };
 
 const extUnit = {
-  mark:        {arg: [':::mark'], type: [{string: {key: 'type'}}]},
+  mark:        {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
   encoding:    null,
-  encode:      {arg: ['+::encoding'], flag: 1},
+  encode:      {arg: ['+::encoding'], flag: 1, desc: 'Specify visual encodings for the mark.'},
   selection:   null,
-  select:      {arg: ['+::selection'], flag: 1},
+  select:      {arg: ['+::selection'], flag: 1, desc: 'Register interactive selections on the mark.'},
   ...extLayer
 };
 
 const passMulti = {
-  facet:   {call: '_facet',  args: 1, self: 'spec'},
-  repeat:  {call: '_repeat', args: 1, self: 'spec'}
+  facet:   {call: '_facet',  args: 1, self: 'spec', desc: 'Facet a chart into sub-plots by partitioning data values.'},
+  repeat:  {call: '_repeat', args: 1, self: 'spec', desc: 'Repeat a chart template to generate multiple plots.'}
 };
 
 const callSpec = {
-  render:   {call: 'render', from: '__view__'},
-  toView:   {call: 'toView', from: '__view__'},
-  toSpec:   {call: 'toSpec', from: '__view__'},
-  toString: {call: 'toString', from: '__view__'}
+  render:   {call: 'render', from: '__view__', desc: 'Compile and render the Vega-Lite visualization and return the DOM element containing the Vega View.'},
+  toView:   {call: 'toView', from: '__view__', desc: 'Compile the Vega-Lite specification and return the resulting Vega View object.'},
+  toSpec:   {call: 'toSpec', from: '__view__', desc: 'Return the Vega-Lite specification as a JavaScript object.'},
+  toString: {call: 'toString', from: '__view__', desc: 'Return the Vega-Lite specification as a JSON string.'}
 };
 
 export function unit(types) {

@@ -4,3 +4,4 @@ build/generate-api.js
 build/*.zip
 static/
 test/
+docs/

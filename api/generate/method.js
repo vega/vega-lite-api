@@ -1,4 +1,4 @@
-import {emitter, error, stringValue as $, isString, isObject} from './util';
+import {emitter, error, stringValue as $, isString, isObject, hasOwnProperty} from './util';
 import {isArrayType} from './schema';
 
 export function generateMethod(schema, methodName, spec) {
@@ -22,8 +22,7 @@ export function generateMethod(schema, methodName, spec) {
 
   // -- properties --
   for (let prop in schema) {
-    // eslint-disable-next-line no-prototype-builtins
-    if (ext.hasOwnProperty(prop)) continue; // skip if extension defined
+    if (hasOwnProperty(ext, prop)) continue; // skip if extension defined
     const mod = isArrayType(schema[prop]) ? '...' : '';
     generateProperty(emit, prop, prop, mod);
   }
