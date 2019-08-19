@@ -1,6 +1,6 @@
 vl.<b>max</b>(<em>field, as</em>)
 
-A <code>max</code> aggregate operation.
+Specify a <code>max</code> aggregate operation.
 
 ## <code>max</code> Method Overview
 

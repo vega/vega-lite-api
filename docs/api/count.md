@@ -1,6 +1,6 @@
 vl.<b>count</b>(<em>as</em>)
 
-A <code>count</code> aggregate operation.
+Specify a <code>count</code> aggregate operation.
 
 ## <code>count</code> Method Overview
 

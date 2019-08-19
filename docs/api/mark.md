@@ -2,6 +2,11 @@ vl.<b>mark</b>(<em>...mark</em>)
 
 Create a new mark of unspecified type.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is a <code>string</code>, sets the <code>type</code> property.
+- Otherwise, sets the properties defined on the input argument(s), if provided.
+
 ## <code>mark</code> Method Overview
 
 * <a href="#align">align</a>
@@ -127,6 +132,12 @@ Vega-Lite configuration object.  This property can only be defined at the top-le
 
 The input [data](data) specification.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>array</code>, sets the <code>data.values</code> property.
+- If the argument is a <code>string</code>, sets the <code>data.url</code> property.
+- Otherwise, sets the <code>data</code> property.
+
 <a id="datasets" href="#datasets">#</a>
 <em>mark</em>.<b>datasets</b>(<em>value</em>)
 
@@ -166,6 +177,11 @@ __See also:__ The documentation for [width and height](https://vega.github.io/ve
 <em>mark</em>.<b>mark</b>(<em>...mark</em>)
 
 Set the mark type and default visual properties.
+
+The behavior of this method depends on the argument type:
+
+- If the argument is a <code>string</code>, sets the <code>mark.type</code> property.
+- Otherwise, sets the <code>mark</code> property.
 
 <a id="markArea" href="#markArea">#</a>
 <em>mark</em>.<b>markArea</b>(<em>...mark</em>)

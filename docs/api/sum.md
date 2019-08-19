@@ -1,6 +1,6 @@
 vl.<b>sum</b>(<em>field, as</em>)
 
-A <code>sum</code> aggregate operation.
+Specify a <code>sum</code> aggregate operation.
 
 ## <code>sum</code> Method Overview
 

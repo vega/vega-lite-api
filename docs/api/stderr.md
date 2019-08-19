@@ -1,6 +1,6 @@
 vl.<b>stderr</b>(<em>field, as</em>)
 
-A <code>stderr</code> aggregate operation.
+Specify a <code>stderr</code> aggregate operation.
 
 ## <code>stderr</code> Method Overview
 

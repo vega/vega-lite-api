@@ -1,6 +1,6 @@
 import {props, isArrayType} from './schema';
 import {write} from './write';
-import {hasOwnProperty} from './util';
+import {article, code, hasOwnProperty, isArray, link} from './util';
 
 export function generateDoc(schema, api, path, prefix) {
   // build documentation page for each top-level method
@@ -58,7 +58,7 @@ function docMethod(name, spec, schema, prefix) {
 
   if (spec.ctr) {
     const call = spec.ctr.call;
-    code += `Returns a [${call}](${call}) instance.\n`;
+    code += `Returns a ${link(call)} instance.\n`;
     return code;
   }
 
@@ -130,8 +130,14 @@ function collectProperties(spec, schema) {
 }
 
 function docMethodEntry(name, spec, prefix) {
-  return `${prefix || ''}<b>${name}</b>(<em>${docArguments(spec.arg)}</em>)
-${spec.desc ? '\n' + spec.desc : ''}\n`;
+  let desc = `${prefix || ''}<b>${name}</b>(<em>${docArguments(spec.arg)}</em>)
+${spec.desc ? '\n' + spec.desc : ''}`;
+
+  if (spec.type) {
+    desc += '\n' + docTypeSwitch(null, spec.type);
+  }
+
+  return desc + '\n';
 }
 
 function docArguments(args) {
@@ -151,10 +157,51 @@ function docArgPrefix(arg) {
 }
 
 function docDescription(prop, schema, spec) {
-  const desc = (spec && spec.desc)
+  let desc = (spec && spec.desc)
     || (schema && schema[prop] && schema[prop].description);
-  return desc && desc.replace(
-    /\[\[(.*)\]\]/g,
-    (match, prop) => `[${prop}](${prop})`
-  );
+
+  if (spec && spec.type) {
+    desc += '\n' + docTypeSwitch(prop, spec.type);
+  }
+
+  return desc;
+}
+
+function docTypeSwitch(prop, types) {
+  let desc = '\nThe behavior of this method depends on the argument type:\n\n';
+
+  docCollectTypes(types).forEach(t => {
+    desc += `- If the argument is ${article(t.type)} ${code(t.type + (t.array ? ' array' : ''))}, sets the ${code((prop ? prop + '.' : '') + t.key)} property.\n`;
+  });
+
+  desc += prop
+    ? `- Otherwise, sets the ${code(prop)} property.`
+    : `- Otherwise, sets the properties defined on the input argument(s), if provided.`;
+
+  return desc;
+}
+
+function docCollectTypes(types) {
+  const out = [];
+
+  // isolate type mapping object
+  types = isArray(types) ? types[0] : types;
+
+  // collect type entries, recurse for mapped arrays
+  for (let t in types) {
+    if (types[t].key) {
+      out.push({type: t, key: types[t].key});
+    } else if (types[t].map) {
+      const map = types[t].map;
+      for (let m in map) {
+        out.push({type: m, array: true, key: map[m].key});
+      }
+    }
+  }
+
+  // sort type-parameterized entries
+  out.sort((a, b) => a.array ^ b.array ? -1 + 2 * +a.array
+      : a.type < b.type ? -1 : a.type > b.type ? 1 : 0);
+
+  return out;
 }

@@ -2,6 +2,11 @@ vl.<b>shape</b>(<em>...values</em>)
 
 Specify the <code>shape</code> encoding channel.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is a <code>string</code>, sets the <code>field</code> property.
+- Otherwise, sets the properties defined on the input argument(s), if provided.
+
 ## <code>shape</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>

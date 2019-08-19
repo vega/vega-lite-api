@@ -1,6 +1,6 @@
 vl.<b>valid</b>(<em>field, as</em>)
 
-A <code>valid</code> aggregate operation.
+Specify a <code>valid</code> aggregate operation.
 
 ## <code>valid</code> Method Overview
 

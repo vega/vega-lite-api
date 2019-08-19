@@ -1,6 +1,6 @@
 vl.<b>stdevp</b>(<em>field, as</em>)
 
-A <code>stdevp</code> aggregate operation.
+Specify a <code>stdevp</code> aggregate operation.
 
 ## <code>stdevp</code> Method Overview
 

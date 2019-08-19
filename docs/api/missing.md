@@ -1,6 +1,6 @@
 vl.<b>missing</b>(<em>field, as</em>)
 
-A <code>missing</code> aggregate operation.
+Specify a <code>missing</code> aggregate operation.
 
 ## <code>missing</code> Method Overview
 

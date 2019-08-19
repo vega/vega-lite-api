@@ -1,4 +1,4 @@
 vl.<b>fieldO</b>(<em>...values</em>)
 
-A reference to a ordinal data field.
+A reference to an ordinal data field.
 Returns a [field](field) instance.

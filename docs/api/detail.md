@@ -2,6 +2,12 @@ vl.<b>detail</b>(<em>...values</em>)
 
 Specify the <code>detail</code> encoding channel.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is a <code>string</code>, sets the <code>field</code> property.
+- If the argument is a <code>string array</code>, sets the <code>field</code> property.
+- Otherwise, sets the properties defined on the input argument(s), if provided.
+
 ## <code>detail</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>

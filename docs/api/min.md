@@ -1,6 +1,6 @@
 vl.<b>min</b>(<em>field, as</em>)
 
-A <code>min</code> aggregate operation.
+Specify a <code>min</code> aggregate operation.
 
 ## <code>min</code> Method Overview
 

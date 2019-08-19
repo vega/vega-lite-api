@@ -2,6 +2,12 @@ vl.<b>lookupData</b>(<em>data</em>)
 
 Specify a lookup on a secondary data source.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>array</code>, sets the <code>values</code> property.
+- If the argument is a <code>string</code>, sets the <code>url</code> property.
+- Otherwise, sets the properties defined on the input argument(s), if provided.
+
 ## <code>lookupData</code> Method Overview
 
 * <a href="#data">data</a>

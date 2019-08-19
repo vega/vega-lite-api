@@ -1,6 +1,6 @@
 vl.<b>variancep</b>(<em>field, as</em>)
 
-A <code>variancep</code> aggregate operation.
+Specify a <code>variancep</code> aggregate operation.
 
 ## <code>variancep</code> Method Overview
 

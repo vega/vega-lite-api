@@ -1,6 +1,6 @@
 vl.<b>distinct</b>(<em>field, as</em>)
 
-A <code>distinct</code> aggregate operation.
+Specify a <code>distinct</code> aggregate operation.
 
 ## <code>distinct</code> Method Overview
 

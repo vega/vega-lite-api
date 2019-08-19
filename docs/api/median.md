@@ -1,6 +1,6 @@
 vl.<b>median</b>(<em>field, as</em>)
 
-A <code>median</code> aggregate operation.
+Specify a <code>median</code> aggregate operation.
 
 ## <code>median</code> Method Overview
 

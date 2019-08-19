@@ -2,6 +2,13 @@ vl.<b>json</b>(<em>...values</em>)
 
 Define a data source for <code>json</code> format data.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>array</code>, sets the <code>values</code> property.
+- If the argument is an <code>object</code>, sets the <code>values</code> property.
+- If the argument is a <code>string</code>, sets the <code>url</code> property.
+- Otherwise, sets the properties defined on the input argument(s), if provided.
+
 ## <code>json</code> Method Overview
 
 * <a href="#name">name</a>

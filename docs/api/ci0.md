@@ -1,6 +1,6 @@
 vl.<b>ci0</b>(<em>field, as</em>)
 
-A <code>ci0</code> aggregate operation.
+Specify a <code>ci0</code> aggregate operation.
 
 ## <code>ci0</code> Method Overview
 

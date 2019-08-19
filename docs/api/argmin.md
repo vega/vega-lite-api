@@ -1,6 +1,6 @@
 vl.<b>argmin</b>(<em>field, as</em>)
 
-A <code>argmin</code> aggregate operation.
+Specify an <code>argmin</code> aggregate operation.
 
 ## <code>argmin</code> Method Overview
 

@@ -1,5 +1,5 @@
 import {aggregateOps, timeUnitOps} from './ops';
-import {capitalize} from './generate/util';
+import {article, capitalize, code, link, uppercase} from './generate/util';
 
 const N = 'nominal';
 const O = 'ordinal';
@@ -52,10 +52,10 @@ export function groupby() {
     doc:  'Data Transformations',
     arg:  ['...groupby'],
     pass: {
-      aggregate:     {call: 'aggregate', desc: 'Specify and return an [[aggregate]] transform.'},
-      join:          {call: 'joinaggregate', desc: 'Specify and return a [[joinaggregate]] transform.'},
-      joinaggregate: {call: 'joinaggregate', desc: 'Specify and return a [[joinaggregate]] transform.'},
-      window:        {call: 'window', desc: 'Specify and return a [[window]] transform.'}
+      aggregate:     {call: 'aggregate', desc: `Specify and return an ${link('aggregate')} transform.`},
+      join:          {call: 'joinaggregate', desc: `Specify and return a ${link('joinaggregate')} transform.`},
+      joinaggregate: {call: 'joinaggregate', desc: `Specify and return a ${link('joinaggregate')} transform.`},
+      window:        {call: 'window', desc: `Specify and return a ${link('window')} transform.`}
     }
   };
 }
@@ -64,7 +64,7 @@ export function groupby() {
 
 export function aggregateOp(op, ...args) {
   return {
-    desc: `A <code>${op}</code> aggregate operation.`,
+    desc: `Specify ${article(op)} ${code(op)} aggregate operation.`,
     doc:  'Aggregate Operations',
     def:  'AggregatedFieldDef',
     set:  {op: op},
@@ -80,7 +80,7 @@ export function aggregateOp(op, ...args) {
 
 export function windowOp(op, ...args) {
   return {
-    desc: `A <code>${op}</code> window operation.`,
+    desc: `A ${code(op)} window operation.`,
     doc:  'Window Operations',
     def:  'WindowFieldDef',
     set:  {op: op},
@@ -90,7 +90,7 @@ export function windowOp(op, ...args) {
 
 export function timeUnitOp(op, ...args) {
   return {
-    desc: `A time unit operation for <code>${op}</code>.`,
+    desc: `A time unit operation for ${code(op)}.`,
     doc:  'TimeUnit Operations',
     def:  'TimeUnitTransform',
     set:  {timeUnit: op},
@@ -122,7 +122,7 @@ export function field() {
 
 export function fieldType(type) {
   return {
-    desc: `A reference to a ${type} data field.`,
+    desc: `A reference to ${article(type)} ${type} data field.`,
     doc:  'References',
     ctr:  {call: 'field'},
     set:  {type: type}
@@ -139,7 +139,7 @@ export function not() {
 
 export function logical(op) {
   return {
-    desc: `Logical ${op.toUpperCase()} operation.`,
+    desc: `Logical ${uppercase(op)} operation.`,
     doc:  'Logical Operations',
     arg:  [`...${op}`]
   };
@@ -149,7 +149,7 @@ export function logical(op) {
 
 export function selection(type) {
   return {
-    desc: `Define a new <code>${type}</code> selection.`,
+    desc: `Define a new ${code(type)} selection.`,
     doc:  'Selections',
     def:  `${capitalize(type)}Selection`,
     set:  {type: type},
@@ -165,7 +165,7 @@ export function binding(def, input, args) {
   const set = input ? {input: input} : null;
 
   return {
-    desc: `Define a new HTML <code>${input}</code> input element binding.`,
+    desc: `Define a new HTML ${code(input)} input element binding.`,
     doc:  'Selection Bindings',
     def:  def,
     set:  set,
@@ -181,7 +181,7 @@ for (let key in aggregateOps) {
   channelAggregate[key] = {
     arg: [_[1]],
     set: {type: Q, aggregate: _[0]},
-    desc: `Apply the <code>${_[0]}</code> aggregate operation prior to encoding.`
+    desc: `Apply the ${code(_[0])} aggregate operation prior to encoding.`
   };
 }
 
@@ -191,13 +191,13 @@ for (let key in timeUnitOps) {
   channelTimeUnit[key] = {
     arg: ['field'],
     set: {type: T, timeUnit: _[0]},
-    desc: `Apply the <code>${_[0]}</code> timeUnit operation prior to encoding.`
+    desc: `Apply the ${code(_[0])} timeUnit operation prior to encoding.`
   };
 }
 
 export function channel(type) {
   const spec = {
-    desc: `Specify the <code>${type}</code> encoding channel.`,
+    desc: `Specify the ${code(type)} encoding channel.`,
     doc:  'Encodings',
     def:  `FacetedEncoding/properties/${type}`,
     key:  [null, type],
@@ -299,12 +299,12 @@ export function data() {
     ext:  extUnit,
     call: callSpec,
     pass: {
-      fields:  {call: 'lookupData', prop: 'fields', desc: 'Fields to retrieve in a [[lookupData]] reference.'},
-      key:     {call: 'lookupData', prop: 'key', desc: 'Key field to lookup in a [[lookupData]] reference.'},
-      mark:    {call: 'mark', desc: 'Create a new [[mark]] that visualizes this data reference.'},
-      layer:   {call: 'layer', desc: 'Create a [[layer]] chart that visualizes this data reference.'},
-      hconcat: {call: 'hconcat', desc: 'Create a [[hconcat]] chart that visualizes this data reference.'},
-      vconcat: {call: 'vconcat', desc: 'Create a [[vconcat]] chart that visualizes this data reference.'},
+      fields:  {call: 'lookupData', prop: 'fields', desc: `Fields to retrieve in a ${link('lookupData')} reference.`},
+      key:     {call: 'lookupData', prop: 'key', desc: `Key field to lookup in a ${link('lookupData')} reference.`},
+      mark:    {call: 'mark', desc: `Create a new ${link('mark')} that visualizes this data reference.`},
+      layer:   {call: 'layer', desc: `Create a ${link('layer')} chart that visualizes this data reference.`},
+      hconcat: {call: 'hconcat', desc: `Create a ${link('hconcat')} chart that visualizes this data reference.`},
+      vconcat: {call: 'vconcat', desc: `Create a ${link('vconcat')} chart that visualizes this data reference.`},
       ...passMulti
     }
   };
@@ -326,7 +326,7 @@ const formatDefs = {
 
 export function sourceFormat(type) {
   return {
-    desc: `Define a data source for <code>${type}</code> format data.`,
+    desc: `Define a data source for ${code(type)} format data.`,
     doc:  'Data',
     def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
     type: {object: {key: 'values'}, ...typeData[0]},
@@ -352,7 +352,7 @@ export function lookupData() {
 
 export function format(type) {
   return {
-    desc: `Specify parsing of <code>${type}</code> format data.`,
+    desc: `Specify parsing of ${code(type)} format data.`,
     doc:  'Data',
     def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
     set:  {type: type}
@@ -365,7 +365,7 @@ const generatorArgs = {
 
 export function generator(type) {
   return {
-    desc: `Define a <code>${type}</code> data generator.`,
+    desc: `Define a ${code(type)} data generator.`,
     doc:  'Data',
     def:  `${capitalize(type)}Params`,
     key:  type,
@@ -383,14 +383,14 @@ const typeData = [
 ];
 
 const extSpec = {
-  data:        {arg: ['data'], type: typeData, desc: 'The input [[data]] specification.'},
+  data:        {arg: ['data'], type: typeData, desc: `The input ${link('data')} specification.`},
   transform:   {arg: ['...transform'], desc: 'The data transformations to apply.'},
   $schema:     null // suppress!
 };
 
 const extLayer = {
   projection:  null,
-  project:     {arg: ['projection'], desc: 'The cartographic [[projection]] to apply to geographical data.'},
+  project:     {arg: ['projection'], desc: `The cartographic ${link('projection')} to apply to geographical data.`},
   ...extSpec
 };
 
@@ -435,7 +435,7 @@ export function unit(types) {
 
 export function mark(type) {
   return {
-    desc: `Create a new <code>${type}</code> mark.`,
+    desc: `Create a new ${code(type)} mark.`,
     doc:  'Chart Constructors',
     ctr:  {call: 'mark', arg: {type: type}}
   };

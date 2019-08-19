@@ -1,6 +1,6 @@
 vl.<b>argmax</b>(<em>field, as</em>)
 
-A <code>argmax</code> aggregate operation.
+Specify an <code>argmax</code> aggregate operation.
 
 ## <code>argmax</code> Method Overview
 

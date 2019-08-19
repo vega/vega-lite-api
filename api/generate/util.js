@@ -1,9 +1,9 @@
-export function capitalize(_) {
-  return _[0].toUpperCase() + _.slice(1);
-}
-
 export function error(_) {
   throw new Error(_);
+}
+
+export function isArray(_) {
+  return Array.isArray(_);
 }
 
 export function isObject(_) {
@@ -68,4 +68,24 @@ export function emitter(defaultFile) {
   }
 
   return emit;
+}
+
+export function article(_) {
+  return _ && _.match(/^[aeiou]/) ? 'an' : 'a';
+}
+
+export function capitalize(_) {
+  return _[0].toUpperCase() + _.slice(1);
+}
+
+export function uppercase(_) {
+  return _.toUpperCase();
+}
+
+export function code(_) {
+  return `<code>${_}</code>`;
+}
+
+export function link(_) {
+  return `[${_}](${_})`;
 }

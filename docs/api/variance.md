@@ -1,6 +1,6 @@
 vl.<b>variance</b>(<em>field, as</em>)
 
-A <code>variance</code> aggregate operation.
+Specify a <code>variance</code> aggregate operation.
 
 ## <code>variance</code> Method Overview
 

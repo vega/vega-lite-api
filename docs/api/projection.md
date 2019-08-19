@@ -41,7 +41,7 @@ Sets the projection’s clipping circle radius to the specified angle in degrees
 <a id="clipExtent" href="#clipExtent">#</a>
 <em>projection</em>.<b>clipExtent</b>(<em>...value</em>)
 
-Sets the projection’s viewport clip extent to the specified bounds in pixels. The extent bounds are specified as an array `[x0, y0], [x1, y1](x0, y0], [x1, y1)`, where `x0` is the left-side of the viewport, `y0` is the top, `x1` is the right and `y1` is the bottom. If `null`, no viewport clipping is performed.
+Sets the projection’s viewport clip extent to the specified bounds in pixels. The extent bounds are specified as an array `[[x0, y0], [x1, y1]]`, where `x0` is the left-side of the viewport, `y0` is the top, `x1` is the right and `y1` is the bottom. If `null`, no viewport clipping is performed.
 
 <a id="coefficient" href="#coefficient">#</a>
 <em>projection</em>.<b>coefficient</b>(<em>value</em>)

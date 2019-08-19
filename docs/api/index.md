@@ -85,7 +85,7 @@
 
 - <a href="field">vl.<b>field</b></a> - A reference to a data field.
 - <a href="fieldN">vl.<b>fieldN</b></a> - A reference to a nominal data field.
-- <a href="fieldO">vl.<b>fieldO</b></a> - A reference to a ordinal data field.
+- <a href="fieldO">vl.<b>fieldO</b></a> - A reference to an ordinal data field.
 - <a href="fieldQ">vl.<b>fieldQ</b></a> - A reference to a quantitative data field.
 - <a href="fieldT">vl.<b>fieldT</b></a> - A reference to a temporal data field.
 - <a href="encoding">vl.<b>encoding</b></a> - A reference to an encoding channel.
@@ -135,27 +135,27 @@
 
 ### Aggregate Operations
 
-- <a href="count">vl.<b>count</b></a> - A <code>count</code> aggregate operation.
-- <a href="valid">vl.<b>valid</b></a> - A <code>valid</code> aggregate operation.
-- <a href="missing">vl.<b>missing</b></a> - A <code>missing</code> aggregate operation.
-- <a href="distinct">vl.<b>distinct</b></a> - A <code>distinct</code> aggregate operation.
-- <a href="sum">vl.<b>sum</b></a> - A <code>sum</code> aggregate operation.
-- <a href="mean">vl.<b>mean</b></a> - A <code>mean</code> aggregate operation.
-- <a href="average">vl.<b>average</b></a> - A <code>average</code> aggregate operation.
-- <a href="variance">vl.<b>variance</b></a> - A <code>variance</code> aggregate operation.
-- <a href="variancep">vl.<b>variancep</b></a> - A <code>variancep</code> aggregate operation.
-- <a href="stdev">vl.<b>stdev</b></a> - A <code>stdev</code> aggregate operation.
-- <a href="stdevp">vl.<b>stdevp</b></a> - A <code>stdevp</code> aggregate operation.
-- <a href="stderr">vl.<b>stderr</b></a> - A <code>stderr</code> aggregate operation.
-- <a href="median">vl.<b>median</b></a> - A <code>median</code> aggregate operation.
-- <a href="q1">vl.<b>q1</b></a> - A <code>q1</code> aggregate operation.
-- <a href="q3">vl.<b>q3</b></a> - A <code>q3</code> aggregate operation.
-- <a href="ci0">vl.<b>ci0</b></a> - A <code>ci0</code> aggregate operation.
-- <a href="ci1">vl.<b>ci1</b></a> - A <code>ci1</code> aggregate operation.
-- <a href="min">vl.<b>min</b></a> - A <code>min</code> aggregate operation.
-- <a href="max">vl.<b>max</b></a> - A <code>max</code> aggregate operation.
-- <a href="argmin">vl.<b>argmin</b></a> - A <code>argmin</code> aggregate operation.
-- <a href="argmax">vl.<b>argmax</b></a> - A <code>argmax</code> aggregate operation.
+- <a href="count">vl.<b>count</b></a> - Specify a <code>count</code> aggregate operation.
+- <a href="valid">vl.<b>valid</b></a> - Specify a <code>valid</code> aggregate operation.
+- <a href="missing">vl.<b>missing</b></a> - Specify a <code>missing</code> aggregate operation.
+- <a href="distinct">vl.<b>distinct</b></a> - Specify a <code>distinct</code> aggregate operation.
+- <a href="sum">vl.<b>sum</b></a> - Specify a <code>sum</code> aggregate operation.
+- <a href="mean">vl.<b>mean</b></a> - Specify a <code>mean</code> aggregate operation.
+- <a href="average">vl.<b>average</b></a> - Specify an <code>average</code> aggregate operation.
+- <a href="variance">vl.<b>variance</b></a> - Specify a <code>variance</code> aggregate operation.
+- <a href="variancep">vl.<b>variancep</b></a> - Specify a <code>variancep</code> aggregate operation.
+- <a href="stdev">vl.<b>stdev</b></a> - Specify a <code>stdev</code> aggregate operation.
+- <a href="stdevp">vl.<b>stdevp</b></a> - Specify a <code>stdevp</code> aggregate operation.
+- <a href="stderr">vl.<b>stderr</b></a> - Specify a <code>stderr</code> aggregate operation.
+- <a href="median">vl.<b>median</b></a> - Specify a <code>median</code> aggregate operation.
+- <a href="q1">vl.<b>q1</b></a> - Specify a <code>q1</code> aggregate operation.
+- <a href="q3">vl.<b>q3</b></a> - Specify a <code>q3</code> aggregate operation.
+- <a href="ci0">vl.<b>ci0</b></a> - Specify a <code>ci0</code> aggregate operation.
+- <a href="ci1">vl.<b>ci1</b></a> - Specify a <code>ci1</code> aggregate operation.
+- <a href="min">vl.<b>min</b></a> - Specify a <code>min</code> aggregate operation.
+- <a href="max">vl.<b>max</b></a> - Specify a <code>max</code> aggregate operation.
+- <a href="argmin">vl.<b>argmin</b></a> - Specify an <code>argmin</code> aggregate operation.
+- <a href="argmax">vl.<b>argmax</b></a> - Specify an <code>argmax</code> aggregate operation.
 
 ### Window Operations
 

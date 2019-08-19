@@ -1,6 +1,6 @@
 vl.<b>average</b>(<em>field, as</em>)
 
-A <code>average</code> aggregate operation.
+Specify an <code>average</code> aggregate operation.
 
 ## <code>average</code> Method Overview
 

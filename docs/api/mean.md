@@ -1,6 +1,6 @@
 vl.<b>mean</b>(<em>field, as</em>)
 
-A <code>mean</code> aggregate operation.
+Specify a <code>mean</code> aggregate operation.
 
 ## <code>mean</code> Method Overview
 
