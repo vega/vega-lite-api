@@ -36,7 +36,7 @@ function src(output) {
     return bundle.write({
       file: output,
       format: 'umd',
-      name: 'vl'
+      name: 'vlAPI'
     });
   }).then(function() {
     console.warn('↳ ' + output); // eslint-disable-line no-console
