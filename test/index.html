@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Standard HTML Example</title>
+    <script src="https://unpkg.com/vega@5.4.0/build/vega.min.js"></script>
+    <script src="https://unpkg.com/vega-lite@4.0.0-beta.0/build/vega-lite.min.js"></script>
+    <script>
+      // The fact that vega-lite and vega-lite-api
+      // use the same global doesn't quite feel right.
+      // Stashing the value of the first vl before it gets
+      // overwritten is unfortunately required here to make it work.
+      const vegalite = vl;
+    </script>
+    <script src="https://unpkg.com/vega-lite-api@0.1.0/build/vega-lite-api.min.js"></script>
+    <script src="https://unpkg.com/vega-tooltip@0.18.1/build/vega-tooltip.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // Derived from https://observablehq.com/@vega/vega-lite-api
+      const width = 400;
+      const options = {
+        config: {
+          // vega-lite default configuration
+          config: {
+            view: {width, height: 300},
+            mark: {tooltip: null}
+          }
+        },
+        init: view => {
+          // initialize tooltip handler
+          view.tooltip(new vegaTooltip.Handler().call);
+          // enable horizontal scrolling for large plots
+          if (view.container()) view.container().style['overflow-x'] = 'auto';
+        },
+        view: {
+          // view constructor options
+          loader: vega.loader({baseURL: 'https://vega.github.io/vega-datasets/'}),
+          renderer: 'canvas'
+        }
+      };
+
+      vl.register(vega, vegalite, options);
+
+      vl.markSquare({size: 2, opacity: 1})
+        .data('data/zipcodes.csv')
+        .transform(vl.calculate('substring(datum.zip_code, 0, 1)').as('digit'))
+        .project(
+          vl.projection('albersUsa')
+        )
+        .encode(
+          vl.longitude().fieldQ('longitude'),
+          vl.latitude().fieldQ('latitude'),
+          vl.color().fieldN('digit')
+        )
+        .width(width)
+        .height(Math.floor(width / 1.75))
+        .autosize({type: 'fit-x', contains: 'padding'})
+        .config({view: {stroke: null}})
+        .render()
+        .then(element => document.body.appendChild(element));
+    </script>
+  </body>
+</html>
