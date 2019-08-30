@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Standard HTML Example</title>
     <script src="https://unpkg.com/vega@5.4.0/build/vega.min.js"></script>
-    <script src="https://unpkg.com/vega-lite@4.0.0-beta.0/build/vega-lite.min.js"></script>
-    <script>
-      // The fact that vega-lite and vega-lite-api
-      // use the same global doesn't quite feel right.
-      // Stashing the value of the first vl before it gets
-      // overwritten is unfortunately required here to make it work.
-      const vegalite = vl;
-    </script>
+    <script src="https://unpkg.com/vega-lite@4.0.0-beta.1/build/vega-lite.min.js"></script>
     <script src="https://unpkg.com/vega-lite-api@0.1.0/build/vega-lite-api.min.js"></script>
     <script src="https://unpkg.com/vega-tooltip@0.18.1/build/vega-tooltip.min.js"></script>
   </head>
@@ -41,7 +34,7 @@
         }
       };
 
-      vl.register(vega, vegalite, options);
+      vl.register(vega, vegaLite, options);
 
       vl.markSquare({size: 2, opacity: 1})
         .data('data/zipcodes.csv')
