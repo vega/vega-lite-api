@@ -64,7 +64,7 @@ __Default value:__ `false`
 <a id="config" href="#config">#</a>
 <em>vconcat</em>.<b>config</b>(<em>value</em>)
 
-Vega-Lite configuration object.  This property can only be defined at the top-level of a specification.
+[Vega-Lite configuration object](https://vega.github.io/vega-lite/docs/config.html).  This property can only be defined at the top-level of a specification.
 
 <a id="data" href="#data">#</a>
 <em>vconcat</em>.<b>data</b>(<em>data</em>)
