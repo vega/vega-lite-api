@@ -10,10 +10,12 @@ The behavior of this method depends on the argument type:
 ## <code>column</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>
+* <a href="#align">align</a>
 * <a href="#argmax">argmax</a>
 * <a href="#argmin">argmin</a>
 * <a href="#average">average</a>
 * <a href="#bin">bin</a>
+* <a href="#center">center</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
 * <a href="#count">count</a>
@@ -41,6 +43,7 @@ The behavior of this method depends on the argument type:
 * <a href="#quarter">quarter</a>
 * <a href="#seconds">seconds</a>
 * <a href="#sort">sort</a>
+* <a href="#spacing">spacing</a>
 * <a href="#stderr">stderr</a>
 * <a href="#stdev">stdev</a>
 * <a href="#stdevp">stdevp</a>
@@ -104,6 +107,18 @@ __Default value:__ `undefined` (None)
 
 __See also:__ [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html) documentation.
 
+<a id="align" href="#align">#</a>
+<em>column</em>.<b>align</b>(<em>value</em>)
+
+The alignment to apply to row/column facet's subplot.
+The supported string values are `"all"`, `"each"`, and `"none"`.
+
+- For `"none"`, a flow layout will be used, in which adjacent subviews are simply placed one after the other.
+- For `"each"`, subviews will be aligned into a clean grid structure, but each row or column may be of variable size.
+- For `"all"`, subviews will be aligned and each row or column will be sized identically based on the maximum observed size. String values for this property will be applied to both grid rows and columns.
+
+__Default value:__ `"all"`.
+
 <a id="argmax" href="#argmax">#</a>
 <em>column</em>.<b>argmax</b>(<em>field</em>)
 
@@ -131,6 +146,13 @@ A flag for binning a `quantitative` field, [an object defining binning parameter
 __Default value:__ `false`
 
 __See also:__ [`bin`](https://vega.github.io/vega-lite/docs/bin.html) documentation.
+
+<a id="center" href="#center">#</a>
+<em>column</em>.<b>center</b>(<em>value</em>)
+
+Boolean flag indicating if facet's subviews should be centered relative to their respective rows or columns.
+
+__Default value:__ `false`
 
 <a id="ci0" href="#ci0">#</a>
 <em>column</em>.<b>ci0</b>(<em>field</em>)
@@ -279,7 +301,7 @@ Sort order for the encoded field.
 For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or `"descending"`.
 
 For discrete fields, `sort` can be one of the following:
-- `"ascending"` or `"descending"` -- for sorting by the values' natural order in Javascript.
+- `"ascending"` or `"descending"` -- for sorting by the values' natural order in JavaScript.
 - [A sort field definition](https://vega.github.io/vega-lite/docs/sort.html#sort-field) for sorting by another field.
 - [An array specifying the field values in preferred order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the sort order will obey the values in the array, followed by any unspecified values in their original order.  For discrete time field, values in the sort array can be [date-time definition objects](types#datetime). In addition, for time units `"month"` and `"day"`, the values can be the month or day names (case insensitive) or their 3-letter initials (e.g., `"Mon"`, `"Tue"`).
 - `null` indicating no sort.
@@ -287,6 +309,13 @@ For discrete fields, `sort` can be one of the following:
 __Default value:__ `"ascending"`
 
 __Note:__ `null` is not supported for `row` and `column`.
+
+<a id="spacing" href="#spacing">#</a>
+<em>column</em>.<b>spacing</b>(<em>value</em>)
+
+The spacing in pixels between facet's sub-views.
+
+__Default value__: Depends on `"spacing"` property of [the view composition configuration](https://vega.github.io/vega-lite/docs/config.html#view-config) (`20` by default)
 
 <a id="stderr" href="#stderr">#</a>
 <em>column</em>.<b>stderr</b>(<em>field</em>)

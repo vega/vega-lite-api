@@ -500,7 +500,7 @@ Apply the <code>valid</code> aggregate operation prior to encoding.
 <a id="value" href="#value">#</a>
 <em>yError</em>.<b>value</b>(<em>value</em>)
 
-A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between `0` to `1` for opacity).
+A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
 <em>yError</em>.<b>variance</b>(<em>field</em>)

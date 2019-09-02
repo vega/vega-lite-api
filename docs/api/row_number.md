@@ -24,7 +24,7 @@ The data field for which to compute the aggregate or window function. This can b
 <a id="op" href="#op">#</a>
 <em>row_number</em>.<b>op</b>(<em>value</em>)
 
-The window or aggregation operation to apply within a window (e.g.,`rank`, `lead`, `sum`, `average` or `count`). See the list of all supported operations [here](https://vega.github.io/vega-lite/docs/window.html#ops).
+The window or aggregation operation to apply within a window (e.g., `rank`, `lead`, `sum`, `average` or `count`). See the list of all supported operations [here](https://vega.github.io/vega-lite/docs/window.html#ops).
 
 <a id="param" href="#param">#</a>
 <em>row_number</em>.<b>param</b>(<em>value</em>)
