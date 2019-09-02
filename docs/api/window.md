@@ -34,7 +34,7 @@ __Default value:__ `false`
 <a id="sort" href="#sort">#</a>
 <em>window</em>.<b>sort</b>(<em>...value</em>)
 
-A sort field definition for sorting data objects within a window. If two data objects are considered equal by the comparator, they are considered “peer” values of equal rank. If sort is not specified, the order is undefined: data objects are processed in the order they are observed and none are considered peers (the ignorePeers parameter is ignored and treated as if set to `true`).
+A sort field definition for sorting data objects within a window. If two data objects are considered equal by the comparator, they are considered "peer" values of equal rank. If sort is not specified, the order is undefined: data objects are processed in the order they are observed and none are considered peers (the ignorePeers parameter is ignored and treated as if set to `true`).
 
 <a id="window" href="#window">#</a>
 <em>window</em>.<b>window</b>(<em>...value</em>)

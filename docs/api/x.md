@@ -9,6 +9,7 @@ Specify the <code>x</code> encoding channel.
 * <a href="#argmin">argmin</a>
 * <a href="#average">average</a>
 * <a href="#axis">axis</a>
+* <a href="#band">band</a>
 * <a href="#bin">bin</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
@@ -127,6 +128,13 @@ If `null`, the axis for the encoding channel will be removed.
 __Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.
 
 __See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation.
+
+<a id="band" href="#band">#</a>
+<em>x</em>.<b>band</b>(<em>value</em>)
+
+For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band) or time units. If set to `1`, the mark size is set to the bandwidth or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
+
+For other marks, relative position on a band of a stacked, binned, time unit or band scale.  If set to `0`, the marks will be positioned at the beginning of the band.  If set to `0.5`, the marks will be positioned in the middle of the band.
 
 <a id="bin" href="#bin">#</a>
 <em>x</em>.<b>bin</b>(<em>value</em>)
@@ -303,15 +311,15 @@ Sort order for the encoded field.
 For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or `"descending"`.
 
 For discrete fields, `sort` can be one of the following:
-- `"ascending"` or `"descending"` -- for sorting by the values' natural order in Javascript.
-- [A sort-by-encoding definition](https://vega.github.io/vega-lite/docs/sort.html#sort-by-encoding) for sorting by another encoding channel. (This type of sort definition is not available for `row` and `column` channels.)
+- `"ascending"` or `"descending"` -- for sorting by the values' natural order in JavaScript.
+- [A string indicating an encoding channel name to sort by](https://vega.github.io/vega-lite/docs/sort.html#sort-by-encoding) (e.g., `"x"` or `"y"`) with an optional minus prefix for descending sort (e.g., `"-x"` to sort by x-field, descending).  This channel string is short-form of [a sort-by-encoding definition](https://vega.github.io/vega-lite/docs/sort.html#sort-by-encoding). For example, `"sort": "-x"` is equivalent to `"sort": {"encoding": "x", "order": "descending"}`.
 - [A sort field definition](https://vega.github.io/vega-lite/docs/sort.html#sort-field) for sorting by another field.
 - [An array specifying the field values in preferred order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the sort order will obey the values in the array, followed by any unspecified values in their original order.  For discrete time field, values in the sort array can be [date-time definition objects](types#datetime). In addition, for time units `"month"` and `"day"`, the values can be the month or day names (case insensitive) or their 3-letter initials (e.g., `"Mon"`, `"Tue"`).
 - `null` indicating no sort.
 
 __Default value:__ `"ascending"`
 
-__Note:__ `null` is not supported for `row` and `column`.
+__Note:__ `null` and sorting by another channel is not supported for `row` and `column`.
 
 __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
 
@@ -594,7 +602,7 @@ Apply the <code>valid</code> aggregate operation prior to encoding.
 <a id="value" href="#value">#</a>
 <em>x</em>.<b>value</b>(<em>value</em>)
 
-A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between `0` to `1` for opacity).
+A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
 <em>x</em>.<b>variance</b>(<em>field</em>)

@@ -30,6 +30,7 @@ The behavior of this method depends on the argument type:
 * <a href="#formatType">formatType</a>
 * <a href="#hours">hours</a>
 * <a href="#if">if</a>
+* <a href="#labelExpr">labelExpr</a>
 * <a href="#max">max</a>
 * <a href="#mean">mean</a>
 * <a href="#median">median</a>
@@ -233,6 +234,13 @@ Apply the <code>hours</code> timeUnit operation prior to encoding.
 <em>href</em>.<b>if</b>(<em>...condition</em>)
 
 Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).
+
+<a id="labelExpr" href="#labelExpr">#</a>
+<em>href</em>.<b>labelExpr</b>(<em>value</em>)
+
+[Vega expression](https://vega.github.io/vega/docs/expressions/) for customizing labels text.
+
+__Note:__ The label text and value can be assessed via the `label` and `value` properties of the axis's backing `datum` object.
 
 <a id="max" href="#max">#</a>
 <em>href</em>.<b>max</b>(<em>field</em>)
@@ -553,7 +561,7 @@ Apply the <code>valid</code> aggregate operation prior to encoding.
 <a id="value" href="#value">#</a>
 <em>href</em>.<b>value</b>(<em>value</em>)
 
-A constant value in visual domain (e.g., `"red"` / "#0099ff" for color, values between `0` to `1` for opacity).
+A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
 <em>href</em>.<b>variance</b>(<em>field</em>)

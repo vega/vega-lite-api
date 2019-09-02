@@ -33,7 +33,6 @@ Vertically concatenate charts.
 
 Sets how the visualization size should be determined. If a string, should be one of `"pad"`, `"fit"` or `"none"`.
 Object values can additionally specify parameters for content sizing and automatic resizing.
-`"fit"` is only supported for single and layered views that don't use `rangeStep`.
 
 __Default value__: `pad`
 

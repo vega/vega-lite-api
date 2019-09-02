@@ -20,8 +20,8 @@ Define a new <code>multi</code> selection.
 <a id="clear" href="#clear">#</a>
 <em>selectMulti</em>.<b>clear</b>(<em>value</em>)
 
-Clears the selection, emptying it of all values. Can be an
-[EventStream](https://vega.github.io/vega/docs/event-streams/) or `false` to disable.
+Clears the selection, emptying it of all values. Can be a
+[Event Stream](https://vega.github.io/vega/docs/event-streams/) or `false` to disable.
 
 __Default value:__ `dblclick`.
 

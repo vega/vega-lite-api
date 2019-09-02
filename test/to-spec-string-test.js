@@ -1,7 +1,11 @@
-var tape = require('tape'),
-    vega = require('vega'),
-    vegalite = require('vega-lite'),
-    vl = require('../');
+const tape = require('tape'),
+      vega = require('vega'),
+      vegalite = require('vega-lite'),
+      vl = require('../');
+
+// pull schema version from vegalite.version
+const $SCHEMA = 'https://vega.github.io/schema/vega-lite/'
+  + `v${vegalite.version.split('.')[0]}.json`;
 
 function equalSpec(t, api, spec) {
   t.equal(JSON.stringify(api.toSpec()), JSON.stringify(spec));
@@ -22,7 +26,7 @@ tape('Top-level specification types generate Vega-Lite specs', async function(t)
 
   const mark = vl.markCircle();
   equalSpec(t, mark, {
-    $schema: `https://vega.github.io/schema/vega-lite/v3.json`,
+    $schema: $SCHEMA,
     mark: {type: 'circle'}
   });
 
@@ -44,11 +48,11 @@ tape('Top-level specification types generate Vega-Lite spec strings', async func
 
   const mark = vl.markCircle();
   t.equal(mark.toString(), JSON.stringify({
-    $schema: `https://vega.github.io/schema/vega-lite/v3.json`,
+    $schema: $SCHEMA,
     mark: {type: 'circle'}
   }));
   t.equal(mark.toString(2), JSON.stringify({
-    $schema: `https://vega.github.io/schema/vega-lite/v3.json`,
+    $schema: $SCHEMA,
     mark: {type: 'circle'}
   }, null, 2));
 

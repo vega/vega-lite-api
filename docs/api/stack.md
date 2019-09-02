@@ -28,7 +28,9 @@ The data fields to group by.
 <a id="offset" href="#offset">#</a>
 <em>stack</em>.<b>offset</b>(<em>value</em>)
 
-Mode for stacking marks.
+Mode for stacking marks. One of `"zero"` (default), `"center"`, or `"normalize"`.
+The `"zero"` offset will stack starting at `0`. The `"center"` offset will center the stacks. The `"normalize"` offset will compute percentage values for each stack point, with output values in the range `[0,1]`.
+
 __Default value:__ `"zero"`
 
 <a id="sort" href="#sort">#</a>

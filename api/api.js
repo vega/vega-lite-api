@@ -81,8 +81,8 @@ export const api = {
 
   // data specification
   data: data(),
-  url: source('url', ['url']),
-  values: source('inline', ['values']),
+  urlData: source('url', ['url']),
+  inlineData: source('inline', ['values']),
   ...generators(),
   ...sources(),
   ...formats(),

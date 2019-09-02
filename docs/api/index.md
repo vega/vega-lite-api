@@ -10,6 +10,7 @@
 - <a href="markErrorband">vl.<b>markErrorband</b></a> - Create a new <code>errorband</code> mark.
 - <a href="markErrorbar">vl.<b>markErrorbar</b></a> - Create a new <code>errorbar</code> mark.
 - <a href="markGeoshape">vl.<b>markGeoshape</b></a> - Create a new <code>geoshape</code> mark.
+- <a href="markImage">vl.<b>markImage</b></a> - Create a new <code>image</code> mark.
 - <a href="markLine">vl.<b>markLine</b></a> - Create a new <code>line</code> mark.
 - <a href="markPoint">vl.<b>markPoint</b></a> - Create a new <code>point</code> mark.
 - <a href="markRect">vl.<b>markRect</b></a> - Create a new <code>rect</code> mark.
@@ -31,8 +32,8 @@
 ### Data
 
 - <a href="data">vl.<b>data</b></a> - Create a new data reference for a chart or lookup.
-- <a href="url">vl.<b>url</b></a> - Define a url data source.
-- <a href="values">vl.<b>values</b></a> - Define a inline data source.
+- <a href="urlData">vl.<b>urlData</b></a> - Define a url data source.
+- <a href="inlineData">vl.<b>inlineData</b></a> - Define a inline data source.
 - <a href="sequence">vl.<b>sequence</b></a> - Define a <code>sequence</code> data generator.
 - <a href="sphere">vl.<b>sphere</b></a> - Define a <code>sphere</code> data generator.
 - <a href="graticule">vl.<b>graticule</b></a> - Define a <code>graticule</code> data generator.
@@ -72,6 +73,7 @@
 - <a href="strokeWidth">vl.<b>strokeWidth</b></a> - Specify the <code>strokeWidth</code> encoding channel.
 - <a href="text">vl.<b>text</b></a> - Specify the <code>text</code> encoding channel.
 - <a href="tooltip">vl.<b>tooltip</b></a> - Specify the <code>tooltip</code> encoding channel.
+- <a href="url">vl.<b>url</b></a> - Specify the <code>url</code> encoding channel.
 - <a href="x">vl.<b>x</b></a> - Specify the <code>x</code> encoding channel.
 - <a href="x2">vl.<b>x2</b></a> - Specify the <code>x2</code> encoding channel.
 - <a href="xError">vl.<b>xError</b></a> - Specify the <code>xError</code> encoding channel.

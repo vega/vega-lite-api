@@ -10,12 +10,16 @@ The behavior of this method depends on the argument type:
 ## <code>facet</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>
+* <a href="#align">align</a>
 * <a href="#argmax">argmax</a>
 * <a href="#argmin">argmin</a>
 * <a href="#average">average</a>
 * <a href="#bin">bin</a>
+* <a href="#bounds">bounds</a>
+* <a href="#center">center</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
+* <a href="#columns">columns</a>
 * <a href="#count">count</a>
 * <a href="#date">date</a>
 * <a href="#day">day</a>
@@ -41,6 +45,7 @@ The behavior of this method depends on the argument type:
 * <a href="#quarter">quarter</a>
 * <a href="#seconds">seconds</a>
 * <a href="#sort">sort</a>
+* <a href="#spacing">spacing</a>
 * <a href="#stderr">stderr</a>
 * <a href="#stdev">stdev</a>
 * <a href="#stdevp">stdevp</a>
@@ -104,6 +109,20 @@ __Default value:__ `undefined` (None)
 
 __See also:__ [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html) documentation.
 
+<a id="align" href="#align">#</a>
+<em>facet</em>.<b>align</b>(<em>value</em>)
+
+The alignment to apply to grid rows and columns.
+The supported string values are `"all"`, `"each"`, and `"none"`.
+
+- For `"none"`, a flow layout will be used, in which adjacent subviews are simply placed one after the other.
+- For `"each"`, subviews will be aligned into a clean grid structure, but each row or column may be of variable size.
+- For `"all"`, subviews will be aligned and each row or column will be sized identically based on the maximum observed size. String values for this property will be applied to both grid rows and columns.
+
+Alternatively, an object value of the form `{"row": string, "column": string}` can be used to supply different alignments for rows and columns.
+
+__Default value:__ `"all"`.
+
 <a id="argmax" href="#argmax">#</a>
 <em>facet</em>.<b>argmax</b>(<em>field</em>)
 
@@ -132,6 +151,25 @@ __Default value:__ `false`
 
 __See also:__ [`bin`](https://vega.github.io/vega-lite/docs/bin.html) documentation.
 
+<a id="bounds" href="#bounds">#</a>
+<em>facet</em>.<b>bounds</b>(<em>value</em>)
+
+The bounds calculation method to use for determining the extent of a sub-plot. One of `full` (the default) or `flush`.
+
+- If set to `full`, the entire calculated bounds (including axes, title, and legend) will be used.
+- If set to `flush`, only the specified width and height values for the sub-view will be used. The `flush` setting can be useful when attempting to place sub-plots without axes or legends into a uniform grid structure.
+
+__Default value:__ `"full"`
+
+<a id="center" href="#center">#</a>
+<em>facet</em>.<b>center</b>(<em>value</em>)
+
+Boolean flag indicating if subviews should be centered relative to their respective rows or columns.
+
+An object value of the form `{"row": boolean, "column": boolean}` can be used to supply different centering values for rows and columns.
+
+__Default value:__ `false`
+
 <a id="ci0" href="#ci0">#</a>
 <em>facet</em>.<b>ci0</b>(<em>field</em>)
 
@@ -141,6 +179,22 @@ Apply the <code>ci0</code> aggregate operation prior to encoding.
 <em>facet</em>.<b>ci1</b>(<em>field</em>)
 
 Apply the <code>ci1</code> aggregate operation prior to encoding.
+
+<a id="columns" href="#columns">#</a>
+<em>facet</em>.<b>columns</b>(<em>value</em>)
+
+The number of columns to include in the view composition layout.
+
+__Default value__: `undefined` -- An infinite number of columns (a single row) will be assumed. This is equivalent to
+`hconcat` (for `concat`) and to using the `column` channel (for `facet` and `repeat`).
+
+__Note__:
+
+1) This property is only for:
+- the general (wrappable) `concat` operator (not `hconcat`/`vconcat`)
+- the `facet` and `repeat` operator with one field/repetition definition (without row/column nesting)
+
+2) Setting the `columns` to `1` is equivalent to `vconcat` (for `concat`) and to using the `row` channel (for `facet` and `repeat`).
 
 <a id="count" href="#count">#</a>
 <em>facet</em>.<b>count</b>(<em></em>)
@@ -279,7 +333,7 @@ Sort order for the encoded field.
 For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or `"descending"`.
 
 For discrete fields, `sort` can be one of the following:
-- `"ascending"` or `"descending"` -- for sorting by the values' natural order in Javascript.
+- `"ascending"` or `"descending"` -- for sorting by the values' natural order in JavaScript.
 - [A sort field definition](https://vega.github.io/vega-lite/docs/sort.html#sort-field) for sorting by another field.
 - [An array specifying the field values in preferred order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the sort order will obey the values in the array, followed by any unspecified values in their original order.  For discrete time field, values in the sort array can be [date-time definition objects](types#datetime). In addition, for time units `"month"` and `"day"`, the values can be the month or day names (case insensitive) or their 3-letter initials (e.g., `"Mon"`, `"Tue"`).
 - `null` indicating no sort.
@@ -287,6 +341,15 @@ For discrete fields, `sort` can be one of the following:
 __Default value:__ `"ascending"`
 
 __Note:__ `null` is not supported for `row` and `column`.
+
+<a id="spacing" href="#spacing">#</a>
+<em>facet</em>.<b>spacing</b>(<em>value</em>)
+
+The spacing in pixels between sub-views of the composition operator.
+An object of the form `{"row": number, "column": number}` can be used to set
+different spacing values for rows and columns.
+
+__Default value__: Depends on `"spacing"` property of [the view composition configuration](https://vega.github.io/vega-lite/docs/config.html#view-config) (`20` by default)
 
 <a id="stderr" href="#stderr">#</a>
 <em>facet</em>.<b>stderr</b>(<em>field</em>)
