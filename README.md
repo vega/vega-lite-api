@@ -1,6 +1,6 @@
 # Vega-Lite API <a href="https://vega.github.io/vega-lite/"><img align="right" src="https://github.com/vega/logos/blob/master/assets/VL_Color@64.png?raw=true" height="38" /></a>
 
-![Gallery Image](https://vega.github.io/vega-lite/site/static/teaser.png)
+![Gallery Image](https://vega.github.io/vega-lite/static/teaser.png)
 
 A JavaScript API for creating Vega-Lite JSON specifications. [Vega-Lite](https://vega.github.io/vega-lite/) is a high-level grammar for visual analysis that generates complete [Vega](https://vega.github.io/) specifications.
 
