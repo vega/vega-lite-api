@@ -25,13 +25,13 @@
     "minify": "terser build/vega-lite-api.js -c -m -o build/vega-lite-api.min.js"
   },
   "devDependencies": {
-    "eslint": "^6.2.0",
+    "eslint": "^6.6.0",
     "rimraf": "^3.0.0",
-    "rollup": "^1.19.4",
+    "rollup": "^1.26.5",
     "rollup-plugin-json": "^4.0.0",
     "tape": "^4.11.0",
-    "terser": "^4.1.4",
-    "vega": "^5.4.0",
+    "terser": "^4.4.0",
+    "vega": "^5.7.3",
     "vega-lite": "^3.4.0"
   }
 }
