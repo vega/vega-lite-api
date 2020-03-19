@@ -1,5 +1,5 @@
 const rollup = require('rollup'),
-      json = require('rollup-plugin-json'),
+      json = require('@rollup/plugin-json'),
       generate = 'build/generate-api.js',
       output = 'build/vega-lite-api.js';
 
