@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.2.0-beta",
+  "version": "0.2.0",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
