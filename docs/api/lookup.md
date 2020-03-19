@@ -14,9 +14,15 @@ Extend input data with values from another data source.
 <a id="as" href="#as">#</a>
 <em>lookup</em>.<b>as</b>(<em>...value</em>)
 
-The field or fields for storing the computed formula value.
-If `from.fields` is specified, the transform will use the same names for `as`.
-If `from.fields` is not specified, `as` has to be a string and we put the whole object into the data under the specified name.
+The output fields on which to store the looked up data values.
+
+For data lookups, this property may be left blank if `from.fields`
+has been specified (those field names will be used); if `from.fields`
+has not been specified, `as` must be a string.
+
+For selection lookups, this property is optional: if unspecified,
+looked up values will be stored under a property named for the selection;
+and if specified, it must correspond to `from.fields`.
 
 <a id="default" href="#default">#</a>
 <em>lookup</em>.<b>default</b>(<em>value</em>)
@@ -28,7 +34,7 @@ __Default value:__ `null`
 <a id="from" href="#from">#</a>
 <em>lookup</em>.<b>from</b>(<em>value</em>)
 
-Secondary data reference.
+Data source or selection for secondary data reference.
 
 <a id="lookup" href="#lookup">#</a>
 <em>lookup</em>.<b>lookup</b>(<em>value</em>)

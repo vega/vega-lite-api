@@ -5,6 +5,7 @@ export const aggregateOps = {
   distinct: ['distinct', 'field'],
   sum: ['sum', 'field'],
   mean: ['mean', 'field'],
+  product: ['product', 'field'],
   average: ['average', 'field'],
   variance: ['variance', 'field'],
   variancep: ['variancep', 'field'],

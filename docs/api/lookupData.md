@@ -24,7 +24,7 @@ Secondary data source to lookup in.
 <a id="fields" href="#fields">#</a>
 <em>lookupData</em>.<b>fields</b>(<em>...value</em>)
 
-Fields in foreign data to lookup.
+Fields in foreign data or selection to lookup.
 If not specified, the entire object is queried.
 
 <a id="key" href="#key">#</a>

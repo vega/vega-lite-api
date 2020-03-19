@@ -111,9 +111,9 @@ __See also:__ [`translate`](https://vega.github.io/vega-lite/docs/translate.html
 
 Determines the default event processing and data query for the selection. Vega-Lite currently supports three selection types:
 
-- `single` -- to select a single discrete data value on `click`.
-- `multi` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
-- `interval` -- to select a continuous range of data values on `drag`.
+- `"single"` -- to select a single discrete data value on `click`.
+- `"multi"` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
+- `"interval"` -- to select a continuous range of data values on `drag`.
 
 <a id="zoom" href="#zoom">#</a>
 <em>selectInterval</em>.<b>zoom</b>(<em>value</em>)

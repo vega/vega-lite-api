@@ -31,7 +31,7 @@ Horizontally concatenate charts.
 <a id="autosize" href="#autosize">#</a>
 <em>hconcat</em>.<b>autosize</b>(<em>value</em>)
 
-Sets how the visualization size should be determined. If a string, should be one of `"pad"`, `"fit"` or `"none"`.
+How the visualization size should be determined. If a string, should be one of `"pad"`, `"fit"` or `"none"`.
 Object values can additionally specify parameters for content sizing and automatic resizing.
 
 __Default value__: `pad`
@@ -41,7 +41,7 @@ __Default value__: `pad`
 
 CSS color property to use as the background of the entire view.
 
-__Default value:__ none (transparent)
+__Default value:__ `"white"`
 
 <a id="bounds" href="#bounds">#</a>
 <em>hconcat</em>.<b>bounds</b>(<em>value</em>)
@@ -63,7 +63,7 @@ __Default value:__ `false`
 <a id="config" href="#config">#</a>
 <em>hconcat</em>.<b>config</b>(<em>value</em>)
 
-Vega-Lite configuration object.  This property can only be defined at the top-level of a specification.
+Vega-Lite configuration object. This property can only be defined at the top-level of a specification.
 
 <a id="data" href="#data">#</a>
 <em>hconcat</em>.<b>data</b>(<em>data</em>)
@@ -100,7 +100,7 @@ Name of the visualization for later reference.
 <a id="padding" href="#padding">#</a>
 <em>hconcat</em>.<b>padding</b>(<em>value</em>)
 
-The default visualization padding, in pixels, from the edge of the visualization canvas to the data rectangle.  If a number, specifies padding for all sides.
+The default visualization padding, in pixels, from the edge of the visualization canvas to the data rectangle. If a number, specifies padding for all sides.
 If an object, the value should have the format `{"left": 5, "top": 5, "right": 5, "bottom": 5}` to specify padding for each side of the visualization.
 
 __Default value__: `5`

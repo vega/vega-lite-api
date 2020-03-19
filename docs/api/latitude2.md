@@ -35,6 +35,7 @@ The behavior of this method depends on the argument type:
 * <a href="#minutes">minutes</a>
 * <a href="#missing">missing</a>
 * <a href="#month">month</a>
+* <a href="#product">product</a>
 * <a href="#q1">q1</a>
 * <a href="#q3">q3</a>
 * <a href="#quarter">quarter</a>
@@ -96,7 +97,7 @@ The behavior of this method depends on the argument type:
 <em>latitude2</em>.<b>aggregate</b>(<em>value</em>)
 
 Aggregation function for the field
-(e.g., `mean`, `sum`, `median`, `min`, `max`, `count`).
+(e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
 
 __Default value:__ `undefined` (None)
 
@@ -124,7 +125,7 @@ A flag for binning a `quantitative` field, [an object defining binning parameter
 
 - If `true`, default [binning parameters](https://vega.github.io/vega-lite/docs/bin.html) will be applied.
 
-- If `"binned"`, this indicates that the data for the `x` (or `y`) channel are already binned. You can map the bin-start field to `x` (or `y`) and the bin-end field to `x2` (or `y2`). The scale and axis will be formatted similar to binning in Vega-lite.  To adjust the axis ticks based on the bin step, you can also set the axis's [`tickMinStep`](https://vega.github.io/vega-lite/docs/axis.html#ticks) property.
+- If `"binned"`, this indicates that the data for the `x` (or `y`) channel are already binned. You can map the bin-start field to `x` (or `y`) and the bin-end field to `x2` (or `y2`). The scale and axis will be formatted similar to binning in Vega-Lite.  To adjust the axis ticks based on the bin step, you can also set the axis's [`tickMinStep`](https://vega.github.io/vega-lite/docs/axis.html#ticks) property.
 
 __Default value:__ `false`
 
@@ -243,6 +244,11 @@ Apply the <code>missing</code> aggregate operation prior to encoding.
 <em>latitude2</em>.<b>month</b>(<em>field</em>)
 
 Apply the <code>month</code> timeUnit operation prior to encoding.
+
+<a id="product" href="#product">#</a>
+<em>latitude2</em>.<b>product</b>(<em>field</em>)
+
+Apply the <code>product</code> aggregate operation prior to encoding.
 
 <a id="q1" href="#q1">#</a>
 <em>latitude2</em>.<b>q1</b>(<em>field</em>)
@@ -369,7 +375,7 @@ Apply the <code>yearquartermonth</code> timeUnit operation prior to encoding.
 
 A title for the field. If `null`, the title will be removed.
 
-__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  If the field has an aggregate function, the function is displayed as part of the title (e.g., `"Sum of Profit"`). If the field is binned or has a time unit applied, the applied function is shown in parentheses (e.g., `"Profit (binned)"`, `"Transaction Date (year-month)"`).  Otherwise, the title is simply the field name.
+__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`). If the field has an aggregate function, the function is displayed as part of the title (e.g., `"Sum of Profit"`). If the field is binned or has a time unit applied, the applied function is shown in parentheses (e.g., `"Profit (binned)"`, `"Transaction Date (year-month)"`). Otherwise, the title is simply the field name.
 
 __Notes__:
 

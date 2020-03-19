@@ -7,6 +7,7 @@ Define a new HTML <code>radio</code> input element binding.
 * <a href="#debounce">debounce</a>
 * <a href="#element">element</a>
 * <a href="#input">input</a>
+* <a href="#labels">labels</a>
 * <a href="#name">name</a>
 * <a href="#options">options</a>
 * <a href="#type">type</a>
@@ -21,6 +22,9 @@ Define a new HTML <code>radio</code> input element binding.
 
 <a id="input" href="#input">#</a>
 <em>radio</em>.<b>input</b>(<em>value</em>)
+
+<a id="labels" href="#labels">#</a>
+<em>radio</em>.<b>labels</b>(<em>...value</em>)
 
 <a id="name" href="#name">#</a>
 <em>radio</em>.<b>name</b>(<em>value</em>)

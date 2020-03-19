@@ -69,6 +69,7 @@
 - <a href="shape">vl.<b>shape</b></a> - Specify the <code>shape</code> encoding channel.
 - <a href="size">vl.<b>size</b></a> - Specify the <code>size</code> encoding channel.
 - <a href="stroke">vl.<b>stroke</b></a> - Specify the <code>stroke</code> encoding channel.
+- <a href="strokeDash">vl.<b>strokeDash</b></a> - Specify the <code>strokeDash</code> encoding channel.
 - <a href="strokeOpacity">vl.<b>strokeOpacity</b></a> - Specify the <code>strokeOpacity</code> encoding channel.
 - <a href="strokeWidth">vl.<b>strokeWidth</b></a> - Specify the <code>strokeWidth</code> encoding channel.
 - <a href="text">vl.<b>text</b></a> - Specify the <code>text</code> encoding channel.
@@ -122,13 +123,18 @@
 - <a href="aggregate">vl.<b>aggregate</b></a> - Group and summarize data as counts, sums, averages, etc.
 - <a href="bin">vl.<b>bin</b></a> - Discretize numeric values into uniform bins.
 - <a href="calculate">vl.<b>calculate</b></a> - Calculate a new data field value.
+- <a href="density">vl.<b>density</b></a> - Estimate smoothed densities for numeric values.
 - <a href="filter">vl.<b>filter</b></a> - Remove data that does not match provided conditions.
 - <a href="flatten">vl.<b>flatten</b></a> - Map array fields to new records, one per array entry.
 - <a href="fold">vl.<b>fold</b></a> - Collapse one or more data fields into two key, value fields.
 - <a href="impute">vl.<b>impute</b></a> - Fill in missing values with imputed values.
 - <a href="joinaggregate">vl.<b>joinaggregate</b></a> - Extend input data with aggregate values as new fields.
 - <a href="join">vl.<b>join</b></a> - A convenient shorthand for joinaggregate.
+- <a href="loess">vl.<b>loess</b></a> - Fit a smoothed trend line using local regression.
 - <a href="lookup">vl.<b>lookup</b></a> - Extend input data with values from another data source.
+- <a href="pivot">vl.<b>pivot</b></a> - Pivot unique values to new aggregate fields.
+- <a href="quantile">vl.<b>quantile</b></a> - Calculate sample quantile values for input data.
+- <a href="regression">vl.<b>regression</b></a> - Fit regression models to smooth and predict values.
 - <a href="sample">vl.<b>sample</b></a> - Filter random records from the data limit its size.
 - <a href="stack">vl.<b>stack</b></a> - Compute running sums to stack groups of values.
 - <a href="timeUnit">vl.<b>timeUnit</b></a> - Discretize date/time values into meaningful intervals.
@@ -143,6 +149,7 @@
 - <a href="distinct">vl.<b>distinct</b></a> - Specify a <code>distinct</code> aggregate operation.
 - <a href="sum">vl.<b>sum</b></a> - Specify a <code>sum</code> aggregate operation.
 - <a href="mean">vl.<b>mean</b></a> - Specify a <code>mean</code> aggregate operation.
+- <a href="product">vl.<b>product</b></a> - Specify a <code>product</code> aggregate operation.
 - <a href="average">vl.<b>average</b></a> - Specify an <code>average</code> aggregate operation.
 - <a href="variance">vl.<b>variance</b></a> - Specify a <code>variance</code> aggregate operation.
 - <a href="variancep">vl.<b>variancep</b></a> - Specify a <code>variancep</code> aggregate operation.

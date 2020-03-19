@@ -4,6 +4,7 @@ Define a new <code>multi</code> selection.
 
 ## <code>selectMulti</code> Method Overview
 
+* <a href="#bind">bind</a>
 * <a href="#clear">clear</a>
 * <a href="#empty">empty</a>
 * <a href="#encodings">encodings</a>
@@ -16,6 +17,14 @@ Define a new <code>multi</code> selection.
 * <a href="#type">type</a>
 
 ## <code>selectMulti</code> API Reference
+
+<a id="bind" href="#bind">#</a>
+<em>selectMulti</em>.<b>bind</b>(<em>value</em>)
+
+When set, a selection is populated by interacting with the corresponding legend. Direct manipulation interaction is disabled by default;
+to re-enable it, set the selection's [`on`](https://vega.github.io/vega-lite/docs/selection.html#common-selection-properties) property.
+
+Legend bindings are restricted to selections that only specify a single field or encoding.
 
 <a id="clear" href="#clear">#</a>
 <em>selectMulti</em>.<b>clear</b>(<em>value</em>)
@@ -97,7 +106,7 @@ __See also:__ [`toggle`](https://vega.github.io/vega-lite/docs/toggle.html) docu
 
 Determines the default event processing and data query for the selection. Vega-Lite currently supports three selection types:
 
-- `single` -- to select a single discrete data value on `click`.
-- `multi` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
-- `interval` -- to select a continuous range of data values on `drag`.
+- `"single"` -- to select a single discrete data value on `click`.
+- `"multi"` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
+- `"interval"` -- to select a continuous range of data values on `drag`.
 
