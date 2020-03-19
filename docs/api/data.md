@@ -12,6 +12,7 @@ The behavior of this method depends on the argument type:
 
 * <a href="#autosize">autosize</a>
 * <a href="#background">background</a>
+* <a href="#bounds">bounds</a>
 * <a href="#config">config</a>
 * <a href="#data">data</a>
 * <a href="#datasets">datasets</a>
@@ -47,7 +48,7 @@ The behavior of this method depends on the argument type:
 <a id="autosize" href="#autosize">#</a>
 <em>data</em>.<b>autosize</b>(<em>value</em>)
 
-Sets how the visualization size should be determined. If a string, should be one of `"pad"`, `"fit"` or `"none"`.
+How the visualization size should be determined. If a string, should be one of `"pad"`, `"fit"` or `"none"`.
 Object values can additionally specify parameters for content sizing and automatic resizing.
 
 __Default value__: `pad`
@@ -57,12 +58,22 @@ __Default value__: `pad`
 
 CSS color property to use as the background of the entire view.
 
-__Default value:__ none (transparent)
+__Default value:__ `"white"`
+
+<a id="bounds" href="#bounds">#</a>
+<em>data</em>.<b>bounds</b>(<em>value</em>)
+
+The bounds calculation method to use for determining the extent of a sub-plot. One of `full` (the default) or `flush`.
+
+- If set to `full`, the entire calculated bounds (including axes, title, and legend) will be used.
+- If set to `flush`, only the specified width and height values for the sub-view will be used. The `flush` setting can be useful when attempting to place sub-plots without axes or legends into a uniform grid structure.
+
+__Default value:__ `"full"`
 
 <a id="config" href="#config">#</a>
 <em>data</em>.<b>config</b>(<em>value</em>)
 
-Vega-Lite configuration object.  This property can only be defined at the top-level of a specification.
+Vega-Lite configuration object. This property can only be defined at the top-level of a specification.
 
 <a id="data" href="#data">#</a>
 <em>data</em>.<b>data</b>(<em>data</em>)
@@ -113,10 +124,11 @@ The height of a visualization.
 
 - For a plot with a continuous y-field, height should be a number.
 - For a plot with either a discrete y-field or no y-field, height can be either a number indicating a fixed height or an object in the form of `{step: number}` defining the height per discrete step. (No y-field is equivalent to having one discrete step.)
+- To enable responsive sizing on height, it should be set to `"container"`.
 
 __Default value:__ Based on `config.view.continuousHeight` for a plot with a continuous y-field and `config.view.discreteHeight` otherwise.
 
-__Note:__ For plots with [`row` and `column` channels](https://vega.github.io/vega-lite/docs/encoding.html#facet), this represents the height of a single view.
+__Note:__ For plots with [`row` and `column` channels](https://vega.github.io/vega-lite/docs/encoding.html#facet), this represents the height of a single view and the `"container"` option cannot be used.
 
 __See also:__ [`height`](https://vega.github.io/vega-lite/docs/size.html) documentation.
 
@@ -153,7 +165,7 @@ Name of the visualization for later reference.
 <a id="padding" href="#padding">#</a>
 <em>data</em>.<b>padding</b>(<em>value</em>)
 
-The default visualization padding, in pixels, from the edge of the visualization canvas to the data rectangle.  If a number, specifies padding for all sides.
+The default visualization padding, in pixels, from the edge of the visualization canvas to the data rectangle. If a number, specifies padding for all sides.
 If an object, the value should have the format `{"left": 5, "top": 5, "right": 5, "bottom": 5}` to specify padding for each side of the visualization.
 
 __Default value__: `5`
@@ -233,11 +245,12 @@ The width of a visualization.
 
 - For a plot with a continuous x-field, width should be a number.
 - For a plot with either a discrete x-field or no x-field, width can be either a number indicating a fixed width or an object in the form of `{step: number}` defining the width per discrete step. (No x-field is equivalent to having one discrete step.)
+- To enable responsive sizing on width, it should be set to `"container"`.
 
 __Default value:__
 Based on `config.view.continuousWidth` for a plot with a continuous x-field and `config.view.discreteWidth` otherwise.
 
-__Note:__ For plots with [`row` and `column` channels](https://vega.github.io/vega-lite/docs/encoding.html#facet), this represents the width of a single view.
+__Note:__ For plots with [`row` and `column` channels](https://vega.github.io/vega-lite/docs/encoding.html#facet), this represents the width of a single view and the `"container"` option cannot be used.
 
 __See also:__ [`width`](https://vega.github.io/vega-lite/docs/size.html) documentation.
 

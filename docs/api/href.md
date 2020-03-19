@@ -39,6 +39,7 @@ The behavior of this method depends on the argument type:
 * <a href="#minutes">minutes</a>
 * <a href="#missing">missing</a>
 * <a href="#month">month</a>
+* <a href="#product">product</a>
 * <a href="#q1">q1</a>
 * <a href="#q3">q3</a>
 * <a href="#quarter">quarter</a>
@@ -101,7 +102,7 @@ The behavior of this method depends on the argument type:
 <em>href</em>.<b>aggregate</b>(<em>value</em>)
 
 Aggregation function for the field
-(e.g., `mean`, `sum`, `median`, `min`, `max`, `count`).
+(e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
 
 __Default value:__ `undefined` (None)
 
@@ -129,7 +130,7 @@ A flag for binning a `quantitative` field, [an object defining binning parameter
 
 - If `true`, default [binning parameters](https://vega.github.io/vega-lite/docs/bin.html) will be applied.
 
-- If `"binned"`, this indicates that the data for the `x` (or `y`) channel are already binned. You can map the bin-start field to `x` (or `y`) and the bin-end field to `x2` (or `y2`). The scale and axis will be formatted similar to binning in Vega-lite.  To adjust the axis ticks based on the bin step, you can also set the axis's [`tickMinStep`](https://vega.github.io/vega-lite/docs/axis.html#ticks) property.
+- If `"binned"`, this indicates that the data for the `x` (or `y`) channel are already binned. You can map the bin-start field to `x` (or `y`) and the bin-end field to `x2` (or `y2`). The scale and axis will be formatted similar to binning in Vega-Lite.  To adjust the axis ticks based on the bin step, you can also set the axis's [`tickMinStep`](https://vega.github.io/vega-lite/docs/axis.html#ticks) property.
 
 __Default value:__ `false`
 
@@ -207,19 +208,22 @@ Encode the field as a temporal data type.
 <a id="format" href="#format">#</a>
 <em>href</em>.<b>format</b>(<em>value</em>)
 
-The text formatting pattern for labels of guides (axes, legends, headers) and text marks.
+When used with the default `"number"` and `"time"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.
 
 - If the format type is `"number"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).
 - If the format type is `"time"` (e.g., for temporal fields), this is D3's [time format pattern](https://github.com/d3/d3-time-format#locale_format).
 
 See the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.
 
+When used with a [custom `"formatType"`](https://vega.github.io/vega-lite/usage/compile.html#format-type) that takes `datum.value` and format parameter as input), this property represents the format parameter.
+
 __Default value:__  Derived from [numberFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for number format and from [timeFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for time format.
 
 <a id="formatType" href="#formatType">#</a>
 <em>href</em>.<b>formatType</b>(<em>value</em>)
 
-The format type for labels (`"number"` or `"time"`).
+The format type for labels (`"number"` or `"time"` or a [registered custom format type](https://vega.github.io/vega-lite/usage/compile.html#format-type)).
+
 
 __Default value:__
 - `"time"` for temporal fields and ordinal and nomimal fields with `timeUnit`.
@@ -281,6 +285,11 @@ Apply the <code>missing</code> aggregate operation prior to encoding.
 <em>href</em>.<b>month</b>(<em>field</em>)
 
 Apply the <code>month</code> timeUnit operation prior to encoding.
+
+<a id="product" href="#product">#</a>
+<em>href</em>.<b>product</b>(<em>field</em>)
+
+Apply the <code>product</code> aggregate operation prior to encoding.
 
 <a id="q1" href="#q1">#</a>
 <em>href</em>.<b>q1</b>(<em>field</em>)
@@ -407,7 +416,7 @@ Apply the <code>yearquartermonth</code> timeUnit operation prior to encoding.
 
 A title for the field. If `null`, the title will be removed.
 
-__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  If the field has an aggregate function, the function is displayed as part of the title (e.g., `"Sum of Profit"`). If the field is binned or has a time unit applied, the applied function is shown in parentheses (e.g., `"Profit (binned)"`, `"Transaction Date (year-month)"`).  Otherwise, the title is simply the field name.
+__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`). If the field has an aggregate function, the function is displayed as part of the title (e.g., `"Sum of Profit"`). If the field is binned or has a time unit applied, the applied function is shown in parentheses (e.g., `"Profit (binned)"`, `"Transaction Date (year-month)"`). Otherwise, the title is simply the field name.
 
 __Notes__:
 
@@ -425,7 +434,7 @@ It can also be a `"geojson"` type for encoding ['geoshape'](https://vega.github.
 __Note:__
 
 - Data values for a temporal field can be either a date-time string (e.g., `"2015-03-07 12:32:17"`, `"17:01"`, `"2015-03-16"`. `"2015"`) or a timestamp number (e.g., `1552199579097`).
-- Data `type` describes the semantics of the data rather than the primitive data types (`number`, `string`, etc.). The same primitive data type can have different types of measurement. For example, numeric data can represent quantitative, ordinal, or nominal data.
+- Data `type` describes the semantics of the data rather than the primitive data types (number, string, etc.). The same primitive data type can have different types of measurement. For example, numeric data can represent quantitative, ordinal, or nominal data.
 - When using with [`bin`](https://vega.github.io/vega-lite/docs/bin.html), the `type` property can be either `"quantitative"` (for using a linear bin scale) or [`"ordinal"` (for using an ordinal bin scale)](https://vega.github.io/vega-lite/docs/type.html#cast-bin).
 - When using with [`timeUnit`](https://vega.github.io/vega-lite/docs/timeunit.html), the `type` property can be either `"temporal"` (for using a temporal scale) or [`"ordinal"` (for using an ordinal scale)](https://vega.github.io/vega-lite/docs/type.html#cast-bin).
 - When using with [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html), the `type` property refers to the post-aggregation data type. For example, we can calculate count `distinct` of a categorical field `"cat"` using `{"aggregate": "distinct", "field": "cat", "type": "quantitative"}`. The `"type"` of the aggregate output is `"quantitative"`.

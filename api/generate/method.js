@@ -281,8 +281,12 @@ function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, se
 
   emit(`prototype.${method} = function(...values) {`).indent();
 
+  emit(`if (values.length === 1 && Array.isArray(values[0])) {`).indent();
+  emit('values = values[0];').outdent();
+  emit('}');
+
   if (!pre)
-  emit(`if (arguments.length) {`).indent();
+  emit(`if (values.length) {`).indent();
   else
   emit(  `values = [${$(pre)}].concat(values)`);
 

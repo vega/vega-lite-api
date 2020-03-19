@@ -20,9 +20,13 @@ Define a new <code>single</code> selection.
 <a id="bind" href="#bind">#</a>
 <em>selectSingle</em>.<b>bind</b>(<em>value</em>)
 
-Establish a two-way binding between a single selection and input elements
-(also known as dynamic query widgets). A binding takes the form of
-Vega's [input element binding definition](https://vega.github.io/vega/docs/signals/#bind)
+When set, a selection is populated by input elements (also known as dynamic query widgets)
+or by interacting with the corresponding legend. Direct manipulation interaction is disabled by default;
+to re-enable it, set the selection's [`on`](https://vega.github.io/vega-lite/docs/selection.html#common-selection-properties) property.
+
+Legend bindings are restricted to selections that only specify a single field or encoding.
+
+Query widget binding takes the form of Vega's [input element binding definition](https://vega.github.io/vega/docs/signals/#bind)
 or can be a mapping between projected field/encodings and binding definitions.
 
 __See also:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.
@@ -94,7 +98,7 @@ __See also:__ [`resolve`](https://vega.github.io/vega-lite/docs/selection-resolv
 
 Determines the default event processing and data query for the selection. Vega-Lite currently supports three selection types:
 
-- `single` -- to select a single discrete data value on `click`.
-- `multi` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
-- `interval` -- to select a continuous range of data values on `drag`.
+- `"single"` -- to select a single discrete data value on `click`.
+- `"multi"` -- to select multiple discrete data value; the first value is selected on `click` and additional values toggled on shift-`click`.
+- `"interval"` -- to select a continuous range of data values on `drag`.
 

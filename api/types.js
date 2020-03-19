@@ -23,13 +23,18 @@ const desc = {
   aggregate: 'Group and summarize data as counts, sums, averages, etc.',
   bin: 'Discretize numeric values into uniform bins.',
   calculate: 'Calculate a new data field value.',
+  density: 'Estimate smoothed densities for numeric values.',
   filter: 'Remove data that does not match provided conditions.',
   flatten: 'Map array fields to new records, one per array entry.',
   fold: 'Collapse one or more data fields into two key, value fields.',
   impute: 'Fill in missing values with imputed values.',
   joinaggregate: 'Extend input data with aggregate values as new fields.',
   join: 'A convenient shorthand for joinaggregate.',
+  loess: 'Fit a smoothed trend line using local regression.',
   lookup: 'Extend input data with values from another data source.',
+  pivot: 'Pivot unique values to new aggregate fields.',
+  quantile: 'Calculate sample quantile values for input data.',
+  regression: 'Fit regression models to smooth and predict values.',
   sample: 'Filter random records from the data limit its size.',
   stack: 'Compute running sums to stack groups of values.',
   timeUnit: 'Discretize date/time values into meaningful intervals.',
@@ -47,16 +52,31 @@ export function transform(name, def, ...args) {
 }
 
 export function groupby() {
+  const spec = name => ({
+    call: name,
+    desc: `Specify and return ${article(name)} ${link(name)} transform.`
+  });
+
+  const transforms = [
+    'aggregate',
+    'density',
+    'join',
+    'joinaggregate',
+    'loess',
+    'pivot',
+    'quantile',
+    'regression',
+    'window'
+  ];
+
   return {
     desc: desc.groupby,
     doc:  'Data Transformations',
     arg:  ['...groupby'],
-    pass: {
-      aggregate:     {call: 'aggregate', desc: `Specify and return an ${link('aggregate')} transform.`},
-      join:          {call: 'joinaggregate', desc: `Specify and return a ${link('joinaggregate')} transform.`},
-      joinaggregate: {call: 'joinaggregate', desc: `Specify and return a ${link('joinaggregate')} transform.`},
-      window:        {call: 'window', desc: `Specify and return a ${link('window')} transform.`}
-    }
+    pass: transforms.reduce(
+      (obj, name) => (obj[name] = spec(name), obj),
+      {}
+    )
   };
 }
 

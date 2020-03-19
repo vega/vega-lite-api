@@ -15,10 +15,8 @@ Compute running sums to stack groups of values.
 <a id="as" href="#as">#</a>
 <em>stack</em>.<b>as</b>(<em>...value</em>)
 
-Output field names. This can be either a string or an array of strings with
-two elements denoting the name for the fields for stack start and stack end
-respectively.
-If a single string(eg."val") is provided, the end field will be "val_end".
+Output field names. This can be either a string or an array of strings with two elements denoting the name for the fields for stack start and stack end respectively.
+If a single string(e.g., `"val"`) is provided, the end field will be `"val_end"`.
 
 <a id="groupby" href="#groupby">#</a>
 <em>stack</em>.<b>groupby</b>(<em>...value</em>)

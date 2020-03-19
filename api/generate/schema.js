@@ -50,15 +50,16 @@ export function types(schema, type) {
 }
 
 export function isArrayType(schema) {
-  if (schema.type === 'array') {
+  if (hasArrayType(schema)) {
     return true;
   } else if (schema = (schema.anyOf || schema.oneOf)) {
     // if there are two matching types (one scalar, one array)
-    let index, types = schema.map(s => s.type);
-    return types.length === 2
-      && (index = types.indexOf('array')) >= 0
-      && types[1-index] === (schema[index].items || {}).type;
+    return schema.length === 2 && schema.findIndex(hasArrayType) > -1;
   } else {
     return false;
   }
+}
+
+function hasArrayType({ type, $ref }) {
+  return type === 'array' || $ref && $ref.startsWith('#/definitions/Vector');
 }

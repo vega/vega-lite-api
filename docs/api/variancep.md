@@ -24,7 +24,7 @@ The data field for which to compute aggregate function. This is required for all
 <a id="op" href="#op">#</a>
 <em>variancep</em>.<b>op</b>(<em>value</em>)
 
-The aggregation operation to apply to the fields (e.g., sum, average or count).
+The aggregation operation to apply to the fields (e.g., `"sum"`, `"average"`, or `"count"`).
 See the [full list of supported aggregation operations](https://vega.github.io/vega-lite/docs/aggregate.html#ops)
 for more information.
 
