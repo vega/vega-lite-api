@@ -56,7 +56,7 @@ export function emitter(defaultFile) {
   };
 
   emit.outdent = () => {
-    prefix = prefix.slice(-2);
+    prefix = prefix.slice(0, prefix.length - 2);
     return emit;
   };
 
@@ -87,7 +87,10 @@ export function article(_) {
 }
 
 export function capitalize(_) {
-  return _[0].toUpperCase() + _.slice(1);
+  let i = 0;
+  const p = _[i] === '_' ? (++i, '_') : '';
+  const c = _[i];
+  return p + c.toUpperCase() + _.slice(++i);
 }
 
 export function uppercase(_) {
