@@ -1,5 +1,5 @@
 import {aggregateOps, timeUnitOps} from './ops';
-import {article, capitalize, code, link, uppercase} from './generate/util';
+import {article, capitalize, code, link, reduce, uppercase} from './generate/util';
 
 const N = 'nominal';
 const O = 'ordinal';
@@ -73,10 +73,7 @@ export function groupby() {
     desc: desc.groupby,
     doc:  'Data Transformations',
     arg:  ['...groupby'],
-    pass: transforms.reduce(
-      (obj, name) => (obj[name] = spec(name), obj),
-      {}
-    )
+    pass: reduce(transforms, v => spec(v))
   };
 }
 
@@ -436,10 +433,10 @@ const callSpec = {
 };
 
 export function unit(types) {
-  const extMark = types.reduce((o, m) => {
-    o[`mark${capitalize(m)}`] = {arg: [':::mark'], pre: [{type: m}]};
-    return o;
-  }, {});
+  const extMark = reduce(types,
+    v => ({arg: [':::mark'], pre: [{type: v}]}),
+    k => `mark${capitalize(k)}`
+  );
 
   return {
     desc: `Create a new mark of unspecified type.`,

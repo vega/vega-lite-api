@@ -18,6 +18,18 @@ export function hasOwnProperty(obj, property) {
   return Object.prototype.hasOwnProperty.call(obj, property);
 }
 
+export function reduce(input, value, key) {
+  const items = Array.isArray(input)
+    ? input
+    : Object.keys(input);
+
+  return items.reduce((api, item) => {
+    const k = key ? key(item) : item;
+    api[k] = value(item);
+    return api;
+  }, {});
+}
+
 export function stringValue(_) {
   return Array.isArray(_) ? '[' + _.map(stringValue) + ']'
     : isObject(_) || isString(_) ?
