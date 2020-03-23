@@ -5,18 +5,8 @@ export function id(prefix) {
   return (prefix || '') + (++id_counter);
 }
 
-const prototype = {
-  toJSON: function() { return toJSON(this); }
-};
-
-export function proto(ctr) {
-  if (ctr) {
-    var p = (ctr.prototype = Object.create(prototype));
-    p.constructor = ctr;
-    return p;
-  } else {
-    return prototype;
-  }
+export class BaseObject {
+  toJSON() { return toJSON(this); }
 }
 
 export function assign(target, ...sources) {
