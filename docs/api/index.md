@@ -20,6 +20,7 @@
 - <a href="markTick">vl.<b>markTick</b></a> - Create a new <code>tick</code> mark.
 - <a href="markTrail">vl.<b>markTrail</b></a> - Create a new <code>trail</code> mark.
 - <a href="layer">vl.<b>layer</b></a> - Create a new layered chart.
+- <a href="concat">vl.<b>concat</b></a> - Concatenate charts.
 - <a href="hconcat">vl.<b>hconcat</b></a> - Horizontally concatenate charts.
 - <a href="vconcat">vl.<b>vconcat</b></a> - Vertically concatenate charts.
 

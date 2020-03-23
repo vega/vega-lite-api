@@ -54,8 +54,9 @@ export const api = {
   mark:     unit(markTypes),
   ...marks(),
   layer:    layer('...layer'),
-  hconcat:  spec('Horizontally concatenate', 'TopLevelHConcatSpec', '...hconcat'),
-  vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
+  concat:   spec('Concatenate', 'TopLevelNormalizedConcatSpec<GenericSpec>', '...concat'),
+  hconcat:  spec('Horizontally concatenate', 'TopLevelNormalizedHConcatSpec<GenericSpec>', '...hconcat'),
+  vconcat:  spec('Vertically concatenate', 'TopLevelNormalizedVConcatSpec<GenericSpec>', '...vconcat'),
   _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
   _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
 
