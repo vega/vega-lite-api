@@ -1474,9 +1474,9 @@ vega-hierarchy@~4.0.3:
     vega-util "^1.11.0"
 
 vega-lite@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/vega-lite/-/vega-lite-4.7.0.tgz#a5afbdcef8ef6662f1464f2f6fef1aed0fdcd6c4"
-  integrity sha512-vKWVP5tgRpdUzQYulqJbNBBF6zn0H1f6bCyVIJA9MLVBFqSLLS8mq7tpC5gXorShJz/yTgZhwWHu6knuz15E8g==
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/vega-lite/-/vega-lite-4.8.1.tgz#cbe3c00ecad2d6f649d474dc02f09477a90c3109"
+  integrity sha512-NHt0f4eyxmtRtwulpKMEiw3jByTd2blcGNDPi9JQObOOJAASk4c0PiNc7lU1gW5lLsDaey1oD/YxxdZwpgqN9w==
   dependencies:
     "@types/clone" "~0.1.30"
     "@types/fast-json-stable-stringify" "^2.0.0"
@@ -1489,8 +1489,8 @@ vega-lite@^4.7.0:
     vega-event-selector "~2.0.2"
     vega-expression "~2.6.3"
     vega-scale "^6.0.0"
-    vega-util "~1.13.0"
-    yargs "~15.3.0"
+    vega-util "~1.13.1"
+    yargs "~15.3.1"
 
 vega-loader@^4.0.0, vega-loader@^4.2.0, vega-loader@~4.2.0:
   version "4.2.0"
@@ -1605,7 +1605,7 @@ vega-typings@~0.14.0:
   dependencies:
     vega-util "^1.13.1"
 
-vega-util@^1.11.0, vega-util@^1.12.0, vega-util@^1.12.1, vega-util@^1.12.2, vega-util@^1.13.1, vega-util@^1.8.0, vega-util@~1.13.0, vega-util@~1.13.1:
+vega-util@^1.11.0, vega-util@^1.12.0, vega-util@^1.12.1, vega-util@^1.12.2, vega-util@^1.13.1, vega-util@^1.8.0, vega-util@~1.13.1:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/vega-util/-/vega-util-1.13.1.tgz#3eae51043184c6b873c17b148755c21b01274a0e"
   integrity sha512-TmvZSMKqhGlS7eAXphqJUhq+NZVYbvXX2ahargTRkVckGWjEUpWhMC7T13vYihrU2Lf/OevKbrruSXKOBxke2w==
@@ -1734,7 +1734,7 @@ yargs-parser@^18.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs@~15.3.0:
+yargs@~15.3.1:
   version "15.3.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.3.1.tgz#9505b472763963e54afe60148ad27a330818e98b"
   integrity sha512-92O1HWEjw27sBfgmXiixJWT5hRBp2eobqXicLtPBIDBhYB+1HpwZlXmbW2luivBJHBzki+7VyCLRtAkScbTBQA==
