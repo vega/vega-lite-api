@@ -166,16 +166,17 @@ function generateExtension(emit, prop, val) {
         pre  = val.pre && val.pre[0],
         type = val.type && val.type[0],
         flag = val.flag || 0,
+        nest = val.nest,
         set  = generateMutations('obj', val.set);
 
   !arg // zero-argument generator
       ? generateCopy(emit, prop, set)
     : arg.startsWith(':::') // merge object arguments
-      ? generateMergedProperty(emit, prop, arg.slice(3), pre, type, flag, set)
+      ? generateMergedProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
     : arg.startsWith('+::') // merge object arguments and accrete object
-      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), pre, type, flag, set)
+      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
     : arg.startsWith('+++') // merge object arguments and accrete array
-      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), pre, type, flag, set)
+      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
     : arg.startsWith('...') // array value from arguments
       ? generateProperty(emit, prop, arg.slice(3), '...', type, set)
     : generateProperty(emit, prop, arg, '', type, set); // standard value argument
@@ -187,6 +188,16 @@ function generateMutations(obj, values) {
     code.push(`set(${obj}, ${$(prop)}, ${$(values[prop])});`);
   }
   return code;
+}
+
+function generateNests(emit, nest) {
+  if (nest) {
+    emit('if (values.length) {').indent();
+    nest.forEach((name, index) => {
+      emit(`values[${index}] = {${name}: values[${index}]}`)
+    });
+    emit.outdent()('}');
+  }
 }
 
 function generateCopy(emit, method, set) {
@@ -257,10 +268,12 @@ function generateProperty(emit, method, prop, mod, type, set) {
   emit();
 }
 
-function generateMergedProperty(emit, method, prop, pre, type, flag, set) {
+function generateMergedProperty(emit, method, prop, pre, type, flag, set, nest) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
+
+  generateNests(emit, nest);
 
   if (!pre)
   emit(`if (arguments.length) {`).indent();
@@ -285,10 +298,12 @@ function generateMergedProperty(emit, method, prop, pre, type, flag, set) {
   emit();
 }
 
-function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, set) {
+function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, set, nest) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
+
+  generateNests(emit, nest);
 
   emit(`if (values.length === 1 && Array.isArray(values[0])) {`).indent();
   emit('values = values[0];').outdent();
@@ -319,10 +334,12 @@ function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, se
   emit();
 }
 
-function generateAccretiveArrayProperty(emit, method, prop, pre, type, flag, set) {
+function generateAccretiveArrayProperty(emit, method, prop, pre, type, flag, set, nest) {
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
+
+  generateNests(emit, nest);
 
   if (!pre)
   emit(`if (arguments.length) {`).indent();
