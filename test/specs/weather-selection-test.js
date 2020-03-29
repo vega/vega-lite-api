@@ -51,7 +51,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "selection": "sel1",
+            "test": {"selection": "sel1"},
             "field": "weather",
             "type": "nominal",
             "scale": {
@@ -91,7 +91,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "selection": "sel2",
+            "test": {"selection": "sel2"},
             "field": "weather",
             "type": "nominal",
             "scale": {

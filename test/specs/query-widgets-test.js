@@ -58,7 +58,7 @@ var spec = {
         "y": {"field": "Miles_per_Gallon", "type": "quantitative"},
         "color": {
           "value": "grey",
-          "condition": {"selection": "CylYr", "field": "Origin", "type": "nominal"}
+          "condition": {"test": {"selection": "CylYr"}, "field": "Origin", "type": "nominal"}
         }
       }
     },

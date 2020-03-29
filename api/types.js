@@ -223,7 +223,7 @@ export function channel(type) {
       fieldO: {arg: ['field'], set: {type: O}, desc: 'Encode the field as an ordinal data type.'},
       fieldQ: {arg: ['field'], set: {type: Q}, desc: 'Encode the field as a quantitative data type.'},
       fieldT: {arg: ['field'], set: {type: T}, desc: 'Encode the field as a temporal data type.'},
-      if: {arg: ['+++condition'], flag: 0, desc: 'Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).'},
+      if: {arg: ['+++condition'], flag: 0, nest: ['test'], desc: 'Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).'},
       ...channelAggregate,
       ...channelTimeUnit
     }
