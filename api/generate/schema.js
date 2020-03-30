@@ -51,12 +51,13 @@ export function types(schema, type) {
 
 export function isArrayType(schema) {
   if (hasArrayType(schema)) {
-    return true;
+    return 1;
   } else if (schema = (schema.anyOf || schema.oneOf)) {
-    // if there are two matching types (one scalar, one array)
-    return schema.length === 2 && schema.findIndex(hasArrayType) > -1;
+    let count = 0;
+    schema.forEach(s => { if (hasArrayType(s)) ++count });
+    return count === schema.length ? 1 : count ? 2 : 0;
   } else {
-    return false;
+    return 0;
   }
 }
 

@@ -25,8 +25,12 @@ export function generateMethod(schema, methodName, spec) {
   for (let prop in schema) {
     if (hasOwnProperty(ext, prop)) continue; // skip if extension defined
     if (hasOwnProperty(pass, prop)) continue; // skip if pass defined
-    const mod = isArrayType(schema[prop]) ? '...' : '';
-    generateProperty(emit, prop, prop, mod);
+    const type = isArrayType(schema[prop])
+    generateProperty(emit, prop, {
+      prop,
+      mod: type  ? '...' : '',
+      multi: type > 1,
+    });
   }
 
   // -- extensions --
@@ -157,29 +161,32 @@ function generateConstructor(emit, spec) {
   emit();
 }
 
-function generateExtension(emit, prop, val) {
+function generateExtension(emit, method, val) {
   if (val.arg && val.arg.length > 1) {
     error('Extension method must take 0-1 named arguments');
   }
 
-  const arg  = val.arg && val.arg[0],
-        pre  = val.pre && val.pre[0],
-        type = val.type && val.type[0],
-        flag = val.flag || 0,
-        nest = val.nest,
-        set  = generateMutations('obj', val.set);
+  const arg = val.arg && val.arg[0];
+  const opt = {
+    prop: arg ? arg.slice(3) : arg,
+    pre:  val.pre && val.pre[0],
+    type: val.type && val.type[0],
+    flag: val.flag || 0,
+    nest: val.nest,
+    set:  generateMutations('obj', val.set)
+  };
 
   !arg // zero-argument generator
-      ? generateCopy(emit, prop, set)
+      ? generateCopy(emit, method, opt.set)
     : arg.startsWith(':::') // merge object arguments
-      ? generateMergedProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
+      ? generateMergedProperty(emit, method, opt)
     : arg.startsWith('+::') // merge object arguments and accrete object
-      ? generateAccretiveObjectProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
+      ? generateAccretiveObjectProperty(emit, method, opt)
     : arg.startsWith('+++') // merge object arguments and accrete array
-      ? generateAccretiveArrayProperty(emit, prop, arg.slice(3), pre, type, flag, set, nest)
+      ? generateAccretiveArrayProperty(emit, method, opt)
     : arg.startsWith('...') // array value from arguments
-      ? generateProperty(emit, prop, arg.slice(3), '...', type, set)
-    : generateProperty(emit, prop, arg, '', type, set); // standard value argument
+      ? generateProperty(emit, method, {...opt, mod: '...'})
+    : generateProperty(emit, method, {...opt, prop: arg, mod: ''}); // standard value argument
 }
 
 function generateMutations(obj, values) {
@@ -245,30 +252,43 @@ function typeSwitch(emit, types, value) {
   return code + value;
 }
 
-function generateProperty(emit, method, prop, mod, type, set) {
+function generateProperty(emit, method, opt) {
+  const {prop, mod, type, set, multi} = opt;
   emit.import(['copy', 'get', 'set']);
   if (mod) emit.import('flat');
 
-  emit(`${method}(${mod || ''}value) {`);
-  emit(`  if (arguments.length) {`);
-  emit(`    const obj = copy(this);`);
+  emit(`${method}(${mod || ''}value) {`).indent();
+  emit(  `if (arguments.length) {`).indent();
+  emit(    `const obj = copy(this);`);
   if (mod) {
-    emit('    value = flat(value)'
+    if (multi) {
+    emit(  `if (value.length === 1 && !Array.isArray(value[0])) {`).indent();
+    emit(    `value = value[0];`);
+    if (type)
+    emit(    `value = ${typeSwitch(emit, type, 'value')};`);
+    emit.outdent()('} else {').indent();
+    }
+
+    emit(    'value = flat(value)'
       + (type ? `.map(v => ${typeSwitch(emit, type, 'v')});` : ';'));
+
+      if (multi)
+    emit.outdent()(`}`);
   } else if (type) {
-    emit(`    value = ${typeSwitch(emit, type, 'value')};`);
+    emit(    `value = ${typeSwitch(emit, type, 'value')};`);
   }
-  emit(`    set(obj, ${$(prop)}, value);`);
+  emit(    `set(obj, ${$(prop)}, value);`);
   if (set) set.forEach(v => emit('    ' + v));
-  emit(`    return obj;`);
-  emit(`  } else {`);
-  emit(`    return get(this, ${$(prop)});`);
-  emit(`  }`);
+  emit(    `return obj;`).outdent();
+  emit(  `} else {`).indent();
+  emit(    `return get(this, ${$(prop)});`).outdent();
+  emit(  `}`).outdent();
   emit(`}`);
   emit();
 }
 
-function generateMergedProperty(emit, method, prop, pre, type, flag, set, nest) {
+function generateMergedProperty(emit, method, opt) {
+  const {prop, pre, type, flag, set, nest} = opt;
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
@@ -298,7 +318,8 @@ function generateMergedProperty(emit, method, prop, pre, type, flag, set, nest) 
   emit();
 }
 
-function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, set, nest) {
+function generateAccretiveObjectProperty(emit, method, opt) {
+  const {prop, pre, type, flag, set, nest} = opt;
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
@@ -334,7 +355,8 @@ function generateAccretiveObjectProperty(emit, method, prop, pre, type, flag, se
   emit();
 }
 
-function generateAccretiveArrayProperty(emit, method, prop, pre, type, flag, set, nest) {
+function generateAccretiveArrayProperty(emit, method, opt) {
+  const {prop, pre, type, flag, set, nest} = opt;
   emit.import(['copy', 'get', 'merge', 'set']);
 
   emit(`${method}(...values) {`).indent();
