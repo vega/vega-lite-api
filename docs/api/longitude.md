@@ -18,6 +18,7 @@ The behavior of this method depends on the argument type:
 * <a href="#ci1">ci1</a>
 * <a href="#count">count</a>
 * <a href="#date">date</a>
+* <a href="#datum">datum</a>
 * <a href="#day">day</a>
 * <a href="#distinct">distinct</a>
 * <a href="#field">field</a>
@@ -151,6 +152,11 @@ Apply the <code>count</code> aggregate operation prior to encoding.
 <em>longitude</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
+
+<a id="datum" href="#datum">#</a>
+<em>longitude</em>.<b>datum</b>(<em>value</em>)
+
+A constant value in data domain.
 
 <a id="day" href="#day">#</a>
 <em>longitude</em>.<b>day</b>(<em>field</em>)

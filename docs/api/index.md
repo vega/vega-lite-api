@@ -3,6 +3,7 @@
 ### Chart Constructors
 
 - <a href="mark">vl.<b>mark</b></a> - Create a new mark of unspecified type.
+- <a href="markArc">vl.<b>markArc</b></a> - Create a new <code>arc</code> mark.
 - <a href="markArea">vl.<b>markArea</b></a> - Create a new <code>area</code> mark.
 - <a href="markBar">vl.<b>markBar</b></a> - Create a new <code>bar</code> mark.
 - <a href="markBoxplot">vl.<b>markBoxplot</b></a> - Create a new <code>boxplot</code> mark.
@@ -52,6 +53,7 @@
 
 ### Encodings
 
+- <a href="angle">vl.<b>angle</b></a> - Specify the <code>angle</code> encoding channel.
 - <a href="color">vl.<b>color</b></a> - Specify the <code>color</code> encoding channel.
 - <a href="column">vl.<b>column</b></a> - Specify the <code>column</code> encoding channel.
 - <a href="detail">vl.<b>detail</b></a> - Specify the <code>detail</code> encoding channel.
@@ -66,6 +68,8 @@
 - <a href="longitude2">vl.<b>longitude2</b></a> - Specify the <code>longitude2</code> encoding channel.
 - <a href="opacity">vl.<b>opacity</b></a> - Specify the <code>opacity</code> encoding channel.
 - <a href="order">vl.<b>order</b></a> - Specify the <code>order</code> encoding channel.
+- <a href="radius">vl.<b>radius</b></a> - Specify the <code>radius</code> encoding channel.
+- <a href="radius2">vl.<b>radius2</b></a> - Specify the <code>radius2</code> encoding channel.
 - <a href="row">vl.<b>row</b></a> - Specify the <code>row</code> encoding channel.
 - <a href="shape">vl.<b>shape</b></a> - Specify the <code>shape</code> encoding channel.
 - <a href="size">vl.<b>size</b></a> - Specify the <code>size</code> encoding channel.
@@ -74,6 +78,8 @@
 - <a href="strokeOpacity">vl.<b>strokeOpacity</b></a> - Specify the <code>strokeOpacity</code> encoding channel.
 - <a href="strokeWidth">vl.<b>strokeWidth</b></a> - Specify the <code>strokeWidth</code> encoding channel.
 - <a href="text">vl.<b>text</b></a> - Specify the <code>text</code> encoding channel.
+- <a href="theta">vl.<b>theta</b></a> - Specify the <code>theta</code> encoding channel.
+- <a href="theta2">vl.<b>theta2</b></a> - Specify the <code>theta2</code> encoding channel.
 - <a href="tooltip">vl.<b>tooltip</b></a> - Specify the <code>tooltip</code> encoding channel.
 - <a href="url">vl.<b>url</b></a> - Specify the <code>url</code> encoding channel.
 - <a href="x">vl.<b>x</b></a> - Specify the <code>x</code> encoding channel.

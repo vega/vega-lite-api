@@ -14,6 +14,7 @@ Specify the <code>strokeOpacity</code> encoding channel.
 * <a href="#condition">condition</a>
 * <a href="#count">count</a>
 * <a href="#date">date</a>
+* <a href="#datum">datum</a>
 * <a href="#day">day</a>
 * <a href="#distinct">distinct</a>
 * <a href="#field">field</a>
@@ -155,6 +156,11 @@ Apply the <code>count</code> aggregate operation prior to encoding.
 <em>strokeOpacity</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
+
+<a id="datum" href="#datum">#</a>
+<em>strokeOpacity</em>.<b>datum</b>(<em>value</em>)
+
+A constant value in data domain.
 
 <a id="day" href="#day">#</a>
 <em>strokeOpacity</em>.<b>day</b>(<em>field</em>)
