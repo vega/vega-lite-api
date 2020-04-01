@@ -15,6 +15,7 @@ Specify the <code>x</code> encoding channel.
 * <a href="#ci1">ci1</a>
 * <a href="#count">count</a>
 * <a href="#date">date</a>
+* <a href="#datum">datum</a>
 * <a href="#day">day</a>
 * <a href="#distinct">distinct</a>
 * <a href="#field">field</a>
@@ -169,6 +170,11 @@ Apply the <code>count</code> aggregate operation prior to encoding.
 <em>x</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
+
+<a id="datum" href="#datum">#</a>
+<em>x</em>.<b>datum</b>(<em>value</em>)
+
+A constant value in data domain.
 
 <a id="day" href="#day">#</a>
 <em>x</em>.<b>day</b>(<em>field</em>)
@@ -333,7 +339,7 @@ __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) document
 <em>x</em>.<b>stack</b>(<em>value</em>)
 
 Type of stacking offset if the field should be stacked.
-`stack` is only applicable for `x` and `y` channels with continuous domains.
+`stack` is only applicable for `x`, `y`, `theta`, and `radius` channels with continuous domains.
 For example, `stack` of `y` can be used to customize stacking for a vertical bar chart.
 
 `stack` can be one of the following values:
@@ -343,7 +349,7 @@ For example, `stack` of `y` can be used to customize stacking for a vertical bar
 - `null` or `false` - No-stacking. This will produce layered [bar](https://vega.github.io/vega-lite/docs/stack.html#layered-bar-chart) and area chart.
 
 __Default value:__ `zero` for plots with all of the following conditions are true:
-(1) the mark is `bar` or `area`;
+(1) the mark is `bar`, `area`, or `arc`;
 (2) the stacked measure channel (x or y) has a linear scale;
 (3) At least one of non-position channels mapped to an unaggregated field that is different from x and y. Otherwise, `null` by default.
 

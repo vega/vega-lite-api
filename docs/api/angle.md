@@ -1,8 +1,8 @@
-vl.<b>strokeWidth</b>(<em>...values</em>)
+vl.<b>angle</b>(<em>...values</em>)
 
-Specify the <code>strokeWidth</code> encoding channel.
+Specify the <code>angle</code> encoding channel.
 
-## <code>strokeWidth</code> Method Overview
+## <code>angle</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>
 * <a href="#argmax">argmax</a>
@@ -92,10 +92,10 @@ Specify the <code>strokeWidth</code> encoding channel.
 * <a href="#year">year</a>
 * <a href="#yearmonth">yearmonth</a>
 
-## <code>strokeWidth</code> API Reference
+## <code>angle</code> API Reference
 
 <a id="aggregate" href="#aggregate">#</a>
-<em>strokeWidth</em>.<b>aggregate</b>(<em>value</em>)
+<em>angle</em>.<b>aggregate</b>(<em>value</em>)
 
 Aggregation function for the field
 (e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
@@ -105,22 +105,22 @@ __Default value:__ `undefined` (None)
 __See also:__ [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html) documentation.
 
 <a id="argmax" href="#argmax">#</a>
-<em>strokeWidth</em>.<b>argmax</b>(<em>field</em>)
+<em>angle</em>.<b>argmax</b>(<em>field</em>)
 
 Apply the <code>argmax</code> aggregate operation prior to encoding.
 
 <a id="argmin" href="#argmin">#</a>
-<em>strokeWidth</em>.<b>argmin</b>(<em>field</em>)
+<em>angle</em>.<b>argmin</b>(<em>field</em>)
 
 Apply the <code>argmin</code> aggregate operation prior to encoding.
 
 <a id="average" href="#average">#</a>
-<em>strokeWidth</em>.<b>average</b>(<em>field</em>)
+<em>angle</em>.<b>average</b>(<em>field</em>)
 
 Apply the <code>average</code> aggregate operation prior to encoding.
 
 <a id="bin" href="#bin">#</a>
-<em>strokeWidth</em>.<b>bin</b>(<em>value</em>)
+<em>angle</em>.<b>bin</b>(<em>value</em>)
 
 A flag for binning a `quantitative` field, [an object defining binning parameters](https://vega.github.io/vega-lite/docs/bin.html#params), or indicating that the data for `x` or `y` channel are binned before they are imported into Vega-Lite (`"binned"`).
 
@@ -133,47 +133,47 @@ __Default value:__ `false`
 __See also:__ [`bin`](https://vega.github.io/vega-lite/docs/bin.html) documentation.
 
 <a id="ci0" href="#ci0">#</a>
-<em>strokeWidth</em>.<b>ci0</b>(<em>field</em>)
+<em>angle</em>.<b>ci0</b>(<em>field</em>)
 
 Apply the <code>ci0</code> aggregate operation prior to encoding.
 
 <a id="ci1" href="#ci1">#</a>
-<em>strokeWidth</em>.<b>ci1</b>(<em>field</em>)
+<em>angle</em>.<b>ci1</b>(<em>field</em>)
 
 Apply the <code>ci1</code> aggregate operation prior to encoding.
 
 <a id="condition" href="#condition">#</a>
-<em>strokeWidth</em>.<b>condition</b>(<em>value</em>)
+<em>angle</em>.<b>condition</b>(<em>value</em>)
 
 A field definition or one or more value definition(s) with a selection predicate.
 
 <a id="count" href="#count">#</a>
-<em>strokeWidth</em>.<b>count</b>(<em></em>)
+<em>angle</em>.<b>count</b>(<em></em>)
 
 Apply the <code>count</code> aggregate operation prior to encoding.
 
 <a id="date" href="#date">#</a>
-<em>strokeWidth</em>.<b>date</b>(<em>field</em>)
+<em>angle</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
 
 <a id="datum" href="#datum">#</a>
-<em>strokeWidth</em>.<b>datum</b>(<em>value</em>)
+<em>angle</em>.<b>datum</b>(<em>value</em>)
 
 A constant value in data domain.
 
 <a id="day" href="#day">#</a>
-<em>strokeWidth</em>.<b>day</b>(<em>field</em>)
+<em>angle</em>.<b>day</b>(<em>field</em>)
 
 Apply the <code>day</code> timeUnit operation prior to encoding.
 
 <a id="distinct" href="#distinct">#</a>
-<em>strokeWidth</em>.<b>distinct</b>(<em>field</em>)
+<em>angle</em>.<b>distinct</b>(<em>field</em>)
 
 Apply the <code>distinct</code> aggregate operation prior to encoding.
 
 <a id="field" href="#field">#</a>
-<em>strokeWidth</em>.<b>field</b>(<em>value</em>)
+<em>angle</em>.<b>field</b>(<em>value</em>)
 
 __Required.__ A string defining the name of the field from which to pull a data value
 or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.
@@ -187,37 +187,37 @@ See more details about escaping in the [field documentation](https://vega.github
 2) `field` is not required if `aggregate` is `count`.
 
 <a id="fieldN" href="#fieldN">#</a>
-<em>strokeWidth</em>.<b>fieldN</b>(<em>field</em>)
+<em>angle</em>.<b>fieldN</b>(<em>field</em>)
 
 Encode the field as a nominal data type.
 
 <a id="fieldO" href="#fieldO">#</a>
-<em>strokeWidth</em>.<b>fieldO</b>(<em>field</em>)
+<em>angle</em>.<b>fieldO</b>(<em>field</em>)
 
 Encode the field as an ordinal data type.
 
 <a id="fieldQ" href="#fieldQ">#</a>
-<em>strokeWidth</em>.<b>fieldQ</b>(<em>field</em>)
+<em>angle</em>.<b>fieldQ</b>(<em>field</em>)
 
 Encode the field as a quantitative data type.
 
 <a id="fieldT" href="#fieldT">#</a>
-<em>strokeWidth</em>.<b>fieldT</b>(<em>field</em>)
+<em>angle</em>.<b>fieldT</b>(<em>field</em>)
 
 Encode the field as a temporal data type.
 
 <a id="hours" href="#hours">#</a>
-<em>strokeWidth</em>.<b>hours</b>(<em>field</em>)
+<em>angle</em>.<b>hours</b>(<em>field</em>)
 
 Apply the <code>hours</code> timeUnit operation prior to encoding.
 
 <a id="if" href="#if">#</a>
-<em>strokeWidth</em>.<b>if</b>(<em>...condition</em>)
+<em>angle</em>.<b>if</b>(<em>...condition</em>)
 
 Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).
 
 <a id="legend" href="#legend">#</a>
-<em>strokeWidth</em>.<b>legend</b>(<em>value</em>)
+<em>angle</em>.<b>legend</b>(<em>value</em>)
 
 An object defining properties of the legend.
 If `null`, the legend for the encoding channel will be removed.
@@ -227,67 +227,67 @@ __Default value:__ If undefined, default [legend properties](https://vega.github
 __See also:__ [`legend`](https://vega.github.io/vega-lite/docs/legend.html) documentation.
 
 <a id="max" href="#max">#</a>
-<em>strokeWidth</em>.<b>max</b>(<em>field</em>)
+<em>angle</em>.<b>max</b>(<em>field</em>)
 
 Apply the <code>max</code> aggregate operation prior to encoding.
 
 <a id="mean" href="#mean">#</a>
-<em>strokeWidth</em>.<b>mean</b>(<em>field</em>)
+<em>angle</em>.<b>mean</b>(<em>field</em>)
 
 Apply the <code>mean</code> aggregate operation prior to encoding.
 
 <a id="median" href="#median">#</a>
-<em>strokeWidth</em>.<b>median</b>(<em>field</em>)
+<em>angle</em>.<b>median</b>(<em>field</em>)
 
 Apply the <code>median</code> aggregate operation prior to encoding.
 
 <a id="milliseconds" href="#milliseconds">#</a>
-<em>strokeWidth</em>.<b>milliseconds</b>(<em>field</em>)
+<em>angle</em>.<b>milliseconds</b>(<em>field</em>)
 
 Apply the <code>milliseconds</code> timeUnit operation prior to encoding.
 
 <a id="min" href="#min">#</a>
-<em>strokeWidth</em>.<b>min</b>(<em>field</em>)
+<em>angle</em>.<b>min</b>(<em>field</em>)
 
 Apply the <code>min</code> aggregate operation prior to encoding.
 
 <a id="minutes" href="#minutes">#</a>
-<em>strokeWidth</em>.<b>minutes</b>(<em>field</em>)
+<em>angle</em>.<b>minutes</b>(<em>field</em>)
 
 Apply the <code>minutes</code> timeUnit operation prior to encoding.
 
 <a id="missing" href="#missing">#</a>
-<em>strokeWidth</em>.<b>missing</b>(<em>field</em>)
+<em>angle</em>.<b>missing</b>(<em>field</em>)
 
 Apply the <code>missing</code> aggregate operation prior to encoding.
 
 <a id="month" href="#month">#</a>
-<em>strokeWidth</em>.<b>month</b>(<em>field</em>)
+<em>angle</em>.<b>month</b>(<em>field</em>)
 
 Apply the <code>month</code> timeUnit operation prior to encoding.
 
 <a id="product" href="#product">#</a>
-<em>strokeWidth</em>.<b>product</b>(<em>field</em>)
+<em>angle</em>.<b>product</b>(<em>field</em>)
 
 Apply the <code>product</code> aggregate operation prior to encoding.
 
 <a id="q1" href="#q1">#</a>
-<em>strokeWidth</em>.<b>q1</b>(<em>field</em>)
+<em>angle</em>.<b>q1</b>(<em>field</em>)
 
 Apply the <code>q1</code> aggregate operation prior to encoding.
 
 <a id="q3" href="#q3">#</a>
-<em>strokeWidth</em>.<b>q3</b>(<em>field</em>)
+<em>angle</em>.<b>q3</b>(<em>field</em>)
 
 Apply the <code>q3</code> aggregate operation prior to encoding.
 
 <a id="quarter" href="#quarter">#</a>
-<em>strokeWidth</em>.<b>quarter</b>(<em>field</em>)
+<em>angle</em>.<b>quarter</b>(<em>field</em>)
 
 Apply the <code>quarter</code> timeUnit operation prior to encoding.
 
 <a id="scale" href="#scale">#</a>
-<em>strokeWidth</em>.<b>scale</b>(<em>value</em>)
+<em>angle</em>.<b>scale</b>(<em>value</em>)
 
 An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.
 
@@ -298,12 +298,12 @@ __Default value:__ If undefined, default [scale properties](https://vega.github.
 __See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
 
 <a id="seconds" href="#seconds">#</a>
-<em>strokeWidth</em>.<b>seconds</b>(<em>field</em>)
+<em>angle</em>.<b>seconds</b>(<em>field</em>)
 
 Apply the <code>seconds</code> timeUnit operation prior to encoding.
 
 <a id="sort" href="#sort">#</a>
-<em>strokeWidth</em>.<b>sort</b>(<em>value</em>)
+<em>angle</em>.<b>sort</b>(<em>value</em>)
 
 Sort order for the encoded field.
 
@@ -323,62 +323,62 @@ __Note:__ `null` and sorting by another channel is not supported for `row` and `
 __See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
 
 <a id="stderr" href="#stderr">#</a>
-<em>strokeWidth</em>.<b>stderr</b>(<em>field</em>)
+<em>angle</em>.<b>stderr</b>(<em>field</em>)
 
 Apply the <code>stderr</code> aggregate operation prior to encoding.
 
 <a id="stdev" href="#stdev">#</a>
-<em>strokeWidth</em>.<b>stdev</b>(<em>field</em>)
+<em>angle</em>.<b>stdev</b>(<em>field</em>)
 
 Apply the <code>stdev</code> aggregate operation prior to encoding.
 
 <a id="stdevp" href="#stdevp">#</a>
-<em>strokeWidth</em>.<b>stdevp</b>(<em>field</em>)
+<em>angle</em>.<b>stdevp</b>(<em>field</em>)
 
 Apply the <code>stdevp</code> aggregate operation prior to encoding.
 
 <a id="sum" href="#sum">#</a>
-<em>strokeWidth</em>.<b>sum</b>(<em>field</em>)
+<em>angle</em>.<b>sum</b>(<em>field</em>)
 
 Apply the <code>sum</code> aggregate operation prior to encoding.
 
 <a id="timeHM" href="#timeHM">#</a>
-<em>strokeWidth</em>.<b>timeHM</b>(<em>field</em>)
+<em>angle</em>.<b>timeHM</b>(<em>field</em>)
 
 Apply the <code>hoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeHMS" href="#timeHMS">#</a>
-<em>strokeWidth</em>.<b>timeHMS</b>(<em>field</em>)
+<em>angle</em>.<b>timeHMS</b>(<em>field</em>)
 
 Apply the <code>hoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeMD" href="#timeMD">#</a>
-<em>strokeWidth</em>.<b>timeMD</b>(<em>field</em>)
+<em>angle</em>.<b>timeMD</b>(<em>field</em>)
 
 Apply the <code>monthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeMDH" href="#timeMDH">#</a>
-<em>strokeWidth</em>.<b>timeMDH</b>(<em>field</em>)
+<em>angle</em>.<b>timeMDH</b>(<em>field</em>)
 
 Apply the <code>monthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeMS" href="#timeMS">#</a>
-<em>strokeWidth</em>.<b>timeMS</b>(<em>field</em>)
+<em>angle</em>.<b>timeMS</b>(<em>field</em>)
 
 Apply the <code>minutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeQM" href="#timeQM">#</a>
-<em>strokeWidth</em>.<b>timeQM</b>(<em>field</em>)
+<em>angle</em>.<b>timeQM</b>(<em>field</em>)
 
 Apply the <code>quartermonth</code> timeUnit operation prior to encoding.
 
 <a id="timeSMS" href="#timeSMS">#</a>
-<em>strokeWidth</em>.<b>timeSMS</b>(<em>field</em>)
+<em>angle</em>.<b>timeSMS</b>(<em>field</em>)
 
 Apply the <code>secondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeUnit" href="#timeUnit">#</a>
-<em>strokeWidth</em>.<b>timeUnit</b>(<em>value</em>)
+<em>angle</em>.<b>timeUnit</b>(<em>value</em>)
 
 Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
 or [a temporal field that gets casted as ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -388,42 +388,42 @@ __Default value:__ `undefined` (None)
 __See also:__ [`timeUnit`](https://vega.github.io/vega-lite/docs/timeunit.html) documentation.
 
 <a id="timeYM" href="#timeYM">#</a>
-<em>strokeWidth</em>.<b>timeYM</b>(<em>field</em>)
+<em>angle</em>.<b>timeYM</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 
 <a id="timeYMD" href="#timeYMD">#</a>
-<em>strokeWidth</em>.<b>timeYMD</b>(<em>field</em>)
+<em>angle</em>.<b>timeYMD</b>(<em>field</em>)
 
 Apply the <code>yearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDH" href="#timeYMDH">#</a>
-<em>strokeWidth</em>.<b>timeYMDH</b>(<em>field</em>)
+<em>angle</em>.<b>timeYMDH</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHM" href="#timeYMDHM">#</a>
-<em>strokeWidth</em>.<b>timeYMDHM</b>(<em>field</em>)
+<em>angle</em>.<b>timeYMDHM</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHMS" href="#timeYMDHMS">#</a>
-<em>strokeWidth</em>.<b>timeYMDHMS</b>(<em>field</em>)
+<em>angle</em>.<b>timeYMDHMS</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeYQ" href="#timeYQ">#</a>
-<em>strokeWidth</em>.<b>timeYQ</b>(<em>field</em>)
+<em>angle</em>.<b>timeYQ</b>(<em>field</em>)
 
 Apply the <code>yearquarter</code> timeUnit operation prior to encoding.
 
 <a id="timeYQM" href="#timeYQM">#</a>
-<em>strokeWidth</em>.<b>timeYQM</b>(<em>field</em>)
+<em>angle</em>.<b>timeYQM</b>(<em>field</em>)
 
 Apply the <code>yearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="title" href="#title">#</a>
-<em>strokeWidth</em>.<b>title</b>(<em>value</em>)
+<em>angle</em>.<b>title</b>(<em>value</em>)
 
 A title for the field. If `null`, the title will be removed.
 
@@ -436,7 +436,7 @@ __Notes__:
 2) If both field definition's `title` and axis, header, or legend `title` are defined, axis/header/legend title will be used.
 
 <a id="type" href="#type">#</a>
-<em>strokeWidth</em>.<b>type</b>(<em>value</em>)
+<em>angle</em>.<b>type</b>(<em>value</em>)
 
 The encoded field's type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or `"nominal"`).
 It can also be a `"geojson"` type for encoding ['geoshape'](https://vega.github.io/vega-lite/docs/geoshape.html).
@@ -454,152 +454,152 @@ __Note:__
 __See also:__ [`type`](https://vega.github.io/vega-lite/docs/type.html) documentation.
 
 <a id="utcHM" href="#utcHM">#</a>
-<em>strokeWidth</em>.<b>utcHM</b>(<em>field</em>)
+<em>angle</em>.<b>utcHM</b>(<em>field</em>)
 
 Apply the <code>utchoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcHMS" href="#utcHMS">#</a>
-<em>strokeWidth</em>.<b>utcHMS</b>(<em>field</em>)
+<em>angle</em>.<b>utcHMS</b>(<em>field</em>)
 
 Apply the <code>utchoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcMD" href="#utcMD">#</a>
-<em>strokeWidth</em>.<b>utcMD</b>(<em>field</em>)
+<em>angle</em>.<b>utcMD</b>(<em>field</em>)
 
 Apply the <code>utcmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcMDH" href="#utcMDH">#</a>
-<em>strokeWidth</em>.<b>utcMDH</b>(<em>field</em>)
+<em>angle</em>.<b>utcMDH</b>(<em>field</em>)
 
 Apply the <code>utcmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcMS" href="#utcMS">#</a>
-<em>strokeWidth</em>.<b>utcMS</b>(<em>field</em>)
+<em>angle</em>.<b>utcMS</b>(<em>field</em>)
 
 Apply the <code>utcminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcQM" href="#utcQM">#</a>
-<em>strokeWidth</em>.<b>utcQM</b>(<em>field</em>)
+<em>angle</em>.<b>utcQM</b>(<em>field</em>)
 
 Apply the <code>utcquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcSMS" href="#utcSMS">#</a>
-<em>strokeWidth</em>.<b>utcSMS</b>(<em>field</em>)
+<em>angle</em>.<b>utcSMS</b>(<em>field</em>)
 
 Apply the <code>utcsecondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYM" href="#utcYM">#</a>
-<em>strokeWidth</em>.<b>utcYM</b>(<em>field</em>)
+<em>angle</em>.<b>utcYM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcYMD" href="#utcYMD">#</a>
-<em>strokeWidth</em>.<b>utcYMD</b>(<em>field</em>)
+<em>angle</em>.<b>utcYMD</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDH" href="#utcYMDH">#</a>
-<em>strokeWidth</em>.<b>utcYMDH</b>(<em>field</em>)
+<em>angle</em>.<b>utcYMDH</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHM" href="#utcYMDHM">#</a>
-<em>strokeWidth</em>.<b>utcYMDHM</b>(<em>field</em>)
+<em>angle</em>.<b>utcYMDHM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHMS" href="#utcYMDHMS">#</a>
-<em>strokeWidth</em>.<b>utcYMDHMS</b>(<em>field</em>)
+<em>angle</em>.<b>utcYMDHMS</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYQ" href="#utcYQ">#</a>
-<em>strokeWidth</em>.<b>utcYQ</b>(<em>field</em>)
+<em>angle</em>.<b>utcYQ</b>(<em>field</em>)
 
 Apply the <code>utcyearquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcYQM" href="#utcYQM">#</a>
-<em>strokeWidth</em>.<b>utcYQM</b>(<em>field</em>)
+<em>angle</em>.<b>utcYQM</b>(<em>field</em>)
 
 Apply the <code>utcyearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcdate" href="#utcdate">#</a>
-<em>strokeWidth</em>.<b>utcdate</b>(<em>field</em>)
+<em>angle</em>.<b>utcdate</b>(<em>field</em>)
 
 Apply the <code>utcdate</code> timeUnit operation prior to encoding.
 
 <a id="utcday" href="#utcday">#</a>
-<em>strokeWidth</em>.<b>utcday</b>(<em>field</em>)
+<em>angle</em>.<b>utcday</b>(<em>field</em>)
 
 Apply the <code>utcday</code> timeUnit operation prior to encoding.
 
 <a id="utchours" href="#utchours">#</a>
-<em>strokeWidth</em>.<b>utchours</b>(<em>field</em>)
+<em>angle</em>.<b>utchours</b>(<em>field</em>)
 
 Apply the <code>utchours</code> timeUnit operation prior to encoding.
 
 <a id="utcmilliseconds" href="#utcmilliseconds">#</a>
-<em>strokeWidth</em>.<b>utcmilliseconds</b>(<em>field</em>)
+<em>angle</em>.<b>utcmilliseconds</b>(<em>field</em>)
 
 Apply the <code>utcmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcminutes" href="#utcminutes">#</a>
-<em>strokeWidth</em>.<b>utcminutes</b>(<em>field</em>)
+<em>angle</em>.<b>utcminutes</b>(<em>field</em>)
 
 Apply the <code>utcminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcmonth" href="#utcmonth">#</a>
-<em>strokeWidth</em>.<b>utcmonth</b>(<em>field</em>)
+<em>angle</em>.<b>utcmonth</b>(<em>field</em>)
 
 Apply the <code>utcmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcquarter" href="#utcquarter">#</a>
-<em>strokeWidth</em>.<b>utcquarter</b>(<em>field</em>)
+<em>angle</em>.<b>utcquarter</b>(<em>field</em>)
 
 Apply the <code>utcquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcseconds" href="#utcseconds">#</a>
-<em>strokeWidth</em>.<b>utcseconds</b>(<em>field</em>)
+<em>angle</em>.<b>utcseconds</b>(<em>field</em>)
 
 Apply the <code>utcseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcyear" href="#utcyear">#</a>
-<em>strokeWidth</em>.<b>utcyear</b>(<em>field</em>)
+<em>angle</em>.<b>utcyear</b>(<em>field</em>)
 
 Apply the <code>utcyear</code> timeUnit operation prior to encoding.
 
 <a id="utcyearmonth" href="#utcyearmonth">#</a>
-<em>strokeWidth</em>.<b>utcyearmonth</b>(<em>field</em>)
+<em>angle</em>.<b>utcyearmonth</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="valid" href="#valid">#</a>
-<em>strokeWidth</em>.<b>valid</b>(<em>field</em>)
+<em>angle</em>.<b>valid</b>(<em>field</em>)
 
 Apply the <code>valid</code> aggregate operation prior to encoding.
 
 <a id="value" href="#value">#</a>
-<em>strokeWidth</em>.<b>value</b>(<em>value</em>)
+<em>angle</em>.<b>value</b>(<em>value</em>)
 
 A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
-<em>strokeWidth</em>.<b>variance</b>(<em>field</em>)
+<em>angle</em>.<b>variance</b>(<em>field</em>)
 
 Apply the <code>variance</code> aggregate operation prior to encoding.
 
 <a id="variancep" href="#variancep">#</a>
-<em>strokeWidth</em>.<b>variancep</b>(<em>field</em>)
+<em>angle</em>.<b>variancep</b>(<em>field</em>)
 
 Apply the <code>variancep</code> aggregate operation prior to encoding.
 
 <a id="year" href="#year">#</a>
-<em>strokeWidth</em>.<b>year</b>(<em>field</em>)
+<em>angle</em>.<b>year</b>(<em>field</em>)
 
 Apply the <code>year</code> timeUnit operation prior to encoding.
 
 <a id="yearmonth" href="#yearmonth">#</a>
-<em>strokeWidth</em>.<b>yearmonth</b>(<em>field</em>)
+<em>angle</em>.<b>yearmonth</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 
