@@ -134,7 +134,7 @@ __See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) document
 <a id="band" href="#band">#</a>
 <em>x</em>.<b>band</b>(<em>value</em>)
 
-For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band) or time units. If set to `1`, the mark size is set to the bandwidth or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
+For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band), bins or time units. If set to `1`, the mark size is set to the bandwidth, the bin interval, or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
 
 For other marks, relative position on a band of a stacked, binned, time unit or band scale. If set to `0`, the marks will be positioned at the beginning of the band. If set to `0.5`, the marks will be positioned in the middle of the band.
 

@@ -12,6 +12,7 @@ Horizontally concatenate charts.
 * <a href="#data">data</a>
 * <a href="#datasets">datasets</a>
 * <a href="#description">description</a>
+* <a href="#facet">facet</a>
 * <a href="#hconcat">hconcat</a>
 * <a href="#name">name</a>
 * <a href="#padding">padding</a>
@@ -86,6 +87,11 @@ This can be an array of objects or primitive values or a string. Arrays of primi
 <em>hconcat</em>.<b>description</b>(<em>value</em>)
 
 Description of this mark for commenting purpose.
+
+<a id="facet" href="#facet">#</a>
+<em>hconcat</em>.<b>facet</b>(<em>...values</em>)
+
+Facet a chart into sub-plots by partitioning data values.
 
 <a id="hconcat" href="#hconcat">#</a>
 <em>hconcat</em>.<b>hconcat</b>(<em>...value</em>)

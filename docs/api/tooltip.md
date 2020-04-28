@@ -14,6 +14,7 @@ The behavior of this method depends on the argument type:
 * <a href="#argmax">argmax</a>
 * <a href="#argmin">argmin</a>
 * <a href="#average">average</a>
+* <a href="#band">band</a>
 * <a href="#bin">bin</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
@@ -124,6 +125,13 @@ Apply the <code>argmin</code> aggregate operation prior to encoding.
 
 Apply the <code>average</code> aggregate operation prior to encoding.
 
+<a id="band" href="#band">#</a>
+<em>tooltip</em>.<b>band</b>(<em>value</em>)
+
+For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band), bins or time units. If set to `1`, the mark size is set to the bandwidth, the bin interval, or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
+
+For other marks, relative position on a band of a stacked, binned, time unit or band scale. If set to `0`, the marks will be positioned at the beginning of the band. If set to `0.5`, the marks will be positioned in the middle of the band.
+
 <a id="bin" href="#bin">#</a>
 <em>tooltip</em>.<b>bin</b>(<em>value</em>)
 
@@ -216,15 +224,14 @@ When used with the default `"number"` and `"time"` format type, the text formatt
 
 See the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.
 
-When used with a [custom `"formatType"`](https://vega.github.io/vega-lite/usage/compile.html#format-type) that takes `datum.value` and format parameter as input), this property represents the format parameter.
+When used with a [custom `formatType`](https://vega.github.io/vega-lite/usage/config.html#custom-format-type), this value will be passed as `format` alongside `datum.value` to the registered function. See the [custom format type docs](https://vega.github.io/vega-lite/usage/config.html#custom-format-type) for more details.
 
 __Default value:__  Derived from [numberFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for number format and from [timeFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for time format.
 
 <a id="formatType" href="#formatType">#</a>
 <em>tooltip</em>.<b>formatType</b>(<em>value</em>)
 
-The format type for labels (`"number"` or `"time"` or a [registered custom format type](https://vega.github.io/vega-lite/usage/compile.html#format-type)).
-
+The format type for labels (`"number"` or `"time"` or a [registered custom format type](https://vega.github.io/vega-lite/usage/config.html#custom-format-type)).
 
 __Default value:__
 - `"time"` for temporal fields and ordinal and nomimal fields with `timeUnit`.
