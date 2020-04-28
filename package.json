@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.5.0",
+  "version": "0.11.0",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
@@ -25,13 +25,13 @@
     "minify": "terser build/vega-lite-api.js -c -m -o build/vega-lite-api.min.js"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "^4.0.2",
+    "@rollup/plugin-json": "^4.0.3",
     "eslint": "^6.8.0",
     "rimraf": "^3.0.2",
-    "rollup": "^1.32.1",
+    "rollup": "^2.7.3",
     "tape": "^5.0.0",
-    "terser": "^4.6.10",
-    "vega": "^5.10.1",
-    "vega-lite": "^4.9.0"
+    "terser": "^4.6.12",
+    "vega": "^5.11.1",
+    "vega-lite": "^4.11.0"
   }
 }
