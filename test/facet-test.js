@@ -28,7 +28,7 @@ tape('Faceting unit spec is supported', function(t) {
   t.end();
 });
 
-tape('Faceting composite spec is supported', function(t) {
+tape('Faceting layered spec is supported', function(t) {
   const values = [{key: 'a'}, {key: 'b'}];
 
   // data provided within composite spec
@@ -62,6 +62,75 @@ tape('Faceting composite spec is supported', function(t) {
     data: {values}
   };
   equalSpec(t, facet2, spec2);
+
+  t.end();
+});
+
+tape('Faceting repeated spec is supported', function(t) {
+  const values = [{key: 'a'}, {key: 'b'}];
+
+  // data provided to base mark
+  const facet1 = vl.data(values)
+    .mark({type: 'line'})
+    .encode(vl.x().fieldQ(vl.repeat('layer')))
+    .repeat({layer: ['layerA', 'layerB']})
+    .facet(vl.fieldN('key'));
+  const spec1 = {
+    facet: {field: 'key', type: 'nominal'},
+    spec: {
+      repeat: {layer: ['layerA', 'layerB']},
+      spec: {
+        mark: {type: 'line'},
+        data: {values},
+        encoding: {
+          x: {field: {repeat: 'layer'}, type: 'quantitative'}
+        }
+      }
+    }
+  };
+  equalSpec(t, facet1, spec1);
+
+  // data provided to repeated spec
+  const facet2 = vl.markLine()
+    .encode(vl.x().fieldQ(vl.repeat('layer')))
+    .repeat({ layer: ['layerA', 'layerB'] })
+    .data(values)
+    .facet(vl.fieldN('key'));
+  const spec2 = {
+    facet: {field: 'key', type: 'nominal'},
+    spec: {
+      repeat: { layer: ['layerA', 'layerB'] },
+      spec: {
+        mark: {type: 'line'},
+        encoding: {
+          x: {field: {repeat: 'layer'}, type: 'quantitative'}
+        }
+      },
+      data: {values}
+    }
+  };
+  equalSpec(t, facet2, spec2);
+
+  // data provided to faceted spec
+  const facet3 = vl.markLine()
+    .encode(vl.x().fieldQ(vl.repeat('layer')))
+    .repeat({ layer: ['layerA', 'layerB'] })
+    .facet(vl.fieldN('key'))
+    .data(values);
+  const spec3 = {
+    facet: {field: 'key', type: 'nominal'},
+    spec: {
+      repeat: { layer: ['layerA', 'layerB'] },
+      spec: {
+        mark: {type: 'line'},
+        encoding: {
+          x: {field: {repeat: 'layer'}, type: 'quantitative'}
+        }
+      }
+    },
+    data: {values}
+  };
+  equalSpec(t, facet3, spec3);
 
   t.end();
 });

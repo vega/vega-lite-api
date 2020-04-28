@@ -479,6 +479,7 @@ export function spec(verb, def, ...args) {
     ext:  extSpec,
     call: callSpec,
     pass: {
+      facet: def === 'TopLevelFacetSpec' ? undefined : passMulti.facet,
       repeat: def === 'TopLevelRepeatSpec' ? undefined : passMulti.repeat
     }
   };
