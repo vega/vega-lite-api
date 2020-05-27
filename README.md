@@ -39,6 +39,7 @@ To get started with the Vega-Lite API, see these Observable notebooks:
 
 - [Introduction to Vega-Lite](https://observablehq.com/@uwdata/introduction-to-vega-lite)
 - [Vega-Lite API](https://observablehq.com/@vega/vega-lite-api)
+- [Vega-Lite API Collection](https://observablehq.com/collection/@vega/vega-lite-api)
 
 ## Build Instructions
 
