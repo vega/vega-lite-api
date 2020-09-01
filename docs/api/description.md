@@ -1,13 +1,8 @@
-vl.<b>order</b>(<em>...values</em>)
+vl.<b>description</b>(<em>...values</em>)
 
-Specify the <code>order</code> encoding channel.
+Specify the <code>description</code> encoding channel.
 
-The behavior of this method depends on the argument type:
-
-- If the argument is a <code>string</code>, sets the <code>field</code> property.
-- Otherwise, sets the properties defined on the input argument(s), if provided.
-
-## <code>order</code> Method Overview
+## <code>description</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>
 * <a href="#argmax">argmax</a>
@@ -27,8 +22,11 @@ The behavior of this method depends on the argument type:
 * <a href="#fieldO">fieldO</a>
 * <a href="#fieldQ">fieldQ</a>
 * <a href="#fieldT">fieldT</a>
+* <a href="#format">format</a>
+* <a href="#formatType">formatType</a>
 * <a href="#hours">hours</a>
 * <a href="#if">if</a>
+* <a href="#labelExpr">labelExpr</a>
 * <a href="#max">max</a>
 * <a href="#mean">mean</a>
 * <a href="#median">median</a>
@@ -42,7 +40,6 @@ The behavior of this method depends on the argument type:
 * <a href="#q3">q3</a>
 * <a href="#quarter">quarter</a>
 * <a href="#seconds">seconds</a>
-* <a href="#sort">sort</a>
 * <a href="#stderr">stderr</a>
 * <a href="#stdev">stdev</a>
 * <a href="#stdevp">stdevp</a>
@@ -95,10 +92,10 @@ The behavior of this method depends on the argument type:
 * <a href="#year">year</a>
 * <a href="#yearmonth">yearmonth</a>
 
-## <code>order</code> API Reference
+## <code>description</code> API Reference
 
 <a id="aggregate" href="#aggregate">#</a>
-<em>order</em>.<b>aggregate</b>(<em>value</em>)
+<em>description</em>.<b>aggregate</b>(<em>value</em>)
 
 Aggregation function for the field
 (e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
@@ -108,29 +105,29 @@ __Default value:__ `undefined` (None)
 __See also:__ [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html) documentation.
 
 <a id="argmax" href="#argmax">#</a>
-<em>order</em>.<b>argmax</b>(<em>field</em>)
+<em>description</em>.<b>argmax</b>(<em>field</em>)
 
 Apply the <code>argmax</code> aggregate operation prior to encoding.
 
 <a id="argmin" href="#argmin">#</a>
-<em>order</em>.<b>argmin</b>(<em>field</em>)
+<em>description</em>.<b>argmin</b>(<em>field</em>)
 
 Apply the <code>argmin</code> aggregate operation prior to encoding.
 
 <a id="average" href="#average">#</a>
-<em>order</em>.<b>average</b>(<em>field</em>)
+<em>description</em>.<b>average</b>(<em>field</em>)
 
 Apply the <code>average</code> aggregate operation prior to encoding.
 
 <a id="band" href="#band">#</a>
-<em>order</em>.<b>band</b>(<em>value</em>)
+<em>description</em>.<b>band</b>(<em>value</em>)
 
 For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band), bins or time units. If set to `1`, the mark size is set to the bandwidth, the bin interval, or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
 
 For other marks, relative position on a band of a stacked, binned, time unit or band scale. If set to `0`, the marks will be positioned at the beginning of the band. If set to `0.5`, the marks will be positioned in the middle of the band.
 
 <a id="bin" href="#bin">#</a>
-<em>order</em>.<b>bin</b>(<em>value</em>)
+<em>description</em>.<b>bin</b>(<em>value</em>)
 
 A flag for binning a `quantitative` field, [an object defining binning parameters](https://vega.github.io/vega-lite/docs/bin.html#params), or indicating that the data for `x` or `y` channel are binned before they are imported into Vega-Lite (`"binned"`).
 
@@ -143,45 +140,42 @@ __Default value:__ `false`
 __See also:__ [`bin`](https://vega.github.io/vega-lite/docs/bin.html) documentation.
 
 <a id="ci0" href="#ci0">#</a>
-<em>order</em>.<b>ci0</b>(<em>field</em>)
+<em>description</em>.<b>ci0</b>(<em>field</em>)
 
 Apply the <code>ci0</code> aggregate operation prior to encoding.
 
 <a id="ci1" href="#ci1">#</a>
-<em>order</em>.<b>ci1</b>(<em>field</em>)
+<em>description</em>.<b>ci1</b>(<em>field</em>)
 
 Apply the <code>ci1</code> aggregate operation prior to encoding.
 
 <a id="condition" href="#condition">#</a>
-<em>order</em>.<b>condition</b>(<em>...value</em>)
+<em>description</em>.<b>condition</b>(<em>...value</em>)
 
-One or more value definition(s) with [a selection or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).
-
-__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value)
-since Vega-Lite only allows at most one encoded field per encoding channel.
+A field definition or one or more value definition(s) with a selection predicate.
 
 <a id="count" href="#count">#</a>
-<em>order</em>.<b>count</b>(<em></em>)
+<em>description</em>.<b>count</b>(<em></em>)
 
 Apply the <code>count</code> aggregate operation prior to encoding.
 
 <a id="date" href="#date">#</a>
-<em>order</em>.<b>date</b>(<em>field</em>)
+<em>description</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
 
 <a id="day" href="#day">#</a>
-<em>order</em>.<b>day</b>(<em>field</em>)
+<em>description</em>.<b>day</b>(<em>field</em>)
 
 Apply the <code>day</code> timeUnit operation prior to encoding.
 
 <a id="distinct" href="#distinct">#</a>
-<em>order</em>.<b>distinct</b>(<em>field</em>)
+<em>description</em>.<b>distinct</b>(<em>field</em>)
 
 Apply the <code>distinct</code> aggregate operation prior to encoding.
 
 <a id="field" href="#field">#</a>
-<em>order</em>.<b>field</b>(<em>value</em>)
+<em>description</em>.<b>field</b>(<em>value</em>)
 
 __Required.__ A string defining the name of the field from which to pull a data value
 or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.
@@ -195,162 +189,187 @@ See more details about escaping in the [field documentation](https://vega.github
 2) `field` is not required if `aggregate` is `count`.
 
 <a id="fieldN" href="#fieldN">#</a>
-<em>order</em>.<b>fieldN</b>(<em>field</em>)
+<em>description</em>.<b>fieldN</b>(<em>field</em>)
 
 Encode the field as a nominal data type.
 
 <a id="fieldO" href="#fieldO">#</a>
-<em>order</em>.<b>fieldO</b>(<em>field</em>)
+<em>description</em>.<b>fieldO</b>(<em>field</em>)
 
 Encode the field as an ordinal data type.
 
 <a id="fieldQ" href="#fieldQ">#</a>
-<em>order</em>.<b>fieldQ</b>(<em>field</em>)
+<em>description</em>.<b>fieldQ</b>(<em>field</em>)
 
 Encode the field as a quantitative data type.
 
 <a id="fieldT" href="#fieldT">#</a>
-<em>order</em>.<b>fieldT</b>(<em>field</em>)
+<em>description</em>.<b>fieldT</b>(<em>field</em>)
 
 Encode the field as a temporal data type.
 
+<a id="format" href="#format">#</a>
+<em>description</em>.<b>format</b>(<em>value</em>)
+
+When used with the default `"number"` and `"time"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.
+
+- If the format type is `"number"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).
+- If the format type is `"time"` (e.g., for temporal fields), this is D3's [time format pattern](https://github.com/d3/d3-time-format#locale_format).
+
+See the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.
+
+When used with a [custom `formatType`](https://vega.github.io/vega-lite/docs/config.html#custom-format-type), this value will be passed as `format` alongside `datum.value` to the registered function.
+
+__Default value:__  Derived from [numberFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for number format and from [timeFormat](https://vega.github.io/vega-lite/docs/config.html#format) config for time format.
+
+<a id="formatType" href="#formatType">#</a>
+<em>description</em>.<b>formatType</b>(<em>value</em>)
+
+The format type for labels. One of `"number"`, `"time"`, or a [registered custom format type](https://vega.github.io/vega-lite/docs/config.html#custom-format-type).
+
+__Default value:__
+- `"time"` for temporal fields and ordinal and nominal fields with `timeUnit`.
+- `"number"` for quantitative fields as well as ordinal and nominal fields without `timeUnit`.
+
 <a id="hours" href="#hours">#</a>
-<em>order</em>.<b>hours</b>(<em>field</em>)
+<em>description</em>.<b>hours</b>(<em>field</em>)
 
 Apply the <code>hours</code> timeUnit operation prior to encoding.
 
 <a id="if" href="#if">#</a>
-<em>order</em>.<b>if</b>(<em>...condition</em>)
+<em>description</em>.<b>if</b>(<em>...condition</em>)
 
 Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).
 
+<a id="labelExpr" href="#labelExpr">#</a>
+<em>description</em>.<b>labelExpr</b>(<em>value</em>)
+
+[Vega expression](https://vega.github.io/vega/docs/expressions/) for customizing labels text.
+
+__Note:__ The label text and value can be assessed via the `label` and `value` properties of the axis's backing `datum` object.
+
 <a id="max" href="#max">#</a>
-<em>order</em>.<b>max</b>(<em>field</em>)
+<em>description</em>.<b>max</b>(<em>field</em>)
 
 Apply the <code>max</code> aggregate operation prior to encoding.
 
 <a id="mean" href="#mean">#</a>
-<em>order</em>.<b>mean</b>(<em>field</em>)
+<em>description</em>.<b>mean</b>(<em>field</em>)
 
 Apply the <code>mean</code> aggregate operation prior to encoding.
 
 <a id="median" href="#median">#</a>
-<em>order</em>.<b>median</b>(<em>field</em>)
+<em>description</em>.<b>median</b>(<em>field</em>)
 
 Apply the <code>median</code> aggregate operation prior to encoding.
 
 <a id="milliseconds" href="#milliseconds">#</a>
-<em>order</em>.<b>milliseconds</b>(<em>field</em>)
+<em>description</em>.<b>milliseconds</b>(<em>field</em>)
 
 Apply the <code>milliseconds</code> timeUnit operation prior to encoding.
 
 <a id="min" href="#min">#</a>
-<em>order</em>.<b>min</b>(<em>field</em>)
+<em>description</em>.<b>min</b>(<em>field</em>)
 
 Apply the <code>min</code> aggregate operation prior to encoding.
 
 <a id="minutes" href="#minutes">#</a>
-<em>order</em>.<b>minutes</b>(<em>field</em>)
+<em>description</em>.<b>minutes</b>(<em>field</em>)
 
 Apply the <code>minutes</code> timeUnit operation prior to encoding.
 
 <a id="missing" href="#missing">#</a>
-<em>order</em>.<b>missing</b>(<em>field</em>)
+<em>description</em>.<b>missing</b>(<em>field</em>)
 
 Apply the <code>missing</code> aggregate operation prior to encoding.
 
 <a id="month" href="#month">#</a>
-<em>order</em>.<b>month</b>(<em>field</em>)
+<em>description</em>.<b>month</b>(<em>field</em>)
 
 Apply the <code>month</code> timeUnit operation prior to encoding.
 
 <a id="product" href="#product">#</a>
-<em>order</em>.<b>product</b>(<em>field</em>)
+<em>description</em>.<b>product</b>(<em>field</em>)
 
 Apply the <code>product</code> aggregate operation prior to encoding.
 
 <a id="q1" href="#q1">#</a>
-<em>order</em>.<b>q1</b>(<em>field</em>)
+<em>description</em>.<b>q1</b>(<em>field</em>)
 
 Apply the <code>q1</code> aggregate operation prior to encoding.
 
 <a id="q3" href="#q3">#</a>
-<em>order</em>.<b>q3</b>(<em>field</em>)
+<em>description</em>.<b>q3</b>(<em>field</em>)
 
 Apply the <code>q3</code> aggregate operation prior to encoding.
 
 <a id="quarter" href="#quarter">#</a>
-<em>order</em>.<b>quarter</b>(<em>field</em>)
+<em>description</em>.<b>quarter</b>(<em>field</em>)
 
 Apply the <code>quarter</code> timeUnit operation prior to encoding.
 
 <a id="seconds" href="#seconds">#</a>
-<em>order</em>.<b>seconds</b>(<em>field</em>)
+<em>description</em>.<b>seconds</b>(<em>field</em>)
 
 Apply the <code>seconds</code> timeUnit operation prior to encoding.
 
-<a id="sort" href="#sort">#</a>
-<em>order</em>.<b>sort</b>(<em>value</em>)
-
-The sort order. One of `"ascending"` (default) or `"descending"`.
-
 <a id="stderr" href="#stderr">#</a>
-<em>order</em>.<b>stderr</b>(<em>field</em>)
+<em>description</em>.<b>stderr</b>(<em>field</em>)
 
 Apply the <code>stderr</code> aggregate operation prior to encoding.
 
 <a id="stdev" href="#stdev">#</a>
-<em>order</em>.<b>stdev</b>(<em>field</em>)
+<em>description</em>.<b>stdev</b>(<em>field</em>)
 
 Apply the <code>stdev</code> aggregate operation prior to encoding.
 
 <a id="stdevp" href="#stdevp">#</a>
-<em>order</em>.<b>stdevp</b>(<em>field</em>)
+<em>description</em>.<b>stdevp</b>(<em>field</em>)
 
 Apply the <code>stdevp</code> aggregate operation prior to encoding.
 
 <a id="sum" href="#sum">#</a>
-<em>order</em>.<b>sum</b>(<em>field</em>)
+<em>description</em>.<b>sum</b>(<em>field</em>)
 
 Apply the <code>sum</code> aggregate operation prior to encoding.
 
 <a id="timeHM" href="#timeHM">#</a>
-<em>order</em>.<b>timeHM</b>(<em>field</em>)
+<em>description</em>.<b>timeHM</b>(<em>field</em>)
 
 Apply the <code>hoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeHMS" href="#timeHMS">#</a>
-<em>order</em>.<b>timeHMS</b>(<em>field</em>)
+<em>description</em>.<b>timeHMS</b>(<em>field</em>)
 
 Apply the <code>hoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeMD" href="#timeMD">#</a>
-<em>order</em>.<b>timeMD</b>(<em>field</em>)
+<em>description</em>.<b>timeMD</b>(<em>field</em>)
 
 Apply the <code>monthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeMDH" href="#timeMDH">#</a>
-<em>order</em>.<b>timeMDH</b>(<em>field</em>)
+<em>description</em>.<b>timeMDH</b>(<em>field</em>)
 
 Apply the <code>monthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeMS" href="#timeMS">#</a>
-<em>order</em>.<b>timeMS</b>(<em>field</em>)
+<em>description</em>.<b>timeMS</b>(<em>field</em>)
 
 Apply the <code>minutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeQM" href="#timeQM">#</a>
-<em>order</em>.<b>timeQM</b>(<em>field</em>)
+<em>description</em>.<b>timeQM</b>(<em>field</em>)
 
 Apply the <code>quartermonth</code> timeUnit operation prior to encoding.
 
 <a id="timeSMS" href="#timeSMS">#</a>
-<em>order</em>.<b>timeSMS</b>(<em>field</em>)
+<em>description</em>.<b>timeSMS</b>(<em>field</em>)
 
 Apply the <code>secondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeUnit" href="#timeUnit">#</a>
-<em>order</em>.<b>timeUnit</b>(<em>value</em>)
+<em>description</em>.<b>timeUnit</b>(<em>value</em>)
 
 Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
 or [a temporal field that gets casted as ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
@@ -360,42 +379,42 @@ __Default value:__ `undefined` (None)
 __See also:__ [`timeUnit`](https://vega.github.io/vega-lite/docs/timeunit.html) documentation.
 
 <a id="timeYM" href="#timeYM">#</a>
-<em>order</em>.<b>timeYM</b>(<em>field</em>)
+<em>description</em>.<b>timeYM</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 
 <a id="timeYMD" href="#timeYMD">#</a>
-<em>order</em>.<b>timeYMD</b>(<em>field</em>)
+<em>description</em>.<b>timeYMD</b>(<em>field</em>)
 
 Apply the <code>yearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDH" href="#timeYMDH">#</a>
-<em>order</em>.<b>timeYMDH</b>(<em>field</em>)
+<em>description</em>.<b>timeYMDH</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHM" href="#timeYMDHM">#</a>
-<em>order</em>.<b>timeYMDHM</b>(<em>field</em>)
+<em>description</em>.<b>timeYMDHM</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHMS" href="#timeYMDHMS">#</a>
-<em>order</em>.<b>timeYMDHMS</b>(<em>field</em>)
+<em>description</em>.<b>timeYMDHMS</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeYQ" href="#timeYQ">#</a>
-<em>order</em>.<b>timeYQ</b>(<em>field</em>)
+<em>description</em>.<b>timeYQ</b>(<em>field</em>)
 
 Apply the <code>yearquarter</code> timeUnit operation prior to encoding.
 
 <a id="timeYQM" href="#timeYQM">#</a>
-<em>order</em>.<b>timeYQM</b>(<em>field</em>)
+<em>description</em>.<b>timeYQM</b>(<em>field</em>)
 
 Apply the <code>yearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="title" href="#title">#</a>
-<em>order</em>.<b>title</b>(<em>value</em>)
+<em>description</em>.<b>title</b>(<em>value</em>)
 
 A title for the field. If `null`, the title will be removed.
 
@@ -408,7 +427,7 @@ __Notes__:
 2) If both field definition's `title` and axis, header, or legend `title` are defined, axis/header/legend title will be used.
 
 <a id="type" href="#type">#</a>
-<em>order</em>.<b>type</b>(<em>value</em>)
+<em>description</em>.<b>type</b>(<em>value</em>)
 
 The type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or `"nominal"`) for the encoded field or constant value (`datum`).
 It can also be a `"geojson"` type for encoding ['geoshape'](https://vega.github.io/vega-lite/docs/geoshape.html).
@@ -440,152 +459,152 @@ __Note:__
 __See also:__ [`type`](https://vega.github.io/vega-lite/docs/type.html) documentation.
 
 <a id="utcHM" href="#utcHM">#</a>
-<em>order</em>.<b>utcHM</b>(<em>field</em>)
+<em>description</em>.<b>utcHM</b>(<em>field</em>)
 
 Apply the <code>utchoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcHMS" href="#utcHMS">#</a>
-<em>order</em>.<b>utcHMS</b>(<em>field</em>)
+<em>description</em>.<b>utcHMS</b>(<em>field</em>)
 
 Apply the <code>utchoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcMD" href="#utcMD">#</a>
-<em>order</em>.<b>utcMD</b>(<em>field</em>)
+<em>description</em>.<b>utcMD</b>(<em>field</em>)
 
 Apply the <code>utcmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcMDH" href="#utcMDH">#</a>
-<em>order</em>.<b>utcMDH</b>(<em>field</em>)
+<em>description</em>.<b>utcMDH</b>(<em>field</em>)
 
 Apply the <code>utcmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcMS" href="#utcMS">#</a>
-<em>order</em>.<b>utcMS</b>(<em>field</em>)
+<em>description</em>.<b>utcMS</b>(<em>field</em>)
 
 Apply the <code>utcminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcQM" href="#utcQM">#</a>
-<em>order</em>.<b>utcQM</b>(<em>field</em>)
+<em>description</em>.<b>utcQM</b>(<em>field</em>)
 
 Apply the <code>utcquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcSMS" href="#utcSMS">#</a>
-<em>order</em>.<b>utcSMS</b>(<em>field</em>)
+<em>description</em>.<b>utcSMS</b>(<em>field</em>)
 
 Apply the <code>utcsecondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYM" href="#utcYM">#</a>
-<em>order</em>.<b>utcYM</b>(<em>field</em>)
+<em>description</em>.<b>utcYM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcYMD" href="#utcYMD">#</a>
-<em>order</em>.<b>utcYMD</b>(<em>field</em>)
+<em>description</em>.<b>utcYMD</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDH" href="#utcYMDH">#</a>
-<em>order</em>.<b>utcYMDH</b>(<em>field</em>)
+<em>description</em>.<b>utcYMDH</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHM" href="#utcYMDHM">#</a>
-<em>order</em>.<b>utcYMDHM</b>(<em>field</em>)
+<em>description</em>.<b>utcYMDHM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHMS" href="#utcYMDHMS">#</a>
-<em>order</em>.<b>utcYMDHMS</b>(<em>field</em>)
+<em>description</em>.<b>utcYMDHMS</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYQ" href="#utcYQ">#</a>
-<em>order</em>.<b>utcYQ</b>(<em>field</em>)
+<em>description</em>.<b>utcYQ</b>(<em>field</em>)
 
 Apply the <code>utcyearquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcYQM" href="#utcYQM">#</a>
-<em>order</em>.<b>utcYQM</b>(<em>field</em>)
+<em>description</em>.<b>utcYQM</b>(<em>field</em>)
 
 Apply the <code>utcyearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcdate" href="#utcdate">#</a>
-<em>order</em>.<b>utcdate</b>(<em>field</em>)
+<em>description</em>.<b>utcdate</b>(<em>field</em>)
 
 Apply the <code>utcdate</code> timeUnit operation prior to encoding.
 
 <a id="utcday" href="#utcday">#</a>
-<em>order</em>.<b>utcday</b>(<em>field</em>)
+<em>description</em>.<b>utcday</b>(<em>field</em>)
 
 Apply the <code>utcday</code> timeUnit operation prior to encoding.
 
 <a id="utchours" href="#utchours">#</a>
-<em>order</em>.<b>utchours</b>(<em>field</em>)
+<em>description</em>.<b>utchours</b>(<em>field</em>)
 
 Apply the <code>utchours</code> timeUnit operation prior to encoding.
 
 <a id="utcmilliseconds" href="#utcmilliseconds">#</a>
-<em>order</em>.<b>utcmilliseconds</b>(<em>field</em>)
+<em>description</em>.<b>utcmilliseconds</b>(<em>field</em>)
 
 Apply the <code>utcmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcminutes" href="#utcminutes">#</a>
-<em>order</em>.<b>utcminutes</b>(<em>field</em>)
+<em>description</em>.<b>utcminutes</b>(<em>field</em>)
 
 Apply the <code>utcminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcmonth" href="#utcmonth">#</a>
-<em>order</em>.<b>utcmonth</b>(<em>field</em>)
+<em>description</em>.<b>utcmonth</b>(<em>field</em>)
 
 Apply the <code>utcmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcquarter" href="#utcquarter">#</a>
-<em>order</em>.<b>utcquarter</b>(<em>field</em>)
+<em>description</em>.<b>utcquarter</b>(<em>field</em>)
 
 Apply the <code>utcquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcseconds" href="#utcseconds">#</a>
-<em>order</em>.<b>utcseconds</b>(<em>field</em>)
+<em>description</em>.<b>utcseconds</b>(<em>field</em>)
 
 Apply the <code>utcseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcyear" href="#utcyear">#</a>
-<em>order</em>.<b>utcyear</b>(<em>field</em>)
+<em>description</em>.<b>utcyear</b>(<em>field</em>)
 
 Apply the <code>utcyear</code> timeUnit operation prior to encoding.
 
 <a id="utcyearmonth" href="#utcyearmonth">#</a>
-<em>order</em>.<b>utcyearmonth</b>(<em>field</em>)
+<em>description</em>.<b>utcyearmonth</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="valid" href="#valid">#</a>
-<em>order</em>.<b>valid</b>(<em>field</em>)
+<em>description</em>.<b>valid</b>(<em>field</em>)
 
 Apply the <code>valid</code> aggregate operation prior to encoding.
 
 <a id="value" href="#value">#</a>
-<em>order</em>.<b>value</b>(<em>value</em>)
+<em>description</em>.<b>value</b>(<em>value</em>)
 
 A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
-<em>order</em>.<b>variance</b>(<em>field</em>)
+<em>description</em>.<b>variance</b>(<em>field</em>)
 
 Apply the <code>variance</code> aggregate operation prior to encoding.
 
 <a id="variancep" href="#variancep">#</a>
-<em>order</em>.<b>variancep</b>(<em>field</em>)
+<em>description</em>.<b>variancep</b>(<em>field</em>)
 
 Apply the <code>variancep</code> aggregate operation prior to encoding.
 
 <a id="year" href="#year">#</a>
-<em>order</em>.<b>year</b>(<em>field</em>)
+<em>description</em>.<b>year</b>(<em>field</em>)
 
 Apply the <code>year</code> timeUnit operation prior to encoding.
 
 <a id="yearmonth" href="#yearmonth">#</a>
-<em>order</em>.<b>yearmonth</b>(<em>field</em>)
+<em>description</em>.<b>yearmonth</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 

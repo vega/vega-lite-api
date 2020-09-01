@@ -56,6 +56,7 @@
 - <a href="angle">vl.<b>angle</b></a> - Specify the <code>angle</code> encoding channel.
 - <a href="color">vl.<b>color</b></a> - Specify the <code>color</code> encoding channel.
 - <a href="column">vl.<b>column</b></a> - Specify the <code>column</code> encoding channel.
+- <a href="description">vl.<b>description</b></a> - Specify the <code>description</code> encoding channel.
 - <a href="detail">vl.<b>detail</b></a> - Specify the <code>detail</code> encoding channel.
 - <a href="facet">vl.<b>facet</b></a> - Specify the <code>facet</code> encoding channel.
 - <a href="fill">vl.<b>fill</b></a> - Specify the <code>fill</code> encoding channel.

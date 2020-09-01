@@ -1,5 +1,7 @@
 # Vega-Lite API <a href="https://vega.github.io/vega-lite/"><img align="right" src="https://github.com/vega/logos/blob/master/assets/VL_Color@64.png?raw=true" height="38" /></a>
 
+[![Build Status](https://github.com/vega/vega-lite-api/workflows/Test/badge.svg)](https://github.com/vega/vega-lite-api/actions)
+
 ![Gallery Image](https://vega.github.io/vega-lite/static/teaser.png)
 
 A JavaScript API for creating Vega-Lite JSON specifications. [Vega-Lite](https://vega.github.io/vega-lite/) is a high-level grammar for visual analysis that generates complete [Vega](https://vega.github.io/) specifications.
@@ -37,6 +39,7 @@ To get started with the Vega-Lite API, see these Observable notebooks:
 
 - [Introduction to Vega-Lite](https://observablehq.com/@uwdata/introduction-to-vega-lite)
 - [Vega-Lite API](https://observablehq.com/@vega/vega-lite-api)
+- [Vega-Lite API Collection](https://observablehq.com/collection/@vega/vega-lite-api)
 
 ## Build Instructions
 
