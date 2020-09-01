@@ -174,7 +174,43 @@ export function selection(type) {
     key: [
       {selection: '_sel'},
       '_sel'
-    ]
+    ],
+    pass: {
+      key: {
+        call: '_selref', init: '_sel', prop: 'key',
+        desc: 'Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.'
+      },
+      field: {
+        call: '_selref', init: '_sel', prop: 'field',
+        desc: 'Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      },
+      encoding:  {
+        call: '_selref', init: '_sel', prop: 'encoding',
+        desc: 'Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      }
+    }
+  };
+}
+
+export function selref() {
+  return {
+    desc: `Create a new selection reference.`,
+    doc:  'Selections',
+    arg:  ['selection'],
+    ext:  {
+      key: {
+        arg: ['key'],
+        desc: 'Key in data to lookup, when a selection is used within a lookup transform.'
+      },
+      field: {
+        arg: ['field'],
+        desc: 'A field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      },
+      encoding:  {
+        arg: ['encoding'],
+        desc: 'An encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      }
+    }
   };
 }
 
