@@ -1,6 +1,6 @@
 {
   "name": "vega-lite-api",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A JavaScript API for Vega-Lite.",
   "keywords": [
     "vega",
@@ -28,7 +28,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "eslint": "^7.8.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.26.8",
+    "rollup": "^2.26.9",
     "tape": "^5.0.1",
     "terser": "^5.2.1",
     "vega": "^5.15.0",
