@@ -5,7 +5,7 @@ import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
   field, fieldType, not, logical, repeat, value,
-  selection, binding, projection, encoding, channel,
+  selection, selref, binding, projection, encoding, channel,
   source, sourceFormat, generator, format, lookupData, data,
   unit, mark, layer, spec
 } from './types';
@@ -101,6 +101,7 @@ export const api = {
 
   // selections
   ...selections(),
+  _selref: selref(),
 
   // bindings
   checkbox:  binding('BindCheckbox', 'checkbox'),

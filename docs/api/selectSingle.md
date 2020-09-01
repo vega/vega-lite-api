@@ -7,9 +7,12 @@ Define a new <code>single</code> selection.
 * <a href="#bind">bind</a>
 * <a href="#clear">clear</a>
 * <a href="#empty">empty</a>
+* <a href="#encoding">encoding</a>
 * <a href="#encodings">encodings</a>
+* <a href="#field">field</a>
 * <a href="#fields">fields</a>
 * <a href="#init">init</a>
+* <a href="#key">key</a>
 * <a href="#nearest">nearest</a>
 * <a href="#on">on</a>
 * <a href="#resolve">resolve</a>
@@ -47,6 +50,11 @@ __See also:__ [`clear`](https://vega.github.io/vega-lite/docs/clear.html) docume
 By default, `all` data values are considered to lie within an empty selection.
 When set to `none`, empty selections contain no data values.
 
+<a id="encoding" href="#encoding">#</a>
+<em>selectSingle</em>.<b>encoding</b>(<em>...values</em>)
+
+Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.
+
 <a id="encodings" href="#encodings">#</a>
 <em>selectSingle</em>.<b>encodings</b>(<em>...value</em>)
 
@@ -54,6 +62,11 @@ An array of encoding channels. The corresponding data field values
 must match for a data tuple to fall within the selection.
 
 __See also:__ [`encodings`](https://vega.github.io/vega-lite/docs/project.html) documentation.
+
+<a id="field" href="#field">#</a>
+<em>selectSingle</em>.<b>field</b>(<em>...values</em>)
+
+Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.
 
 <a id="fields" href="#fields">#</a>
 <em>selectSingle</em>.<b>fields</b>(<em>...value</em>)
@@ -69,6 +82,11 @@ __See also:__ [`fields`](https://vega.github.io/vega-lite/docs/project.html) doc
 Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values.
 
 __See also:__ [`init`](https://vega.github.io/vega-lite/docs/init.html) documentation.
+
+<a id="key" href="#key">#</a>
+<em>selectSingle</em>.<b>key</b>(<em>...values</em>)
+
+Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.
 
 <a id="nearest" href="#nearest">#</a>
 <em>selectSingle</em>.<b>nearest</b>(<em>value</em>)

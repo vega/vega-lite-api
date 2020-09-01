@@ -18,8 +18,8 @@ function markSpec(name) {
   };
 }
 
-function refSpec(name) {
-  return {selection: name};
+function refSpec(name, opt) {
+  return {selection: name, ...opt};
 }
 
 function encSpec(test) {
@@ -72,6 +72,30 @@ tape('Composite selection references are supported', function(t) {
   equalSpec(t, filtA, filtSpec(testA));
   equalSpec(t, filtB, filtSpec(testB));
   equalSpec(t, filtC, filtSpec(testC));
+
+  t.end();
+});
+
+tape('Selections can produce references', function(t) {
+  const names = ['single', 'multi', 'interval'];
+  const single = vl.selectSingle(names[0]);
+  const multi = vl.selectMulti(names[1]);
+  const interval = vl.selectInterval(names[2]);
+
+  const key = 'key';
+  equalSpec(t, single.key(key), refSpec(names[0], {key}));
+  equalSpec(t, multi.key(key), refSpec(names[1], {key}));
+  equalSpec(t, interval.key(key), refSpec(names[2], {key}));
+
+  const field = 'field';
+  equalSpec(t, single.field(field), refSpec(names[0], {field}));
+  equalSpec(t, multi.field(field), refSpec(names[1], {field}));
+  equalSpec(t, interval.field(field), refSpec(names[2], {field}));
+
+  const encoding = 'enc';
+  equalSpec(t, single.encoding(encoding), refSpec(names[0], {encoding}));
+  equalSpec(t, multi.encoding(encoding), refSpec(names[1], {encoding}));
+  equalSpec(t, interval.encoding(encoding), refSpec(names[2], {encoding}));
 
   t.end();
 });

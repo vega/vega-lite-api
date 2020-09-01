@@ -390,15 +390,21 @@ function generateAccretiveArrayProperty(emit, method, opt) {
 
 function generatePass(emit, method, opt) {
   emit.import(opt.call, opt.from || opt.call);
-  if (!opt.self) emit.import('assign');
+  if (!opt.self && !opt.init) emit.import('assign');
 
   emit(`${method}(...values) {`);
   if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
   if (opt.prop) {
-    emit(`  let obj = ${opt.call}();`);
-    opt.self
-      ? emit(`  obj = obj.${opt.self}(this);`)
-      : emit(`  obj = assign(obj, this);`);
+    if (opt.init) {
+      // this pulls an internal property as a constructor arg
+      // this could be revised to use / check the underscore prefix
+      emit(`  let obj = ${opt.call}(this["${opt.init}"]);`);
+    } else {
+      emit(`  let obj = ${opt.call}();`);
+      opt.self
+        ? emit(`  obj = obj.${opt.self}(this);`)
+        : emit(`  obj = assign(obj, this);`);
+    }
     emit(`  return obj.${opt.prop}(...values);`);
   } else {
     emit(`  const obj = ${opt.call}(...values);`);
