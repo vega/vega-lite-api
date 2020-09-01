@@ -19,7 +19,8 @@ const document = {
     return {
       setAttribute: () => {},
       appendChild: () => {},
-      childNodes: []
+      childNodes: [],
+      style: {}
     };
   }
 };
