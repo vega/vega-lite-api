@@ -10,7 +10,7 @@ Create a new layered chart.
 * <a href="#data">data</a>
 * <a href="#datasets">datasets</a>
 * <a href="#description">description</a>
-* <a href="#encoding">encoding</a>
+* <a href="#encode">encode</a>
 * <a href="#facet">facet</a>
 * <a href="#height">height</a>
 * <a href="#layer">layer</a>
@@ -73,10 +73,10 @@ This can be an array of objects or primitive values or a string. Arrays of primi
 
 Description of this mark for commenting purpose.
 
-<a id="encoding" href="#encoding">#</a>
-<em>layer</em>.<b>encoding</b>(<em>value</em>)
+<a id="encode" href="#encode">#</a>
+<em>layer</em>.<b>encode</b>(<em>...encoding</em>)
 
-A shared key-value mapping between encoding channels and definition of fields in the underlying layers.
+Specify visual encodings for the mark.
 
 <a id="facet" href="#facet">#</a>
 <em>layer</em>.<b>facet</b>(<em>...values</em>)

@@ -408,13 +408,13 @@ const extSpec = {
 const extLayer = {
   projection:  null,
   project:     {arg: ['projection'], desc: `The cartographic ${link('projection')} to apply to geographical data.`},
+  encoding:    null,
+  encode:      {arg: ['+::encoding'], flag: 1, desc: 'Specify visual encodings for the mark.'},
   ...extSpec
 };
 
 const extUnit = {
   mark:        {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
-  encoding:    null,
-  encode:      {arg: ['+::encoding'], flag: 1, desc: 'Specify visual encodings for the mark.'},
   selection:   null,
   select:      {arg: ['+::selection'], flag: 1, desc: 'Register interactive selections on the mark.'},
   ...extLayer
