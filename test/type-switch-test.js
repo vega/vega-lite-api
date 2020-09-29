@@ -20,7 +20,7 @@ tape('Type check switches map arrays', function(t) {
     {field: 'life_expect', type: 'nominal'}
   ];
 
-  t.equal(JSON.stringify(objects.toJSON()), JSON.stringify(spec));
-  t.equal(JSON.stringify(strings.toJSON()), JSON.stringify(spec));
+  t.equal(JSON.stringify(objects.toObject()), JSON.stringify(spec));
+  t.equal(JSON.stringify(strings.toObject()), JSON.stringify(spec));
   t.end();
 });

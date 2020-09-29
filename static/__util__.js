@@ -6,7 +6,7 @@ export function id(prefix) {
 }
 
 export class BaseObject {
-  toJSON() { return toJSON(this); }
+  toObject() { return toObject(this); }
 }
 
 export function assign(target, ...sources) {
@@ -44,10 +44,11 @@ export function init(obj, value) {
 }
 
 function recurse(d, flag) {
-  return d && d.toJSON ? d.toJSON(flag) : toJSON(d);
+  //console.log('RECURSE', d);
+  return d && d.toObject ? d.toObject(flag) : toObject(d);
 }
 
-function toJSON(value) {
+function toObject(value) {
   if (isArray(value)) {
     return value.map(d => recurse(d));
   } else if (isObject(value)) {
@@ -61,6 +62,10 @@ function toJSON(value) {
   } else {
     return value;
   }
+}
+
+export function raw(value) {
+  return { [Data]: value, toObject: () => value };
 }
 
 function object(value) {
@@ -87,6 +92,10 @@ export const isArray = Array.isArray;
 
 export function isBoolean(_) {
   return typeof _ === 'boolean';
+}
+
+export function isIterable(_) {
+  return isObject(_) && typeof _[Symbol.iterator] === 'function';
 }
 
 export function isNumber(_) {

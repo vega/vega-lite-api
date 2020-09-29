@@ -79,7 +79,7 @@ export const api = {
   // data specification
   data: data(),
   urlData: source('url', ['url']),
-  inlineData: source('inline', ['values']),
+  inlineData: source('inline', ['values'], true),
   ...generators(),
   ...sources(),
   ...formats(),

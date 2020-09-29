@@ -54,7 +54,7 @@ export function generateMethod(schema, methodName, spec) {
 
   // -- key --
   if (spec.key || spec.nest) {
-    generateToJSON(emit, spec);
+    generateToObject(emit, spec);
   }
 
   emit.outdent()
@@ -222,26 +222,38 @@ function generateCopy(emit, method, set) {
 function typeSwitch(emit, types, value) {
   let code = '';
 
-  for (let key in types) {
+  for (const key in types) {
     let _ = types[key],
         set, val, check;
 
     switch (key) {
-      case 'array':   check = 'isArray';   break;
-      case 'string':  check = 'isString';  break;
-      case 'number':  check = 'isNumber';  break;
-      case 'boolean': check = 'isBoolean'; break;
-      case 'object':  check = 'isObject';  break;
+      case 'array':    check = 'isArray';    break;
+      case 'string':   check = 'isString';   break;
+      case 'number':   check = 'isNumber';   break;
+      case 'boolean':  check = 'isBoolean';  break;
+      case 'object':   check = 'isObject';   break;
+      case 'iterable': check = 'isIterable'; break;
     }
     emit.import(check);
 
     if (_.map) {
       val = typeSwitch(emit, _.map, '_');
       val = `${value}.map(_ => { return ${val}; })`;
+    } else if (_.key == null) {
+      if (_.raw) {
+        emit.import('raw');
+        val = `raw(${value})`;
+      } else {
+        val = value;
+      }
     } else {
-      key = _.key
       set = _.set;
-      val = [`${key}: ${_.map ? '_' : value}`];
+      if (_.raw) {
+        emit.import('raw');
+        val = [`${_.key}: raw(${value})`];
+      } else {
+        val = [`${_.key}: ${value}`];
+      }
       for (let k in set) val.push(`${k}: ${$(set[k])}`);
       val = `{${val.join(', ')}}`;
     }
@@ -426,26 +438,26 @@ function generateCall(emit, method, opt) {
   emit();
 }
 
-function generateToJSON(emit, spec) {
+function generateToObject(emit, spec) {
   const {key, nest} = spec,
         flag = Array.isArray(key);
 
   let obj = flag
-    ? `flag ? ${generateJSON(key[1])} : ${generateJSON(key[0])}`
-    : generateJSON(key);
+    ? `flag ? ${generateObject(key[1])} : ${generateObject(key[0])}`
+    : generateObject(key);
 
   if (nest) {
     emit.import('nest');
     obj = `nest(${obj}, ${$(nest.keys)}, ${$(nest.rest)})`;
   }
 
-  emit(`toJSON(${flag ? 'flag' : ''}) {`);
+  emit(`toObject(${flag ? 'flag' : ''}) {`);
   emit(`  return ${obj};`);
   emit(`}`);
   emit();
 }
 
-function generateJSON(key) {
+function generateObject(key) {
   if (isObject(key)) {
     let c = [];
     for (let k in key) {
@@ -456,8 +468,8 @@ function generateJSON(key) {
     return `{${c.join(', ')}}`;
   } else if (isString(key)) {
     const k = key.startsWith('_') ? `[this[${$(key)}]]` : key;
-    return `{${k}: super.toJSON()}`;
+    return `{${k}: super.toObject()}`;
   } else {
-    return `super.toJSON()`;
+    return `super.toObject()`;
   }
 }

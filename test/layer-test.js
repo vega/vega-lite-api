@@ -2,7 +2,7 @@ const tape = require('tape'),
       vl = require('../');
 
 function equalSpec(t, api, spec) {
-  t.equal(JSON.stringify(api.toJSON()), JSON.stringify(spec));
+  t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));
 }
 
 tape('Layering unit specs is supported', function(t) {

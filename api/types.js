@@ -229,7 +229,7 @@ export function binding(def, input, args) {
 // -- Encodings --
 
 const channelAggregate = {};
-for (let key in aggregateOps) {
+for (const key in aggregateOps) {
   const _ = aggregateOps[key];
   channelAggregate[key] = {
     arg: [_[1]],
@@ -239,7 +239,7 @@ for (let key in aggregateOps) {
 }
 
 const channelTimeUnit = {};
-for (let key in timeUnitOps) {
+for (const key in timeUnitOps) {
   const _ = timeUnitOps[key];
   channelTimeUnit[key] = {
     arg: ['field'],
@@ -358,17 +358,24 @@ export function data() {
       layer:   {call: 'layer', desc: `Create a ${link('layer')} chart that visualizes this data reference.`},
       hconcat: {call: 'hconcat', desc: `Create a ${link('hconcat')} chart that visualizes this data reference.`},
       vconcat: {call: 'vconcat', desc: `Create a ${link('vconcat')} chart that visualizes this data reference.`},
-      ...passMulti
+      facet:   {call: '_facet',  desc: 'Facet into sub-plots by partitioning data values.'},
+      repeat:  {call: '_repeat', desc: 'Repeat a chart template to generate multiple plots.'}
     }
   };
 }
 
-export function source(type, args) {
+export function source(type, args, raw) {
   return {
     desc: `Define a ${type} data source.`,
     doc:  'Data',
     def:  `${capitalize(type)}Data`,
-    arg:  args
+    arg:  args,
+    ...(raw ? {
+      type: typeRaw,
+      ext: {
+        values: { arg: ['values'], type: typeRaw }
+      }
+    } : null)
   };
 }
 
@@ -387,7 +394,7 @@ export function sourceFormat(type) {
     nest: {keys: ['url', 'values', 'name'], rest: 'format'},
     ext:  {
       url:    {arg: ['url'], desc: 'A URL from which to load the data.'},
-      values: {arg: ['values'], desc: 'Provide loaded data values directly.'},
+      values: {arg: ['values'], type: typeRaw, desc: 'Provide loaded data values directly.'},
       name:   {arg: ['name'], desc: 'A name for this data source. Use this name to update the data via the runtime API.'}
     }
   };
@@ -430,8 +437,16 @@ export function generator(type) {
 
 const typeData = [
   {
-    array:  {key: 'values'},
-    string: {key: 'url'}
+    array:    {key: 'values', raw: true},
+    iterable: {key: 'values', raw: true},
+    string:   {key: 'url'}
+  }
+];
+
+const typeRaw = [
+  {
+    array: {raw: true},
+    object: {raw: true}
   }
 ];
 

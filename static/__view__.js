@@ -19,7 +19,7 @@ function createSpec(self) {
   const major = _vegalite ? _vegalite.version.split('.')[0] : '4';
   return Object.assign(
     {$schema: `https://vega.github.io/schema/vega-lite/v${major}.json`},
-    self.toJSON()
+    self.toObject()
   );
 }
 

@@ -14,7 +14,7 @@ function api() {
     .encode(
       vl.x().fieldT('month').axis({format: '%b'}),
       vl.y().max('temp_max'))
-    .toJSON()
+    .toObject()
 }
 
 var spec = {

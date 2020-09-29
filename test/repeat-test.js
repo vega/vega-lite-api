@@ -2,7 +2,7 @@ const tape = require('tape'),
       vl = require('../');
 
 function equalSpec(t, api, spec) {
-  t.equal(JSON.stringify(api.toJSON()), JSON.stringify(spec));
+  t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));
 }
 
 tape('Repeating unit spec is supported', function(t) {
@@ -24,6 +24,24 @@ tape('Repeating unit spec is supported', function(t) {
     data: {values}
   };
   equalSpec(t, repeat2, spec2);
+
+  t.end();
+});
+
+tape('Repeating data spec is supported', function(t) {
+  const values = [{key: 'a'}, {key: 'b'}];
+
+  const repeat = vl.data(values)
+    .repeat({row: ['key']})
+    .spec(vl.markLine());
+
+  const spec = {
+    repeat: {row: ['key']},
+    data: {values},
+    spec: { mark: {type: 'line'} }
+  };
+
+  equalSpec(t, repeat, spec);
 
   t.end();
 });

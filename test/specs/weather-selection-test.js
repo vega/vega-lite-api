@@ -2,7 +2,7 @@ var tape = require('tape'),
     vl = require('../../');
 
 tape('API output matches spec: weather-selection', function(t) {
-  t.equal(JSON.stringify(api()), JSON.stringify(spec));
+  t.equal(JSON.stringify(api().toObject()), JSON.stringify(spec));
   t.end();
 });
 

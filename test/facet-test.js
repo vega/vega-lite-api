@@ -2,7 +2,7 @@ const tape = require('tape'),
       vl = require('../');
 
 function equalSpec(t, api, spec) {
-  t.equal(JSON.stringify(api.toJSON()), JSON.stringify(spec));
+  t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));
 }
 
 tape('Faceting unit spec is supported', function(t) {
@@ -24,6 +24,24 @@ tape('Faceting unit spec is supported', function(t) {
     data: {values}
   };
   equalSpec(t, facet2, spec2);
+
+  t.end();
+});
+
+tape('Faceting data spec is supported', function(t) {
+  const values = [{key: 'a'}, {key: 'b'}];
+
+  const facet = vl.data(values)
+    .facet(vl.fieldN('key'))
+    .spec(vl.markLine());
+
+  const spec = {
+    facet: {field: 'key', type: 'nominal'},
+    data: {values},
+    spec: { mark: {type: 'line'} }
+  };
+
+  equalSpec(t, facet, spec);
 
   t.end();
 });

@@ -36,7 +36,7 @@ function api() {
           vl.size().value(100)
         )
     )
-    .toJSON()
+    .toObject()
 }
 
 var spec = {

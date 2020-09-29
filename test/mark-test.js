@@ -2,7 +2,7 @@ const tape = require('tape'),
       vl = require('../');
 
 function equalSpec(t, api, spec) {
-  t.equal(JSON.stringify(api.toJSON()), JSON.stringify(spec));
+  t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));
 }
 
 tape('Mark types can be defined by method, string, or object', function(t) {

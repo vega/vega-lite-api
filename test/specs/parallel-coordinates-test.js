@@ -52,7 +52,7 @@ function api() {
       lines,
       labels);
 
-  return plot.toJSON();
+  return plot.toObject();
 }
 
 var spec = {
