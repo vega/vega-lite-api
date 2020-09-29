@@ -20,15 +20,12 @@ The optional data fields to group by. If not specified, a single group containin
 <a id="limit" href="#limit">#</a>
 <em>pivot</em>.<b>limit</b>(<em>value</em>)
 
-An optional parameter indicating the maximum number of pivoted fields to generate.
-The default (`0`) applies no limit. The pivoted `pivot` names are sorted in ascending order prior to enforcing the limit.
-__Default value:__ `0`
+An optional parameter indicating the maximum number of pivoted fields to generate. The default (`0`) applies no limit. The pivoted `pivot` names are sorted in ascending order prior to enforcing the limit. __Default value:__ `0`
 
 <a id="op" href="#op">#</a>
 <em>pivot</em>.<b>op</b>(<em>value</em>)
 
-The aggregation operation to apply to grouped `value` field values.
-__Default value:__ `sum`
+The aggregation operation to apply to grouped `value` field values. __Default value:__ `sum`
 
 <a id="pivot" href="#pivot">#</a>
 <em>pivot</em>.<b>pivot</b>(<em>value</em>)

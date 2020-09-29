@@ -19,8 +19,5 @@ __Default value:__ The field name of the corresponding array field
 <a id="flatten" href="#flatten">#</a>
 <em>flatten</em>.<b>flatten</b>(<em>...value</em>)
 
-An array of one or more data fields containing arrays to flatten.
-If multiple fields are specified, their array values should have a parallel structure, ideally with the same length.
-If the lengths of parallel arrays do not match,
-the longest array will be used with `null` values added for missing entries.
+An array of one or more data fields containing arrays to flatten. If multiple fields are specified, their array values should have a parallel structure, ideally with the same length. If the lengths of parallel arrays do not match, the longest array will be used with `null` values added for missing entries.
 

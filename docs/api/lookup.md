@@ -16,13 +16,9 @@ Extend input data with values from another data source.
 
 The output fields on which to store the looked up data values.
 
-For data lookups, this property may be left blank if `from.fields`
-has been specified (those field names will be used); if `from.fields`
-has not been specified, `as` must be a string.
+For data lookups, this property may be left blank if `from.fields` has been specified (those field names will be used); if `from.fields` has not been specified, `as` must be a string.
 
-For selection lookups, this property is optional: if unspecified,
-looked up values will be stored under a property named for the selection;
-and if specified, it must correspond to `from.fields`.
+For selection lookups, this property is optional: if unspecified, looked up values will be stored under a property named for the selection; and if specified, it must correspond to `from.fields`.
 
 <a id="default" href="#default">#</a>
 <em>lookup</em>.<b>default</b>(<em>value</em>)

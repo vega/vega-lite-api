@@ -24,8 +24,7 @@ __Default value:__:  `[null, null]` indicating that the window includes all obje
 <a id="groupby" href="#groupby">#</a>
 <em>impute</em>.<b>groupby</b>(<em>...value</em>)
 
-An optional array of fields by which to group the values.
-Imputation will then be performed on a per-group basis.
+An optional array of fields by which to group the values. Imputation will then be performed on a per-group basis.
 
 <a id="impute" href="#impute">#</a>
 <em>impute</em>.<b>impute</b>(<em>value</em>)
@@ -35,14 +34,12 @@ The data field for which the missing values should be imputed.
 <a id="key" href="#key">#</a>
 <em>impute</em>.<b>key</b>(<em>value</em>)
 
-A key field that uniquely identifies data objects within a group.
-Missing key values (those occurring in the data but not in the current group) will be imputed.
+A key field that uniquely identifies data objects within a group. Missing key values (those occurring in the data but not in the current group) will be imputed.
 
 <a id="keyvals" href="#keyvals">#</a>
 <em>impute</em>.<b>keyvals</b>(<em>...value</em>)
 
-Defines the key values that should be considered for imputation.
-An array of key values or an object defining a [number sequence](https://vega.github.io/vega-lite/docs/impute.html#sequence-def).
+Defines the key values that should be considered for imputation. An array of key values or an object defining a [number sequence](https://vega.github.io/vega-lite/docs/impute.html#sequence-def).
 
 If provided, this will be used in addition to the key values observed within the input data. If not provided, the values will be derived from all unique values of the `key` field. For `impute` in `encoding`, the key field is the x-field if the y-field is imputed, or vice versa.
 
@@ -51,8 +48,7 @@ If there is no impute grouping, this property _must_ be specified.
 <a id="method" href="#method">#</a>
 <em>impute</em>.<b>method</b>(<em>value</em>)
 
-The imputation method to use for the field value of imputed data objects.
-One of `"value"`, `"mean"`, `"median"`, `"max"` or `"min"`.
+The imputation method to use for the field value of imputed data objects. One of `"value"`, `"mean"`, `"median"`, `"max"` or `"min"`.
 
 __Default value:__  `"value"`
 

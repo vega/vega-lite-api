@@ -54,9 +54,7 @@ __Default value:__ `3`
 <a id="params" href="#params">#</a>
 <em>regression</em>.<b>params</b>(<em>value</em>)
 
-A boolean flag indicating if the transform should return the regression model parameters (one object per group), rather than trend line points.
-The resulting objects include a `coef` array of fitted coefficient values (starting with the intercept term and then including terms of increasing order)
-and an `rSquared` value (indicating the total variance explained by the model).
+A boolean flag indicating if the transform should return the regression model parameters (one object per group), rather than trend line points. The resulting objects include a `coef` array of fitted coefficient values (starting with the intercept term and then including terms of increasing order) and an `rSquared` value (indicating the total variance explained by the model).
 
 __Default value:__ `false`
 

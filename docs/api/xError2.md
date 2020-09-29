@@ -92,8 +92,7 @@ Specify the <code>xError2</code> encoding channel.
 <a id="aggregate" href="#aggregate">#</a>
 <em>xError2</em>.<b>aggregate</b>(<em>value</em>)
 
-Aggregation function for the field
-(e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
+Aggregation function for the field (e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
 
 __Default value:__ `undefined` (None)
 
@@ -167,16 +166,11 @@ Apply the <code>distinct</code> aggregate operation prior to encoding.
 <a id="field" href="#field">#</a>
 <em>xError2</em>.<b>field</b>(<em>value</em>)
 
-__Required.__ A string defining the name of the field from which to pull a data value
-or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.
+__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.
 
 __See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.
 
-__Notes:__
-1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `"field": "foo.bar"` and `"field": "foo['bar']"`).
-If field names contain dots or brackets but are not nested, you can use `\\` to escape dots and brackets (e.g., `"a\\.b"` and `"a\\[0\\]"`).
-See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html).
-2) `field` is not required if `aggregate` is `count`.
+__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `"field": "foo.bar"` and `"field": "foo['bar']"`). If field names contain dots or brackets but are not nested, you can use `\\` to escape dots and brackets (e.g., `"a\\.b"` and `"a\\[0\\]"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.
 
 <a id="fieldN" href="#fieldN">#</a>
 <em>xError2</em>.<b>fieldN</b>(<em>field</em>)
@@ -331,8 +325,7 @@ Apply the <code>secondsmilliseconds</code> timeUnit operation prior to encoding.
 <a id="timeUnit" href="#timeUnit">#</a>
 <em>xError2</em>.<b>timeUnit</b>(<em>value</em>)
 
-Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field.
-or [a temporal field that gets casted as ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
+Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field. or [a temporal field that gets casted as ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
 
 __Default value:__ `undefined` (None)
 

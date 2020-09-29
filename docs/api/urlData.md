@@ -23,6 +23,5 @@ Provide a placeholder name and bind data at runtime.
 <a id="url" href="#url">#</a>
 <em>urlData</em>.<b>url</b>(<em>value</em>)
 
-An URL from which to load the data set. Use the `format.type` property
-to ensure the loaded data is correctly parsed.
+An URL from which to load the data set. Use the `format.type` property to ensure the loaded data is correctly parsed.
 

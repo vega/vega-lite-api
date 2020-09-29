@@ -13,9 +13,7 @@ Discretize numeric values into uniform bins.
 <a id="as" href="#as">#</a>
 <em>bin</em>.<b>as</b>(<em>...value</em>)
 
-The output fields at which to write the start and end bin values.
-This can be either a string or an array of strings with two elements denoting the name for the fields for bin start and bin end respectively.
-If a single string (e.g., `"val"`) is provided, the end field will be `"val_end"`.
+The output fields at which to write the start and end bin values. This can be either a string or an array of strings with two elements denoting the name for the fields for bin start and bin end respectively. If a single string (e.g., `"val"`) is provided, the end field will be `"val_end"`.
 
 <a id="bin" href="#bin">#</a>
 <em>bin</em>.<b>bin</b>(<em>value</em>)

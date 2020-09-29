@@ -12,8 +12,7 @@ Collapse one or more data fields into two key, value fields.
 <a id="as" href="#as">#</a>
 <em>fold</em>.<b>as</b>(<em>...value</em>)
 
-The output field names for the key and value properties produced by the fold transform.
-__Default value:__ `["key", "value"]`
+The output field names for the key and value properties produced by the fold transform. __Default value:__ `["key", "value"]`
 
 <a id="fold" href="#fold">#</a>
 <em>fold</em>.<b>fold</b>(<em>...value</em>)

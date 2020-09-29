@@ -33,8 +33,8 @@ export function props(schema, type) {
 
 export function enums(schema, type) {
   return search(schema, type,
-    t => t.enum,
-    t => t.enum,
+    t => t.const || t.enum,
+    t => t.const || t.enum,
     a => [].concat(...a).sort(),
     () => []
   );
@@ -43,7 +43,7 @@ export function enums(schema, type) {
 export function types(schema, type) {
   return search(schema, type,
     t => t.type === 'object' && (t = t.properties) && (t = t.type),
-    t => t.properties.type.enum || [],
+    t => t.properties.type.const || t.properties.type.enum || [],
     a => [].concat(...a).sort(),
     () => []
   );
