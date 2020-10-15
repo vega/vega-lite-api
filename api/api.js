@@ -114,7 +114,7 @@ export const api = {
   and: logical('and'),
   or:  logical('or'),
 
-  // tranforms
+  // transforms
   aggregate:     transform('aggregate', 'AggregateTransform', '...aggregate'),
   bin:           transform('bin', 'BinTransform', 'field', ['bin', true]),
   calculate:     transform('calculate', 'CalculateTransform', 'calculate'),
