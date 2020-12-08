@@ -1,7 +1,7 @@
-const rollup = require('rollup'),
-      json = require('@rollup/plugin-json'),
-      generate = 'build/generate-api.js',
-      output = 'build/vega-lite-api.js';
+const rollup = require('rollup');
+const json = require('@rollup/plugin-json');
+const generate = 'build/generate-api.js';
+const output = 'build/vega-lite-api.js';
 
 (async function compile() {
   try {

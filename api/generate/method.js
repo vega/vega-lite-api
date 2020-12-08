@@ -10,9 +10,9 @@ export function generateMethod(schema, methodName, spec) {
     return emit.code();
   }
 
-  const className = capitalize(methodName),
-        ext = spec.ext || {},
-        pass = spec.pass || {};
+  const className = capitalize(methodName);
+  const ext = spec.ext || {};
+  const pass = spec.pass || {};
 
   emit.import('BaseObject');
   emit(`class ${className} extends BaseObject {`);
@@ -70,8 +70,8 @@ export function generateMethod(schema, methodName, spec) {
 }
 
 function generateProxy(emit, methodName, spec, opt) {
-  const m = opt.call,
-        a = opt.arg ? $(opt.arg) + ', ' : '';
+  const m = opt.call;
+  const a = opt.arg ? $(opt.arg) + ', ' : '';
 
   emit.import(m, opt.from || m);
   emit(`export function ${methodName}(...args) {`);
@@ -88,9 +88,9 @@ function generateProxy(emit, methodName, spec, opt) {
 }
 
 function generateConstructor(emit, spec) {
-  const arg  = spec.arg,
-        set  = spec.set,
-        type = spec.type;
+  const arg  = spec.arg;
+  const set  = spec.set;
+  const type = spec.type;
 
   emit(`constructor(...args) {`).indent();
   emit(`super();`);
@@ -109,8 +109,8 @@ function generateConstructor(emit, spec) {
   if (Array.isArray(arg)) {
     // use provided argument definitions
     for (let i=0, n=arg.length; i<n; ++i) {
-      const _ = arg[i],
-            t = type && type[i];
+      const _ = arg[i];
+      const t = type && type[i];
 
       if (Array.isArray(_)) { // include a default value
         emit.import('set');
@@ -223,8 +223,10 @@ function typeSwitch(emit, types, value) {
   let code = '';
 
   for (const key in types) {
-    let _ = types[key],
-        set, val, check;
+    let _ = types[key];
+    let set;
+    let val;
+    let check;
 
     switch (key) {
       case 'array':    check = 'isArray';    break;
@@ -439,8 +441,8 @@ function generateCall(emit, method, opt) {
 }
 
 function generateToObject(emit, spec) {
-  const {key, nest} = spec,
-        flag = Array.isArray(key);
+  const {key, nest} = spec;
+  const flag = Array.isArray(key);
 
   let obj = flag
     ? `flag ? ${generateObject(key[1])} : ${generateObject(key[0])}`

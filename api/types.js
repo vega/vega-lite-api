@@ -265,9 +265,9 @@ export function channel(type) {
     }
   };
 
-  const fieldN = {key: 'field', set: {type: N}},
-        fieldO = {key: 'field', set: {type: O}},
-        fieldQ = {key: 'field', set: {type: Q}};
+  const fieldN = {key: 'field', set: {type: N}};
+  const fieldO = {key: 'field', set: {type: O}};
+  const fieldQ = {key: 'field', set: {type: Q}};
 
   switch (type) {
     case 'detail':

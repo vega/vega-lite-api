@@ -102,8 +102,8 @@ function docMethod(name, spec, schema, prefix) {
 }
 
 function collectProperties(spec, schema) {
-  const ext = spec.ext || {},
-        props = [];
+  const ext = spec.ext || {};
+  const props = [];
 
   let prop;
 
@@ -122,7 +122,8 @@ function collectProperties(spec, schema) {
   }
 
   props.sort((a, b) => {
-    const u = a[0], v = b[0];
+    const u = a[0];
+    const v = b[0];
     return u < v ? -1 : u > v ? 1 : 0;
   });
 

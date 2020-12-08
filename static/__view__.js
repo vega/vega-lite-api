@@ -28,8 +28,8 @@ function createView(self, opt) {
     throw Error('Vega / Vega-Lite not registered. Use the "register" method.');
   }
 
-  const spec = _vegalite.compile(createSpec(self), opt.config),
-        view = new _vega.View(_vega.parse(spec.spec), opt.view);
+  const spec = _vegalite.compile(createSpec(self), opt.config);
+  const view = new _vega.View(_vega.parse(spec.spec), opt.view);
 
   if (opt.init) opt.init(view);
 
@@ -39,8 +39,8 @@ function createView(self, opt) {
 export async function render(opt) {
   opt = options({container: opt && opt.container || element()}, opt);
 
-  const view = await createView(this, opt).runAsync(),
-        div = view.container() || {};
+  const view = await createView(this, opt).runAsync();
+  const div = view.container() || {};
 
   div.value = view;
   return div;

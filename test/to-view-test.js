@@ -1,7 +1,7 @@
-const tape = require('tape'),
-      vega = require('vega'),
-      vegalite = require('vega-lite'),
-      vl = require('../');
+const tape = require('tape');
+const vega = require('vega');
+const vegalite = require('vega-lite');
+const vl = require('../');
 
 tape('Top-level specification types have a toView method', function(t) {
   t.ok(vl.mark().toView);
