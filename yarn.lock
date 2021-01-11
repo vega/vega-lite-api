@@ -1259,15 +1259,15 @@ table@^6.0.4:
     string-width "^4.2.0"
 
 tape@^5.0.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/tape/-/tape-5.1.0.tgz#3ae5f8ac5f39dc7d74c70d1d680faa2d4720726b"
-  integrity sha512-3+/QreLoHRe2QhjkIQ6vSjwTRnC3iMQSg943K9EP3rHhY6MWlLxNw/0h46B6DYz5/SSI4GmU1Dr5HNDAlFLhtQ==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/tape/-/tape-5.1.1.tgz#51e6fc7af0c15cf39faa6aac3d0a1d2ca6fd4744"
+  integrity sha512-ujhT+ZJPqSGY9Le02mIGBnyWo7Ks05FEGS9PnlqECr3sM3KyV4CSCXAvSBJKMN+t+aZYLKEFUEo0l4wFJMhppQ==
   dependencies:
+    call-bind "^1.0.0"
     deep-equal "^2.0.5"
     defined "^1.0.0"
     dotignore "^0.1.2"
     for-each "^0.3.3"
-    function-bind "^1.1.1"
     glob "^7.1.6"
     has "^1.0.3"
     inherits "^2.0.4"
