@@ -1317,9 +1317,9 @@ table@^6.0.4:
     string-width "^4.2.0"
 
 tape@^5.0.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/tape/-/tape-5.2.1.tgz#4dde2c2189ba4f8228adfbcb5cb7037601fea593"
-  integrity sha512-pjrC4M7OUCndgKNJ9AEy/WCfOd8Voux6pD/WlzRi0855ZZa66nPFlisCtPixA5Phh/V/tu6v8Q1cNRND9AcYMA==
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/tape/-/tape-5.2.2.tgz#a98475ecf30aa0ed2a89c36439bb9438d24d2184"
+  integrity sha512-grXrzPC1ly2kyTMKdqxh5GiLpb0BpNctCuecTB0psHX4Gu0nc+uxWR4xKjTh/4CfQlH4zhvTM2/EXmHXp6v/uA==
   dependencies:
     call-bind "^1.0.2"
     deep-equal "^2.0.5"
