@@ -24,6 +24,10 @@ export function flat(value) {
   return Array.isArray(value) ? [].concat(...value) : value;
 }
 
+export function prop(obj, name) {
+  return isObject(obj) && !obj[Data] ? obj[name] : get(obj, name);
+}
+
 export function get(obj, name) {
   return obj[Data][name];
 }
@@ -44,7 +48,6 @@ export function init(obj, value) {
 }
 
 function recurse(d, flag) {
-  //console.log('RECURSE', d);
   return d && d.toObject ? d.toObject(flag) : toObject(d);
 }
 

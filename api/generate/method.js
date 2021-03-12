@@ -25,10 +25,10 @@ export function generateMethod(schema, methodName, spec) {
   for (let prop in schema) {
     if (hasOwnProperty(ext, prop)) continue; // skip if extension defined
     if (hasOwnProperty(pass, prop)) continue; // skip if pass defined
-    const type = isArrayType(schema[prop])
+    const type = isArrayType(schema[prop]);
     generateProperty(emit, prop, {
       prop,
-      mod: type  ? '...' : '',
+      mod: type ? '...' : '',
       multi: type > 1,
     });
   }
@@ -237,25 +237,34 @@ function typeSwitch(emit, types, value) {
     emit.import(check);
 
     if (_.map) {
+      // map type switch logic to apply to each input array entry
       val = typeSwitch(emit, _.map, '_');
       val = `${value}.map(_ => { return ${val}; })`;
-    } else if (_.key == null) {
-      if (_.raw) {
-        emit.import('raw');
-        val = `raw(${value})`;
-      } else {
-        val = value;
-      }
-    } else {
+    } else if (_.key != null) {
+      // object key is non-null, so wrap value in an object
       set = _.set;
       if (_.raw) {
         emit.import('raw');
         val = [`${_.key}: raw(${value})`];
+      } else if (_.prop) {
+        emit.import('prop');
+        val = [`${_.key}: prop(${value}, ${$(_.prop)})`];
       } else {
         val = [`${_.key}: ${value}`];
       }
       for (let k in set) val.push(`${k}: ${$(set[k])}`);
       val = `{${val.join(', ')}}`;
+    } else {
+      // return a value directly
+      if (_.raw) {
+        emit.import('raw');
+        val = `raw(${value})`;
+      } else if (_.prop) {
+        emit.import('prop');
+        val = `prop(${value}, ${$(_.prop)})`;
+      } else {
+        val = value;
+      }
     }
 
     code += `${check}(${value}) ? ${val} : `;
