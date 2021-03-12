@@ -146,6 +146,15 @@ export function fieldType(type) {
   }
 }
 
+export function expr() {
+  return {
+    desc: 'An expression in the [Vega expression language](https://vega.github.io/vega/docs/expressions/).',
+    doc:  'References',
+    def:  'ExprRef',
+    arg:  ['expr']
+  };
+}
+
 export function not() {
   return {
     desc: 'Logical NOT operation.',
@@ -162,67 +171,110 @@ export function logical(op) {
   };
 }
 
-// -- Selections --
-
-export function selection(type) {
-  return {
-    desc: `Define a new ${code(type)} selection.`,
-    doc:  'Selections',
-    def:  `${capitalize(type)}Selection`,
-    set:  {type: type},
-    arg:  ['^_sel'],
-    key: [
-      {selection: '_sel'},
-      '_sel'
-    ],
-    pass: {
-      key: {
-        call: '_selref', init: '_sel', prop: 'key',
-        desc: 'Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.'
-      },
-      field: {
-        call: '_selref', init: '_sel', prop: 'field',
-        desc: 'Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
-      },
-      encoding:  {
-        call: '_selref', init: '_sel', prop: 'encoding',
-        desc: 'Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
-      }
-    }
-  };
-}
-
-export function selref() {
-  return {
-    desc: `Create a new selection reference.`,
-    doc:  'Selections',
-    arg:  ['selection'],
-    ext:  {
-      key: {
-        arg: ['key'],
-        desc: 'Key in data to lookup, when a selection is used within a lookup transform.'
-      },
-      field: {
-        arg: ['field'],
-        desc: 'A field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
-      },
-      encoding:  {
-        arg: ['encoding'],
-        desc: 'An encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
-      }
-    }
-  };
-}
+// -- Parameters --
 
 export function binding(def, input, args) {
   const set = input ? {input: input} : null;
 
   return {
     desc: `Define a new HTML ${code(input)} input element binding.`,
-    doc:  'Selection Bindings',
+    doc:  'Parameter Bindings',
     def:  def,
     set:  set,
     arg:  args
+  };
+}
+
+const passParam = {
+  key: {
+    call: '_selRef', init: 'name', prop: 'key',
+    desc: 'Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.'
+  },
+  field: {
+    call: '_selRef', init: 'name', prop: 'field',
+    desc: 'Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
+  },
+  encoding:  {
+    call: '_selRef', init: 'name', prop: 'encoding',
+    desc: 'Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
+  },
+  empty:  {
+    call: '_selRef', init: 'name', prop: 'empty',
+    desc: 'Returns a selection reference including an empty predicate selection. If `false`, empty predicate will not select all values.'
+  }
+};
+
+export function param() {
+  return {
+    desc: 'Define or reference a variable parameter.',
+    doc:  'Parameters',
+    def:  ['VariableParameter', 'TopLevelSelectionParameter'],
+    arg:  ['^name'],
+    out: [
+      { key: { param: 'name' } },
+      null
+    ],
+    pass: passParam
+  };
+}
+
+export function selection(type) {
+  return {
+    desc: `Define or reference a ${code(type)} selection parameter.`,
+    doc:  'Parameters',
+    def:  `${capitalize(type)}SelectionConfig`,
+    arg:  ['^name'],
+    set:  {type: type},
+    out: [
+      { key: { param: 'name' } },
+      { nest: { keys: ['name', 'bind', 'value', 'views'], rest: 'select' } }
+    ],
+    ext:  {
+      name:  {arg: ['name'], desc: 'A unique name for the selection parameter. Selection names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or "$", or "_") and may not start with a digit. Reserved keywords that may not be used as parameter names are "datum", "event", "item", and "parent".'},
+      bind:  {arg: ['bind'], desc: 'Input element bindings for this selection. \n\n__See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.'},
+      value: {arg: ['value'], desc: 'Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values.'},
+      views: {arg: ['views'], desc: 'By default, top-level selections are applied to every view in the visualization. If this property is specified, selections will only be applied to views with the given names.'}
+    },
+    pass: passParam
+  };
+}
+
+export function selectionConfig(type) {
+  return {
+    desc: `Configure ${code(type)} selections.`,
+    doc:  'Parameters',
+    def:  `${capitalize(type)}SelectionConfig`,
+    set:  {type: type}
+  };
+}
+
+export function selectionRef() {
+  return {
+    desc: 'Create a new selection reference.',
+    doc:  'Parameters',
+    arg:  ['param'],
+    ext:  {
+      key: {
+        arg: ['key'],
+        desc: 'Key in data to lookup, when a selection is used with a lookup transform.'
+      },
+      fields: {
+        arg: ['...fields'],
+        desc: 'Fields in data to lookup, when a selection is used with a lookup transform. If not specified, the entire object is queried.'
+      },
+      field: {
+        arg: ['field'],
+        desc: 'A field name to extract selected values for, when a parameter is projected over multiple fields or encodings.'
+      },
+      encoding:  {
+        arg: ['encoding'],
+        desc: 'An encoding channel to extract selected values for, when a parameter is projected over multiple fields or encodings.'
+      },
+      empty: {
+        arg: ['empty'],
+        desc: 'For selection parameters, the predicate of empty selections returns true by default. Override this behavior by setting this property `false`.'
+      },
+    }
   };
 }
 
@@ -253,7 +305,7 @@ export function channel(type) {
     desc: `Specify the ${code(type)} encoding channel.`,
     doc:  'Encodings',
     def:  `FacetedEncoding/properties/${type}`,
-    key:  [null, type],
+    out:  [null, { key: type }],
     ext:  {
       fieldN: {arg: ['field'], set: {type: N}, desc: 'Encode the field as a nominal data type.'},
       fieldO: {arg: ['field'], set: {type: O}, desc: 'Encode the field as an ordinal data type.'},
@@ -390,8 +442,8 @@ export function sourceFormat(type) {
     doc:  'Data',
     def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
     type: {object: {key: 'values'}, ...typeData[0]},
+    out:  {nest: {keys: ['url', 'values', 'name'], rest: 'format'}},
     set:  {type: type},
-    nest: {keys: ['url', 'values', 'name'], rest: 'format'},
     ext:  {
       url:    {arg: ['url'], desc: 'A URL from which to load the data.'},
       values: {arg: ['values'], type: typeRaw, desc: 'Provide loaded data values directly.'},
@@ -402,11 +454,26 @@ export function sourceFormat(type) {
 
 export function lookupData() {
   return {
-    desc: `Specify a lookup on a secondary data source.`,
+    desc: 'Specify a lookup on a secondary data source.',
     doc:  'Data',
-    def:  `LookupData`,
+    def:  'LookupData',
     arg:  ['data'],
     type: typeData,
+  };
+}
+
+export function lookupSelection() {
+  return {
+    desc: 'Specify a lookup on an interactive selection.',
+    doc:  'Data',
+    def:  'LookupSelection',
+    arg:  ['param'],
+    type: [
+      {
+        object: {prop: 'name'},
+        string: {}
+      }
+    ]
   };
 }
 
@@ -428,7 +495,7 @@ export function generator(type) {
     desc: `Define a ${code(type)} data generator.`,
     doc:  'Data',
     def:  `${capitalize(type)}Params`,
-    key:  type,
+    out:  {key: type},
     arg:  generatorArgs[type]
   };
 }
@@ -445,7 +512,7 @@ const typeData = [
 
 const typeRaw = [
   {
-    array: {raw: true},
+    array:  {raw: true},
     object: {raw: true}
   }
 ];
@@ -465,9 +532,8 @@ const extLayer = {
 };
 
 const extUnit = {
-  mark:        {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
-  selection:   null,
-  select:      {arg: ['+::selection'], flag: 1, desc: 'Register interactive selections on the mark.'},
+  mark:   {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
+  params: {arg: ['...params'], flag: 1, desc: 'An array of parameters that may be simple variables or more complex selections that map user input to data queries.'},
   ...extLayer
 };
 

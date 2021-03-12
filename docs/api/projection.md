@@ -34,19 +34,11 @@ Define a cartographic projection for longitude, latitude coordinates.
 <a id="center" href="#center">#</a>
 <em>projection</em>.<b>center</b>(<em>...value</em>)
 
-The projection's center, a two-element array of longitude and latitude in degrees.
-
-__Default value:__ `[0, 0]`
-
 <a id="clipAngle" href="#clipAngle">#</a>
 <em>projection</em>.<b>clipAngle</b>(<em>value</em>)
 
-The projection's clipping circle radius to the specified angle in degrees. If `null`, switches to [antimeridian](http://bl.ocks.org/mbostock/3788999) cutting rather than small-circle clipping.
-
 <a id="clipExtent" href="#clipExtent">#</a>
 <em>projection</em>.<b>clipExtent</b>(<em>...value</em>)
-
-The projection's viewport clip extent to the specified bounds in pixels. The extent bounds are specified as an array `[[x0, y0], [x1, y1]]`, where `x0` is the left-side of the viewport, `y0` is the top, `x1` is the right and `y1` is the bottom. If `null`, no viewport clipping is performed.
 
 <a id="coefficient" href="#coefficient">#</a>
 <em>projection</em>.<b>coefficient</b>(<em>value</em>)
@@ -72,19 +64,11 @@ The projection's viewport clip extent to the specified bounds in pixels. The ext
 <a id="parallels" href="#parallels">#</a>
 <em>projection</em>.<b>parallels</b>(<em>...value</em>)
 
-For conic projections, the [two standard parallels](https://en.wikipedia.org/wiki/Map_projection#Conic) that define the map layout. The default depends on the specific conic projection used.
-
 <a id="pointRadius" href="#pointRadius">#</a>
 <em>projection</em>.<b>pointRadius</b>(<em>value</em>)
 
-The default radius (in pixels) to use when drawing GeoJSON `Point` and `MultiPoint` geometries. This parameter sets a constant default value. To modify the point radius in response to data, see the corresponding parameter of the GeoPath and GeoShape transforms.
-
-__Default value:__ `4.5`
-
 <a id="precision" href="#precision">#</a>
 <em>projection</em>.<b>precision</b>(<em>value</em>)
-
-The threshold for the projection's [adaptive resampling](http://bl.ocks.org/mbostock/3795544) to the specified value in pixels. This value corresponds to the [Douglas–Peucker distance](http://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm). If precision is not specified, returns the projection's current resampling precision which defaults to `√0.5 ≅ 0.70710…`.
 
 <a id="radius" href="#radius">#</a>
 <em>projection</em>.<b>radius</b>(<em>value</em>)
@@ -100,10 +84,6 @@ The threshold for the projection's [adaptive resampling](http://bl.ocks.org/mbos
 
 <a id="rotate" href="#rotate">#</a>
 <em>projection</em>.<b>rotate</b>(<em>...value</em>)
-
-The projection's three-axis rotation to the specified angles, which must be a two- or three-element array of numbers [`lambda`, `phi`, `gamma`] specifying the rotation angles in degrees about each spherical axis. (These correspond to yaw, pitch and roll.)
-
-__Default value:__ `[0, 0, 0]`
 
 <a id="scale" href="#scale">#</a>
 <em>projection</em>.<b>scale</b>(<em>value</em>)
@@ -129,5 +109,5 @@ The projection’s translation offset as a two-element array `[tx, ty]`.
 
 The cartographic projection to use. This value is case-insensitive, for example `"albers"` and `"Albers"` indicate the same projection type. You can find all valid projection types [in the documentation](https://vega.github.io/vega-lite/docs/projection.html#projection-types).
 
-__Default value:__ `mercator`
+__Default value:__ `equalEarth`
 

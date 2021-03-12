@@ -1,5 +1,5 @@
 import {generateMethod} from './method';
-import {props} from './schema';
+import {marshal, props} from './schema';
 import {write} from './write';
 
 export function generateAPI(schema, api, path) {
@@ -8,8 +8,11 @@ export function generateAPI(schema, api, path) {
   // generate api method definitions
   for (let name in api) {
     if (name.startsWith('$')) continue; // skip external methods
-    const def = props(schema, {$ref: '#/definitions/' + api[name].def});
-    q.push(write(`${path}/${name}.js`, generateMethod(def, name, api[name])));
+    const ref = marshal(api[name].def);
+    q.push(
+      write(`${path}/${name}.js`,
+      generateMethod(props(schema, ref), name, api[name]))
+    );
   }
 
   // generate api index

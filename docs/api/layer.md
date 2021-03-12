@@ -118,7 +118,7 @@ __Default value__: `5`
 <a id="params" href="#params">#</a>
 <em>layer</em>.<b>params</b>(<em>...value</em>)
 
-Dynamic variables that parameterize a visualization.
+Dynamic variables or selections that parameterize a visualization.
 
 <a id="project" href="#project">#</a>
 <em>layer</em>.<b>project</b>(<em>projection</em>)

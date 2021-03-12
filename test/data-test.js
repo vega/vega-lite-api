@@ -73,6 +73,7 @@ tape('Format data sources are supported', function(t) {
 });
 
 tape('Lookup data sources are supported', function(t) {
+  // test Data with URL and key
   const data1 = vl.data('foo.csv').key('key');
   const spec1 = {
     data: {url: 'foo.csv'},
@@ -80,6 +81,7 @@ tape('Lookup data sources are supported', function(t) {
   };
   equalSpec(t, data1, spec1);
 
+  // test Data with URL and fields
   const data2 = vl.data('foo.csv').fields('a', 'b');
   const spec2 = {
     data: {url: 'foo.csv'},
@@ -87,6 +89,7 @@ tape('Lookup data sources are supported', function(t) {
   };
   equalSpec(t, data2, spec2);
 
+  // test LookupData with URL values
   const data3a = vl.lookupData()
     .data({url: 'foo.csv'})
     .key('key')
@@ -102,6 +105,7 @@ tape('Lookup data sources are supported', function(t) {
 
   const values = [1, 2, 3];
 
+  // test Data with inline values and key
   const data4 = vl.data(values).key('key');
   const spec4 = {
     data: {values},
@@ -109,6 +113,7 @@ tape('Lookup data sources are supported', function(t) {
   };
   equalSpec(t, data4, spec4);
 
+  // test Data with inline values and fields
   const data5 = vl.data(values).fields('a', 'b');
   const spec5 = {
     data: {values},
@@ -116,6 +121,7 @@ tape('Lookup data sources are supported', function(t) {
   };
   equalSpec(t, data5, spec5);
 
+  // test LookupData with inline values
   const data6a = vl.lookupData()
     .data(vl.inlineData(values))
     .key('key')
@@ -129,11 +135,20 @@ tape('Lookup data sources are supported', function(t) {
   equalSpec(t, data6a, spec6);
   equalSpec(t, data6b, spec6);
 
-  // pass raw data values through
-  t.equal(data4.toObject().data.values, values);
-  t.equal(data5.toObject().data.values, values);
-  t.equal(data6a.toObject().data.values, values);
-  t.equal(data6b.toObject().data.values, values);
+  // test LookupSelection
+  const data7a = vl.lookupSelection('name').key('key').fields('a', 'b');
+  const data7b = vl.lookupSelection({ name: 'name' }).key('key').fields('a', 'b');
+  const data7c = vl.lookupSelection(vl.param('name')).key('key').fields('a', 'b');
+  const data7d = vl.selectPoint('name').key('key').fields('a', 'b');
+  const spec7 = {
+    param: 'name',
+    key: 'key',
+    fields: ['a', 'b']
+  };
+  equalSpec(t, data7a, spec7);
+  equalSpec(t, data7b, spec7);
+  equalSpec(t, data7c, spec7);
+  equalSpec(t, data7d, spec7);
 
   t.end();
 });

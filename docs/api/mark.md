@@ -46,7 +46,6 @@ The behavior of this method depends on the argument type:
 * <a href="#render">render</a>
 * <a href="#repeat">repeat</a>
 * <a href="#resolve">resolve</a>
-* <a href="#select">select</a>
 * <a href="#spacing">spacing</a>
 * <a href="#title">title</a>
 * <a href="#toSpec">toSpec</a>
@@ -226,9 +225,9 @@ The default visualization padding, in pixels, from the edge of the visualization
 __Default value__: `5`
 
 <a id="params" href="#params">#</a>
-<em>mark</em>.<b>params</b>(<em>...value</em>)
+<em>mark</em>.<b>params</b>(<em>...params</em>)
 
-Dynamic variables that parameterize a visualization.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries.
 
 <a id="project" href="#project">#</a>
 <em>mark</em>.<b>project</b>(<em>projection</em>)
@@ -249,11 +248,6 @@ Repeat a chart template to generate multiple plots.
 <em>mark</em>.<b>resolve</b>(<em>value</em>)
 
 Scale, axis, and legend resolutions for view composition specifications.
-
-<a id="select" href="#select">#</a>
-<em>mark</em>.<b>select</b>(<em>...selection</em>)
-
-Register interactive selections on the mark.
 
 <a id="spacing" href="#spacing">#</a>
 <em>mark</em>.<b>spacing</b>(<em>value</em>)

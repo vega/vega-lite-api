@@ -1,4 +1,14 @@
-import {capitalize, emitter, error, stringValue as $, isString, isObject, hasOwnProperty} from './util';
+import {
+  capitalize,
+  emitter,
+  error,
+  getProperty,
+  isInternal,
+  isString,
+  isObject,
+  hasOwnProperty,
+  stringValue as $,
+} from './util';
 import {isArrayType} from './schema';
 
 export function generateMethod(schema, methodName, spec) {
@@ -52,9 +62,9 @@ export function generateMethod(schema, methodName, spec) {
     generateCall(emit, prop, spec.call[prop]);
   }
 
-  // -- key --
-  if (spec.key || spec.nest) {
-    generateToObject(emit, spec);
+  // -- out --
+  if (spec.out) {
+    generateToObject(emit, spec.out);
   }
 
   emit.outdent()
@@ -138,13 +148,19 @@ function generateConstructor(emit, spec) {
         emit.import('id');
         emit(`this[${$(_.slice(1))}] = args[${i}] !== undefined ? args[${i}] : id(${$(_.slice(2))});`);
       }
-      else if (_.startsWith('_')) { // internal state
+      else if (isInternal(_)) { // internal state
         emit(`if (args[${i}] !== undefined) this[${$(_)}] = args[${i}];`);
       }
       else { // set value if not undefined
         emit.import('set');
         const v = t ? typeSwitch(emit, t, `args[${i}]`) : `args[${i}]`;
-        emit(`if (args[${i}] !== undefined) set(this, ${$(_)}, ${v});`);
+        if (_.startsWith('^')) {
+          emit.import('id');
+          const prop = $(_.slice(1));
+          emit(`set(this, ${prop}, args[${i}] !== undefined ? ${v} : id(${prop}));`);
+        } else {
+          emit(`if (args[${i}] !== undefined) set(this, ${$(_)}, ${v});`);
+        }
       }
     }
   } else {
@@ -274,14 +290,14 @@ function typeSwitch(emit, types, value) {
 }
 
 function generateProperty(emit, method, opt) {
-  const {prop, mod, type, set, multi} = opt;
+  const {prop, mod, type, flag, set, multi} = opt;
   emit.import(['copy', 'get', 'set']);
-  if (mod) emit.import('flat');
 
   emit(`${method}(${mod || ''}value) {`).indent();
   emit(  `if (arguments.length) {`).indent();
   emit(    `const obj = copy(this);`);
   if (mod) {
+    emit.import('flat');
     if (multi) {
     emit(  `if (value.length === 1 && !Array.isArray(value[0])) {`).indent();
     emit(    `value = value[0];`);
@@ -298,6 +314,13 @@ function generateProperty(emit, method, opt) {
   } else if (type) {
     emit(    `value = ${typeSwitch(emit, type, 'value')};`);
   }
+
+  // if a non-falsy flag is specified, map value now
+  if (flag) {
+    emit.import('objectify');
+    emit(    `value = objectify(value, ${flag});`);
+  }
+
   emit(    `set(obj, ${$(prop)}, value);`);
   if (set) set.forEach(v => emit('    ' + v));
   emit(    `return obj;`).outdent();
@@ -417,9 +440,7 @@ function generatePass(emit, method, opt) {
   if (opt.args) emit(`  values = values.slice(0, ${opt.args});`);
   if (opt.prop) {
     if (opt.init) {
-      // this pulls an internal property as a constructor arg
-      // this could be revised to use / check the underscore prefix
-      emit(`  let obj = ${opt.call}(this["${opt.init}"]);`);
+      emit(`  let obj = ${opt.call}(${getProperty(opt.init)});`);
     } else {
       emit(`  let obj = ${opt.call}();`);
       opt.self
@@ -448,17 +469,10 @@ function generateCall(emit, method, opt) {
 }
 
 function generateToObject(emit, spec) {
-  const {key, nest} = spec,
-        flag = Array.isArray(key);
-
-  let obj = flag
-    ? `flag ? ${generateObject(key[1])} : ${generateObject(key[0])}`
-    : generateObject(key);
-
-  if (nest) {
-    emit.import('nest');
-    obj = `nest(${obj}, ${$(nest.keys)}, ${$(nest.rest)})`;
-  }
+  const flag = Array.isArray(spec);
+  const obj = flag
+    ? `flag ? ${generateObject(emit, spec[1])} : ${generateObject(emit, spec[0])}`
+    : generateObject(emit, spec);
 
   emit(`toObject(${flag ? 'flag' : ''}) {`);
   emit(`  return ${obj};`);
@@ -466,19 +480,23 @@ function generateToObject(emit, spec) {
   emit();
 }
 
-function generateObject(key) {
+function generateObject(emit, spec) {
+  const { key, nest } = spec || {};
+  let obj;
+
   if (isObject(key)) {
     let c = [];
     for (let k in key) {
-      let v = key[k];
-      v = v.startsWith('_') ? `this[${$(v)}]` : v;
-      c.push(`${k}: ${v}`);
+      c.push(`${k}: ${getProperty(key[k])}`);
     }
-    return `{${c.join(', ')}}`;
+    obj = `{${c.join(', ')}}`;
   } else if (isString(key)) {
-    const k = key.startsWith('_') ? `[this[${$(key)}]]` : key;
-    return `{${k}: super.toObject()}`;
+    const k = isInternal(key) ? `[this[${$(key)}]]` : key;
+    obj = `{${k}: super.toObject()}`;
   } else {
-    return `super.toObject()`;
+    obj = `super.toObject()`;
   }
+  return nest
+    ? (emit.import('nest'), `nest(${obj}, ${$(nest.keys)}, ${$(nest.rest)})`)
+    : obj;
 }

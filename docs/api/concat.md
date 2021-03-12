@@ -140,7 +140,7 @@ __Default value__: `5`
 <a id="params" href="#params">#</a>
 <em>concat</em>.<b>params</b>(<em>...value</em>)
 
-Dynamic variables that parameterize a visualization.
+Dynamic variables or selections that parameterize a visualization.
 
 <a id="render" href="#render">#</a>
 <em>concat</em>.<b>render</b>(<em>...values</em>)

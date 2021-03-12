@@ -47,6 +47,12 @@ export function init(obj, value) {
   obj[Data] = value || {};
 }
 
+export function objectify(d, flag) {
+  return isArray(d)
+    ? d.map(v => recurse(v, flag))
+    : recurse(d, flag);
+}
+
 function recurse(d, flag) {
   return d && d.toObject ? d.toObject(flag) : toObject(d);
 }
