@@ -46,6 +46,7 @@ The behavior of this method depends on the argument type:
 * <a href="#render">render</a>
 * <a href="#repeat">repeat</a>
 * <a href="#resolve">resolve</a>
+* <a href="#select">select</a>
 * <a href="#spacing">spacing</a>
 * <a href="#title">title</a>
 * <a href="#toSpec">toSpec</a>
@@ -248,6 +249,11 @@ Repeat a chart template to generate multiple plots.
 <em>mark</em>.<b>resolve</b>(<em>value</em>)
 
 Scale, axis, and legend resolutions for view composition specifications.
+
+<a id="select" href="#select">#</a>
+<em>mark</em>.<b>select</b>(<em>...params</em>)
+
+An array of parameters that may be simple variables or more complex selections that map user input to data queries. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>params()</code> instead.
 
 <a id="spacing" href="#spacing">#</a>
 <em>mark</em>.<b>spacing</b>(<em>value</em>)

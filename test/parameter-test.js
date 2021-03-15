@@ -34,7 +34,11 @@ tape('Parameters are supported', function(t) {
 
 tape('Selection parameters are supported', function(t) {
   const param = 'foo';
-  const points = [ vl.selectPoint(param) ];
+  const points = [
+    vl.selectPoint(param),
+    vl.selectSingle(param), // deprecated
+    vl.selectMulti(param)   // deprecated
+  ];
   const intervals = [ vl.selectInterval(param) ];
 
   points.forEach(point => {
@@ -94,8 +98,10 @@ tape('Selection references are supported', function(t) {
   const empty = false;
 
   const params = [
+    vl.selectInterval(param),
     vl.selectPoint(param),
-    vl.selectInterval(param)
+    vl.selectSingle(param), // deprecated
+    vl.selectMulti(param)   // deprecated
   ];
 
   // Test parameter references with key, field, encoding, or empty
@@ -130,5 +136,16 @@ tape('Composite parameter references are supported', function(t) {
   equalSpec(t, vl.filter(selB), filt(testB));
   equalSpec(t, vl.filter(selC), filt(testC));
 
+  t.end();
+});
+
+tape('Deprecated selection methods are supported', function(t) {
+  equalSpec(t,
+    vl.markBar().select(vl.selectSingle().init(5)),
+    {
+      mark: { type: 'bar' },
+      params: [ { name: 'name1', value: 5, select: { type: 'point'} } ]
+    }
+  );
   t.end();
 });

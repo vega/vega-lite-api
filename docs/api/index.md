@@ -114,6 +114,8 @@
 - <a href="param">vl.<b>param</b></a> - Define or reference a variable parameter.
 - <a href="selectInterval">vl.<b>selectInterval</b></a> - Define or reference a <code>interval</code> selection parameter.
 - <a href="selectPoint">vl.<b>selectPoint</b></a> - Define or reference a <code>point</code> selection parameter.
+- <a href="selectSingle">vl.<b>selectSingle</b></a> - Define or reference a <code>point</code> selection parameter. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>selectPoint()</code> instead.
+- <a href="selectMulti">vl.<b>selectMulti</b></a> - Define or reference a <code>point</code> selection parameter. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>selectPoint()</code> instead.
 - <a href="configInterval">vl.<b>configInterval</b></a> - Configure <code>interval</code> selections.
 - <a href="configPoint">vl.<b>configPoint</b></a> - Configure <code>point</code> selections.
 

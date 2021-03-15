@@ -11,6 +11,7 @@ Define or reference a <code>point</code> selection parameter.
 * <a href="#encodings">encodings</a>
 * <a href="#field">field</a>
 * <a href="#fields">fields</a>
+* <a href="#init">init</a>
 * <a href="#key">key</a>
 * <a href="#name">name</a>
 * <a href="#nearest">nearest</a>
@@ -67,6 +68,11 @@ Returns a selection reference including a field name to extract selected values 
 An array of field names whose values must match for a data tuple to fall within the selection.
 
 __See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.
+
+<a id="init" href="#init">#</a>
+<em>selectPoint</em>.<b>init</b>(<em>value</em>)
+
+Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>values()</code> instead.
 
 <a id="key" href="#key">#</a>
 <em>selectPoint</em>.<b>key</b>(<em>...values</em>)

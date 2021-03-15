@@ -6,6 +6,7 @@ import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
   field, fieldType, not, logical, repeat, value,
   binding, expr, param, selection, selectionConfig, selectionRef,
+  selectionDeprecated,
   projection, encoding, channel,
   source, sourceFormat, generator, format,
   data, lookupData, lookupSelection,
@@ -117,6 +118,8 @@ export const api = {
   // parameters and selections
   param: param(),
   ...selections(),
+  selectSingle: selectionDeprecated(),
+  selectMulti: selectionDeprecated(),
   ...selectionConfigs(),
   _selRef: selectionRef(),
 

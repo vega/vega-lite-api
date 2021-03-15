@@ -1,6 +1,11 @@
 import {aggregateOps, timeUnitOps} from './ops';
 import {article, capitalize, code, link, reduce, uppercase} from './generate/util';
 
+const DEPRECATED = method =>
+  'This method provides backwards compatiblity with earlier API versions; ' +
+  'it is _deprecated_ and may be removed in future versions. ' +
+  `Use ${code(method + '()')} instead.`;
+
 const N = 'nominal';
 const O = 'ordinal';
 const Q = 'quantitative';
@@ -213,6 +218,7 @@ export function selection(type) {
       name:  {arg: ['name'], desc: 'A unique name for the selection parameter. Selection names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or "$", or "_") and may not start with a digit. Reserved keywords that may not be used as parameter names are "datum", "event", "item", and "parent".'},
       bind:  {arg: ['bind'], desc: 'Input element bindings for this selection. \n\n__See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.'},
       value: {arg: ['value'], desc: 'Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values.'},
+      init:  {arg: ['value'], desc: `Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values. ${DEPRECATED('values')}`},
       views: {arg: ['views'], desc: 'By default, top-level selections are applied to every view in the visualization. If this property is specified, selections will only be applied to views with the given names.'}
     },
     pass: {
@@ -272,6 +278,14 @@ export function selectionRef() {
         desc: 'For selection parameters, the predicate of empty selections returns true by default. Override this behavior by setting this property `false`.'
       },
     }
+  };
+}
+
+export function selectionDeprecated() {
+  return {
+    desc: `Define or reference a ${code('point')} selection parameter. ${DEPRECATED('selectPoint')}`,
+    doc:  'Parameters',
+    ctr:  { call: 'selectPoint' }
   };
 }
 
@@ -531,6 +545,7 @@ const extLayer = {
 const extUnit = {
   mark:   {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
   params: {arg: ['...params'], flag: 1, desc: 'An array of parameters that may be simple variables or more complex selections that map user input to data queries.'},
+  select: {arg: ['...params'], flag: 1, desc: `An array of parameters that may be simple variables or more complex selections that map user input to data queries. ${DEPRECATED('params')}`},
   ...extLayer
 };
 
