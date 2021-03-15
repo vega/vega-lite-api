@@ -58,9 +58,9 @@ The input [data](data) specification.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is an <code>array</code>, sets the <code>data.values</code> property.
-- If the argument is an <code>iterable</code>, sets the <code>data.values</code> property.
-- If the argument is a <code>string</code>, sets the <code>data.url</code> property.
+- If the argument is an <code>Array</code>, sets the <code>data.values</code> property.
+- If the argument is an <code>Iterable</code>, sets the <code>data.values</code> property.
+- If the argument is a <code>String</code>, sets the <code>data.url</code> property.
 - Otherwise, sets the <code>data</code> property.
 
 <a id="datasets" href="#datasets">#</a>
