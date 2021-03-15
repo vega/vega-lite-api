@@ -1,4 +1,5 @@
 const Data = Symbol('data');
+const Context = Symbol('context');
 let id_counter = 0;
 
 export function id(prefix) {
@@ -7,6 +8,11 @@ export function id(prefix) {
 
 export class BaseObject {
   toObject() { return toObject(this); }
+}
+
+export class MergeObject {
+  constructor(values) { this[Data] = values; }
+  toObject() { return Object.assign({}, ...recurse(this[Data])); }
 }
 
 export function assign(target, ...sources) {
@@ -36,10 +42,11 @@ export function set(obj, name, value) {
   obj[Data][name] = object(value);
 }
 
-export function copy(obj) {
+export function copy(obj, context) {
   const mod = Object.create(Object.getPrototypeOf(obj));
   Object.assign(mod, obj);
   mod[Data] = Object.assign({}, obj[Data]);
+  if (context) mod[Context] = context;
   return mod;
 }
 
@@ -47,14 +54,14 @@ export function init(obj, value) {
   obj[Data] = value || {};
 }
 
-export function objectify(d, flag) {
-  return isArray(d)
-    ? d.map(v => recurse(v, flag))
-    : recurse(d, flag);
+export function annotate(value, context) {
+  return isArray(value)
+    ? value.map(v => copy(v, context))
+    : copy(value, context)
 }
 
-function recurse(d, flag) {
-  return d && d.toObject ? d.toObject(flag) : toObject(d);
+function recurse(d) {
+  return d && d.toObject ? d.toObject(d[Context] || 0) : toObject(d);
 }
 
 function toObject(value) {
@@ -82,8 +89,8 @@ function object(value) {
 }
 
 export function merge(flag, ...values) {
-  const objects = [].concat(...values).map(_ => recurse(_, flag));
-  return object(Object.assign({}, ...objects));
+  const objects = [].concat(...values);
+  return new MergeObject(flag ? annotate(objects, flag) : objects);
 }
 
 export function nest(obj, keys, rest) {
@@ -117,4 +124,12 @@ export function isObject(_) {
 
 export function isString(_) {
   return typeof _ === 'string';
+}
+
+export function isFunction(_) {
+  return typeof _ === 'function';
+}
+
+export function isEventTarget(_) {
+  return isObject(_) && isFunction(_.addEventListener);
 }

@@ -91,7 +91,7 @@ export function emitter(defaultFile) {
 }
 
 export function article(_) {
-  return _ && _.match(/^[aeiou]/) ? 'an' : 'a';
+  return _ && _.match(/^[aeiou]/i) ? 'an' : 'a';
 }
 
 export function capitalize(_) {

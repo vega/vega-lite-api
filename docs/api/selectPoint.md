@@ -30,6 +30,11 @@ Input element bindings for this selection.
 
 __See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.
 
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>EventTarget</code>, sets the <code>bind.element</code> property.
+- Otherwise, sets the <code>bind</code> property.
+
 <a id="clear" href="#clear">#</a>
 <em>selectPoint</em>.<b>clear</b>(<em>value</em>)
 
