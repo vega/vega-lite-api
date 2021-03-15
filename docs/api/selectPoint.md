@@ -27,9 +27,14 @@ Define or reference a <code>point</code> selection parameter.
 <a id="bind" href="#bind">#</a>
 <em>selectPoint</em>.<b>bind</b>(<em>bind</em>)
 
-Input element bindings for this selection. 
+Input element bindings for this parameter.
 
 __See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.
+
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>EventTarget</code>, sets the <code>bind.element</code> property.
+- Otherwise, sets the <code>bind</code> property.
 
 <a id="clear" href="#clear">#</a>
 <em>selectPoint</em>.<b>clear</b>(<em>value</em>)

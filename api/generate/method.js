@@ -242,13 +242,14 @@ function typeSwitch(emit, types, value) {
     let _ = types[key],
         set, val, check;
 
-    switch (key) {
-      case 'array':    check = 'isArray';    break;
-      case 'string':   check = 'isString';   break;
-      case 'number':   check = 'isNumber';   break;
-      case 'boolean':  check = 'isBoolean';  break;
-      case 'object':   check = 'isObject';   break;
-      case 'iterable': check = 'isIterable'; break;
+    switch (key.toLowerCase()) {
+      case 'array':       check = 'isArray'; break;
+      case 'string':      check = 'isString'; break;
+      case 'number':      check = 'isNumber'; break;
+      case 'boolean':     check = 'isBoolean'; break;
+      case 'object':      check = 'isObject'; break;
+      case 'eventtarget': check = 'isEventTarget'; break;
+      case 'iterable':    check = 'isIterable'; break;
     }
     emit.import(check);
 
@@ -315,10 +316,10 @@ function generateProperty(emit, method, opt) {
     emit(    `value = ${typeSwitch(emit, type, 'value')};`);
   }
 
-  // if a non-falsy flag is specified, map value now
+  // if a non-falsy flag is specified, annotate value with context
   if (flag) {
-    emit.import('objectify');
-    emit(    `value = objectify(value, ${flag});`);
+    emit.import('annotate');
+    emit(    `value = annotate(value, ${flag});`);
   }
 
   emit(    `set(obj, ${$(prop)}, value);`);

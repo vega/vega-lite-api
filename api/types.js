@@ -190,12 +190,23 @@ export function binding(def, input, args) {
   };
 }
 
+const extParam = {
+  bind: {
+    arg: ['bind'],
+    desc: 'Input element bindings for this parameter.\n\n__See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.',
+    type: [{
+      EventTarget: { key: 'element', raw: true }
+    }]
+  }
+};
+
 export function param() {
   return {
     desc: 'Define or reference a variable parameter.',
     doc:  'Parameters',
     def:  'VariableParameter',
     arg:  ['^name'],
+    ext:  extParam,
     out: [
       { key: { param: 'name' } },
       null
@@ -215,8 +226,8 @@ export function selection(type) {
       { nest: { keys: ['name', 'bind', 'value', 'views'], rest: 'select' } }
     ],
     ext:  {
+      ...extParam,
       name:  {arg: ['name'], desc: 'A unique name for the selection parameter. Selection names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or "$", or "_") and may not start with a digit. Reserved keywords that may not be used as parameter names are "datum", "event", "item", and "parent".'},
-      bind:  {arg: ['bind'], desc: 'Input element bindings for this selection. \n\n__See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.'},
       value: {arg: ['value'], desc: 'Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values.'},
       init:  {arg: ['value'], desc: `Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values. ${DEPRECATED('values')}`},
       views: {arg: ['views'], desc: 'By default, top-level selections are applied to every view in the visualization. If this property is specified, selections will only be applied to views with the given names.'}
@@ -452,7 +463,7 @@ export function sourceFormat(type) {
     desc: `Define a data source for ${code(type)} format data.`,
     doc:  'Data',
     def:  `${capitalize(formatDefs[type] || type)}DataFormat`,
-    type: {object: {key: 'values'}, ...typeData[0]},
+    type: {Object: {key: 'values'}, ...typeData[0]},
     out:  {nest: {keys: ['url', 'values', 'name'], rest: 'format'}},
     set:  {type: type},
     ext:  {
@@ -481,8 +492,8 @@ export function lookupSelection() {
     arg:  ['param'],
     type: [
       {
-        object: {prop: 'name'},
-        string: {}
+        Object: {prop: 'name'},
+        String: {}
       }
     ]
   };
@@ -515,16 +526,16 @@ export function generator(type) {
 
 const typeData = [
   {
-    array:    {key: 'values', raw: true},
-    iterable: {key: 'values', raw: true},
-    string:   {key: 'url'}
+    Array:    {key: 'values', raw: true},
+    Iterable: {key: 'values', raw: true},
+    String:   {key: 'url'}
   }
 ];
 
 const typeRaw = [
   {
-    array:  {raw: true},
-    object: {raw: true}
+    Array:  {raw: true},
+    Object: {raw: true}
   }
 ];
 
@@ -543,7 +554,7 @@ const extLayer = {
 };
 
 const extUnit = {
-  mark:   {arg: [':::mark'], type: [{string: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
+  mark:   {arg: [':::mark'], type: [{String: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
   params: {arg: ['...params'], flag: 1, desc: 'An array of parameters that may be simple variables or more complex selections that map user input to data queries.'},
   select: {arg: ['...params'], flag: 1, desc: `An array of parameters that may be simple variables or more complex selections that map user input to data queries. ${DEPRECATED('params')}`},
   ...extLayer
@@ -572,7 +583,7 @@ export function unit(types) {
     doc:  'Chart Constructors',
     def:  'TopLevelUnitSpec',
     arg:  [':::mark'],
-    type: [{string: {key: 'type'}}],
+    type: [{String: {key: 'type'}}],
     ext:  {...extUnit, ...extMark},
     call: callSpec,
     pass: passMulti

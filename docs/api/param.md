@@ -12,9 +12,16 @@ Define or reference a variable parameter.
 ## <code>param</code> API Reference
 
 <a id="bind" href="#bind">#</a>
-<em>param</em>.<b>bind</b>(<em>value</em>)
+<em>param</em>.<b>bind</b>(<em>bind</em>)
 
-Binds the parameter to an external input element such as a slider, selection list or radio button group.
+Input element bindings for this parameter.
+
+__See:__ [`bind`](https://vega.github.io/vega-lite/docs/bind.html) documentation.
+
+The behavior of this method depends on the argument type:
+
+- If the argument is an <code>EventTarget</code>, sets the <code>bind.element</code> property.
+- Otherwise, sets the <code>bind</code> property.
 
 <a id="expr" href="#expr">#</a>
 <em>param</em>.<b>expr</b>(<em>value</em>)
