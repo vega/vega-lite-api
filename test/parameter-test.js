@@ -32,40 +32,10 @@ tape('Parameters are supported', function(t) {
   t.end();
 });
 
-tape('Parameter references are supported', function(t) {
-  const param = 'foo';
-  const key = 'key';
-  const field = 'field';
-  const encoding = 'encoding';
-  const empty = false;
-
-  const params = [
-    vl.param(param),
-    vl.selectPoint(param),
-    vl.selectInterval(param)
-  ];
-
-  // Test parameter references with key, field, encoding, or empty
-  params.forEach(obj => {
-    equalSpec(t, obj.key(key), { param, key });
-    equalSpec(t, obj.field(field), { param, field });
-    equalSpec(t, obj.encoding(encoding), { param, encoding });
-    equalSpec(t, obj.empty(empty), { param, empty });
-  });
-
-  t.end();
-});
-
 tape('Selection parameters are supported', function(t) {
   const param = 'foo';
-  const points = [
-    vl.param(param).select(vl.configPoint()),
-    vl.selectPoint(param)
-  ];
-  const intervals = [
-    vl.param(param).select(vl.configInterval()),
-    vl.selectInterval(param)
-  ];
+  const points = [ vl.selectPoint(param) ];
+  const intervals = [ vl.selectInterval(param) ];
 
   points.forEach(point => {
     // Test point selection reference
@@ -111,6 +81,29 @@ tape('Selection parameters are supported', function(t) {
         params: [ { name: 'foo', select: { type: 'interval' } } ]
       }
     );
+  });
+
+  t.end();
+});
+
+tape('Selection references are supported', function(t) {
+  const param = 'foo';
+  const key = 'key';
+  const field = 'field';
+  const encoding = 'encoding';
+  const empty = false;
+
+  const params = [
+    vl.selectPoint(param),
+    vl.selectInterval(param)
+  ];
+
+  // Test parameter references with key, field, encoding, or empty
+  params.forEach(obj => {
+    equalSpec(t, obj.key(key), { param, key });
+    equalSpec(t, obj.field(field), { param, field });
+    equalSpec(t, obj.encoding(encoding), { param, encoding });
+    equalSpec(t, obj.empty(empty), { param, empty });
   });
 
   t.end();

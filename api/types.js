@@ -185,36 +185,16 @@ export function binding(def, input, args) {
   };
 }
 
-const passParam = {
-  key: {
-    call: '_selRef', init: 'name', prop: 'key',
-    desc: 'Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.'
-  },
-  field: {
-    call: '_selRef', init: 'name', prop: 'field',
-    desc: 'Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
-  },
-  encoding:  {
-    call: '_selRef', init: 'name', prop: 'encoding',
-    desc: 'Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
-  },
-  empty:  {
-    call: '_selRef', init: 'name', prop: 'empty',
-    desc: 'Returns a selection reference including an empty predicate selection. If `false`, empty predicate will not select all values.'
-  }
-};
-
 export function param() {
   return {
     desc: 'Define or reference a variable parameter.',
     doc:  'Parameters',
-    def:  ['VariableParameter', 'TopLevelSelectionParameter'],
+    def:  'VariableParameter',
     arg:  ['^name'],
     out: [
       { key: { param: 'name' } },
       null
-    ],
-    pass: passParam
+    ]
   };
 }
 
@@ -235,7 +215,24 @@ export function selection(type) {
       value: {arg: ['value'], desc: 'Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values.'},
       views: {arg: ['views'], desc: 'By default, top-level selections are applied to every view in the visualization. If this property is specified, selections will only be applied to views with the given names.'}
     },
-    pass: passParam
+    pass: {
+      key: {
+        call: '_selRef', init: 'name', prop: 'key',
+        desc: 'Returns a selection reference including a key in data to lookup, when a selection is used within a lookup transform.'
+      },
+      field: {
+        call: '_selRef', init: 'name', prop: 'field',
+        desc: 'Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      },
+      encoding:  {
+        call: '_selRef', init: 'name', prop: 'encoding',
+        desc: 'Returns a selection reference including an encoding channel to extract selected values for, when a selection is projected over multiple fields or encodings.'
+      },
+      empty:  {
+        call: '_selRef', init: 'name', prop: 'empty',
+        desc: 'Returns a selection reference including an empty predicate selection. If `false`, empty predicate will not select all values.'
+      }
+    }
   };
 }
 
