@@ -116,9 +116,9 @@ The default visualization padding, in pixels, from the edge of the visualization
 __Default value__: `5`
 
 <a id="params" href="#params">#</a>
-<em>layer</em>.<b>params</b>(<em>...value</em>)
+<em>layer</em>.<b>params</b>(<em>...params</em>)
 
-Dynamic variables or selections that parameterize a visualization.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries.
 
 <a id="project" href="#project">#</a>
 <em>layer</em>.<b>project</b>(<em>projection</em>)

@@ -138,9 +138,9 @@ The default visualization padding, in pixels, from the edge of the visualization
 __Default value__: `5`
 
 <a id="params" href="#params">#</a>
-<em>concat</em>.<b>params</b>(<em>...value</em>)
+<em>concat</em>.<b>params</b>(<em>...params</em>)
 
-Dynamic variables or selections that parameterize a visualization.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries.
 
 <a id="render" href="#render">#</a>
 <em>concat</em>.<b>render</b>(<em>...values</em>)

@@ -541,6 +541,7 @@ const typeRaw = [
 
 const extSpec = {
   data:        {arg: ['data'], type: typeData, desc: `The input ${link('data')} specification.`},
+  params:      {arg: ['...params'], flag: 1, desc: 'An array of parameters that may be simple variables or more complex selections that map user input to data queries.'},
   transform:   {arg: ['...transform'], desc: 'The data transformations to apply.'},
   $schema:     null // suppress!
 };
@@ -555,7 +556,6 @@ const extLayer = {
 
 const extUnit = {
   mark:   {arg: [':::mark'], type: [{String: {key: 'type'}}], desc: 'Set the mark type and default visual properties.'},
-  params: {arg: ['...params'], flag: 1, desc: 'An array of parameters that may be simple variables or more complex selections that map user input to data queries.'},
   select: {arg: ['...params'], flag: 1, desc: `An array of parameters that may be simple variables or more complex selections that map user input to data queries. ${DEPRECATED('params')}`},
   ...extLayer
 };
