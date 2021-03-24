@@ -42,12 +42,15 @@ export function set(obj, name, value) {
   obj[Data][name] = object(value);
 }
 
-export function copy(obj, context) {
-  const mod = Object.create(Object.getPrototypeOf(obj));
-  Object.assign(mod, obj);
-  mod[Data] = Object.assign({}, obj[Data]);
-  if (context) mod[Context] = context;
-  return mod;
+function duplicate(...obj) {
+  return Object.assign(
+    Object.create(Object.getPrototypeOf(obj[0])),
+    ...obj
+  );
+}
+
+export function copy(obj) {
+  return duplicate(obj, { [Data]: Object.assign({}, obj[Data]) });
 }
 
 export function init(obj, value) {
@@ -55,9 +58,10 @@ export function init(obj, value) {
 }
 
 export function annotate(value, context) {
+  const ctx = { [Context]: context };
   return isArray(value)
-    ? value.map(v => copy(v, context))
-    : copy(value, context)
+    ? value.map(v => duplicate(v, ctx))
+    : duplicate(value, ctx)
 }
 
 function recurse(d) {
