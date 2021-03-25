@@ -24,10 +24,12 @@
 - <a href="concat">vl.<b>concat</b></a> - Concatenate charts.
 - <a href="hconcat">vl.<b>hconcat</b></a> - Horizontally concatenate charts.
 - <a href="vconcat">vl.<b>vconcat</b></a> - Vertically concatenate charts.
+- <a href="spec">vl.<b>spec</b></a> - Create an arbitrary Vega-Lite specification.
 
 ### Utilities
 
 - <a href="register">vl.<b>register</b></a> - Register Vega and Vega-Lite with the API.
+- <a href="render">vl.<b>render</b></a> - Render a provided Vega-Lite specification.
 - <a href="vega">vl.<b>vega</b></a> - Access the registered Vega instance.
 - <a href="vegalite">vl.<b>vegalite</b></a> - Access the registered Vega-Lite instance.
 
@@ -50,6 +52,7 @@
 - <a href="topojsonFormat">vl.<b>topojsonFormat</b></a> - Specify parsing of <code>topojson</code> format data.
 - <a href="tsvFormat">vl.<b>tsvFormat</b></a> - Specify parsing of <code>tsv</code> format data.
 - <a href="lookupData">vl.<b>lookupData</b></a> - Specify a lookup on a secondary data source.
+- <a href="lookupSelection">vl.<b>lookupSelection</b></a> - Specify a lookup on an interactive selection.
 
 ### Encodings
 
@@ -92,6 +95,10 @@
 - <a href="yError">vl.<b>yError</b></a> - Specify the <code>yError</code> encoding channel.
 - <a href="yError2">vl.<b>yError2</b></a> - Specify the <code>yError2</code> encoding channel.
 
+### Projections
+
+- <a href="projection">vl.<b>projection</b></a> - Define a cartographic projection for longitude, latitude coordinates.
+
 ### References
 
 - <a href="field">vl.<b>field</b></a> - A reference to a data field.
@@ -102,18 +109,19 @@
 - <a href="encoding">vl.<b>encoding</b></a> - A reference to an encoding channel.
 - <a href="repeat">vl.<b>repeat</b></a> - A field variable reference for a repeated chart.
 - <a href="value">vl.<b>value</b></a> - A constant encoding value.
+- <a href="expr">vl.<b>expr</b></a> - An expression in the [Vega expression language](https://vega.github.io/vega/docs/expressions/).
 
-### Projections
+### Parameters
 
-- <a href="projection">vl.<b>projection</b></a> - Define a cartographic projection for longitude, latitude coordinates.
+- <a href="param">vl.<b>param</b></a> - Define or reference a variable parameter.
+- <a href="selectInterval">vl.<b>selectInterval</b></a> - Define or reference a <code>interval</code> selection parameter.
+- <a href="selectPoint">vl.<b>selectPoint</b></a> - Define or reference a <code>point</code> selection parameter.
+- <a href="selectSingle">vl.<b>selectSingle</b></a> - Define or reference a <code>point</code> selection parameter. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>selectPoint()</code> instead.
+- <a href="selectMulti">vl.<b>selectMulti</b></a> - Define or reference a <code>point</code> selection parameter. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>selectPoint()</code> instead.
+- <a href="configInterval">vl.<b>configInterval</b></a> - Configure <code>interval</code> selections.
+- <a href="configPoint">vl.<b>configPoint</b></a> - Configure <code>point</code> selections.
 
-### Selections
-
-- <a href="selectInterval">vl.<b>selectInterval</b></a> - Define a new <code>interval</code> selection.
-- <a href="selectMulti">vl.<b>selectMulti</b></a> - Define a new <code>multi</code> selection.
-- <a href="selectSingle">vl.<b>selectSingle</b></a> - Define a new <code>single</code> selection.
-
-### Selection Bindings
+### Parameter Bindings
 
 - <a href="checkbox">vl.<b>checkbox</b></a> - Define a new HTML <code>checkbox</code> input element binding.
 - <a href="menu">vl.<b>menu</b></a> - Define a new HTML <code>select</code> input element binding.

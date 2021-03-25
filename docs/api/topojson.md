@@ -4,10 +4,10 @@ Define a data source for <code>topojson</code> format data.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is an <code>array</code>, sets the <code>values</code> property.
-- If the argument is an <code>iterable</code>, sets the <code>values</code> property.
-- If the argument is an <code>object</code>, sets the <code>values</code> property.
-- If the argument is a <code>string</code>, sets the <code>url</code> property.
+- If the argument is an <code>Array</code>, sets the <code>values</code> property.
+- If the argument is an <code>Iterable</code>, sets the <code>values</code> property.
+- If the argument is an <code>Object</code>, sets the <code>values</code> property.
+- If the argument is a <code>String</code>, sets the <code>url</code> property.
 - Otherwise, sets the properties defined on the input argument(s), if provided.
 
 ## <code>topojson</code> Method Overview
@@ -30,7 +30,7 @@ The name of the TopoJSON object set to convert to a GeoJSON feature collection. 
 <a id="mesh" href="#mesh">#</a>
 <em>topojson</em>.<b>mesh</b>(<em>value</em>)
 
-The name of the TopoJSON object set to convert to mesh. Similar to the `feature` option, `mesh` extracts a named TopoJSON object set.   Unlike the `feature` option, the corresponding geo data is returned as a single, unified mesh instance, not as individual GeoJSON features. Extracting a mesh is useful for more efficiently drawing borders or other geographic elements that you do not need to associate with specific regions such as individual countries, states or counties.
+The name of the TopoJSON object set to convert to mesh. Similar to the `feature` option, `mesh` extracts a named TopoJSON object set.  Unlike the `feature` option, the corresponding geo data is returned as a single, unified mesh instance, not as individual GeoJSON features. Extracting a mesh is useful for more efficiently drawing borders or other geographic elements that you do not need to associate with specific regions such as individual countries, states or counties.
 
 <a id="name" href="#name">#</a>
 <em>topojson</em>.<b>name</b>(<em>name</em>)

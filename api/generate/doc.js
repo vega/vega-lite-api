@@ -1,4 +1,4 @@
-import {props, isArrayType} from './schema';
+import {marshal, props, isArrayType} from './schema';
 import {write} from './write';
 import {article, code, hasOwnProperty, isArray, link} from './util';
 
@@ -11,7 +11,7 @@ export function generateDoc(schema, api, path, prefix) {
     } else if (key.startsWith('$')) {
       name = key.slice(1);
     }
-    const def = props(schema, {$ref: '#/definitions/' + api[key].def});
+    const def = props(schema, marshal(api[key].def));
     return write(`${path}/${name}.md`, docMethod(name, api[key], def, prefix));
   });
 

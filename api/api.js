@@ -5,8 +5,11 @@ import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,
   field, fieldType, not, logical, repeat, value,
-  selection, selref, binding, projection, encoding, channel,
-  source, sourceFormat, generator, format, lookupData, data,
+  binding, expr, param, selection, selectionConfig, selectionRef,
+  selectionDeprecated,
+  projection, encoding, channel,
+  source, sourceFormat, generator, format,
+  data, lookupData, lookupSelection,
   unit, mark, layer, spec
 } from './types';
 
@@ -40,9 +43,18 @@ function channels() {
   return reduce(items, v => channel(v));
 }
 
+// retrieve selection types from VL schema
+const selTypes = types(
+  schema,
+  { $ref: '#/definitions/TopLevelSelectionParameter/properties/select' }
+);
+
+function selectionConfigs() {
+  return reduce(selTypes, v => selectionConfig(v), v => `config${capitalize(v)}`);
+}
+
 function selections() {
-  const items = types(schema, {$ref: '#/definitions/SelectionDef'});
-  return reduce(items, v => selection(v), k => `select${capitalize(k)}`);
+  return reduce(selTypes, v => selection(v), v => `select${capitalize(v)}`);
 }
 
 export const api = {
@@ -50,17 +62,23 @@ export const api = {
   mark:     unit(markTypes),
   ...marks(),
   layer:    layer('...layer'),
-  concat:   spec('Concatenate', 'TopLevelNormalizedConcatSpec<GenericSpec>', '...concat'),
-  hconcat:  spec('Horizontally concatenate', 'TopLevelNormalizedHConcatSpec<GenericSpec>', '...hconcat'),
-  vconcat:  spec('Vertically concatenate', 'TopLevelNormalizedVConcatSpec<GenericSpec>', '...vconcat'),
-  _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
-  _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
+  concat:   spec('Concatenate charts.', 'TopLevelConcatSpec', '...concat'),
+  hconcat:  spec('Horizontally concatenate charts.', 'TopLevelHConcatSpec', '...hconcat'),
+  vconcat:  spec('Vertically concatenate charts.', 'TopLevelVConcatSpec', '...vconcat'),
+  _repeat:  spec('Repeat charts.', 'TopLevelRepeatSpec', 'repeat', 'spec'),
+  _facet:   spec('Facet charts.', 'TopLevelFacetSpec', 'facet', 'spec'),
+  spec:     spec('Create an arbitrary Vega-Lite specification.', 'TopLevelSpec'),
 
   // externally defined exports
   $register: {
     desc: 'Register Vega and Vega-Lite with the API.',
     doc:  'Utilities',
     arg:  ['vega', 'vegalite', 'options'],
+    src:  '__view__'
+  },
+  $render: {
+    desc: 'Render a provided Vega-Lite specification.',
+    doc:  'Utilities',
     src:  '__view__'
   },
   $vega: {
@@ -84,9 +102,15 @@ export const api = {
   ...sources(),
   ...formats(),
   lookupData: lookupData(),
+  lookupSelection: lookupSelection(),
 
   // encoding channels
   ...channels(),
+
+  // cartographic projection
+  projection: projection(),
+
+  // references
   field:    field(),
   fieldN:   fieldType('nominal'),
   fieldO:   fieldType('ordinal'),
@@ -95,13 +119,15 @@ export const api = {
   encoding: encoding(),
   repeat:   repeat(),
   value:    value(),
+  expr:     expr(),
 
-  // cartographic projection
-  projection: projection(),
-
-  // selections
+  // parameters and selections
+  param: param(),
   ...selections(),
-  _selref: selref(),
+  selectSingle: selectionDeprecated({ toggle: false }),
+  selectMulti: selectionDeprecated(),
+  ...selectionConfigs(),
+  _selRef: selectionRef(),
 
   // bindings
   checkbox:  binding('BindCheckbox', 'checkbox'),

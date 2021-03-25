@@ -72,9 +72,9 @@ The input [data](data) specification.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is an <code>array</code>, sets the <code>data.values</code> property.
-- If the argument is an <code>iterable</code>, sets the <code>data.values</code> property.
-- If the argument is a <code>string</code>, sets the <code>data.url</code> property.
+- If the argument is an <code>Array</code>, sets the <code>data.values</code> property.
+- If the argument is an <code>Iterable</code>, sets the <code>data.values</code> property.
+- If the argument is a <code>String</code>, sets the <code>data.url</code> property.
 - Otherwise, sets the <code>data</code> property.
 
 <a id="datasets" href="#datasets">#</a>
@@ -105,9 +105,9 @@ The default visualization padding, in pixels, from the edge of the visualization
 __Default value__: `5`
 
 <a id="params" href="#params">#</a>
-<em>vconcat</em>.<b>params</b>(<em>...value</em>)
+<em>vconcat</em>.<b>params</b>(<em>...params</em>)
 
-Dynamic variables that parameterize a visualization.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries.
 
 <a id="render" href="#render">#</a>
 <em>vconcat</em>.<b>render</b>(<em>...values</em>)

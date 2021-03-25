@@ -4,9 +4,9 @@ Create a new data reference for a chart or lookup.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is an <code>array</code>, sets the <code>values</code> property.
-- If the argument is an <code>iterable</code>, sets the <code>values</code> property.
-- If the argument is a <code>string</code>, sets the <code>url</code> property.
+- If the argument is an <code>Array</code>, sets the <code>values</code> property.
+- If the argument is an <code>Iterable</code>, sets the <code>values</code> property.
+- If the argument is a <code>String</code>, sets the <code>url</code> property.
 - Otherwise, sets the properties defined on the input argument(s), if provided.
 
 ## <code>data</code> Method Overview
@@ -105,9 +105,9 @@ The input [data](data) specification.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is an <code>array</code>, sets the <code>data.values</code> property.
-- If the argument is an <code>iterable</code>, sets the <code>data.values</code> property.
-- If the argument is a <code>string</code>, sets the <code>data.url</code> property.
+- If the argument is an <code>Array</code>, sets the <code>data.values</code> property.
+- If the argument is an <code>Iterable</code>, sets the <code>data.values</code> property.
+- If the argument is a <code>String</code>, sets the <code>data.url</code> property.
 - Otherwise, sets the <code>data</code> property.
 
 <a id="datasets" href="#datasets">#</a>
@@ -170,7 +170,7 @@ Set the mark type and default visual properties.
 
 The behavior of this method depends on the argument type:
 
-- If the argument is a <code>string</code>, sets the <code>mark.type</code> property.
+- If the argument is a <code>String</code>, sets the <code>mark.type</code> property.
 - Otherwise, sets the <code>mark</code> property.
 
 <a id="mark" href="#mark">#</a>
@@ -191,9 +191,9 @@ The default visualization padding, in pixels, from the edge of the visualization
 __Default value__: `5`
 
 <a id="params" href="#params">#</a>
-<em>data</em>.<b>params</b>(<em>...value</em>)
+<em>data</em>.<b>params</b>(<em>...params</em>)
 
-Dynamic variables that parameterize a visualization.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries.
 
 <a id="project" href="#project">#</a>
 <em>data</em>.<b>project</b>(<em>projection</em>)
@@ -216,9 +216,9 @@ Repeat a chart template to generate multiple plots.
 Scale, axis, and legend resolutions for view composition specifications.
 
 <a id="select" href="#select">#</a>
-<em>data</em>.<b>select</b>(<em>...selection</em>)
+<em>data</em>.<b>select</b>(<em>...params</em>)
 
-Register interactive selections on the mark.
+An array of parameters that may be simple variables or more complex selections that map user input to data queries. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>params()</code> instead.
 
 <a id="spacing" href="#spacing">#</a>
 <em>data</em>.<b>spacing</b>(<em>value</em>)

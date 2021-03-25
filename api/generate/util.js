@@ -14,6 +14,10 @@ export function isString(_) {
   return typeof _ === 'string';
 }
 
+export function isInternal(_) {
+  return isString(_) && _.startsWith('_');
+}
+
 export function hasOwnProperty(obj, property) {
   return Object.prototype.hasOwnProperty.call(obj, property);
 }
@@ -37,6 +41,10 @@ export function stringValue(_) {
       // See http://timelessrepo.com/json-isnt-a-javascript-subset
       JSON.stringify(_).replace('\u2028','\\u2028').replace('\u2029', '\\u2029')
     : _;
+}
+
+export function getProperty(name) {
+  return `this.${name}` + (isInternal(name) ? '' : '()');
 }
 
 export function emitter(defaultFile) {
@@ -83,7 +91,7 @@ export function emitter(defaultFile) {
 }
 
 export function article(_) {
-  return _ && _.match(/^[aeiou]/) ? 'an' : 'a';
+  return _ && _.match(/^[aeiou]/i) ? 'an' : 'a';
 }
 
 export function capitalize(_) {

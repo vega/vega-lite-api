@@ -1,5 +1,5 @@
 var tape = require('tape'),
-    vl = require('../../');
+    vl = require('../../build/vega-lite-api');
 
 tape('API output matches spec: weather-selection', function(t) {
   t.equal(JSON.stringify(api().toObject()), JSON.stringify(spec));
@@ -7,8 +7,8 @@ tape('API output matches spec: weather-selection', function(t) {
 });
 
 function api() {
-  const brush = vl.selectInterval().encodings('x');
-  const click = vl.selectMulti().encodings('color');
+  const brush = vl.selectInterval('sel1').encodings('x');
+  const click = vl.selectPoint('sel2').encodings('color');
 
   const scale = {
     domain: ['sun', 'fog', 'drizzle', 'rain', 'snow'],
@@ -25,9 +25,8 @@ function api() {
     )
     .width(600)
     .height(300)
-    .select(brush)
+    .params(brush)
     .transform(vl.filter(click));
-
 
   const plot2 = vl.markBar()
     .encode(
@@ -37,7 +36,7 @@ function api() {
       vl.y().fieldN('weather').title('Weather')
     )
     .width(600)
-    .select(click)
+    .params(click)
     .transform(vl.filter(brush));
 
   return vl.data({url: 'data/seattle-weather.csv'}).vconcat(plot1, plot2);
@@ -51,7 +50,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "test": {"selection": "sel1"},
+            "test": {"param": "sel1"},
             "field": "weather",
             "type": "nominal",
             "scale": {
@@ -82,8 +81,13 @@ var spec = {
       },
       "width": 600,
       "height": 300,
-      "selection": {"sel1": {"type": "interval", "encodings": ["x"]}},
-      "transform": [{"filter": {"selection": "sel2"}}]
+      "params": [
+        {
+          "name": "sel1",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "transform": [{"filter": {"param": "sel2"}}]
     },
     {
       "mark": {"type": "bar"},
@@ -91,7 +95,7 @@ var spec = {
         "color": {
           "value": "lightgray",
           "condition": {
-            "test": {"selection": "sel2"},
+            "test": {"param": "sel2"},
             "field": "weather",
             "type": "nominal",
             "scale": {
@@ -105,8 +109,13 @@ var spec = {
         "y": {"field": "weather", "type": "nominal", "title": "Weather"}
       },
       "width": 600,
-      "selection": {"sel2": {"type": "multi", "encodings": ["color"]}},
-      "transform": [{"filter": {"selection": "sel1"}}]
+      "params": [
+        {
+          "name": "sel2",
+          "select": {"type": "point", "encodings": ["color"]}
+        }
+      ],
+      "transform": [{"filter": {"param": "sel1"}}]
     }
   ],
   "data": {

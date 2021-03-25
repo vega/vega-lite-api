@@ -39,3 +39,20 @@ tape('API can render Vega views', async function(t) {
   delete global.document;
   t.end();
 });
+
+tape('Render method can be externally invoked', async function(t) {
+  vl.register(vega, vegalite, {view: {renderer: 'none'}});
+  t.equal(vl.vega, vega);
+  t.equal(vl.vegalite, vegalite);
+
+  global.document = document;
+
+  const div = await vl.render({
+    spec: vl.markCircle().toSpec()
+  });
+  t.ok(div.value);
+  t.equal(div.value.stamp(), 1);
+
+  delete global.document;
+  t.end();
+});

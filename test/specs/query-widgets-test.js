@@ -1,5 +1,5 @@
 var tape = require('tape'),
-    vl = require('../../');
+    vl = require('../../build/vega-lite-api');
 
 tape('API output matches spec: query-widgets', function(t) {
   t.equal(JSON.stringify(api()), JSON.stringify(spec));
@@ -7,9 +7,9 @@ tape('API output matches spec: query-widgets', function(t) {
 });
 
 function api() {
-  const cylYear = vl.selectSingle('CylYr')
+  const cylYear = vl.selectPoint('CylYr')
     .fields('Cylinders', 'Year')
-    .init({Cylinders: 4, Year: 1977})
+    .value({Cylinders: 4, Year: 1977})
     .bind({
       Cylinders: vl.slider().min(3).max(8).step(1),
       Year: vl.slider().min(1969).max(1981).step(1)
@@ -21,7 +21,7 @@ function api() {
     )
     .layer(
       vl.markCircle()
-        .select(cylYear)
+        .params(cylYear)
         .encode(
           vl.x().fieldQ('Horsepower'),
           vl.y().fieldQ('Miles_per_Gallon'),
@@ -43,28 +43,32 @@ var spec = {
   "layer": [
     {
       "mark": {"type": "circle"},
-      "selection": {
-        "CylYr": {
-          "type": "single", "fields": ["Cylinders", "Year"],
-          "init": {"Cylinders": 4, "Year": 1977},
+      "params": [
+        {
+          "name": "CylYr",
+          "value": {"Cylinders": 4, "Year": 1977},
           "bind": {
             "Cylinders": {"input": "range", "min": 3, "max": 8, "step": 1},
             "Year": {"input": "range", "min": 1969, "max": 1981, "step": 1}
+          },
+          "select": {
+            "type": "point",
+            "fields": ["Cylinders", "Year"]
           }
         }
-      },
+      ],
       "encoding": {
         "x": {"field": "Horsepower", "type": "quantitative"},
         "y": {"field": "Miles_per_Gallon", "type": "quantitative"},
         "color": {
           "value": "grey",
-          "condition": {"test": {"selection": "CylYr"}, "field": "Origin", "type": "nominal"}
+          "condition": {"test": {"param": "CylYr"}, "field": "Origin", "type": "nominal"}
         }
       }
     },
     {
       "mark": {"type": "circle"},
-      "transform": [{"filter": {"selection": "CylYr"}}],
+      "transform": [{"filter": {"param": "CylYr"}}],
       "encoding": {
         "x": {"field": "Horsepower", "type": "quantitative"},
         "y": {"field": "Miles_per_Gallon", "type": "quantitative"},

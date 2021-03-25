@@ -1,3 +1,11 @@
+import {isArray} from './util';
+
+export function marshal(def) {
+  return isArray(def)
+    ? { anyOf: def.map(d => ({ $ref: '#/definitions/' + d })).reverse() }
+    : { $ref: '#/definitions/' + def };
+}
+
 export function lookup(schema, ref) {
   if (!ref) return null;
 
@@ -53,9 +61,15 @@ export function isArrayType(schema) {
   if (hasArrayType(schema)) {
     return 1;
   } else if (schema = (schema.anyOf || schema.oneOf)) {
-    let count = 0;
-    schema.forEach(s => { if (hasArrayType(s)) ++count });
-    return count === schema.length ? 1 : count ? 2 : 0;
+    if (!schema.length) return 0;
+    let min = 3;
+    let max = -1;
+    schema.forEach(s => {
+      const t = isArrayType(s);
+      if (t < min) min = t;
+      if (t > max) max = t;
+    });
+    return min === max ? min : 2;
   } else {
     return 0;
   }

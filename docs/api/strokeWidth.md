@@ -8,7 +8,7 @@ Specify the <code>strokeWidth</code> encoding channel.
 * <a href="#argmax">argmax</a>
 * <a href="#argmin">argmin</a>
 * <a href="#average">average</a>
-* <a href="#band">band</a>
+* <a href="#bandPosition">bandPosition</a>
 * <a href="#bin">bin</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
@@ -119,12 +119,10 @@ Apply the <code>argmin</code> aggregate operation prior to encoding.
 
 Apply the <code>average</code> aggregate operation prior to encoding.
 
-<a id="band" href="#band">#</a>
-<em>strokeWidth</em>.<b>band</b>(<em>value</em>)
+<a id="bandPosition" href="#bandPosition">#</a>
+<em>strokeWidth</em>.<b>bandPosition</b>(<em>value</em>)
 
-For rect-based marks (`rect`, `bar`, and `image`), mark size relative to bandwidth of [band scales](https://vega.github.io/vega-lite/docs/scale.html#band), bins or time units. If set to `1`, the mark size is set to the bandwidth, the bin interval, or the time unit interval. If set to `0.5`, the mark size is half of the bandwidth or the time unit interval.
-
-For other marks, relative position on a band of a stacked, binned, time unit or band scale. If set to `0`, the marks will be positioned at the beginning of the band. If set to `0.5`, the marks will be positioned in the middle of the band.
+Relative position on a band of a stacked, binned, time unit, or band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.
 
 <a id="bin" href="#bin">#</a>
 <em>strokeWidth</em>.<b>bin</b>(<em>value</em>)
@@ -152,7 +150,7 @@ Apply the <code>ci1</code> aggregate operation prior to encoding.
 <a id="condition" href="#condition">#</a>
 <em>strokeWidth</em>.<b>condition</b>(<em>...value</em>)
 
-A field definition or one or more value definition(s) with a selection predicate.
+A field definition or one or more value definition(s) with a parameter predicate.
 
 <a id="count" href="#count">#</a>
 <em>strokeWidth</em>.<b>count</b>(<em></em>)
@@ -426,7 +424,7 @@ __Default value:__  derived from the field's name and transformation function (`
 
 __Notes__:
 
-1) You can customize the default field title format by providing the [`fieldTitle`](https://vega.github.io/vega-lite/docs/config.html#top-level-config) property in the [config](https://vega.github.io/vega-lite/docs/config.html) or [`fieldTitle` function via the `compile` function's options](https://vega.github.io/vega-lite/docs/compile.html#field-title).
+1) You can customize the default field title format by providing the [`fieldTitle`](https://vega.github.io/vega-lite/docs/config.html#top-level-config) property in the [config](https://vega.github.io/vega-lite/docs/config.html) or [`fieldTitle` function via the `compile` function's options](https://vega.github.io/vega-lite/usage/compile.html#field-title).
 
 2) If both field definition's `title` and axis, header, or legend `title` are defined, axis/header/legend title will be used.
 
