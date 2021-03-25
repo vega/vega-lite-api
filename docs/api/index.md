@@ -29,6 +29,7 @@
 ### Utilities
 
 - <a href="register">vl.<b>register</b></a> - Register Vega and Vega-Lite with the API.
+- <a href="render">vl.<b>render</b></a> - Render a provided Vega-Lite specification.
 - <a href="vega">vl.<b>vega</b></a> - Access the registered Vega instance.
 - <a href="vegalite">vl.<b>vegalite</b></a> - Access the registered Vega-Lite instance.
 

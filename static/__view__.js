@@ -7,6 +7,10 @@ var _opt;
 function options(...viewopt) {
   const opt = Object.assign({}, _opt);
   opt.view = Object.assign({}, _opt.view, ...viewopt);
+  if (opt.view.spec) {
+    opt.spec = opt.view.spec;
+    delete opt.view.spec;
+  }
   return opt;
 }
 
@@ -28,7 +32,7 @@ function createView(self, opt) {
     throw Error('Vega / Vega-Lite not registered. Use the "register" method.');
   }
 
-  const spec = _vegalite.compile(createSpec(self), opt.config),
+  const spec = _vegalite.compile(opt.spec || createSpec(self), opt.config),
         view = new _vega.View(_vega.parse(spec.spec), opt.view);
 
   if (opt.init) opt.init(view);

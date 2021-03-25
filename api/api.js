@@ -76,6 +76,11 @@ export const api = {
     arg:  ['vega', 'vegalite', 'options'],
     src:  '__view__'
   },
+  $render: {
+    desc: 'Render a provided Vega-Lite specification.',
+    doc:  'Utilities',
+    src:  '__view__'
+  },
   $vega: {
     desc: 'Access the registered Vega instance.',
     doc:  'Utilities',
