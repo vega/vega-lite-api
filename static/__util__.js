@@ -78,8 +78,9 @@ export function merge(flag, ...values) {
 }
 
 export function nest(obj, keys, rest) {
-  const m = keys.reduce((m, k) => (m[k] = 1, m), {}),
-        u = {}, v = {};
+  const m = keys.reduce((m, k) => (m[k] = 1, m), {});
+  const u = {};
+  const v = {};
 
   for (let k in obj) (m[k] ? u : v)[k] = obj[k];
   u[rest] = v;

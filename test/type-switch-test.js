@@ -1,5 +1,5 @@
-const tape = require('tape'),
-      vl = require('../');
+const tape = require('tape');
+const vl = require('../');
 
 tape('Type check switches map arrays', function(t) {
   const objects = vl.tooltip([

@@ -1,7 +1,7 @@
-const tape = require('tape'),
-      vega = require('vega'),
-      vegalite = require('vega-lite'),
-      vl = require('../');
+const tape = require('tape');
+const vega = require('vega');
+const vegalite = require('vega-lite');
+const vl = require('../');
 
 // pull schema version from vegalite.version
 const $SCHEMA = 'https://vega.github.io/schema/vega-lite/'

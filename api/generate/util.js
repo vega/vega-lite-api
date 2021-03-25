@@ -40,8 +40,8 @@ export function stringValue(_) {
 }
 
 export function emitter(defaultFile) {
-  const imports = {[defaultFile]: {}},
-        lines = [];
+  const imports = {[defaultFile]: {}};
+  const lines = [];
 
   let prefix = '';
 

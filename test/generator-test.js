@@ -1,5 +1,5 @@
-const tape = require('tape'),
-      vl = require('../');
+const tape = require('tape');
+const vl = require('../');
 
 function equalSpec(t, api, spec) {
   t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));
