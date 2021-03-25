@@ -124,7 +124,7 @@ export const api = {
   // parameters and selections
   param: param(),
   ...selections(),
-  selectSingle: selectionDeprecated(),
+  selectSingle: selectionDeprecated({ toggle: false }),
   selectMulti: selectionDeprecated(),
   ...selectionConfigs(),
   _selRef: selectionRef(),

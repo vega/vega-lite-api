@@ -292,11 +292,12 @@ export function selectionRef() {
   };
 }
 
-export function selectionDeprecated() {
+export function selectionDeprecated(values) {
   return {
     desc: `Define or reference a ${code('point')} selection parameter. ${DEPRECATED('selectPoint')}`,
     doc:  'Parameters',
-    ctr:  { call: 'selectPoint' }
+    ctr:  { call: 'selectPoint' },
+    set:  values
   };
 }
 

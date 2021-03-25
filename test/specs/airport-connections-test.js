@@ -127,6 +127,7 @@ var spec = {
             "name": "sel",
             "select": {
               "type": "point",
+              "toggle": false,
               "fields": ["origin"],
               "on": "mouseover",
               "nearest": true

@@ -35,13 +35,15 @@ tape('Parameters are supported', function(t) {
 tape('Selection parameters are supported', function(t) {
   const param = 'foo';
   const points = [
-    vl.selectPoint(param),
-    vl.selectSingle(param), // deprecated
-    vl.selectMulti(param)   // deprecated
+    { point: vl.selectPoint(param) },
+    { point: vl.selectSingle(param), toggle: false }, // deprecated
+    { point: vl.selectMulti(param) }  // deprecated
   ];
   const intervals = [ vl.selectInterval(param) ];
 
-  points.forEach(point => {
+  points.forEach(({ point, toggle }) => {
+    const select = { type: 'point', toggle };
+
     // Test point selection reference
     equalSpec(t, point, { param });
 
@@ -50,7 +52,7 @@ tape('Selection parameters are supported', function(t) {
       vl.markBar().params(point),
       {
         mark: { type: 'bar' },
-        params: [ { name: 'foo', select: { type: 'point' } } ]
+        params: [ { name: 'foo', select } ]
       }
     );
 
@@ -59,7 +61,7 @@ tape('Selection parameters are supported', function(t) {
       vl.data('data.csv').params(point),
       {
         data: { url: 'data.csv' },
-        params: [ { name: 'foo', select: { type: 'point' } } ]
+        params: [ { name: 'foo', select } ]
       }
     );
   });
@@ -144,7 +146,11 @@ tape('Deprecated selection methods are supported', function(t) {
     vl.markBar().select(vl.selectSingle().init(5)),
     {
       mark: { type: 'bar' },
-      params: [ { name: 'name1', value: 5, select: { type: 'point'} } ]
+      params: [ {
+        name: 'name1',
+        value: 5,
+        select: { type: 'point', toggle: false }
+      } ]
     }
   );
   t.end();
