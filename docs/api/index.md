@@ -24,6 +24,7 @@
 - <a href="concat">vl.<b>concat</b></a> - Concatenate charts.
 - <a href="hconcat">vl.<b>hconcat</b></a> - Horizontally concatenate charts.
 - <a href="vconcat">vl.<b>vconcat</b></a> - Vertically concatenate charts.
+- <a href="spec">vl.<b>spec</b></a> - Create an arbitrary Vega-Lite specification.
 
 ### Utilities
 

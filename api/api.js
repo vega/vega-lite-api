@@ -62,11 +62,12 @@ export const api = {
   mark:     unit(markTypes),
   ...marks(),
   layer:    layer('...layer'),
-  concat:   spec('Concatenate', 'TopLevelConcatSpec', '...concat'),
-  hconcat:  spec('Horizontally concatenate', 'TopLevelHConcatSpec', '...hconcat'),
-  vconcat:  spec('Vertically concatenate', 'TopLevelVConcatSpec', '...vconcat'),
-  _repeat:  spec('Repeat', 'TopLevelRepeatSpec', 'repeat', 'spec'),
-  _facet:   spec('Facet', 'TopLevelFacetSpec', 'facet', 'spec'),
+  concat:   spec('Concatenate charts.', 'TopLevelConcatSpec', '...concat'),
+  hconcat:  spec('Horizontally concatenate charts.', 'TopLevelHConcatSpec', '...hconcat'),
+  vconcat:  spec('Vertically concatenate charts.', 'TopLevelVConcatSpec', '...vconcat'),
+  _repeat:  spec('Repeat charts.', 'TopLevelRepeatSpec', 'repeat', 'spec'),
+  _facet:   spec('Facet charts.', 'TopLevelFacetSpec', 'facet', 'spec'),
+  spec:     spec('Create an arbitrary Vega-Lite specification.', 'TopLevelSpec'),
 
   // externally defined exports
   $register: {

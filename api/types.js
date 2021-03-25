@@ -610,12 +610,12 @@ export function layer(...args) {
   };
 }
 
-export function spec(verb, def, ...args) {
+export function spec(desc, def, ...args) {
   return {
-    desc: `${verb} charts.`,
+    desc,
     doc:  'Chart Constructors',
     def:  def,
-    arg:  args,
+    arg:  args.length ? args : undefined,
     ext:  extSpec,
     call: callSpec,
     pass: {
