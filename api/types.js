@@ -575,7 +575,11 @@ const callSpec = {
 
 export function unit(types) {
   const extMark = reduce(types,
-    v => ({arg: [':::mark'], pre: [{type: v}]}),
+    type => ({
+      desc: `Create a new ${code(type)} mark based on this mark.`,
+      arg: [':::mark'],
+      pre: [{type}]
+    }),
     k => `mark${capitalize(k)}`
   );
 

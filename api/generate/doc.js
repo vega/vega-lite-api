@@ -157,8 +157,15 @@ function docArgPrefix(arg) {
 }
 
 function docDescription(prop, schema, spec) {
-  let desc = (spec && spec.desc)
-    || (schema && schema[prop] && schema[prop].description);
+  let desc = (spec && spec.desc) || '';
+
+  if (!desc && schema && schema[prop]) {
+    desc = schema[prop].description;
+    if (!desc) {
+      let list = schema[prop].oneOf || schema[prop].anyOf || [];
+      desc = list.map(d => d.description).find(d => d) || '';
+    }
+  }
 
   if (spec && spec.type) {
     desc += '\n' + docTypeSwitch(prop, spec.type);
