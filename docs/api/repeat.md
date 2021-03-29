@@ -11,3 +11,5 @@ A field variable reference for a repeated chart.
 <a id="repeat" href="#repeat">#</a>
 <em>repeat</em>.<b>repeat</b>(<em>value</em>)
 
+The repeat dimension. One of `'row'`, `'column'`, `'layer'`, or `'repeat'`.
+

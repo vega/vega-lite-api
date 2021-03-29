@@ -165,53 +165,87 @@ The behavior of this method depends on the argument type:
 <a id="markArc" href="#markArc">#</a>
 <em>mark</em>.<b>markArc</b>(<em>...mark</em>)
 
+Create a new <code>arc</code> mark based on this mark.
+
 <a id="markArea" href="#markArea">#</a>
 <em>mark</em>.<b>markArea</b>(<em>...mark</em>)
+
+Create a new <code>area</code> mark based on this mark.
 
 <a id="markBar" href="#markBar">#</a>
 <em>mark</em>.<b>markBar</b>(<em>...mark</em>)
 
+Create a new <code>bar</code> mark based on this mark.
+
 <a id="markBoxplot" href="#markBoxplot">#</a>
 <em>mark</em>.<b>markBoxplot</b>(<em>...mark</em>)
+
+Create a new <code>boxplot</code> mark based on this mark.
 
 <a id="markCircle" href="#markCircle">#</a>
 <em>mark</em>.<b>markCircle</b>(<em>...mark</em>)
 
+Create a new <code>circle</code> mark based on this mark.
+
 <a id="markErrorband" href="#markErrorband">#</a>
 <em>mark</em>.<b>markErrorband</b>(<em>...mark</em>)
+
+Create a new <code>errorband</code> mark based on this mark.
 
 <a id="markErrorbar" href="#markErrorbar">#</a>
 <em>mark</em>.<b>markErrorbar</b>(<em>...mark</em>)
 
+Create a new <code>errorbar</code> mark based on this mark.
+
 <a id="markGeoshape" href="#markGeoshape">#</a>
 <em>mark</em>.<b>markGeoshape</b>(<em>...mark</em>)
+
+Create a new <code>geoshape</code> mark based on this mark.
 
 <a id="markImage" href="#markImage">#</a>
 <em>mark</em>.<b>markImage</b>(<em>...mark</em>)
 
+Create a new <code>image</code> mark based on this mark.
+
 <a id="markLine" href="#markLine">#</a>
 <em>mark</em>.<b>markLine</b>(<em>...mark</em>)
+
+Create a new <code>line</code> mark based on this mark.
 
 <a id="markPoint" href="#markPoint">#</a>
 <em>mark</em>.<b>markPoint</b>(<em>...mark</em>)
 
+Create a new <code>point</code> mark based on this mark.
+
 <a id="markRect" href="#markRect">#</a>
 <em>mark</em>.<b>markRect</b>(<em>...mark</em>)
+
+Create a new <code>rect</code> mark based on this mark.
 
 <a id="markRule" href="#markRule">#</a>
 <em>mark</em>.<b>markRule</b>(<em>...mark</em>)
 
+Create a new <code>rule</code> mark based on this mark.
+
 <a id="markSquare" href="#markSquare">#</a>
 <em>mark</em>.<b>markSquare</b>(<em>...mark</em>)
+
+Create a new <code>square</code> mark based on this mark.
 
 <a id="markText" href="#markText">#</a>
 <em>mark</em>.<b>markText</b>(<em>...mark</em>)
 
+Create a new <code>text</code> mark based on this mark.
+
 <a id="markTick" href="#markTick">#</a>
 <em>mark</em>.<b>markTick</b>(<em>...mark</em>)
 
+Create a new <code>tick</code> mark based on this mark.
+
 <a id="markTrail" href="#markTrail">#</a>
 <em>mark</em>.<b>markTrail</b>(<em>...mark</em>)
+
+Create a new <code>trail</code> mark based on this mark.
 
 <a id="name" href="#name">#</a>
 <em>mark</em>.<b>name</b>(<em>value</em>)
