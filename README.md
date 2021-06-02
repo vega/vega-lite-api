@@ -1,5 +1,6 @@
 # Vega-Lite API <a href="https://vega.github.io/vega-lite/"><img align="right" src="https://github.com/vega/logos/blob/master/assets/VL_Color@64.png?raw=true" height="38" /></a>
 
+[![npm version](https://img.shields.io/npm/v/vega-lite-api.svg)](https://www.npmjs.com/package/vega-lite-api)
 [![Build Status](https://github.com/vega/vega-lite-api/workflows/Test/badge.svg)](https://github.com/vega/vega-lite-api/actions)
 
 ![Gallery Image](https://vega.github.io/vega-lite/static/teaser.png)
