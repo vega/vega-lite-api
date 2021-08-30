@@ -1331,9 +1331,9 @@ tape@^5.2.2:
     through "^2.3.8"
 
 terser@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.6.1.tgz#a48eeac5300c0a09b36854bf90d9c26fb201973c"
-  integrity sha512-yv9YLFQQ+3ZqgWCUk+pvNJwgUTdlIxUk1WTN+RnaFJe2L7ipG2csPT0ra2XRm7Cs8cxN7QXmK1rFzEwYEQkzXw==
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.7.2.tgz#d4d95ed4f8bf735cb933e802f2a1829abf545e3f"
+  integrity sha512-0Omye+RD4X7X69O0eql3lC4Heh/5iLj3ggxR/B5ketZLOtLiOqukUgjw3q4PDnNQbsrkKr3UMypqStQG3XKRvw==
   dependencies:
     commander "^2.20.0"
     source-map "~0.7.2"
