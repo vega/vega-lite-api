@@ -114,6 +114,16 @@ array-flat-polyfill@^1.0.1:
   resolved "https://registry.yarnpkg.com/array-flat-polyfill/-/array-flat-polyfill-1.0.1.tgz#1e3a4255be619dfbffbfd1d635c1cf357cd034e7"
   integrity sha512-hfJmKupmQN0lwi0xG6FQ5U8Rd97RnIERplymOv/qpq8AoNKPPAnxJadjFA23FNWm88wykh9HmpLJUUwUtNU/iw==
 
+array.prototype.every@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/array.prototype.every/-/array.prototype.every-1.1.3.tgz#31f01b48e1160bc4b49ecab246bf7f765c6686f9"
+  integrity sha512-vWnriJI//SOMOWtXbU/VXhJ/InfnNHPF6BLKn5WfY8xXy+NWql0fUy20GO3sdqBhCAO+qw8S/E5nJiZX+QFdCA==
+  dependencies:
+    call-bind "^1.0.2"
+    define-properties "^1.1.3"
+    es-abstract "^1.19.0"
+    is-string "^1.0.7"
+
 available-typed-arrays@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.2.tgz#6b098ca9d8039079ee3f77f7b783c4480ba513f5"
@@ -424,7 +434,7 @@ es-abstract@^1.18.0-next.1, es-abstract@^1.18.0-next.2:
     string.prototype.trimstart "^1.0.4"
     unbox-primitive "^1.0.0"
 
-es-abstract@^1.19.1:
+es-abstract@^1.19.0, es-abstract@^1.19.1:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.19.1.tgz#d4885796876916959de78edaa0df456627115ec3"
   integrity sha512-2vJ6tjA/UfqLm2MPs7jxVybLoB8i1t1Jd9R3kISld20sIxPcTbLuggQOUxeWeAvIUkduv/CfMjuh4WmiXr2v9w==
@@ -715,12 +725,13 @@ has-bigints@^1.0.0, has-bigints@^1.0.1:
   resolved "https://registry.yarnpkg.com/has-bigints/-/has-bigints-1.0.1.tgz#64fe6acb020673e3b78db035a5af69aa9d07b113"
   integrity sha512-LSBS2LjbNBTf6287JEbEzvJgftkF5qFkmCo9hDRpAzKhUOlJ+hx8dd4USs00SgsUNwc4617J9ki5YtEClM2ffA==
 
-has-dynamic-import@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/has-dynamic-import/-/has-dynamic-import-2.0.0.tgz#d96d140ff7cbde2fee58c00e2123d7078bfc365e"
-  integrity sha512-GYPi/aZmACJVrVfEhP1rNUFmtCuK+SQ96mn8Bs7mXiGZRAJiI4VjaMmjj4uuvW8qaF085uWJvyJk9UNYUIYn0A==
+has-dynamic-import@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/has-dynamic-import/-/has-dynamic-import-2.0.1.tgz#9bca87846aa264f2ad224fcd014946f5e5182f52"
+  integrity sha512-X3fbtsZmwb6W7fJGR9o7x65fZoodygCrZ3TVycvghP62yYQfS0t4RS0Qcz+j5tQYUKeSWS09tHkWW6WhFV3XhQ==
   dependencies:
     call-bind "^1.0.2"
+    get-intrinsic "^1.1.1"
 
 has-flag@^4.0.0:
   version "4.0.0"
@@ -1015,10 +1026,10 @@ node-fetch@^2.6.1:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
-object-inspect@^1.11.0, object-inspect@^1.9.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.11.0.tgz#9dceb146cedd4148a0d9e51ab88d34cf509922b1"
-  integrity sha512-jp7ikS6Sd3GxQfZJPyH3cjcbJF6GZPClgdV+EFygjFLQ5FmW/dRUnTd9PQ9k0JhoNDabWFbpF1yCdSWCC6gexg==
+object-inspect@^1.11.0, object-inspect@^1.12.0, object-inspect@^1.9.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.12.0.tgz#6e2c120e868fd1fd18cb4f18c31741d0d6e776f0"
+  integrity sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==
 
 object-is@^1.1.4, object-is@^1.1.5:
   version "1.1.5"
@@ -1274,10 +1285,11 @@ supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 tape@^5.2.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/tape/-/tape-5.3.2.tgz#d7e2e68b7b7ea853681743d2760e9fffc7a0adcf"
-  integrity sha512-F+UjjvUJsEq/D0NwTKtuekTJsN7vpvYT/dvkZuBw7Y+2whC2JIU8syHIlNNkqstmtBu/mVoqhDr1QJGFUl+caA==
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/tape/-/tape-5.5.0.tgz#5ad3f2a78aeb91ff90f853692b4ff33ba585db70"
+  integrity sha512-hmsc9J+07tM+evk2Rkv7pkbj70Uoy9k0w1yhnN8Sza8kmjhtUTVNltsjywQjC+4grB+EBMKXiJPTkftX8IrbSA==
   dependencies:
+    array.prototype.every "^1.1.3"
     call-bind "^1.0.2"
     deep-equal "^2.0.5"
     defined "^1.0.0"
@@ -1286,12 +1298,13 @@ tape@^5.2.2:
     get-package-type "^0.1.0"
     glob "^7.2.0"
     has "^1.0.3"
-    has-dynamic-import "^2.0.0"
+    has-dynamic-import "^2.0.1"
     inherits "^2.0.4"
     is-regex "^1.1.4"
     minimist "^1.2.5"
-    object-inspect "^1.11.0"
+    object-inspect "^1.12.0"
     object-is "^1.1.5"
+    object-keys "^1.1.1"
     object.assign "^4.1.2"
     resolve "^2.0.0-next.3"
     resumer "^0.0.0"
