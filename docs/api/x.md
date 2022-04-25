@@ -137,7 +137,7 @@ Relative position on a band of a stacked, binned, time unit, or band scale. For 
 <a id="bin" href="#bin">#</a>
 <em>x</em>.<b>bin</b>(<em>value</em>)
 
-A flag for binning a `quantitative` field, [an object defining binning parameters](https://vega.github.io/vega-lite/docs/bin.html#params), or indicating that the data for `x` or `y` channel are binned before they are imported into Vega-Lite (`"binned"`).
+A flag for binning a `quantitative` field, [an object defining binning parameters](https://vega.github.io/vega-lite/docs/bin.html#bin-parameters), or indicating that the data for `x` or `y` channel are binned before they are imported into Vega-Lite (`"binned"`).
 
 - If `true`, default [binning parameters](https://vega.github.io/vega-lite/docs/bin.html) will be applied.
 
