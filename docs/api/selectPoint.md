@@ -77,7 +77,7 @@ __See also:__ The [projection with `encodings` and `fields` section](https://veg
 <a id="init" href="#init">#</a>
 <em>selectPoint</em>.<b>init</b>(<em>value</em>)
 
-Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>values()</code> instead.
+Initialize the selection with a mapping between [projected channels or field names](https://vega.github.io/vega-lite/docs/project.html) and initial values. This method provides backwards compatiblity with earlier API versions; it is _deprecated_ and may be removed in future versions. Use <code>value()</code> instead.
 
 <a id="key" href="#key">#</a>
 <em>selectPoint</em>.<b>key</b>(<em>...values</em>)
