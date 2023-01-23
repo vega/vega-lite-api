@@ -27,7 +27,7 @@
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
     "eslint": "^8.5.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.1.1",
     "rollup": "^2.42.4",
     "tape": "^5.2.2",
     "terser": "^5.6.1",
