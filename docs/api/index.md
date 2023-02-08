@@ -90,10 +90,12 @@
 - <a href="x2">vl.<b>x2</b></a> - Specify the <code>x2</code> encoding channel.
 - <a href="xError">vl.<b>xError</b></a> - Specify the <code>xError</code> encoding channel.
 - <a href="xError2">vl.<b>xError2</b></a> - Specify the <code>xError2</code> encoding channel.
+- <a href="xOffset">vl.<b>xOffset</b></a> - Specify the <code>xOffset</code> encoding channel.
 - <a href="y">vl.<b>y</b></a> - Specify the <code>y</code> encoding channel.
 - <a href="y2">vl.<b>y2</b></a> - Specify the <code>y2</code> encoding channel.
 - <a href="yError">vl.<b>yError</b></a> - Specify the <code>yError</code> encoding channel.
 - <a href="yError2">vl.<b>yError2</b></a> - Specify the <code>yError2</code> encoding channel.
+- <a href="yOffset">vl.<b>yOffset</b></a> - Specify the <code>yOffset</code> encoding channel.
 
 ### Projections
 

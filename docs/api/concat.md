@@ -37,7 +37,9 @@ Concatenate charts.
 
 The alignment to apply to grid rows and columns. The supported string values are `"all"`, `"each"`, and `"none"`.
 
-- For `"none"`, a flow layout will be used, in which adjacent subviews are simply placed one after the other. - For `"each"`, subviews will be aligned into a clean grid structure, but each row or column may be of variable size. - For `"all"`, subviews will be aligned and each row or column will be sized identically based on the maximum observed size. String values for this property will be applied to both grid rows and columns.
+- For `"none"`, a flow layout will be used, in which adjacent subviews are simply placed one after the other.
+- For `"each"`, subviews will be aligned into a clean grid structure, but each row or column may be of variable size.
+- For `"all"`, subviews will be aligned and each row or column will be sized identically based on the maximum observed size. String values for this property will be applied to both grid rows and columns.
 
 Alternatively, an object value of the form `{"row": string, "column": string}` can be used to supply different alignments for rows and columns.
 
@@ -62,7 +64,8 @@ __Default value:__ `"white"`
 
 The bounds calculation method to use for determining the extent of a sub-plot. One of `full` (the default) or `flush`.
 
-- If set to `full`, the entire calculated bounds (including axes, title, and legend) will be used. - If set to `flush`, only the specified width and height values for the sub-view will be used. The `flush` setting can be useful when attempting to place sub-plots without axes or legends into a uniform grid structure.
+- If set to `full`, the entire calculated bounds (including axes, title, and legend) will be used.
+- If set to `flush`, only the specified width and height values for the sub-view will be used. The `flush` setting can be useful when attempting to place sub-plots without axes or legends into a uniform grid structure.
 
 __Default value:__ `"full"`
 
@@ -84,7 +87,9 @@ __Default value__: `undefined` -- An infinite number of columns (a single row) w
 
 __Note__:
 
-1) This property is only for: - the general (wrappable) `concat` operator (not `hconcat`/`vconcat`) - the `facet` and `repeat` operator with one field/repetition definition (without row/column nesting)
+1) This property is only for:
+- the general (wrappable) `concat` operator (not `hconcat`/`vconcat`)
+- the `facet` and `repeat` operator with one field/repetition definition (without row/column nesting)
 
 2) Setting the `columns` to `1` is equivalent to `vconcat` (for `concat`) and to using the `row` channel (for `facet` and `repeat`).
 

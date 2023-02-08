@@ -36,7 +36,7 @@ A unique name for the variable parameter. Parameter names should be valid JavaSc
 <a id="value" href="#value">#</a>
 <em>param</em>.<b>value</b>(<em>value</em>)
 
-The [initial value](http://vega.github.io/vega-lite/docs/init.html) of the parameter.
+The [initial value](http://vega.github.io/vega-lite/docs/value.html) of the parameter.
 
 __Default value:__ `undefined`
 

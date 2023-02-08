@@ -65,12 +65,8 @@ __Default value:__ `2.0`
 <a id="extent" href="#extent">#</a>
 <em>projection</em>.<b>extent</b>(<em>...value</em>)
 
-Used in conjunction with fit, provides the pixel area to which the projection should be automatically fit.
-
 <a id="fit" href="#fit">#</a>
 <em>projection</em>.<b>fit</b>(<em>...value</em>)
-
-GeoJSON data to which the projection should attempt to automatically fit the `translate` and `scale` parameters. If object-valued, this parameter should be a GeoJSON Feature or FeatureCollection. If array-valued, each array member may be a GeoJSON Feature, FeatureCollection, or a sub-array of GeoJSON Features.
 
 <a id="fraction" href="#fraction">#</a>
 <em>projection</em>.<b>fraction</b>(<em>value</em>)

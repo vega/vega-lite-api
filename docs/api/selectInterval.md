@@ -10,7 +10,6 @@ Define or reference a <code>interval</code> selection parameter.
 * <a href="#encoding">encoding</a>
 * <a href="#encodings">encodings</a>
 * <a href="#field">field</a>
-* <a href="#fields">fields</a>
 * <a href="#init">init</a>
 * <a href="#key">key</a>
 * <a href="#mark">mark</a>
@@ -68,13 +67,6 @@ __See also:__ The [projection with `encodings` and `fields` section](https://veg
 
 Returns a selection reference including a field name to extract selected values for, when a selection is projected over multiple fields or encodings.
 
-<a id="fields" href="#fields">#</a>
-<em>selectInterval</em>.<b>fields</b>(<em>...value</em>)
-
-An array of field names whose values must match for a data tuple to fall within the selection.
-
-__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.
-
 <a id="init" href="#init">#</a>
 <em>selectInterval</em>.<b>init</b>(<em>value</em>)
 
@@ -109,7 +101,10 @@ __See also:__ [`on` examples](https://vega.github.io/vega-lite/docs/selection.ht
 
 With layered and multi-view displays, a strategy that determines how selections' data queries are resolved when applied in a filter transform, conditional encoding rule, or scale domain.
 
-One of: - `"global"` -- only one brush exists for the entire SPLOM. When the user begins to drag, any previous brushes are cleared, and a new one is constructed. - `"union"` -- each cell contains its own brush, and points are highlighted if they lie within _any_ of these individual brushes. - `"intersect"` -- each cell contains its own brush, and points are highlighted only if they fall within _all_ of these individual brushes.
+One of:
+- `"global"` -- only one brush exists for the entire SPLOM. When the user begins to drag, any previous brushes are cleared, and a new one is constructed.
+- `"union"` -- each cell contains its own brush, and points are highlighted if they lie within _any_ of these individual brushes.
+- `"intersect"` -- each cell contains its own brush, and points are highlighted only if they fall within _all_ of these individual brushes.
 
 __Default value:__ `global`.
 
@@ -129,7 +124,8 @@ __See also:__ [`translate` examples](https://vega.github.io/vega-lite/docs/selec
 
 Determines the default event processing and data query for the selection. Vega-Lite currently supports two selection types:
 
-- `"point"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click. - `"interval"` -- to select a continuous range of data values on `drag`.
+- `"point"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.
+- `"interval"` -- to select a continuous range of data values on `drag`.
 
 <a id="value" href="#value">#</a>
 <em>selectInterval</em>.<b>value</b>(<em>value</em>)
