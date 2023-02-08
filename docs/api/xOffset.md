@@ -1,13 +1,8 @@
-vl.<b>order</b>(<em>...values</em>)
+vl.<b>xOffset</b>(<em>...values</em>)
 
-Specify the <code>order</code> encoding channel.
+Specify the <code>xOffset</code> encoding channel.
 
-The behavior of this method depends on the argument type:
-
-- If the argument is a <code>string</code>, sets the <code>field</code> property.
-- Otherwise, sets the properties defined on the input argument(s), if provided.
-
-## <code>order</code> Method Overview
+## <code>xOffset</code> Method Overview
 
 * <a href="#aggregate">aggregate</a>
 * <a href="#argmax">argmax</a>
@@ -17,9 +12,9 @@ The behavior of this method depends on the argument type:
 * <a href="#bin">bin</a>
 * <a href="#ci0">ci0</a>
 * <a href="#ci1">ci1</a>
-* <a href="#condition">condition</a>
 * <a href="#count">count</a>
 * <a href="#date">date</a>
+* <a href="#datum">datum</a>
 * <a href="#day">day</a>
 * <a href="#distinct">distinct</a>
 * <a href="#field">field</a>
@@ -41,6 +36,7 @@ The behavior of this method depends on the argument type:
 * <a href="#q1">q1</a>
 * <a href="#q3">q3</a>
 * <a href="#quarter">quarter</a>
+* <a href="#scale">scale</a>
 * <a href="#seconds">seconds</a>
 * <a href="#sort">sort</a>
 * <a href="#stderr">stderr</a>
@@ -95,10 +91,10 @@ The behavior of this method depends on the argument type:
 * <a href="#year">year</a>
 * <a href="#yearmonth">yearmonth</a>
 
-## <code>order</code> API Reference
+## <code>xOffset</code> API Reference
 
 <a id="aggregate" href="#aggregate">#</a>
-<em>order</em>.<b>aggregate</b>(<em>value</em>)
+<em>xOffset</em>.<b>aggregate</b>(<em>value</em>)
 
 Aggregation function for the field (e.g., `"mean"`, `"sum"`, `"median"`, `"min"`, `"max"`, `"count"`).
 
@@ -107,27 +103,27 @@ __Default value:__ `undefined` (None)
 __See also:__ [`aggregate`](https://vega.github.io/vega-lite/docs/aggregate.html) documentation.
 
 <a id="argmax" href="#argmax">#</a>
-<em>order</em>.<b>argmax</b>(<em>field</em>)
+<em>xOffset</em>.<b>argmax</b>(<em>field</em>)
 
 Apply the <code>argmax</code> aggregate operation prior to encoding.
 
 <a id="argmin" href="#argmin">#</a>
-<em>order</em>.<b>argmin</b>(<em>field</em>)
+<em>xOffset</em>.<b>argmin</b>(<em>field</em>)
 
 Apply the <code>argmin</code> aggregate operation prior to encoding.
 
 <a id="average" href="#average">#</a>
-<em>order</em>.<b>average</b>(<em>field</em>)
+<em>xOffset</em>.<b>average</b>(<em>field</em>)
 
 Apply the <code>average</code> aggregate operation prior to encoding.
 
 <a id="bandPosition" href="#bandPosition">#</a>
-<em>order</em>.<b>bandPosition</b>(<em>value</em>)
+<em>xOffset</em>.<b>bandPosition</b>(<em>value</em>)
 
 Relative position on a band of a stacked, binned, time unit, or band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.
 
 <a id="bin" href="#bin">#</a>
-<em>order</em>.<b>bin</b>(<em>value</em>)
+<em>xOffset</em>.<b>bin</b>(<em>value</em>)
 
 A flag for binning a `quantitative` field, [an object defining binning parameters](https://vega.github.io/vega-lite/docs/bin.html#bin-parameters), or indicating that the data for `x` or `y` channel are binned before they are imported into Vega-Lite (`"binned"`).
 
@@ -140,44 +136,42 @@ __Default value:__ `false`
 __See also:__ [`bin`](https://vega.github.io/vega-lite/docs/bin.html) documentation.
 
 <a id="ci0" href="#ci0">#</a>
-<em>order</em>.<b>ci0</b>(<em>field</em>)
+<em>xOffset</em>.<b>ci0</b>(<em>field</em>)
 
 Apply the <code>ci0</code> aggregate operation prior to encoding.
 
 <a id="ci1" href="#ci1">#</a>
-<em>order</em>.<b>ci1</b>(<em>field</em>)
+<em>xOffset</em>.<b>ci1</b>(<em>field</em>)
 
 Apply the <code>ci1</code> aggregate operation prior to encoding.
 
-<a id="condition" href="#condition">#</a>
-<em>order</em>.<b>condition</b>(<em>...value</em>)
-
-One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).
-
-__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel.
-
 <a id="count" href="#count">#</a>
-<em>order</em>.<b>count</b>(<em></em>)
+<em>xOffset</em>.<b>count</b>(<em></em>)
 
 Apply the <code>count</code> aggregate operation prior to encoding.
 
 <a id="date" href="#date">#</a>
-<em>order</em>.<b>date</b>(<em>field</em>)
+<em>xOffset</em>.<b>date</b>(<em>field</em>)
 
 Apply the <code>date</code> timeUnit operation prior to encoding.
 
+<a id="datum" href="#datum">#</a>
+<em>xOffset</em>.<b>datum</b>(<em>value</em>)
+
+A constant value in data domain.
+
 <a id="day" href="#day">#</a>
-<em>order</em>.<b>day</b>(<em>field</em>)
+<em>xOffset</em>.<b>day</b>(<em>field</em>)
 
 Apply the <code>day</code> timeUnit operation prior to encoding.
 
 <a id="distinct" href="#distinct">#</a>
-<em>order</em>.<b>distinct</b>(<em>field</em>)
+<em>xOffset</em>.<b>distinct</b>(<em>field</em>)
 
 Apply the <code>distinct</code> aggregate operation prior to encoding.
 
 <a id="field" href="#field">#</a>
-<em>order</em>.<b>field</b>(<em>value</em>)
+<em>xOffset</em>.<b>field</b>(<em>value</em>)
 
 __Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.
 
@@ -186,162 +180,188 @@ __See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) docume
 __Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `"field": "foo.bar"` and `"field": "foo['bar']"`). If field names contain dots or brackets but are not nested, you can use `\\` to escape dots and brackets (e.g., `"a\\.b"` and `"a\\[0\\]"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.
 
 <a id="fieldN" href="#fieldN">#</a>
-<em>order</em>.<b>fieldN</b>(<em>field</em>)
+<em>xOffset</em>.<b>fieldN</b>(<em>field</em>)
 
 Encode the field as a nominal data type.
 
 <a id="fieldO" href="#fieldO">#</a>
-<em>order</em>.<b>fieldO</b>(<em>field</em>)
+<em>xOffset</em>.<b>fieldO</b>(<em>field</em>)
 
 Encode the field as an ordinal data type.
 
 <a id="fieldQ" href="#fieldQ">#</a>
-<em>order</em>.<b>fieldQ</b>(<em>field</em>)
+<em>xOffset</em>.<b>fieldQ</b>(<em>field</em>)
 
 Encode the field as a quantitative data type.
 
 <a id="fieldT" href="#fieldT">#</a>
-<em>order</em>.<b>fieldT</b>(<em>field</em>)
+<em>xOffset</em>.<b>fieldT</b>(<em>field</em>)
 
 Encode the field as a temporal data type.
 
 <a id="hours" href="#hours">#</a>
-<em>order</em>.<b>hours</b>(<em>field</em>)
+<em>xOffset</em>.<b>hours</b>(<em>field</em>)
 
 Apply the <code>hours</code> timeUnit operation prior to encoding.
 
 <a id="if" href="#if">#</a>
-<em>order</em>.<b>if</b>(<em>...condition</em>)
+<em>xOffset</em>.<b>if</b>(<em>...condition</em>)
 
 Perform a conditional encoding. If the provided condition (first argument) evaluates to true, apply the provided encoding (second argument).
 
 <a id="max" href="#max">#</a>
-<em>order</em>.<b>max</b>(<em>field</em>)
+<em>xOffset</em>.<b>max</b>(<em>field</em>)
 
 Apply the <code>max</code> aggregate operation prior to encoding.
 
 <a id="mean" href="#mean">#</a>
-<em>order</em>.<b>mean</b>(<em>field</em>)
+<em>xOffset</em>.<b>mean</b>(<em>field</em>)
 
 Apply the <code>mean</code> aggregate operation prior to encoding.
 
 <a id="median" href="#median">#</a>
-<em>order</em>.<b>median</b>(<em>field</em>)
+<em>xOffset</em>.<b>median</b>(<em>field</em>)
 
 Apply the <code>median</code> aggregate operation prior to encoding.
 
 <a id="milliseconds" href="#milliseconds">#</a>
-<em>order</em>.<b>milliseconds</b>(<em>field</em>)
+<em>xOffset</em>.<b>milliseconds</b>(<em>field</em>)
 
 Apply the <code>milliseconds</code> timeUnit operation prior to encoding.
 
 <a id="min" href="#min">#</a>
-<em>order</em>.<b>min</b>(<em>field</em>)
+<em>xOffset</em>.<b>min</b>(<em>field</em>)
 
 Apply the <code>min</code> aggregate operation prior to encoding.
 
 <a id="minutes" href="#minutes">#</a>
-<em>order</em>.<b>minutes</b>(<em>field</em>)
+<em>xOffset</em>.<b>minutes</b>(<em>field</em>)
 
 Apply the <code>minutes</code> timeUnit operation prior to encoding.
 
 <a id="missing" href="#missing">#</a>
-<em>order</em>.<b>missing</b>(<em>field</em>)
+<em>xOffset</em>.<b>missing</b>(<em>field</em>)
 
 Apply the <code>missing</code> aggregate operation prior to encoding.
 
 <a id="month" href="#month">#</a>
-<em>order</em>.<b>month</b>(<em>field</em>)
+<em>xOffset</em>.<b>month</b>(<em>field</em>)
 
 Apply the <code>month</code> timeUnit operation prior to encoding.
 
 <a id="product" href="#product">#</a>
-<em>order</em>.<b>product</b>(<em>field</em>)
+<em>xOffset</em>.<b>product</b>(<em>field</em>)
 
 Apply the <code>product</code> aggregate operation prior to encoding.
 
 <a id="q1" href="#q1">#</a>
-<em>order</em>.<b>q1</b>(<em>field</em>)
+<em>xOffset</em>.<b>q1</b>(<em>field</em>)
 
 Apply the <code>q1</code> aggregate operation prior to encoding.
 
 <a id="q3" href="#q3">#</a>
-<em>order</em>.<b>q3</b>(<em>field</em>)
+<em>xOffset</em>.<b>q3</b>(<em>field</em>)
 
 Apply the <code>q3</code> aggregate operation prior to encoding.
 
 <a id="quarter" href="#quarter">#</a>
-<em>order</em>.<b>quarter</b>(<em>field</em>)
+<em>xOffset</em>.<b>quarter</b>(<em>field</em>)
 
 Apply the <code>quarter</code> timeUnit operation prior to encoding.
 
+<a id="scale" href="#scale">#</a>
+<em>xOffset</em>.<b>scale</b>(<em>value</em>)
+
+An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.
+
+If `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).
+
+__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.
+
+__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation.
+
 <a id="seconds" href="#seconds">#</a>
-<em>order</em>.<b>seconds</b>(<em>field</em>)
+<em>xOffset</em>.<b>seconds</b>(<em>field</em>)
 
 Apply the <code>seconds</code> timeUnit operation prior to encoding.
 
 <a id="sort" href="#sort">#</a>
-<em>order</em>.<b>sort</b>(<em>value</em>)
+<em>xOffset</em>.<b>sort</b>(<em>value</em>)
 
-The sort order. One of `"ascending"` (default) or `"descending"`.
+Sort order for the encoded field.
+
+For continuous fields (quantitative or temporal), `sort` can be either `"ascending"` or `"descending"`.
+
+For discrete fields, `sort` can be one of the following:
+- `"ascending"` or `"descending"` -- for sorting by the values' natural order in JavaScript.
+- [A string indicating an encoding channel name to sort by](https://vega.github.io/vega-lite/docs/sort.html#sort-by-encoding) (e.g., `"x"` or `"y"`) with an optional minus prefix for descending sort (e.g., `"-x"` to sort by x-field, descending). This channel string is short-form of [a sort-by-encoding definition](https://vega.github.io/vega-lite/docs/sort.html#sort-by-encoding). For example, `"sort": "-x"` is equivalent to `"sort": {"encoding": "x", "order": "descending"}`.
+- [A sort field definition](https://vega.github.io/vega-lite/docs/sort.html#sort-field) for sorting by another field.
+- [An array specifying the field values in preferred order](https://vega.github.io/vega-lite/docs/sort.html#sort-array). In this case, the sort order will obey the values in the array, followed by any unspecified values in their original order. For discrete time field, values in the sort array can be [date-time definition objects](types#datetime). In addition, for time units `"month"` and `"day"`, the values can be the month or day names (case insensitive) or their 3-letter initials (e.g., `"Mon"`, `"Tue"`).
+- `null` indicating no sort.
+
+__Default value:__ `"ascending"`
+
+__Note:__ `null` and sorting by another channel is not supported for `row` and `column`.
+
+__See also:__ [`sort`](https://vega.github.io/vega-lite/docs/sort.html) documentation.
 
 <a id="stderr" href="#stderr">#</a>
-<em>order</em>.<b>stderr</b>(<em>field</em>)
+<em>xOffset</em>.<b>stderr</b>(<em>field</em>)
 
 Apply the <code>stderr</code> aggregate operation prior to encoding.
 
 <a id="stdev" href="#stdev">#</a>
-<em>order</em>.<b>stdev</b>(<em>field</em>)
+<em>xOffset</em>.<b>stdev</b>(<em>field</em>)
 
 Apply the <code>stdev</code> aggregate operation prior to encoding.
 
 <a id="stdevp" href="#stdevp">#</a>
-<em>order</em>.<b>stdevp</b>(<em>field</em>)
+<em>xOffset</em>.<b>stdevp</b>(<em>field</em>)
 
 Apply the <code>stdevp</code> aggregate operation prior to encoding.
 
 <a id="sum" href="#sum">#</a>
-<em>order</em>.<b>sum</b>(<em>field</em>)
+<em>xOffset</em>.<b>sum</b>(<em>field</em>)
 
 Apply the <code>sum</code> aggregate operation prior to encoding.
 
 <a id="timeHM" href="#timeHM">#</a>
-<em>order</em>.<b>timeHM</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeHM</b>(<em>field</em>)
 
 Apply the <code>hoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeHMS" href="#timeHMS">#</a>
-<em>order</em>.<b>timeHMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeHMS</b>(<em>field</em>)
 
 Apply the <code>hoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeMD" href="#timeMD">#</a>
-<em>order</em>.<b>timeMD</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeMD</b>(<em>field</em>)
 
 Apply the <code>monthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeMDH" href="#timeMDH">#</a>
-<em>order</em>.<b>timeMDH</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeMDH</b>(<em>field</em>)
 
 Apply the <code>monthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeMS" href="#timeMS">#</a>
-<em>order</em>.<b>timeMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeMS</b>(<em>field</em>)
 
 Apply the <code>minutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeQM" href="#timeQM">#</a>
-<em>order</em>.<b>timeQM</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeQM</b>(<em>field</em>)
 
 Apply the <code>quartermonth</code> timeUnit operation prior to encoding.
 
 <a id="timeSMS" href="#timeSMS">#</a>
-<em>order</em>.<b>timeSMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeSMS</b>(<em>field</em>)
 
 Apply the <code>secondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeUnit" href="#timeUnit">#</a>
-<em>order</em>.<b>timeUnit</b>(<em>value</em>)
+<em>xOffset</em>.<b>timeUnit</b>(<em>value</em>)
 
 Time unit (e.g., `year`, `yearmonth`, `month`, `hours`) for a temporal field. or [a temporal field that gets casted as ordinal](https://vega.github.io/vega-lite/docs/type.html#cast).
 
@@ -350,42 +370,42 @@ __Default value:__ `undefined` (None)
 __See also:__ [`timeUnit`](https://vega.github.io/vega-lite/docs/timeunit.html) documentation.
 
 <a id="timeYM" href="#timeYM">#</a>
-<em>order</em>.<b>timeYM</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYM</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 
 <a id="timeYMD" href="#timeYMD">#</a>
-<em>order</em>.<b>timeYMD</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYMD</b>(<em>field</em>)
 
 Apply the <code>yearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDH" href="#timeYMDH">#</a>
-<em>order</em>.<b>timeYMDH</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYMDH</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHM" href="#timeYMDHM">#</a>
-<em>order</em>.<b>timeYMDHM</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYMDHM</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="timeYMDHMS" href="#timeYMDHMS">#</a>
-<em>order</em>.<b>timeYMDHMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYMDHMS</b>(<em>field</em>)
 
 Apply the <code>yearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="timeYQ" href="#timeYQ">#</a>
-<em>order</em>.<b>timeYQ</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYQ</b>(<em>field</em>)
 
 Apply the <code>yearquarter</code> timeUnit operation prior to encoding.
 
 <a id="timeYQM" href="#timeYQM">#</a>
-<em>order</em>.<b>timeYQM</b>(<em>field</em>)
+<em>xOffset</em>.<b>timeYQM</b>(<em>field</em>)
 
 Apply the <code>yearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="title" href="#title">#</a>
-<em>order</em>.<b>title</b>(<em>value</em>)
+<em>xOffset</em>.<b>title</b>(<em>value</em>)
 
 A title for the field. If `null`, the title will be removed.
 
@@ -398,7 +418,7 @@ __Notes__:
 2) If both field definition's `title` and axis, header, or legend `title` are defined, axis/header/legend title will be used.
 
 <a id="type" href="#type">#</a>
-<em>order</em>.<b>type</b>(<em>value</em>)
+<em>xOffset</em>.<b>type</b>(<em>value</em>)
 
 The type of measurement (`"quantitative"`, `"temporal"`, `"ordinal"`, or `"nominal"`) for the encoded field or constant value (`datum`). It can also be a `"geojson"` type for encoding ['geoshape'](https://vega.github.io/vega-lite/docs/geoshape.html).
 
@@ -427,152 +447,152 @@ __Note:__
 __See also:__ [`type`](https://vega.github.io/vega-lite/docs/type.html) documentation.
 
 <a id="utcHM" href="#utcHM">#</a>
-<em>order</em>.<b>utcHM</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcHM</b>(<em>field</em>)
 
 Apply the <code>utchoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcHMS" href="#utcHMS">#</a>
-<em>order</em>.<b>utcHMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcHMS</b>(<em>field</em>)
 
 Apply the <code>utchoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcMD" href="#utcMD">#</a>
-<em>order</em>.<b>utcMD</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcMD</b>(<em>field</em>)
 
 Apply the <code>utcmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcMDH" href="#utcMDH">#</a>
-<em>order</em>.<b>utcMDH</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcMDH</b>(<em>field</em>)
 
 Apply the <code>utcmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcMS" href="#utcMS">#</a>
-<em>order</em>.<b>utcMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcMS</b>(<em>field</em>)
 
 Apply the <code>utcminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcQM" href="#utcQM">#</a>
-<em>order</em>.<b>utcQM</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcQM</b>(<em>field</em>)
 
 Apply the <code>utcquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcSMS" href="#utcSMS">#</a>
-<em>order</em>.<b>utcSMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcSMS</b>(<em>field</em>)
 
 Apply the <code>utcsecondsmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYM" href="#utcYM">#</a>
-<em>order</em>.<b>utcYM</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcYMD" href="#utcYMD">#</a>
-<em>order</em>.<b>utcYMD</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYMD</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdate</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDH" href="#utcYMDH">#</a>
-<em>order</em>.<b>utcYMDH</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYMDH</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehours</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHM" href="#utcYMDHM">#</a>
-<em>order</em>.<b>utcYMDHM</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYMDHM</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcYMDHMS" href="#utcYMDHMS">#</a>
-<em>order</em>.<b>utcYMDHMS</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYMDHMS</b>(<em>field</em>)
 
 Apply the <code>utcyearmonthdatehoursminutesseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcYQ" href="#utcYQ">#</a>
-<em>order</em>.<b>utcYQ</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYQ</b>(<em>field</em>)
 
 Apply the <code>utcyearquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcYQM" href="#utcYQM">#</a>
-<em>order</em>.<b>utcYQM</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcYQM</b>(<em>field</em>)
 
 Apply the <code>utcyearquartermonth</code> timeUnit operation prior to encoding.
 
 <a id="utcdate" href="#utcdate">#</a>
-<em>order</em>.<b>utcdate</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcdate</b>(<em>field</em>)
 
 Apply the <code>utcdate</code> timeUnit operation prior to encoding.
 
 <a id="utcday" href="#utcday">#</a>
-<em>order</em>.<b>utcday</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcday</b>(<em>field</em>)
 
 Apply the <code>utcday</code> timeUnit operation prior to encoding.
 
 <a id="utchours" href="#utchours">#</a>
-<em>order</em>.<b>utchours</b>(<em>field</em>)
+<em>xOffset</em>.<b>utchours</b>(<em>field</em>)
 
 Apply the <code>utchours</code> timeUnit operation prior to encoding.
 
 <a id="utcmilliseconds" href="#utcmilliseconds">#</a>
-<em>order</em>.<b>utcmilliseconds</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcmilliseconds</b>(<em>field</em>)
 
 Apply the <code>utcmilliseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcminutes" href="#utcminutes">#</a>
-<em>order</em>.<b>utcminutes</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcminutes</b>(<em>field</em>)
 
 Apply the <code>utcminutes</code> timeUnit operation prior to encoding.
 
 <a id="utcmonth" href="#utcmonth">#</a>
-<em>order</em>.<b>utcmonth</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcmonth</b>(<em>field</em>)
 
 Apply the <code>utcmonth</code> timeUnit operation prior to encoding.
 
 <a id="utcquarter" href="#utcquarter">#</a>
-<em>order</em>.<b>utcquarter</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcquarter</b>(<em>field</em>)
 
 Apply the <code>utcquarter</code> timeUnit operation prior to encoding.
 
 <a id="utcseconds" href="#utcseconds">#</a>
-<em>order</em>.<b>utcseconds</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcseconds</b>(<em>field</em>)
 
 Apply the <code>utcseconds</code> timeUnit operation prior to encoding.
 
 <a id="utcyear" href="#utcyear">#</a>
-<em>order</em>.<b>utcyear</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcyear</b>(<em>field</em>)
 
 Apply the <code>utcyear</code> timeUnit operation prior to encoding.
 
 <a id="utcyearmonth" href="#utcyearmonth">#</a>
-<em>order</em>.<b>utcyearmonth</b>(<em>field</em>)
+<em>xOffset</em>.<b>utcyearmonth</b>(<em>field</em>)
 
 Apply the <code>utcyearmonth</code> timeUnit operation prior to encoding.
 
 <a id="valid" href="#valid">#</a>
-<em>order</em>.<b>valid</b>(<em>field</em>)
+<em>xOffset</em>.<b>valid</b>(<em>field</em>)
 
 Apply the <code>valid</code> aggregate operation prior to encoding.
 
 <a id="value" href="#value">#</a>
-<em>order</em>.<b>value</b>(<em>value</em>)
+<em>xOffset</em>.<b>value</b>(<em>value</em>)
 
 A constant value in visual domain (e.g., `"red"` / `"#0099ff"` / [gradient definition](https://vega.github.io/vega-lite/docs/types.html#gradient) for color, values between `0` to `1` for opacity).
 
 <a id="variance" href="#variance">#</a>
-<em>order</em>.<b>variance</b>(<em>field</em>)
+<em>xOffset</em>.<b>variance</b>(<em>field</em>)
 
 Apply the <code>variance</code> aggregate operation prior to encoding.
 
 <a id="variancep" href="#variancep">#</a>
-<em>order</em>.<b>variancep</b>(<em>field</em>)
+<em>xOffset</em>.<b>variancep</b>(<em>field</em>)
 
 Apply the <code>variancep</code> aggregate operation prior to encoding.
 
 <a id="year" href="#year">#</a>
-<em>order</em>.<b>year</b>(<em>field</em>)
+<em>xOffset</em>.<b>year</b>(<em>field</em>)
 
 Apply the <code>year</code> timeUnit operation prior to encoding.
 
 <a id="yearmonth" href="#yearmonth">#</a>
-<em>order</em>.<b>yearmonth</b>(<em>field</em>)
+<em>xOffset</em>.<b>yearmonth</b>(<em>field</em>)
 
 Apply the <code>yearmonth</code> timeUnit operation prior to encoding.
 

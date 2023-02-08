@@ -26,8 +26,6 @@ An optional CSS selector string indicating the parent element to which the input
 <a id="input" href="#input">#</a>
 <em>menu</em>.<b>input</b>(<em>value</em>)
 
-The type of input element to use. The valid values are `"checkbox"`, `"radio"`, `"range"`, `"select"`, and any other legal [HTML form input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
-
 <a id="labels" href="#labels">#</a>
 <em>menu</em>.<b>labels</b>(<em>...value</em>)
 

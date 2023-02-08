@@ -59,7 +59,10 @@ __See also:__ [`on` examples](https://vega.github.io/vega-lite/docs/selection.ht
 
 With layered and multi-view displays, a strategy that determines how selections' data queries are resolved when applied in a filter transform, conditional encoding rule, or scale domain.
 
-One of: - `"global"` -- only one brush exists for the entire SPLOM. When the user begins to drag, any previous brushes are cleared, and a new one is constructed. - `"union"` -- each cell contains its own brush, and points are highlighted if they lie within _any_ of these individual brushes. - `"intersect"` -- each cell contains its own brush, and points are highlighted only if they fall within _all_ of these individual brushes.
+One of:
+- `"global"` -- only one brush exists for the entire SPLOM. When the user begins to drag, any previous brushes are cleared, and a new one is constructed.
+- `"union"` -- each cell contains its own brush, and points are highlighted if they lie within _any_ of these individual brushes.
+- `"intersect"` -- each cell contains its own brush, and points are highlighted only if they fall within _all_ of these individual brushes.
 
 __Default value:__ `global`.
 
@@ -68,9 +71,12 @@ __See also:__ [`resolve` examples](https://vega.github.io/vega-lite/docs/selecti
 <a id="toggle" href="#toggle">#</a>
 <em>configPoint</em>.<b>toggle</b>(<em>value</em>)
 
-Controls whether data values should be toggled (inserted or removed from a point selection) or only ever inserted into multi selections.
+Controls whether data values should be toggled (inserted or removed from a point selection) or only ever inserted into point selections.
 
-One of: - `true` -- the default behavior, which corresponds to `"event.shiftKey"`.  As a result, data values are toggled when the user interacts with the shift-key pressed. - `false` -- disables toggling behaviour; as the user interacts, data values are only inserted into the multi selection and never removed. - A [Vega expression](https://vega.github.io/vega/docs/expressions/) which is re-evaluated as the user interacts. If the expression evaluates to `true`, the data value is toggled into or out of the multi selection. If the expression evaluates to `false`, the multi selection is first clear, and the data value is then inserted. For example, setting the value to the Vega expression `"true"` will toggle data values without the user pressing the shift-key.
+One of:
+- `true` -- the default behavior, which corresponds to `"event.shiftKey"`.  As a result, data values are toggled when the user interacts with the shift-key pressed.
+- `false` -- disables toggling behaviour; the selection will only ever contain a single data value corresponding to the most recent interaction.
+- A [Vega expression](https://vega.github.io/vega/docs/expressions/) which is re-evaluated as the user interacts. If the expression evaluates to `true`, the data value is toggled into or out of the point selection. If the expression evaluates to `false`, the point selection is first cleared, and the data value is then inserted. For example, setting the value to the Vega expression `"true"` will toggle data values without the user pressing the shift-key.
 
 __Default value:__ `true`
 
@@ -81,5 +87,6 @@ __See also:__ [`toggle` examples](https://vega.github.io/vega-lite/docs/selectio
 
 Determines the default event processing and data query for the selection. Vega-Lite currently supports two selection types:
 
-- `"point"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click. - `"interval"` -- to select a continuous range of data values on `drag`.
+- `"point"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.
+- `"interval"` -- to select a continuous range of data values on `drag`.
 
