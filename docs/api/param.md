@@ -7,6 +7,7 @@ Define or reference a variable parameter.
 * <a href="#bind">bind</a>
 * <a href="#expr">expr</a>
 * <a href="#name">name</a>
+* <a href="#react">react</a>
 * <a href="#value">value</a>
 
 ## <code>param</code> API Reference
@@ -32,6 +33,13 @@ An expression for the value of the parameter. This expression may include other 
 <em>param</em>.<b>name</b>(<em>value</em>)
 
 A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or "$", or "_") and may not start with a digit. Reserved keywords that may not be used as parameter names are "datum", "event", "item", and "parent".
+
+<a id="react" href="#react">#</a>
+<em>param</em>.<b>react</b>(<em>value</em>)
+
+A boolean flag (default `true`) indicating if the update expression should be automatically re-evaluated when any upstream signal dependencies update. If `false`, the update expression will not register any dependencies on other signals, even for initialization.
+
+ __Default value:__ `true`
 
 <a id="value" href="#value">#</a>
 <em>param</em>.<b>value</b>(<em>value</em>)

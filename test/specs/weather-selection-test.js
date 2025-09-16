@@ -1,5 +1,5 @@
-var tape = require('tape'),
-    vl = require('../../build/vega-lite-api');
+import tape from 'tape';
+import * as vl from '../../src/index.js';
 
 tape('API output matches spec: weather-selection', function(t) {
   t.equal(JSON.stringify(api().toObject()), JSON.stringify(spec));

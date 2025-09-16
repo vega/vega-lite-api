@@ -207,12 +207,13 @@ Encode the field as a temporal data type.
 <a id="format" href="#format">#</a>
 <em>href</em>.<b>format</b>(<em>value</em>)
 
-When used with the default `"number"` and `"time"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.
+The text format specifier for formatting number and date/time in labels of guides (axes, legends, headers) and text marks.
 
-- If the format type is `"number"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).
-- If the format type is `"time"` (e.g., for temporal fields), this is D3's [time format pattern](https://github.com/d3/d3-time-format#locale_format).
+If the format type is `"number"` (e.g., for quantitative fields), this is a D3's [number format pattern string](https://github.com/d3/d3-format#locale_format).
 
-See the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.
+If the format type is `"time"` (e.g., for temporal fields), this is either:   a) D3's [time format pattern](https://d3js.org/d3-time-format#locale_format) if you desire to set a static time format.
+
+  b) [dynamic time format specifier object](https://vega.github.io/vega-lite/docs/format.html#dynamic-time-format) if you desire to set a dynamic time format that uses different formats depending on the granularity of the input date (e.g., if the date lies on a year, month, date, hour, etc. boundary).
 
 When used with a [custom `formatType`](https://vega.github.io/vega-lite/docs/config.html#custom-format-type), this value will be passed as `format` alongside `datum.value` to the registered function.
 
@@ -426,7 +427,7 @@ __Default value:__
 1) For a data `field`, `"nominal"` is the default data type unless the field encoding has `aggregate`, `channel`, `bin`, scale type, `sort`, or `timeUnit` that satisfies the following criteria:
 - `"quantitative"` is the default type if (1) the encoded field contains `bin` or `aggregate` except `"argmin"` and `"argmax"`, (2) the encoding channel is `latitude` or `longitude` channel or (3) if the specified scale type is [a quantitative scale](https://vega.github.io/vega-lite/docs/scale.html#type).
 - `"temporal"` is the default type if (1) the encoded field contains `timeUnit` or (2) the specified scale type is a time or utc scale
-- `ordinal""` is the default type if (1) the encoded field contains a [custom `sort` order](https://vega.github.io/vega-lite/docs/sort.html#specifying-custom-sort-order), (2) the specified scale type is an ordinal/point/band scale, or (3) the encoding channel is `order`.
+- `"ordinal"` is the default type if (1) the encoded field contains a [custom `sort` order](https://vega.github.io/vega-lite/docs/sort.html#specifying-custom-sort-order), (2) the specified scale type is an ordinal/point/band scale, or (3) the encoding channel is `order`.
 
 2) For a constant value in data domain (`datum`):
 - `"quantitative"` if the datum is a number

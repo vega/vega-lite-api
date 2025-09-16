@@ -1,12 +1,14 @@
-const rollup = require('rollup'),
-      json = require('@rollup/plugin-json'),
-      generate = 'build/generate-api.js',
-      output = 'build/vega-lite-api.js';
+import { rollup } from 'rollup';
+import json from '@rollup/plugin-json';
+
+const generate = 'build/generate-api.js';
+const output = 'build/vega-lite-api.js';
 
 (async function compile() {
   try {
     await api(generate);
-    await require('./' + generate).build();
+    const generateModule = await import('./' + generate);
+    await generateModule.build();
     await src(output);
   } catch (error) {
     console.error(error.stack); // eslint-disable-line no-console
@@ -14,14 +16,14 @@ const rollup = require('rollup'),
 })();
 
 function api(output) {
-  return rollup.rollup({
+  return rollup({
     input: 'api/index.js',
-    external: ['fs', 'vega-lite/build/vega-lite-schema'],
+    external: ['fs', 'vega-lite/vega-lite-schema.json'],
     plugins: [json()]
   }).then(function(bundle) {
     return bundle.write({
       file: output,
-      format: 'cjs',
+      format: 'es',
       globals: {fs: 'fs'}
     });
   }).then(function() {
@@ -30,7 +32,7 @@ function api(output) {
 }
 
 function src(output) {
-  return rollup.rollup({
+  return rollup({
     input: 'src/index.js'
   }).then(function(bundle) {
     return bundle.write({

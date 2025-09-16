@@ -1,5 +1,5 @@
-var tape = require('tape'),
-    vl = require('../../');
+import tape from 'tape';
+import * as vl from '../../src/index.js';
 
 tape('API output matches spec: parallel-coordinates', function(t) {
   t.equal(JSON.stringify(api()), JSON.stringify(spec));

@@ -47,8 +47,8 @@ To get started with the Vega-Lite API, see these Observable notebooks:
 For a basic setup allowing you to build the API and run tests:
 
 - Clone `https://github.com/vega/vega-lite-api`.
-- Run `yarn` to install dependencies for all packages. If you don't have yarn installed, see https://yarnpkg.com/en/docs/install.
-- Once installation is complete, run `yarn build` to build the API generator and generate API source code in the `src` directory. Run `yarn test` to additionally run the test suite.
+- Run `npm i` to install dependencies for all packages.
+- Once installation is complete, run `npm run build` to build the API generator and generate API source code in the `src` directory. Run `npm test` to additionally run the test suite.
 
 ## API Reference
 
@@ -134,7 +134,7 @@ To use the vega-lite API on a browser, you need to include all the dependencies,
 ### vega-lite API For Nodejs
 
 ~~~
-npm install vega vega-lite vega-tooltip vega-lite-api 
+npm install vega vega-lite vega-tooltip vega-lite-api
 ~~~
 
 then import everything set your options and register. Here is an example

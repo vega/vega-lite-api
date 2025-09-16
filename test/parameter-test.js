@@ -1,5 +1,5 @@
-const tape = require('tape'),
-      vl = require('../build/vega-lite-api');
+import tape from 'tape';
+import * as vl from '../src/index.js';
 
 function equalSpec(t, api, spec) {
   t.equal(JSON.stringify(api.toObject()), JSON.stringify(spec));

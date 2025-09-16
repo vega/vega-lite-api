@@ -11,27 +11,31 @@
   ],
   "license": "BSD-3-Clause",
   "author": "Jeffrey Heer (http://idl.cs.washington.edu)",
-  "main": "build/vega-lite-api.js",
-  "module": "src/index",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.js"
+    }
+  },
   "unpkg": "build/vega-lite-api.min.js",
   "jsdelivr": "build/vega-lite-api.min.js",
   "repository": "vega/vega-lite-api",
   "scripts": {
     "prebuild": "rimraf build src docs/api && mkdir build src docs/api && cp static/* src && cp README.md docs/index.md",
     "build": "node rollup",
-    "pretest": "yarn build",
+    "pretest": "npm run build",
     "test": "tape 'test/**/*-test.js' && eslint api static src test",
-    "prepublishOnly": "yarn test && yarn minify",
+    "prepublishOnly": "npm test && npm run minify",
     "minify": "terser build/vega-lite-api.js -c -m -o build/vega-lite-api.min.js"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "^6.0.0",
-    "eslint": "^8.33.0",
-    "rimraf": "^4.1.2",
-    "rollup": "^3.14.0",
-    "tape": "^5.6.3",
-    "terser": "^5.16.3",
-    "vega": "^5.22.1",
-    "vega-lite": "^5.6.0"
+    "@rollup/plugin-json": "^6.1.0",
+    "eslint": "^8.0.0",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.50.2",
+    "tape": "^5.9.0",
+    "terser": "^5.44.0",
+    "vega": "^6.2.0",
+    "vega-lite": "^6.3.1"
   }
 }
