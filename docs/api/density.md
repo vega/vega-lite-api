@@ -13,6 +13,7 @@ Estimate smoothed densities for numeric values.
 * <a href="#groupby">groupby</a>
 * <a href="#maxsteps">maxsteps</a>
 * <a href="#minsteps">minsteps</a>
+* <a href="#resolve">resolve</a>
 * <a href="#steps">steps</a>
 
 ## <code>density</code> API Reference
@@ -71,6 +72,13 @@ __Default value:__ `200`
 The minimum number of samples to take along the extent domain for plotting the density.
 
 __Default value:__ `25`
+
+<a id="resolve" href="#resolve">#</a>
+<em>density</em>.<b>resolve</b>(<em>value</em>)
+
+Indicates how parameters for multiple densities should be resolved. If `"independent"`, each density may have its own domain extent and dynamic number of curve sample steps. If `"shared"`, the KDE transform will ensure that all densities are defined over a shared domain and curve steps, enabling stacking.
+
+__Default value:__ `"shared"`
 
 <a id="steps" href="#steps">#</a>
 <em>density</em>.<b>steps</b>(<em>value</em>)
