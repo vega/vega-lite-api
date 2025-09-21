@@ -140,10 +140,10 @@ npm install vega vega-lite vega-tooltip vega-lite-api
 then import everything set your options and register. Here is an example
 
 ~~~js
-const vega = require("vega");
-const vegaLite = require("vega-lite");
-const vegaTooltip = require("vega-tooltip");
-const vl = require("vega-lite-api");
+import * as vega from "vega";
+import * as vegaLite from "vega-lite";
+import * as vegaTooltip from "vega-tooltip";
+import * as vl from "vega-lite-api";
 
 const options = {
   config: {
