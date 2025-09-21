@@ -84,6 +84,7 @@
 - <a href="text">vl.<b>text</b></a> - Specify the <code>text</code> encoding channel.
 - <a href="theta">vl.<b>theta</b></a> - Specify the <code>theta</code> encoding channel.
 - <a href="theta2">vl.<b>theta2</b></a> - Specify the <code>theta2</code> encoding channel.
+- <a href="time">vl.<b>time</b></a> - Specify the <code>time</code> encoding channel.
 - <a href="tooltip">vl.<b>tooltip</b></a> - Specify the <code>tooltip</code> encoding channel.
 - <a href="url">vl.<b>url</b></a> - Specify the <code>url</code> encoding channel.
 - <a href="x">vl.<b>x</b></a> - Specify the <code>x</code> encoding channel.

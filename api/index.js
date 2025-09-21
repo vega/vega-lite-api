@@ -1,7 +1,11 @@
 import {generateAPI} from './generate/api';
 import {generateDoc} from './generate/doc';
-import schema from 'vega-lite/build/vega-lite-schema';
+import {readFileSync} from 'fs';
+import {createRequire} from 'module';
 import {api} from './api';
+
+const require = createRequire(import.meta.url);
+const schema = JSON.parse(readFileSync(require.resolve('vega-lite/vega-lite-schema.json'), 'utf8'));
 
 export function build() {
   return Promise.all([

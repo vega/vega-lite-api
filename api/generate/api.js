@@ -28,9 +28,9 @@ function generateIndex(api) {
       continue; // skip private methods
     } else if (name.startsWith('$')) {
       const base = api[name].name;
-      code += `export {${base ? `${base} as ` : ''}${name.slice(1)}} from "./${api[name].src}";\n`;
+      code += `export {${base ? `${base} as ` : ''}${name.slice(1)}} from "./${api[name].src}.js";\n`;
     } else {
-      code += `export {${name}} from "./${name}";\n`;
+      code += `export {${name}} from "./${name}.js";\n`;
     }
   }
   return code;

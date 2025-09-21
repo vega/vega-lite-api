@@ -6,6 +6,7 @@ Configure <code>interval</code> selections.
 
 * <a href="#clear">clear</a>
 * <a href="#encodings">encodings</a>
+* <a href="#fields">fields</a>
 * <a href="#mark">mark</a>
 * <a href="#on">on</a>
 * <a href="#resolve">resolve</a>
@@ -28,6 +29,13 @@ __See also:__ [`clear` examples ](https://vega.github.io/vega-lite/docs/selectio
 <em>configInterval</em>.<b>encodings</b>(<em>...value</em>)
 
 An array of encoding channels. The corresponding data field values must match for a data tuple to fall within the selection.
+
+__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.
+
+<a id="fields" href="#fields">#</a>
+<em>configInterval</em>.<b>fields</b>(<em>...value</em>)
+
+An array of field names whose values must match for a data tuple to fall within the selection.
 
 __See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.
 
@@ -64,7 +72,7 @@ __See also:__ [`resolve` examples](https://vega.github.io/vega-lite/docs/selecti
 
 When truthy, allows a user to interactively move an interval selection back-and-forth. Can be `true`, `false` (to disable panning), or a [Vega event stream definition](https://vega.github.io/vega/docs/event-streams/) which must include a start and end event to trigger continuous panning. Discrete panning (e.g., pressing the left/right arrow keys) will be supported in future versions.
 
-__Default value:__ `true`, which corresponds to `[mousedown, window:mouseup] > window:mousemove!`. This default allows users to clicks and drags within an interval selection to reposition it.
+__Default value:__ `true`, which corresponds to `[pointerdown, window:pointerup] > window:pointermove!`. This default allows users to clicks and drags within an interval selection to reposition it.
 
 __See also:__ [`translate` examples](https://vega.github.io/vega-lite/docs/selection.html#translate) in the documentation.
 

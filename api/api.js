@@ -1,6 +1,10 @@
 import {enums, props, types} from './generate/schema';
 import {capitalize, reduce} from './generate/util';
-import schema from 'vega-lite/build/vega-lite-schema';
+import {readFileSync} from 'fs';
+import {createRequire} from 'module';
+
+const require = createRequire(import.meta.url);
+const schema = JSON.parse(readFileSync(require.resolve('vega-lite/vega-lite-schema.json'), 'utf8'));
 import {aggregateOps, timeUnitOps, windowOps} from './ops';
 import {
   transform, groupby, aggregateOp, timeUnitOp, windowOp,

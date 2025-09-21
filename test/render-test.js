@@ -1,7 +1,7 @@
-const tape = require('tape'),
-      vega = require('vega'),
-      vegalite = require('vega-lite'),
-      vl = require('../');
+import tape from 'tape';
+import * as vega from 'vega';
+import * as vegalite from 'vega-lite';
+import * as vl from '../src/index.js';
 
 tape('Top-level specification types have a render method', function(t) {
   t.ok(vl.mark().render);

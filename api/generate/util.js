@@ -80,7 +80,7 @@ export function emitter(defaultFile) {
 
     const code = files.reduce((list, file) => {
       const methods = Object.keys(imports[file]).sort().join(', ');
-      list.push(`import {${methods}} from './${file}';`);
+      list.push(`import {${methods}} from './${file}.js';`);
       return list;
     }, []);
 

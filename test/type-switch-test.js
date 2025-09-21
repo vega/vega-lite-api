@@ -1,5 +1,5 @@
-const tape = require('tape'),
-      vl = require('../');
+import tape from 'tape';
+import * as vl from '../src/index.js';
 
 tape('Type check switches map arrays', function(t) {
   const objects = vl.tooltip([
