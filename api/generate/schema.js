@@ -50,7 +50,7 @@ export function enums(schema, type) {
 
 export function types(schema, type) {
   return search(schema, type,
-    t => t.type === 'object' && (t = t.properties) && (t = t.type),
+    t => t.type === 'object' && t.properties && t.properties.type,
     t => t.properties.type.const || t.properties.type.enum || [],
     a => [].concat(...a).sort(),
     () => []
