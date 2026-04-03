@@ -98,7 +98,7 @@ export function capitalize(_) {
   let i = 0;
   const p = _[i] === '_' ? (++i, '_') : '';
   const c = _[i];
-  return p + c.toUpperCase() + _.slice(++i);
+  return p + c.toUpperCase() + _.slice(i + 1);
 }
 
 export function uppercase(_) {
